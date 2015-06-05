@@ -1,0 +1,455 @@
+\chapter{Diagonalizzazione}
+\section{Autovalori e autovettori}
+\begin{definizione}\label{d:autovalore}
+	Sia $V$ uno spazio vettoriale su un campo $K$, e $T$ un endomorfismo su $V$.
+	Si dice \emph{autovalore} di un endomorfismo $T\in\End(V)$ uno scalare $\lambda\in K$ per il quale esiste un vettore $v\in V\setminus\{0\}$ tale che $T(v)=\lambda v$.
+	Un tale vettore $v$ si dice \emph{autovettore} di $T$ associato all'autovalore $\lambda$.
+\end{definizione}
+Ad esempio, l'applicazione
+\begin{equation*}
+	A=\begin{pmatrix}\cos\alpha&-\sin\alpha\\\sin\alpha&\cos\alpha\end{pmatrix}
+\end{equation*}
+individua una rotazione di un vettore di $\R^2$.
+Se $\alpha$ è diverso da multipli interi di $\pi$, allora $A$ non ammette alcun autovalore; se invece $\alpha=k\pi$ la matrice $A$ individua una rotazione di 0 oppure $\pi$, cioè una dilatazione di $v$, eventualmente con un cambiamento di verso del vettore, quindi qualunque vettore di $\R^2$ è un autovettore di $A$.
+
+% Questo risultato deve essere già noto - matrici simili hanno lo stesso determinante.
+% Magari introdurre una spiegazione nel capitolo dei determinanti.
+\begin{teorema} \label{t:determinante-invarianza-base}
+	Sia $V$ uno spazio vettoriale di dimensione finita.
+	Il determinante della matrice associata a un endomorfismo $T\in\End(V)$ non dipende dalla scelta della base per rappresentarla.	
+\end{teorema}
+\begin{proof}
+	Sia $\dim V=m$.
+	Fissata una medesima base $\mathcal B=\{e_i\}_{i=1}^m$ di $V$ sia in arrivo che in partenza, sia $A_T$ la matrice associata a $T$ nella base data, definita quindi come $(A_T)_{ij}=T(e_i)_j$.
+	Scegliendo una base differente $\mathcal B=\{e_i'\}_{i=1}^m$ per $V$, essa si può sempre ottenere applicando una matrice $C$ alla precedente base $\mathcal B$, quindi
+	\begin{equation*}
+		e_j'=\sum_{i=1}^mC_{ij}e_i,
+	\end{equation*}
+	e detta $A_T'$ la matrice che rappresenta $T$ nella nuova base, si ha $A_T'=C^{-1}A_TC$.
+	Il determinante di $A_T$, sotto questa nuova base, è dunque $\det A_T'=\det(C^{-1}A_TC)=\det C^{-1}\det A_T\det C=(\det C)^{-1}\det A_T\det C=\det A_T$, per il teorema di Binet e la commutatività di $K$.
+\end{proof}
+Possiamo quindi definire il \emph{determinante di un endomorfismo}, sapendo che sarà lo stesso qualunque matrice si scelga per rappresentarlo. 
+
+\begin{teorema}\label{t:autovalore-determinante}
+	Sia $V$ uno spazio vettoriale di dimensione finita su un campo $K$, $T\in\End(V)$ e $\lambda\in K$. Le seguenti affermazioni si equivalgono:
+	\begin{enumerate}
+		\item $\lambda$ è un autovalore di $T$;
+		\item l'operatore lineare $T-\lambda I$ non è iniettivo;
+		\item $\det(T-\lambda I)=0$.
+	\end{enumerate}
+\end{teorema}
+\begin{proof}
+	Se $\lambda$ è un autovalore, allore esiste un vettore $v\in V$ non nullo per cui $T(v)=\lambda v=(\lambda I)(v)$ quindi $T(v)-(\lambda I)(v)=(T-\lambda I)(v)=0_V$.
+	Ma ciò significa che $\ker(T-\lambda I)$ non contiene soltanto $0_V$, dunque non è iniettivo.
+	Viceversa, se $\ker(T-\lambda I)\neq\{0_V\}$ vuol dire che esiste un $v\in V$ per cui $(T-\lambda I)(v)=0_V$, cioè risalendo i passaggi precedenti $T(v)=\lambda v$.
+
+	Se $T-\lambda I$ non è iniettivo, non può essere di conseguenza invertibile, quindi il suo determinante deve essere nullo.
+	Viceversa, se il determinante è nullo allora non è invertibile, vale a dire $T-\lambda I$ non è iniettivo o non è suriettivo.
+	Se fosse inettivo, l'applicazione dovrebbe essere, per come è definita un'isomorfismo, quindi il determinante non dovrebbe essere zero.
+	Questo caso è allora da escludere.
+	Se fosse suriettivo avremmo che per ogni $s\in V$ $(T-\lambda I)(v) =  s$.
+	Poichè $s$ può anche essere il vettore nullo questo significa che il $\ker(T-\lambda I)$ non può essere costituito dal solo zero.
+	Quindi se l'applicazone è suriettiva non può essere iniettiva e quindi un'isomorfismo.
+	Questo implica che l'ultima affermazione è equivalente alla seconda.
+\end{proof}
+\begin{definizione} \label{d:polinomio-caratteristico}
+	Si definisce \emph{poliniomio caratteristico} dell'applicazione $T\in\End(V)$ il polinomio $\chi_T(x)=\det(T-xI)$.
+\end{definizione}
+È possibile definire il polinomio caratteristico di un endomorfismo, equivalentemente, come $\det(A-xI)$ dive $A$ rappresenta $T$ in qualche base $\mathcal B$.
+Ma se $\tilde{\mathcal B}$ è un'altra base e $L$ la matrice di cambiamento di base tra le due, allora la matrice che rappresenta $T$ in $\tilde{\mathcal B}$ è $\tilde{A}=L^{-1}AL$.
+Il polinomio caratteristico di questa nuova matrice è
+\begin{equation*}
+	\chi_{\tilde{A}}(x)=\det(\tilde{A}-xI)=\det(L^{-1}AL-xI)=\det(L^{-1}AL-L^{-1}xIL)=\det(L^{-1})\det(A-xI)\det L=\chi_A(x)
+\end{equation*}
+quindi matrici simili hanno il medesimo polinomio caratteristico.
+La definizione data tramite l'endomorfismo è quindi ben posta, in quanto le matrici rappresentanti un endomorfismo rispetto a basi differenti sono tutte simili.\footnote{Questo ovviamente vale purch\'e le basi di partenza e di arrivo coincidono!}
+
+Le radici di $\chi_T(x)$, per l'ultimo punto del teorema precedente, sono chiaramente gli autovalori di $T$. Il grado di questo polinomio inoltre equivale alla dimensione dello spazio vettoriale $V$.
+Si può alternativamente definire il polinomio caratteristico come $\chi_T(x)=\det(xI-T)$: gli autovalori trovati come radici non variano, perché per le proprietà del determinante vale $\det(xI-T)=(-1)^m\det(T-xI)$, dove $m=\dim V$, quindi le radici sono le stesse per entrambe le definizioni.
+
+Rifacendosi al primo esempio
+\begin{equation*}
+A=\begin{pmatrix}\cos\alpha&-\sin\alpha\\\sin\alpha&\cos\alpha\end{pmatrix},
+\end{equation*}
+il polinomio caratteristico di $A$ è
+\begin{equation*}
+	\begin{split}
+		\chi_A(x)&=\begin{vmatrix}\cos\alpha-\lambda&-\sin\alpha\\\sin\alpha&\cos\alpha-\lambda\end{vmatrix}=\\
+		&=(\cos\alpha-\lambda)^2+\sin^2\alpha=\\
+		&=\lambda^2-2\cos\alpha\lambda+1,
+	\end{split}
+\end{equation*}
+il cui discriminante è $-4\sin^2\alpha$, che quindi non è negativo solo se $\alpha=k\pi$ ($k\in\Z$).
+Soltanto per questi valori $A$ ammette dunque autovalori.
+
+Se $v$ è un autovettore associato a $\lambda$, anche i suoi multipli per uno scalare sono a loro volta autovettori: infatti se $T(v)=\lambda v$ e $k\in K$ segue per la linearità di $T$ che $T(kv)=kT(v)=k\lambda v$, cioè qualsiasi multiplo $kv$ è un autovettore di $T$ associato a $\lambda$.
+\begin{definizione} \label{d:autospazio}
+	L'insieme $V_\lambda$ degli autovettori associati ad un unico autovalore $\lambda$ è detto \emph{autospazio} di $T$:
+	\begin{equation*}
+	V_\lambda=\{v\in V\colon T(v)=\lambda v\}.
+	\end{equation*}
+\end{definizione}
+L'autospazio $V_\lambda$ non si riduce mai allo zero, poiché gli autovettori sono per definizione non nulli, ed è anche un sottospazio vettoriale di $V$.
+Se $v,w\in V_\lambda$ e $h,k\in K$, si ha
+\begin{equation*}
+	T(hv+kw)=hT(v)+kT(w)=h\lambda v+k\lambda w=\lambda(hv+kw),
+\end{equation*}
+quindi $hv+kw$ è ancora un autovettore associato a $\lambda$, cioè appartiene a $V_\lambda$.
+La somma di due autovettori di $T$ associati a due autovalori distinti però \emph{non} è ancora necessariamente un autovettore di $T$.
+\begin{teorema} \label{t:autovettori-linearmente-indipendenti}
+	Siano $V$ uno spazio vettoriale di dimensione finita su un campo $K$, $T$ un endomorfismo in $V$. Siano $v_1,v_2,\dots,v_k$ autovettori di $T$ associati rispettivamente agli autovalori $\lambda_1,\lambda_2\,\dots,\lambda_k$. Se questi autovalori sono tutti distinti, allora i $v_1,v_2,\dots,v_k$ sono linearmente indipendenti.
+\end{teorema}
+\begin{proof}
+	Dimostriamolo per induzione rispetto a $k$.
+	Se $k=1$, un elemento soltanto $v_1\in V$ è linearmente indipendente perché essendo un autovettore non è mai nullo, quindi il teorema è subito dimostrato.
+	Sia ora $k>1$.
+	Consideriamo una combinazione lineare
+	\begin{equation}\label{dim:av1}
+		a_1v_1+a_2v_2+\dots+a_kv_k=0,\tag{a}
+	\end{equation}
+	e si dimostra che $a_1=\dots=a_k=0_K$. Moltiplicando la \eqref{dim:av1} per $\lambda_1$ si ottiene
+	\begin{equation}\label{dim:av2}
+		a_1\lambda_1v_1+a_2\lambda_1v_2+\dots+a_k\lambda_1v_k=0,\tag{b}
+	\end{equation}
+	e applicando $T$ sempre alla \eqref{dim:av1} si ottiene un'altra combinazione
+	\begin{equation}\label{dim:av3}
+		a_1\lambda_1v_1+\dots+a_k\lambda_kv_k=0.\tag{c}
+	\end{equation}
+	Sottraendo la \eqref{dim:av2} a quest'ultima risulta
+	\begin{equation*}
+		a_2(\lambda_2-\lambda_1)v_2+a_3(\lambda_3-\lambda_1)v_3+\dots+a_k(\lambda_k-\lambda_1)v_k=0.
+	\end{equation*}
+	Dato che $\lambda_i\neq\lambda_1$ per ogni $i>1$, non può che essere $a_2=a_3=\dots=a_k=0_K$, a cui segue nella \eqref{dim:av1} che $a_1v_1=0_V$, da cui $a_1=0$.
+	Poiché dunque $a_1=a_2=\dots=a_k=0_K$, l'insieme $\{v_1,v_2\dots,v_k\}$ è linearmente indipendente.
+\end{proof}
+
+\begin{definizione} \label{d:molteplicita-autovalori}
+	Sia $T\in\End(V)$, con $\dim V<+\infty$, e $\lambda$ un autovalore di $T$.
+	Si chiama \emph{molteplicità geometrica} di $\lambda$, e si indica con $\gamma_\lambda$, la dimensione dell'autospazio $V_\lambda$; si chiama \emph{molteplicità algebrica}, e si indica con $\alpha_\lambda$, la sua molteplicità come radice del polinomio caratteristico di $T$.
+\end{definizione}
+\begin{teorema}
+	Sia $\lambda$ un autovalore di $T\in\End(V)$, con $V$ di dimensione finita.
+	Vale la relazione
+	\begin{equation*}
+		1\leq\gamma_\lambda\leq\alpha_\lambda\leq\dim V.
+	\end{equation*}
+\end{teorema}
+\begin{proof}
+	Se $\lambda$ è un autovalore, esiste un autospazio ad esso associato non vuoto, che ha quindi una dimensione non nulla; inoltre esiste una radice di $\chi_T(x)$, ed essa ha quindi una molteplicità non nulla.
+	Allora $\alpha_\lambda,\gamma_\lambda\geq 1$.
+
+	L'autospazio è un sottospazio vettoriale di $V$, quindi $\gamma_\lambda\dim V_\lambda\leq\dim V$, e il grado di $\chi_T(x)$ (che equivale alla dimensione di $V$) non può essere superato dalla somma delle molteplicità delle radici per il teorema \ref{dimensione-moltiplicità-algebrica} dunque $\alpha_\lambda\le\dim V$.
+	Si può individuare una base dell'autospazio $V_\lambda$ composta da $\gamma_\lambda$ elementi, che sono autovettori associati a $\lambda$.
+	Nell'autospazio $V_\lambda$ l'endomorfismo $T$ si comporta come un multiplo dell'identità, precisamente $\lambda I_n$ (dove $n$ è la dimensione dell'autospazio, cioè è $\gamma_\lambda$), dato che sono tutti autovettori con autovalore $\lambda$.
+	Nella base scelta, dunque, $T$ è rappresentato da
+	\begin{equation*}
+		A=
+		\begin{bmatrix}
+			\lambda I_n & 0\\
+			0			& M
+		\end{bmatrix}
+	\end{equation*}
+	con $n=\gamma_\lambda$ come già visto, e $M$ è una matrice qualunque (è il blocco corrispondente all'azione di $T$ su $V$ meno l'autospazio $V_\lambda$).
+	Il suo polinomio caratteristico è $\chi_T(x)=\det(A-xI)=\det(\lambda I_n-xI_n)\det(M-xI_{\dim V-n})=(\lambda-x)^ng(x)$ dove $g(x)=\det(M-xI_{\dim V-n})$ è un generico polinomio di grado $\dim V-n$.
+	Allora $\lambda-x$ divide $\chi_T(x)$ almeno $\gamma_\lambda$ volte, vale a dire che la molteplicità della radice $\lambda$ non è minore di $\gamma_\lambda$, cioè $\alpha_\lambda\ge\gamma_\lambda$.
+\end{proof}
+
+\section{Diagonalizzabilità}
+\begin{definizione}\label{d:endomorfismo-diagonalizzabile}
+	Sia $T\in\End(V)$, di dimensione finita.
+	$T$ si dice diagonalizzabile se esiste una base di $V$ costituita soltanto da autovettori di $V$.
+\end{definizione}
+%Siano $\lambda_1,\dots,\lambda_k$ autovalori di $T$, e $e_1,\dots,e_{\alpha_1}$ gli autovettori associati a $\lambda_1$, $e_{\alpha_1+1},\dots,e_{\alpha_2}$ associati a $\lambda_2$, quindi in generale $e_{\alpha_{j-1}+1},\dots,e_{\alpha_{j-1}+\alpha_j}$ sono gli autovettori associati a $\lambda_j$, con $j=1,\dots,k$. Si ha che $T( e_1)=\lambda_1 e_1$, e se $\alpha_1>1$ allora $T( e_2)=\lambda_1 e_2$, fino a $T( e_{\alpha_1})=\lambda_1 e_{\alpha_1}$, $T( e_{\alpha_1+1})=\lambda_2 e_{\alpha_1+1}$ e così via. Gli autovalori $\lambda_j$ sono quindi gli unici elementi non nulli, nelle righe e nelle colonne dove sono posti, della matrice associata a $T$. Tale matrice è diagonale, ossia gli unici elementi non nulli si trovano sulla diagonale e sono proprio gli autovalori. Dato che, come si era dimostrato in precedenza, gli autovalori non variano al cambiare della base, tale matrice è unica, a meno ovviamente di permutazioni.
+
+Se $T$ è rappresentato in una base $\mathcal B$ da una matrice $A$ ed è diagonalizzabile, tale matrice si può porre in forma diagonale con il coniugio $D=P^{-1}MP$, dove $P$ è la matrice le cui colonne sono gli autovettori di $T$ (espressi chiaramente nella base $\mathcal B$): essi infatti formano una base, e $P$ è proprio la matrice per cambiare la base da $\mathcal B$ a quella degli autovettori.
+La matrice diagonale risultante avrà l'$i$-esima colonna $A_i=\lambda_i e_i$, in ordine come sono stati posti in ordine gli autovettori nella base, e di conseguenza nella matrice $P$ utilizzata.
+
+\begin{teorema} \label{t:diagonalizzabilita}
+	Siano $T\in\End(V)$ e $\lambda_1,\dots,\lambda_k$ i suoi autovalori distinti, di molteplicità geometrica $\gamma_1,\dots,\gamma_k$ e algebrica $\alpha_1,\dots,\alpha_k$.
+	Le seguenti affermazioni sono equivalenti:
+	\begin{itemize}
+		\item $T$ è diagonalizzabile;
+		\item $\sum_{i=1}^k\gamma_i=\dim V$;
+		\item il polinomio caratteristico è $\chi_T(x)=(\lambda_1-x)^{\alpha_1}\dots(\lambda_k-x)^{\alpha_k}$, con $\alpha_i=\gamma_i$ per ogni $i\in\{1,\dots,k\}$;
+	\end{itemize}
+\end{teorema}
+\begin{proof}
+ 	Se $T$ è diagonalizzabile allora esiste una base $\mathcal B=\{e_i\}_{i=1}^k$ di autovettori dell'endomorfismo.
+	Possiamo riordinarli in modo che i primi $\gamma_1$ siano gli autovettori relativi a $\lambda_1$, quelli da $\gamma_1+1$ a $\gamma_1+\gamma_2$ siano gli autovettori relativi a $\lambda_2$ e cos\`i via, fino a esaurirli, ossia
+	\begin{gather*}
+		e_1,\dots,e_{\gamma_1}\in V_1,\\
+		e_{\gamma_1 + 1},\dots,e_{\gamma_1 + \gamma_2}\in V_2,\\
+		\vdots\\
+		e_{\gamma_1 + \dots + \gamma_{k-1}},\dots,e_{\gamma_1 + \dots + \gamma_{k-1} + \gamma_k}\in V_k
+	\end{gather*}
+	dove $V_j$ è l'autospazio dell'autovalore $\lambda_j$.
+In tale base, $T$ è rappresentato da una matrice $D$ diagonale, poich\'e $T(e_i)=\lambda_ie_i$: in ogni autospazio $V_i$ l'endomorfismo agisce infatti come $\lambda_i I_{\gamma_i}$, ossia come un multiplo dell'identità, quindi
+	\begin{equation}
+		D=
+		\begin{bmatrix}
+			\lambda_1 I_{\gamma_1}	& 0							& \cdots	& 0\\
+			0						& \lambda_2 I_{\gamma_2}	& \cdots	& 0 \\
+			\vdots					& \vdots					& \ddots	& \vdots \\
+			0						& 0							& \cdots	& \lambda_k I_{\gamma_k}
+		\end{bmatrix}.
+	\end{equation}
+	Il polinomio caratteristico di $D$, quindi anche di $T$, è ovviamente
+	\begin{equation}
+		\chi_T(x)=(\lambda_1-x)^{\gamma_1}(\lambda_2-x)^{\gamma_2}\dots(\lambda_k-x)^{\gamma_k}=\prod_{i=1}^k(\lambda_i-x)^{\gamma_i}
+	\end{equation}
+	Sappiamo però che ogni $\lambda_i$ è radice di $\chi_T$ con molteplicità $\alpha_i$, dunque $\forall i\in\{1,\dots,k\}$ risulta $(\lambda_i-x)^{\alpha_i}\dvd\chi_T$.
+	Allora per il teorema di Ruffini \ref{t:ruffini} possiamo fattorizzare $\chi_T$ con le sue radici, come
+	\begin{equation*}
+		\chi_T(x)=(\lambda_1-x)^{\alpha_1}(\lambda_2-x)^{\alpha_2}\dots(\lambda_k-x)^{\alpha_k}g(x)=g(x)\prod_{i=1}^k(\lambda_i-x)^{\alpha_i}
+	\end{equation*}
+	con $g\in K[x]$.
+	Ma $K[x]$ è un dominio a fattorizzazione unica % vedi teorema...
+	dunque le due versioni di $\chi_T$ devono coincidere, cioè i fattori irriducibili devono essere uguali: deve allora verificarsi che $\alpha_i=\gamma_i$ $\forall i\in\{1,\dots,k\}$.
+	Di conseguenza risulta $\deg g=0$, vale a dire $g=1$.
+	Quindi
+	\begin{equation*}
+		\chi_T(x)=\prod_{i=1}^k(\lambda_i-x)^{\alpha_i}.
+	\end{equation*}
+
+	Poich\'e la somma delle molteplicità algebriche, dato che i fattori $(\lambda_i-x)$ sono gli unici presenti in $\chi_T$, dà il grado di $\chi_T$, segue immediatamente se $\gamma_i=\alpha_i$ che
+	\begin{equation}
+		\dim V=\sum_{i=1}^k\alpha_i=\sum_{i=1}^k\gamma_i.
+	\end{equation}
+
+	In ogni autospazio $V_i$ troviamo $\gamma_i$ vettori linearmente indipendenti (tutti autovettori di $T$), che formano una base di tale sottospazio.
+	Riunendo le base di tutti gli autospazi, otteniamo ancora un insieme $\mathcal I$ linearmente indipendente, in base al teorema \ref{unioni-linearmente-indipendente} % da sistemare
+	in quanto gli autospazi sono linearmente indipendenti per il teorema \ref{t:autovettori-linearmente-indipendenti}.
+	Per il punto precedente, $\sum_{i=1}^k\gamma_i=\dim V$ quindi il numero di vettori in $\mathcal I$ è proprio $\dim V$.
+	Per il teorema \ref{t:basi-dimensioni} segue dunque che $\mathcal I$ è una base di $V$, e ciò prova che $T$ è diagonalizzabile.
+\end{proof}
+% Il seguente corollario non è già compreso nel teorema precedente?
+%\begin{corollario}
+%	Sia $T\in \End(V)$, con $\dim V=m<+\infty$.
+%	Se $T$ ha $m$ autovalori distinti, allora $T$ è diagonalizzabile.
+%\end{corollario}
+%\begin{proof}
+%	La dimostrazione è immediata, dato che esistono $m=\dim V$ linearmente indipendenti (per il teorema \ref{t:autovettori-linearmente-indipendenti}, dato che sono associati ad autovalori distinti), dunque essi formano una base di quindi $T$ è diagonalizzabile.
+%\end{proof}
+\begin{teorema}
+	Sia $T\in \End(V)$ con $V$ di dimensione finita.
+	Dati $\lambda_1,\dots,\lambda_k$ autovalori distinti con i corrispondenti autospazi $V_{\lambda_1},\dots,V_{\lambda_k}$ si ha che $T$ è diagonalizzabile se $V$ può essere scritto come somma diretta degli autospazi, ossia $V =\bigoplus_{i=1}^k V_{\lambda i}$.
+\end{teorema}
+\begin{proof}
+	La dimostrazione è analoga alla seconda parte di quella svolta nel teorema \ref{d:relazione-diagonalizzabilita}.
+\end{proof}
+
+\section{Polinomio minimo}
+% Introdurre il discorso con il fatto che End(V) è un'algebra su K, dunque sono lecite le potenze di T, si ha T^0=I (le algebre sono strutture anche moltiplicative, tipo gli anelli?)
+Sia $V$ uno spazio vettoriale sul campo $K$ e $T\in \End(V)$.
+Diciamo che un polinomio $f\in K[x]$ \emph{annulla} $T$ se $f(T) = 0$ (l'endomorfismo nullo).
+Considerando $T\in \End(V)$ ho che la dimensione della matrice associata, se la dimensione di $V$ è $m$ ed è finita, è $m^2$, ora consideriamo $f(T)$ come il polinomio che annulla $T$, si ha quindi $f(T) = 0$, quindi $T^0 = I,T=T^1, T^2=T\circ T, \dots, T^k = T\circ T^{k-1}$, possiamo riscrivere con queste considerazioni prendendo la matrice associata a $V$ rispetto a $L$:
+\begin{equation*}
+	f(T) = a_{m^2}T^{m^2} +a_{m^2-1}T^{m^2-1}+\dots+a_0I,
+\end{equation*}
+ora le varie potenze presenti in $T$ sono $m^2+1$ quindi il sistema deve essere linearmente dipendente.
+Esistono allora opportuni $a_i$ per cui il sistema ammette una soluzione.
+Concludiamo che esiste sempre un polinomio, al massimo di grado $m^2$ che annulla l'operatore $T$.
+
+Chiamiamo $I_T$, con  $T\in \End(V)$ e $V$ spazio di dimensione finita e sul campo $K$, l'insieme
+\begin{equation*}
+	I_T = \{ p\in K[x]\colon p(T) = 0 \}
+\end{equation*}
+che non è mai uguale al solo $0\in \End(V)$.
+Si ha che per $p,q\in I_T$ la loro somma sta ancora in $I_T$, perch\'e $(p+q)(T)=p(T)+q(T)=0+0=0$, e analogamente $(\lambda p)(T)=\lambda p(T)=\lambda 0=0$, dunque $I_T$ è un ideale.
+Essendo $K[x]$ un dominio a ideali principali, quindi, $I_T$ ammette un (unico) generatore monico.
+\begin{definizione} \label{d:polinomio-minimo}
+	Sia $T\in \End(V)$, con $V$ spazio di dimensione finita e sul campo $K$, si definisce \emph{polinomio minimo} di $T$, e si indica com $m_T(x)$, il generatore monico dell'ideale $I_T$ dei polinomi che annullano $T$.
+\end{definizione}
+Poich\'e $T^n\in\End(V)$ per ogni $n\in\N_0$, ogni polinomio $f\in K[x]$ è tale che $f(T)\in\End(V)$.
+In virtù dell'isomorfismo tra matrici quadrate ed endomorfismi, se $T$ è rappresentato da $A$ allora l'endomorfismo $f(T)$ è rappresentato da $f(A)$.
+
+È inoltre facile vedere che due matrici simili hanno lo stesso polinomio minimo: infatti se $C=B^{-1}AB$, allora
+\begin{gather*}
+	C^0=I=B^{-1}IB\\
+	C=B^{-1}AB\\
+	C^2=B^{-1}ABB^{-1}AB=B^{-1}A^2B\\
+	\dots\\
+	C^n=B^{-1}A^nB
+\end{gather*}
+come si verifica facilmente per induzione.
+Si possono raggruppare allora tutti i termini $B^{-1}$ e $B$, per cui per qualsiasi polinomio si ha $f(C)=B^{-1}f(A)B$.
+
+\begin{teorema} \label{t:radici-polinomio-minimo-caratteristico}
+	Sia $T\in \End(V)$, con $V$ spazio vettoriale di dimensione finita sul campo $K$.
+	Il polinomio minimo e il polinomio caratteristico di $T$ hanno le stesse radici.
+\end{teorema}
+\begin{proof}
+	\begin{itemize}
+		\item Verifichiamo prima che $m_T(\lambda)= 0 \implies \chi_T(\lambda) = 0$.
+			Sia $\lambda\in k$ e $m_T(\lambda)= 0$.
+			Consideriamo $q\in K[x]$ tale che $q(T)\neq 0$: si ha sicuramente che $\deg q< \deg m_T$, quindi per il teorema di Ruffini \ref{t:ruffini} risulta $m_T(x) = (x-\lambda)q(x)(\dots)$.
+			Allora $\exists \alpha,\beta\in V\colon \alpha = q(T) (\beta)\neq 0$, per cui deve essere:
+			\begin{equation*}
+				0 = m_T(T)\beta = (T-\lambda I)q(T)\beta, \text{ ora per definizione $\alpha\neq 0$, e quindi } (T-\lambda I) \alpha = 0,
+			\end{equation*}
+			Abbiamo determinato che $\alpha$ è un autovettore relativo a $\lambda$, quindi $\chi_T(\lambda) = 0$.
+		\item Viceversa, siano $\lambda\in k$ e $\chi_T(\lambda) = 0$, allora $\exists \alpha\neq 0\colon (T-\lambda I)\alpha = 0_v$, $\lambda$ è allora una radice di $m_T(x)$ e ciò implica $0_V = m_T(T)\alpha = m_T(\lambda)\alpha$, poichè $T(\alpha) = \lambda \alpha$.
+			Allora $\alpha$ annulla $T$. % ???
+			Volendo si può darne una dimostrazione semplice considerando una generica funzione e compiendo i passaggi sopra elencati: sia $f\in K[x]$, con $\chi_T$ il suo polinomio caratteristico:
+			\begin{equation*}
+				\begin{aligned}
+					&f(x) = a x^2 + b x + c,\\
+					&f(T) = a T^2 + b T + c,\\
+					&f(T)\alpha = a T T(\alpha) + b T(\alpha) + c,\\
+					&f\big(T(\alpha)\big) = a T(\alpha) \lambda + b \lambda \alpha + c,\\
+					&f\big(T(\alpha)\big) =  a \lambda^2 \alpha + b \lambda \alpha + c.\\
+				\end{aligned}
+			\end{equation*}
+			Quindi $\alpha$ annulla $f(x)$.
+	\end{itemize}
+\end{proof} 
+
+\section{Sottospazi invarianti} \label{sec:sottospazi-invarianti}
+\begin{definizione}\label{d:sottospazio-invariante}
+	Sia $V$ uno spazio vettoriale sul campo $K$, e $W$ un suo sottospazio.
+	Dato $T\in\End(V)$, diremo che $W$ è \emph{$T$-invariante} se $T(W)\subseteq W$, ossia se $\forall w\in W$ si ha $T(w)\in W$.
+\end{definizione}
+La proprietà principale di un sottospazio $W$ che sia $T$-invariante è che è possibile restringere l'applicazione in tale insieme, ossia è possibile definire $T|_W\colon W\to W$.
+L'intero spazio $V$ e $\{0\}$ sono, banalmente, sottospazi invarianti di qualsiasi applicazione lineare.
+
+Ecco alcuni esempi di sottospazi invarianti.
+\begin{itemize}
+	\item Per alcune applicazioni, i sottospazi banali sono gli unici sottospazi invarianti: un facile esempio è una rotazione in $\R^2$ di un angolo diverso da $k\pi$, per $k\in\Z$.
+	\item Per ogni spazio $V$ e $T\in\End(V)$, $\Ker T$ e $\Imm T$ sono $T$-invarianti.
+		Se infatti $v\in\Ker T$, allora $T(v)=0$ e $0\in\Ker T$, come in tutti i sottospazio vettoriali.
+		Analogamente $T(v)\in\Imm T$, banalmente, qualsiasi sia $v\in V$, dunque anche per $v\in\Imm T$.
+	\item Un autospazio $V_\lambda$ associato a un autovalore $\lambda$ di un $T\in\End(V)$ è $T$-invariante, poich\'e per ogni $v\in V_\lambda$ si ha $T(v)=\lambda v\in V_\lambda$.
+	\item Se $T,S\in\End(V)$ commutano, se $a\in\Ker T$ allora $T\big(S(a)\big)=S\big(T(a)\big)=S(0)=0$ quindi $S(a)\in\Ker T$, cioè $\Ker T$ è $S$-invariante.
+		Vale anche per $\Imm T$?
+\end{itemize}
+
+Sia $W \leq V$ sottospazio dello spazio vettoriale $V$ sul campo $K$.
+Dato $T\in\End(V)$, se $W$ è $T$-invariante, posto $v\in V$ definiamo l'insieme
+\begin{equation*}
+	S_T(v, W)= \{ g\in K[x]\colon g(T)(v)\in W\}
+\end{equation*}
+Il polinomio minimo appartiene a questo insieme: risulta infatti $m_T(T)(v)=0v=0\in W$, per ogni $W\le V$.
+
+\begin{lemma}
+	Sia $V$ uno spazio vettoriale su un campo $K$ e $T\in\End(V)$.
+	Se $W\le V$ è $T$-invariante, allora è anche $g(T)$-invariante per ogni $g\in K[x]$, ossia $S_T(\alpha,W)$ è un ideale di $K[x]$ per ogni $\alpha\in V$.
+\end{lemma}
+\begin{proof}
+	Per definizione di invarianza, si ha che $T(W) \subseteq W$, quindi $\forall \beta\in W$ si ha $T(\beta)\in W$.
+	Consideriamo ora un generico polinomio $g(x) = a x^2 + b x + c\in K[x]$ e applichiamogli $T$:
+	\begin{gather*}
+		g(T) = a T^2 + b T + c,\\
+		g(T)\beta = a T T(\beta) + b T(\beta) + c I(\beta),\\
+	\end{gather*}
+	I vari componenti dell'equazione stanno in $W$, il primo sempre per definizone di $T$-invarianza, il secondo e il terzo per come l'applicazione $T$ è definita.
+	Quindi $W$ è $g(T)$-invariante.
+	Per verificare che è un ideale di $K[x]$ applichiamo la definizione.
+	Quindi consideriamo $f,r\in S_T(\alpha,W)$ e $h\in K[x]$ e verifichiamo per la somma:
+	\begin{equation*}
+		(f + g)(T)(\alpha) = f(T)(\alpha) + g(T)(\alpha)\in W
+	\end{equation*}
+	Gli elementi appartengono a $W$ e di conseguenza anche la loro somma, mentre per il prodotto
+	\begin{gather*}
+		(hf)(T)(\alpha) = h(T)f(T)(\alpha) = h(T)\big(f(T)(\alpha)\big)\in W
+	\end{gather*}
+	in quanto $f(T)(\alpha)\in W$ dato che $f\in S_T(\alpha,W)$.
+	Allora $f+g,hf\in S_T(\alpha,W)$, cioè $ S_T(\alpha, W)$ è un ideale.
+\end{proof}
+% Sappiamo che esiste sempre il polinomio minimo per un generico endomorfismo ed è il generatore monico dell'ideale $I_T$; considerando l'insieme $S_T$ precedentemente definito è semplice verificare che si può dare un'analoga definizione, poichè valutando il polinomio monico in $T$ esso mi darà sicuramente lo spazio $W$ (quindi rispetta la definzione di $T$-invariante \ref{d:t-invarianza}), inoltre è il minore dei polinomi ad essere un ideale (rispetta cioè l'ultimo teorema dimostrato).
+
+\begin{definizione} \label{d:polinomio-conducente}
+	Sa $V$ uno spazio vettoriale sul campo $K$, $T\in\End(V)$ e $W$ un sottospazio $T$-invariante di $V$.
+	Dato l'insieme $S_T(\alpha,W)$ come definito in precedenza, si definisce \emph{$T$-conducente}, di $\alpha$ in $W$, il generatore monico di $S_T(\alpha,W)$.
+\end{definizione}
+
+\begin{lemma}\label{l:invarianza-autovalori}
+	Sia $T\in \End(V)$ con $V$ spazio vettoriale sul campo $K$ di dimensione finita.
+	Se il suo polinomio minimo è della forma $m_T(x) = (x-\lambda_1)^{r_1}\dots(x-\lambda_k)^{r_k}$, con $\lambda_i\in K$ e se $W \leq V$ ($W\ne V$) è $T$-invariante, Allora $\exists v\in V\setminus W$ tale che $(T-\lambda I)(v)\in W$ per qualche autovalore $\lambda$ di $T$.
+\end{lemma}
+\begin{proof}
+	Sia $\beta\in V\setminus W$ e $g$ il polinomio $T$-conducente per $\beta\in W$: ciò implica che $g(T)\beta\in W$. % Ma \beta appartiene o no a W?
+	 Nell'ideale del polinomio $g$ si trova anche il polinomio minimo, quindi $m_T\dvd g$ in quanto $g$ per la definizione precedente \ref{d:polinomio-conducente} è il più piccolo dell'ideale. %???
+	 Inoltre $\deg g\ne 1$, poichè se lo fosse allora $g(T) = I$, e considerando il suo effetto sull'elemento $\beta$ si avrebbe $g(T)(\beta) = \beta$, da cui $\beta\in W$, ma proprio nelle ipotesi avevamo considerato $\beta\notin W$.
+	 Quindi $\deg g > 1$ e per l'ipotesi sulla forma del polinomio minimo deve essere scritto come:
+	\begin{equation*}
+		g(x) = (x-\lambda_1)^{b_1}\dots (x-\lambda_k)^{b_k},
+	\end{equation*}
+	con almeno un $b_i$ maggiore di 1 per quanto ricavato dai passaggi precedenti.
+	Poniamo che sia $b_j > 1$, corrispondente a $\lambda_j$: per il teorema di Ruffini \ref{t:ruffini} possiamo riscrivere $g$ come $g(x) = (x-\lambda_j)h(x)$, per un certo $h\in K[x]$.
+	Ora ponaimo $\alpha = h(T)(\beta)\notin W$, per cui:
+	\begin{equation*}
+		(T-\lambda_j I)(\alpha) = (T-\lambda_j I)\big(h(T)(\beta) \big) = g(T)(\beta).
+	\end{equation*}
+	Ora, $\alpha = h(T)(\beta) \neq 0$ e non appartiene a $W$, ma $g(T)(\beta)$ è un autovettore del polinomio caratteristico e abbiamo precedentemente definito $W$ come il sottospazio generato dagli autovalori; gli ultimi passaggi hanno verificato che per certi $h$, corrispondenti a dei $\lambda_j$, vale $(T-\lambda_j I)\big(h(T)(\beta) \big) = (T-\lambda_j I)(\alpha) \subset W$.
+	Quindi abbiamo dimostrato le due implicazioni del lemma.
+\end{proof}
+\begin{teorema}
+	Sia $V$ spazio vettoriale sul campo $K$ con $\dim V$ finita ($m$), sia $T$ un'endomorfismo in $V$, si ha che $T$ è diagonalizzabile $\iff$ $m_t(x) = (x-\lambda_1)\dots(x-\lambda_k)$, con $\{\lambda_i\}_{i=1}^k$ valori distinti di $K$.
+\end{teorema}
+\begin{proof}
+	\begin{itemize}
+		\item Sia prima $T$ diagonalizzabile.
+			Presi gli autovalori distinti $\{\lambda_i\}_{i=1}^k$ di $T$ e consideriamo $(T-\lambda_1 I),\dots,(T-\lambda_k I)$, sia inoltre $\alpha$ autovettore di $T$.
+			Il prododotto tra l'autovettore $\alpha$ e il corrispondente $(T-\lambda_j)$ deve dare lo zero per il teorema \ref{t:autovalore-determinante}.
+			Ora l'operazione tra i vari operatori precedenti potrebbe essere commutativa, se lo è aggiungendo $\alpha$ alla composizione essa è uguale allo zero, poichè vi si può affiancare il corrispondente operatore.
+			Quindi prendiamo due autovalori $\phi, \mu$ e verifichiamone la commutatività:
+			\begin{align*}
+				(T - \phi I)(T- \mu I) &= T^2 - \phi T - \mu T + \phi \mu T,\\
+				(T- \mu I)(T - \phi I) &= T^2 - \mu T -\phi T + \phi \mu T.
+			\end{align*}
+			Allora la composizione è commutativa e si ha
+			\begin{equation*}
+				(T-\lambda_1 I)\dots(T-\lambda_k I)(\alpha) = (T-\lambda_1)\dots(T-\lambda_k)(T-\lambda_j)(\alpha) = 0.
+			\end{equation*}
+			Ora possiamo scrivere $p(x) = (T-\lambda_1)\dots(T-\lambda_k)(T-\lambda_j)$, otteniamo allora che $p(T)\alpha = 0$ per ogni autovettore $\alpha$.
+			Abbiamo, per le ipotesi iniziali, che $T$ è diagonalizzabile, quindi deve esistere una base di autovettori, proprio per definizione di diagonalizzazione \ref{d:endomorfismo-diagonalizzabile}, $p(T)$  deve essere allora fatta in modo da annullare tutti gli elementi della base, di conseguenza è l'operatore nullo di $\End(V)$, quindi $p(T)\in I_T$ e sappaimo che $m_T(x)$ è il generatore monico di $I_T$, per definizione \ref{d:polinomio-minimo}.
+			Deve per forza essere che $m_T(x)=p(x)$ poichè $m_T(x)$ non può avere meno componenti di $p(x)$ perchè tutti gli zeri del polinomio devono per forza stare in esso (per conseguenza del teorema \ref{t:radici-polinomio-minimo-caratteristico}), allora
+			\begin{equation*}
+				p(x) = (x-\lambda_1)\dots(x-\lambda_k)(x-\lambda_j) = (x-\lambda_1 I)\dots(x-\lambda_k I) = m_T(x).
+			\end{equation*}
+		\item Sia ora il polinomio minimo esprimibile come sopra e $W \leq V$ sottospazio generato dagli autovettori di $T$.
+			Allora $W$ è $T$-invariante ed esiste una base di autovettori, posso fare in modo che coincida con una di $V$, questo è possibile se $W=V$, in quel caso $T$ è diagonalizzabile per la definizione \ref{d:endomorfismo-diagonalizzabile}.
+			Se invece $W\neq V$ procediamo per assurdo: se così fosse potrebbe esistere un elemento $\alpha\in V/W$, autovettore relativo a $\lambda_j$ autovalore di $T$, con $\beta = (T-\lambda_j I)\alpha\in W$ e $W$ è $T$-invariante.
+			Possiamo allora scrivere che $\forall h(x)\in K[x]$ si ha $h(T)\beta\in W$ e considerare il polinomio minimo escludendo il termine relativo a $\lambda_j$:
+			\begin{equation*}
+				m_T(x) = \prod\limits_{i=1 , i\neq j}^k(x-\lambda_i)(x-\lambda_j),
+			\end{equation*}
+			Rinominando la produttoria come $q$ e $q(\lambda_j) =(x-\lambda_j)$, consideriamo la differenza $q(x)-q(\lambda_j)$, questa differenza ha $\lambda_j$ come radice, quindi per il teorema di Ruffini \ref{t:ruffini}
+			\begin{equation*}
+				(x-\lambda_j)h(x) = q(x) - q(\lambda_j),
+			\end{equation*}
+			e valutandolo in $T$ e poi in $\alpha$, cioè l'autovettore prima definito, si ha
+			\begin{equation*}
+				\begin{aligned}
+					&(T-\lambda_j I) h(T) = q(T) -q(\lambda_j)I,\\
+					&(T-\lambda_j I) h(T) \alpha = q(T) \alpha -q(\lambda_j) \alpha,\\
+					& \beta h(T) =  q(T) \alpha -q(\lambda_j) \alpha,
+				\end{aligned}
+			\end{equation*}
+			con l'ultimo passaggio dovuto a come abbiamo prima definito $\beta$.
+			Abbiamo che  $q(\lambda_j) \alpha, \beta h(T)\in W$, dobbiamo però determinare l'insieme di appartenenza di $q(T) \alpha$, per farlo torniamo a considerare il polinomio minimo valutato in $T$ e poi in $\alpha$:
+			\begin{equation*}
+				\begin{aligned}
+					&m_T(T) = 0 = (T-\lambda_j)q(T),\\
+					&m_T(T)\alpha =  (T-\lambda_j)q(T)\alpha.
+				\end{aligned}
+			\end{equation*}
+			Poichè $q(T)\alpha \neq 0$ per le ipotesi fatte, allora deve essere un autovettore relativo a $\lambda_j$, se così fosse $q(T)\alpha\in W$ con $\alpha\notin W$, quindi ci sono due autovettori relativi all'autovalore $\lambda_j$, che di conseguenza avrebbe molteplicità algebrica almeno uguale a due.
+			Il polinomio minimo si potrebbe allora scrivere come
+			\begin{equation*}
+				m_T(x) = (x-\lambda_j)(x-\lambda_j) \prod\limits_{i=1 , i\neq j}^k(x-\lambda_i).
+			\end{equation*}
+			Avremmo quindi un polinomio di secondo grado all'interno di $m_T$, in contrasto con l'ipotesi iniziale.
+	\end{itemize}
+\end{proof}
+
+\section{Applicazioni e matrici triangolari}
+\begin{definizione} \label{d:endomorfismo-triangolabile}
+	Sia $T\in \End(V)$, con $V$ spazio vettoriale sul campo $K$, $T$ si dice \emph{triangolabile} se esiste una base $\{e_i\}_{i=1}^n\in V$ tale che la matrice associata a $T$ rispetto a quella base è in forma triangolare (v. definizione \ref{d:matrice-triangolare}).
+\end{definizione}
+\begin{teorema} \label{t:criterio-triangolabilita}
+	Sia $T\in \End(V)$, con $V$ spazio vettoriale di dimensione finita su un generico campo, se $T$ è triangolabile allora $\chi_T(x) = 0$ (l'endomorfismo nullo).
+\end{teorema}
+\begin{corollario}
+	Con le ipotesi del teorema \ref{t:criterio-triangolabilita}, si ha che $T$ è triangolabile se e solo se $m_T\dvd\chi_T$.
+\end{corollario}
