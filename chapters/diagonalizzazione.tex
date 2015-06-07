@@ -328,43 +328,47 @@ Ecco alcuni esempi di sottospazi invarianti.
 \end{itemize}
 
 Sia $W \leq V$ sottospazio dello spazio vettoriale $V$ sul campo $K$.
-Dato $T\in\End(V)$, se $W$ è $T$-invariante, posto $v\in V$ definiamo l'insieme
+Dato $T\in\End(V)$, posto $v\in V$ definiamo l'insieme
 \begin{equation*}
 	S_T(v, W)= \{ g\in K[x]\colon g(T)(v)\in W\}
 \end{equation*}
-Il polinomio minimo appartiene a questo insieme: risulta infatti $m_T(T)(v)=0v=0\in W$, per ogni $W\le V$.
+ossia, fissati $v\in V$ e il sottospazio $W$, l'insieme dei polinomi di $K[x]$ tali che, valutati in $T$, portano $v$ in $W$.
+Il polinomio minimo appartiene a questo insieme: risulta infatti $m_T(T)(v)=0(v)=0\in W$, per ogni $v\in V$ e $W\le V$.
 
 \begin{lemma}
-	Sia $V$ uno spazio vettoriale su un campo $K$ e $T\in\End(V)$.
-	Se $W\le V$ è $T$-invariante, allora è anche $g(T)$-invariante per ogni $g\in K[x]$, ossia $S_T(\alpha,W)$ è un ideale di $K[x]$ per ogni $\alpha\in V$.
+	Sia $V$ uno spazio vettoriale sul campo $K$ e $T\in\End(V)$.
+	Se $W\le V$ è $T$-invariante, allora è anche $g(T)$-invariante per ogni $g\in K[x]$, ossia
+	\begin{equation*}
+		S_T(v,W)=\{g\in K[x]\colon g(T)(v)\in W\}
+	\end{equation*}
+	è un ideale di $K[x]$ per ogni $v\in V$.
 \end{lemma}
 \begin{proof}
-	Per definizione di invarianza, si ha che $T(W) \subseteq W$, quindi $\forall \beta\in W$ si ha $T(\beta)\in W$.
-	Consideriamo ora un generico polinomio $g(x) = a x^2 + b x + c\in K[x]$ e applichiamogli $T$:
-	\begin{gather*}
-		g(T) = a T^2 + b T + c,\\
-		g(T)\beta = a T T(\beta) + b T(\beta) + c I(\beta),\\
-	\end{gather*}
-	I vari componenti dell'equazione stanno in $W$, il primo sempre per definizone di $T$-invarianza, il secondo e il terzo per come l'applicazione $T$ è definita.
-	Quindi $W$ è $g(T)$-invariante.
-	Per verificare che è un ideale di $K[x]$ applichiamo la definizione.
-	Quindi consideriamo $f,r\in S_T(\alpha,W)$ e $h\in K[x]$ e verifichiamo per la somma:
-	\begin{equation*}
-		(f + g)(T)(\alpha) = f(T)(\alpha) + g(T)(\alpha)\in W
-	\end{equation*}
-	Gli elementi appartengono a $W$ e di conseguenza anche la loro somma, mentre per il prodotto
-	\begin{gather*}
-		(hf)(T)(\alpha) = h(T)f(T)(\alpha) = h(T)\big(f(T)(\alpha)\big)\in W
-	\end{gather*}
-	in quanto $f(T)(\alpha)\in W$ dato che $f\in S_T(\alpha,W)$.
-	Allora $f+g,hf\in S_T(\alpha,W)$, cioè $ S_T(\alpha, W)$ è un ideale.
-\end{proof}
-% Sappiamo che esiste sempre il polinomio minimo per un generico endomorfismo ed è il generatore monico dell'ideale $I_T$; considerando l'insieme $S_T$ precedentemente definito è semplice verificare che si può dare un'analoga definizione, poichè valutando il polinomio monico in $T$ esso mi darà sicuramente lo spazio $W$ (quindi rispetta la definzione di $T$-invariante \ref{d:t-invarianza}), inoltre è il minore dei polinomi ad essere un ideale (rispetta cioè l'ultimo teorema dimostrato).
+	Se $W$ è $T$-invariante, allora per ogni $w\in W$ si ha $T(w)\in W$.
+	Prendiamo un generico polinomio di secondo grado $g(x)=ax^2+bx+c$ e, valutato in $T$, applichiamo l'endomorfismo che ne risulta a $w$:
+	\begin{equation}
+		g(T)(w)=aT^2(w)+bT(w)+cw.
+	\end{equation}
+	Chiaramente $cw\in W$, e dato che $T(w)\in W$ allora anche $T^2(w)=T\big(T(w)\big)\in W$, dunque $g(T)(w)\in W$.
+	Lo stesso ragionamento si applica a polinomi di grado qualunque, poich\'e si ha $T^n(w)\in W$ per ogni $n\in N$.
+	Allora $W$ è $g(T)$-invariante.
 
-\begin{definizione} \label{d:polinomio-conducente}
-	Sa $V$ uno spazio vettoriale sul campo $K$, $T\in\End(V)$ e $W$ un sottospazio $T$-invariante di $V$.
-	Dato l'insieme $S_T(\alpha,W)$ come definito in precedenza, si definisce \emph{$T$-conducente}, di $\alpha$ in $W$, il generatore monico di $S_T(\alpha,W)$.
-\end{definizione}
+	Mostriamo quindi che $S_T(v,W)$ è un ideale.
+	Siano $f,g\in S_T(v,W)$ e $h\in K[x]$: risulta, per $v\in V$,
+	\begin{equation}
+		[(f+g)(T)](v)=[f(T)+g(T)](v)=f(T)(v)+g(T)(v)
+	\end{equation}
+	che appartiene a $W$, poich\'e esso è un sottospazio e $f(T)(v),g(T)(v)\in W$ dato che $f,g\in S_T(v,W)$, dunque anche $f+g$ è nell'insieme.
+	Inoltre
+	\begin{equation*}
+		[(hf)(T)](v)=h(T)[f(T)(v)],
+	\end{equation*}
+	ma $f(T)(v)\in W$, e dato che come mostrato prima $W$ è $p(T)$-invariante per ogni $p\in K[x]$, lo è anche per $h(T)$, perciò $h(T)[f(T)(v)]\in W$, cioè $hf\in S_T(v,W)$.
+	Ciò prova che $S_T(v,W)$ è un ideale di $K[x]$.
+\end{proof}
+
+Siano $V$ uno spazio vettoriale sul campo $K$, $T\in\End(V)$, e $W$ un sottospazio $T$-invariante di $V$.
+Dato l'insieme $S_T(\alpha,W)$ come definito in precedenza, chiamiamo polinomio \emph{$T$-conducente}, di $\alpha$ in $W$, il generatore monico di $S_T(\alpha,W)$.
 
 \begin{lemma}\label{l:invarianza-autovalori}
 	Sia $T\in \End(V)$ con $V$ spazio vettoriale sul campo $K$ di dimensione finita.
