@@ -279,30 +279,34 @@ Si possono raggruppare allora tutti i termini $B^{-1}$ e $B$, per cui per qualsi
 	Il polinomio minimo e il polinomio caratteristico di $T$ hanno le stesse radici.
 \end{teorema}
 \begin{proof}
-	\begin{itemize}
-		\item Verifichiamo prima che $m_T(\lambda)= 0 \implies \chi_T(\lambda) = 0$.
-			Sia $\lambda\in k$ e $m_T(\lambda)= 0$.
-			Consideriamo $q\in K[x]$ tale che $q(T)\neq 0$: si ha sicuramente che $\deg q< \deg m_T$, quindi per il teorema di Ruffini \ref{t:ruffini} risulta $m_T(x) = (x-\lambda)q(x)(\dots)$.
-			Allora $\exists \alpha,\beta\in V\colon \alpha = q(T) (\beta)\neq 0$, per cui deve essere:
-			\begin{equation*}
-				0 = m_T(T)\beta = (T-\lambda I)q(T)\beta, \text{ ora per definizione $\alpha\neq 0$, e quindi } (T-\lambda I) \alpha = 0,
-			\end{equation*}
-			Abbiamo determinato che $\alpha$ è un autovettore relativo a $\lambda$, quindi $\chi_T(\lambda) = 0$.
-		\item Viceversa, siano $\lambda\in k$ e $\chi_T(\lambda) = 0$, allora $\exists \alpha\neq 0\colon (T-\lambda I)\alpha = 0_v$, $\lambda$ è allora una radice di $m_T(x)$ e ciò implica $0_V = m_T(T)\alpha = m_T(\lambda)\alpha$, poichè $T(\alpha) = \lambda \alpha$.
-			Allora $\alpha$ annulla $T$. % ???
-			Volendo si può darne una dimostrazione semplice considerando una generica funzione e compiendo i passaggi sopra elencati: sia $f\in K[x]$, con $\chi_T$ il suo polinomio caratteristico:
-			\begin{equation*}
-				\begin{aligned}
-					&f(x) = a x^2 + b x + c,\\
-					&f(T) = a T^2 + b T + c,\\
-					&f(T)\alpha = a T T(\alpha) + b T(\alpha) + c,\\
-					&f\big(T(\alpha)\big) = a T(\alpha) \lambda + b \lambda \alpha + c,\\
-					&f\big(T(\alpha)\big) =  a \lambda^2 \alpha + b \lambda \alpha + c.\\
-				\end{aligned}
-			\end{equation*}
-			Quindi $\alpha$ annulla $f(x)$.
-	\end{itemize}
-\end{proof} 
+	Sia $\lambda\in K$ una radice del polinomio minimo, ossia $m_T(\lambda)=0$.
+	Per il teorema di Ruffini \ref{t:ruffini} allora $(x-\lambda)\dvd m_T$, dunque possiamo scrivere il polinomio minimo come $m_T(x)=(x-\lambda)q(x)$ per un certo $q\in K[x]$.
+	Inoltre $\deg q<\deg m_T$, perciò $q\notin I_T$ non essendo un multiplo di $m_T$: di conseguenza $q\ne 0$.
+	Esiste allora $v\in V$ tale che $q(T)(v)\ne 0$: sia $w=q(T)(v)$.
+	Poich\'e per come è definito il polinomio minimo $m_T(T)=0$, si ha dunque
+	\begin{equation*}
+		0=m_T(T)(v)=\big[(T-\lambda I)q(T)\big](v)=(T-\lambda I)(w)
+	\end{equation*}
+	cioè $w$ è un autovettore di $T$ con autovalore $\lambda$: ma allora $\chi_T(\lambda)=0$.
+
+	Viceversa, sia ora $\lambda\in K$ tale che $\chi_T(\lambda) = 0$.
+	Allora $\lambda$ è un autovalore di $T$, dunque esiste un $v\in V$ per il quale	$T(v)=\lambda v$, di conseguenza $m_T(T)(v)=m_T(\lambda)(v)$.\footnote{Ciò vale per un generico $f\in K[x]$: ad esempio, se $f(x)=ax^2+bx+c$, allora $f(T)(v)=aT^2(v)+bT(v)+cI(v)=aT(\lambda v)+b\lambda v+cv=a\lambda^2 v+b\lambda v+cv=f(\lambda)(v)$.}
+	Dunque $0=m_T(T)(v)=m_T(\lambda)(v)$.
+	Poich\'e $v\ne 0$, deve necessariamente essere $m_T(\lambda)=0$, quindi $\lambda$ è una radice del polinomio minimo.
+\end{proof}
+Prendiamo ad esempio un endomorfismo $T$ di $\R^3$ che sia la proiezione nel sottospazio $W=\{(x_1,x_2,x_3)^T\in\R^3\colon 2x_1+3x_2-x_3=0\}$.
+Rispetto alla base canonica, la matrice che lo rappresenta è
+\begin{equation*}
+	A=\frac1{14}
+	\begin{pmatrix}
+		10	&-6	&2\\
+		-6	&5	&3\\
+		2	&3	&13
+	\end{pmatrix}
+\end{equation*}
+e il suo polinomio caratteristico è $\chi_T(x)=\det(A-xI_3)=-x^3+2x^2-x=-x(x-1)^2$.
+Allo stesso tempo, poich\'e è una proiezione, sappiamo che $T^2-T=0$, ossia $T^2-T=0$.
+Il polinomio $x^2-x$ dunque annulla $T$, ed è anche il suo polinomio minimo: esso ha 0 e 1 come radici, che sono anche quelle di $\chi_T$, seppur con molteplicità diversa.
 
 \section{Sottospazi invarianti} \label{sec:sottospazi-invarianti}
 \begin{definizione}\label{d:sottospazio-invariante}
