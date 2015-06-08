@@ -456,13 +456,78 @@ Dato l'insieme $S_T(\alpha,W)$ come definito in precedenza, chiamiamo polinomio 
 	Per questo non può esistere $\alpha\in V\setminus W$, cioè $V\setminus W=\emptyset$, dato che un tale elemento si può sempre trovare se $W$ non è l'intero $V$: allora $W=V$, cioè $T$ è diagonalizzabile.
 \end{proof}
 
-\section{Applicazioni e matrici triangolari}
+\section{Triangolarizzazione}
 \begin{definizione} \label{d:endomorfismo-triangolabile}
-	Sia $T\in \End(V)$, con $V$ spazio vettoriale sul campo $K$, $T$ si dice \emph{triangolabile} se esiste una base $\{e_i\}_{i=1}^n\in V$ tale che la matrice associata a $T$ rispetto a quella base è in forma triangolare (v. definizione \ref{d:matrice-triangolare}).
+	Sia $T\in \End(V)$, con $V$ spazio vettoriale sul campo $K$, $T$ si dice \emph{triangolabile} (o triangolarizzabile) se esiste una base $\{e_i\}_{i=1}^n\in V$ tale che la matrice associata a $T$ rispetto a quella base è in forma triangolare (v. definizione \ref{d:matrice-triangolare}).
 \end{definizione}
-\begin{teorema} \label{t:criterio-triangolabilita}
-	Sia $T\in \End(V)$, con $V$ spazio vettoriale di dimensione finita su un generico campo, se $T$ è triangolabile allora $\chi_T(x) = 0$ (l'endomorfismo nullo).
+Il teorema di Cayley-Hamilton mostra un importante risultato: per ogni endomorfismo $T$ di uno spazio $V$ di dimensione finita,
+\begin{equation*}
+	\chi_T(T)=0.
+\end{equation*}
+La dimostrazione generale è però difficile; qui vediamo il teorema solo per endomorfismi triangolabili.
+\begin{teorema}[di Cayley-Hamilton] \label{t:cayley-hamilton}
+	Sia $T\in \End(V)$, con $V$ spazio vettoriale di dimensione finita su un campo $K$.
+	Se $T$ è triangolabile, allora $\chi_T(T) = 0$.
 \end{teorema}
+\begin{proof}
+	Se $T$ è triangolabile allora esiste una base $\{e_i\}_{i=1}^m$ di $V$, tale che la matrice $A$ che corrisponde a $T$ in tale base è della forma
+	\begin{equation*}
+		A=
+		\begin{pmatrix}
+			a_{11}	&a_{12}	&\cdots	&a_{1m}\\
+			0		&a_{22}	&\cdots	&a_{2m}\\
+			\vdots	&\vdots	&\ddots	&\vdots\\
+			0		&0		&\cdots	&a_{mm}\\
+		\end{pmatrix}.
+	\end{equation*}
+	Definiamo dunque $m$ spazi $W_1=\gen{\{e_1\}}$, $W_2=\gen{\{e_1,e_2\}}$, \dots, $W_{m-1}=\gen{\{e_1,\dots, e_{m-1}\}}$, $W_m=V$.
+	Per il fatto che $T$ è triangolare su questa base, tutti questi $W_i$ sono $T$-invarianti.\footnote{Questo fatto si può facilmente vedere moltiplicando la matrice $A$ per i vettori di base dei $W_i$.}
+	Dimostriamo il teorema per induzione su $m$.
+	Per $m=1$ si ha $\chi_T(x)=A-xI=(a_{11})-xI$, perciò valutato in $A$ risulta $\chi_T(A)=(a_{11})-(a_{11})=0$.
+	Assumiamo ora che sia vero $m-1$.
+	Poichè $A$ è triangolare, lo è anche $A-xI$, quindi il suo determinante si calcola facilmente come
+	\begin{equation*}
+		\chi_T(x) = (a_{11}-x)(a_{22}-x)\cdots(a_{mm}-x).
+	\end{equation*}
+	Consideriamo il sottospazio $W_{m-1}$ e restringiamo l'applicazione $T$ a tale sottospazio: sia $\overline{T}=T|_{W_{m-1}}$, con $\overline{T}\colon W_{m-1}\to W_{m-1}$.
+	La matrice che rappresenta $\overline{T}$ nella base $\{e_i\}_{i=1}^{m-1}$ di $W_{m-1}$ è triangolare, perciò $\chi_{\overline{T}}(x)=(a_{11}-x)\cdots(a_{m-1,m-1}-x)$.
+	Allora
+	\begin{equation*}
+		\chi_T(x) = \chi_{\overline{T}}(x)(x-a_{mm}),
+	\end{equation*}
+	e se valutiamo tale polinomio in $T$ e lo applichiamo agli elementi $e_i$ della base, risulta
+	\begin{equation*}
+		\begin{split}
+			\chi_T(T)(e_i)&=[\chi_{\overline{T}}(T)(a_{mm}I-T)](e_i)=\\
+			&=\chi_{\overline{T}}(T)[a_{mm}e_i-T(e_i)]=\\
+			&=a_{mm}[\chi_{\overline{T}}(T)](e_i)-\chi_{\overline{T}}(T)T(e_i).
+		\end{split}
+	\end{equation*}
+	Ma $\chi_{\overline{T}}(T)(v)=0$ per ogni $v\in W_1,\dots,W_{m-1}$ per l'ipotesi di induzione, e sia $e_i$ che $T(e_i)$ appartengono a uno di essi, per la $T$-invarianza dei sottospazi $W_1,\dots,W_{m-1}$: allora
+	\begin{equation}
+		\chi_T(T)(e_i)=0 \tag{a}
+		\label{eqdim:cayley-hamilton1}
+	\end{equation}
+	per ogni $i\in\{1,\dots,m-1\}$.
+	Per l'ultimo vettore $e_m$ vale invece $T(e_m)=a_{1m}e_1+\dots+a_{mm}e_m$, da cui:
+	\begin{equation*}
+		\begin{split}
+			\chi_T(T)(e_m)&=\chi_{\overline{T}}(T)(T-a_{mm}I)(e_m)=\\
+			&=\chi_{\overline{T}}(T)T(e_m)-a_{mm}\chi_{\overline{T}}(T)(e_m)=\\
+			&=\chi_{\overline{T}}(T)\Big(\sum_{i=1}^ma_{im}e_i\Big)-a_{mm}\chi_{\overline{T}}(T)(e_m)=\\
+			&=\sum_{i=1}^ma_{im}\chi_{\overline{T}}(T)(e_i)-a_{mm}\chi_{\overline{T}}(T)(e_m)=\\
+			&=a_{mm}\chi_{\overline{T}}(T)(e_m)-a_{mm}\chi_{\overline{T}}(T)(e_m)=0
+		\end{split}
+	\end{equation*}
+	in virtù della \eqref{eqdim:cayley-hamilton1}.
+	Dunque $\chi_T(T)(e_i)=0$ per ogni $i\in\{1,\dots,m\}$, ossia per ogni vettore della base: ma allora $\chi_T(T)(v)=0$ per ogni $v\in V$, ossia $\chi_T(T)$ è l'endomorfismo nullo.
+	Ciò prova che $\chi_T(T)=0$ per ogni $T$ triangolabile.
+\end{proof}
+
 \begin{corollario}
-	Con le ipotesi del teorema \ref{t:criterio-triangolabilita}, si ha che $T$ è triangolabile se e solo se $m_T\dvd\chi_T$.
+	Dato uno spazio $V$ di dimensione finita e $T\in\End(V)$, se $T$ è triangolabile allora $m_T\dvd\chi_T$.
 \end{corollario}
+\begin{proof}
+	Se $T$ è triangolabile, per il teorema precedente, $\chi_T(T)=0$ dunque il polinomio caratteristico appartiene all'ideale $(m_T)$, vale a dire $m_T\dvd \chi_T$.
+\end{proof}
+% Vale anche l'inverso?
