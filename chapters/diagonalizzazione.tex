@@ -370,27 +370,31 @@ Il polinomio minimo appartiene a questo insieme: risulta infatti $m_T(T)(v)=0(v)
 Siano $V$ uno spazio vettoriale sul campo $K$, $T\in\End(V)$, e $W$ un sottospazio $T$-invariante di $V$.
 Dato l'insieme $S_T(\alpha,W)$ come definito in precedenza, chiamiamo polinomio \emph{$T$-conducente}, di $\alpha$ in $W$, il generatore monico di $S_T(\alpha,W)$.
 
-\begin{lemma}\label{l:invarianza-autovalori}
-	Sia $T\in \End(V)$ con $V$ spazio vettoriale sul campo $K$ di dimensione finita.
-	Se il suo polinomio minimo è della forma $m_T(x) = (x-\lambda_1)^{r_1}\dots(x-\lambda_k)^{r_k}$, con $\lambda_i\in K$ e se $W \leq V$ ($W\ne V$) è $T$-invariante, Allora $\exists v\in V\setminus W$ tale che $(T-\lambda I)(v)\in W$ per qualche autovalore $\lambda$ di $T$.
+\begin{lemma}
+	Sia $T\in \End(V)$ con $V$ spazio vettoriale, di dimensione finita, sul campo $K$.
+	Se il suo polinomio minimo è della forma $m_T(x) = (x-\lambda_1)^{r_1}\dots(x-\lambda_k)^{r_k}$, con $\lambda_i\in K$, e se $W\le V$ (con $W\ne V$) è $T$-invariante, allora $\exists v\in V\setminus W$ tale che $(T-\lambda I)(v)\in W$ per qualche autovalore $\lambda$ di $T$.
 \end{lemma}
 \begin{proof}
-	Sia $\beta\in V\setminus W$ e $g$ il polinomio $T$-conducente per $\beta\in W$: ciò implica che $g(T)\beta\in W$. % Ma \beta appartiene o no a W?
-	 Nell'ideale del polinomio $g$ si trova anche il polinomio minimo, quindi $m_T\dvd g$ in quanto $g$ per la definizione precedente \ref{d:polinomio-conducente} è il più piccolo dell'ideale. %???
-	 Inoltre $\deg g\ne 1$, poichè se lo fosse allora $g(T) = I$, e considerando il suo effetto sull'elemento $\beta$ si avrebbe $g(T)(\beta) = \beta$, da cui $\beta\in W$, ma proprio nelle ipotesi avevamo considerato $\beta\notin W$.
-	 Quindi $\deg g > 1$ e per l'ipotesi sulla forma del polinomio minimo deve essere scritto come:
+	Sia $\beta\in V\setminus W$ e $g$ il polinomio $T$-conducente di $\beta$ in $W$: ciò implica che $g(T)(\beta)\in W$.
+	Nell'ideale $(g)\subset K[x]$ si trova anche il polinomio minimo, quindi $g\dvd m_T$.
+	Deve risultare $g\ne 1$, poichè altrimenti $g(T)(\beta) = \beta\notin W$: ma $g$ è il polinomio $T$-conducente di $\beta$ in $W$ quindi per definizione deve essere $g(T)(\beta)\in W$.
+	Quindi $\deg g>1$: per l'ipotesi sulla fattorizzazione del polinomio minimo, si ha
 	\begin{equation*}
-		g(x) = (x-\lambda_1)^{b_1}\dots (x-\lambda_k)^{b_k},
+		g(x) = (x-\lambda_1)^{b_1}\cdots (x-\lambda_i)^{b_i},
 	\end{equation*}
-	con almeno un $b_i$ maggiore di 1 per quanto ricavato dai passaggi precedenti.
-	Poniamo che sia $b_j > 1$, corrispondente a $\lambda_j$: per il teorema di Ruffini \ref{t:ruffini} possiamo riscrivere $g$ come $g(x) = (x-\lambda_j)h(x)$, per un certo $h\in K[x]$.
-	Ora ponaimo $\alpha = h(T)(\beta)\notin W$, per cui:
+	con $b_i\le r_i$ e almeno un $b_i$ maggiore di 1.
+	Poniamo $b_j > 1$ per un $j\in\{1,\dots,k\}$, corrispondente a $\lambda_j$: per il teorema di Ruffini \ref{t:ruffini} possiamo riscrivere $g$ come $g(x) = (x-\lambda_j)h(x)$, per un certo $h\in K[x]$.
+	Sia ora $\alpha\defeq h(T)(\beta)$: risulta
 	\begin{equation*}
-		(T-\lambda_j I)(\alpha) = (T-\lambda_j I)\big(h(T)(\beta) \big) = g(T)(\beta).
+		(T-\lambda_j I)(\alpha)=(T-\lambda_j I)h(T)(\beta)=g(T)(\beta)
 	\end{equation*}
-	Ora, $\alpha = h(T)(\beta) \neq 0$ e non appartiene a $W$, ma $g(T)(\beta)$ è un autovettore del polinomio caratteristico e abbiamo precedentemente definito $W$ come il sottospazio generato dagli autovalori; gli ultimi passaggi hanno verificato che per certi $h$, corrispondenti a dei $\lambda_j$, vale $(T-\lambda_j I)\big(h(T)(\beta) \big) = (T-\lambda_j I)(\alpha) \subset W$.
-	Quindi abbiamo dimostrato le due implicazioni del lemma.
+	e $g(T)(\beta)$ appartiene a $W$ per come è definito $g$.
+	Ora, $h\ne 0$ perch\'e è il prodotto di fattori $(x-\lambda_i)^{b_i}$, certamente non nulli, e poich\'e divide $g$ non può appartenere a $S_T$, perciò $h(T)$ non ``porta'' $\beta$ in $W$.
+	Dunque $\alpha=h(T)(\beta)\notin W$, e certamente $\alpha\in V$.
+	Dal lemma \ref{t:radici-polinomio-minimo-caratteristico} inoltre sappiamo che le radici $\lambda_i$ sono anche radici del polinomio caratteristico di $T$, dunque sono i suoi autovalori.
+	Questo prova che esiste $\alpha\in V\setminus W$ e un autovalore $\lambda_j$ per i quali $(T-\lambda_j I)(\alpha)\in W$ come nella tesi.
 \end{proof}
+
 \begin{teorema}
 	Sia $V$ spazio vettoriale sul campo $K$ con $\dim V$ finita ($m$), sia $T$ un'endomorfismo in $V$, si ha che $T$ è diagonalizzabile $\iff$ $m_t(x) = (x-\lambda_1)\dots(x-\lambda_k)$, con $\{\lambda_i\}_{i=1}^k$ valori distinti di $K$.
 \end{teorema}
