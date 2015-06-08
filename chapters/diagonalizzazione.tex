@@ -335,7 +335,7 @@ Dato $T\in\End(V)$, posto $v\in V$ definiamo l'insieme
 ossia, fissati $v\in V$ e il sottospazio $W$, l'insieme dei polinomi di $K[x]$ tali che, valutati in $T$, portano $v$ in $W$.
 Il polinomio minimo appartiene a questo insieme: risulta infatti $m_T(T)(v)=0(v)=0\in W$, per ogni $v\in V$ e $W\le V$.
 
-\begin{lemma}
+\begin{lemma} \label{l:ideale-conducente}
 	Sia $V$ uno spazio vettoriale sul campo $K$ e $T\in\End(V)$.
 	Se $W\le V$ è $T$-invariante, allora è anche $g(T)$-invariante per ogni $g\in K[x]$, ossia
 	\begin{equation*}
@@ -370,7 +370,7 @@ Il polinomio minimo appartiene a questo insieme: risulta infatti $m_T(T)(v)=0(v)
 Siano $V$ uno spazio vettoriale sul campo $K$, $T\in\End(V)$, e $W$ un sottospazio $T$-invariante di $V$.
 Dato l'insieme $S_T(\alpha,W)$ come definito in precedenza, chiamiamo polinomio \emph{$T$-conducente}, di $\alpha$ in $W$, il generatore monico di $S_T(\alpha,W)$.
 
-\begin{lemma}
+\begin{lemma} \label{l:conducente}
 	Sia $T\in \End(V)$ con $V$ spazio vettoriale, di dimensione finita, sul campo $K$.
 	Se il suo polinomio minimo è della forma $m_T(x) = (x-\lambda_1)^{r_1}\dots(x-\lambda_k)^{r_k}$, con $\lambda_i\in K$, e se $W\le V$ (con $W\ne V$) è $T$-invariante, allora $\exists v\in V\setminus W$ tale che $(T-\lambda I)(v)\in W$ per qualche autovalore $\lambda$ di $T$.
 \end{lemma}
@@ -391,68 +391,69 @@ Dato l'insieme $S_T(\alpha,W)$ come definito in precedenza, chiamiamo polinomio 
 	e $g(T)(\beta)$ appartiene a $W$ per come è definito $g$.
 	Ora, $h\ne 0$ perch\'e è il prodotto di fattori $(x-\lambda_i)^{b_i}$, certamente non nulli, e poich\'e divide $g$ non può appartenere a $S_T$, perciò $h(T)$ non ``porta'' $\beta$ in $W$.
 	Dunque $\alpha=h(T)(\beta)\notin W$, e certamente $\alpha\in V$.
-	Dal lemma \ref{t:radici-polinomio-minimo-caratteristico} inoltre sappiamo che le radici $\lambda_i$ sono anche radici del polinomio caratteristico di $T$, dunque sono i suoi autovalori.
+	Dal teorema \ref{t:radici-polinomio-minimo-caratteristico} inoltre sappiamo che le radici $\lambda_i$ sono anche radici del polinomio caratteristico di $T$, dunque sono i suoi autovalori.
 	Questo prova che esiste $\alpha\in V\setminus W$ e un autovalore $\lambda_j$ per i quali $(T-\lambda_j I)(\alpha)\in W$ come nella tesi.
 \end{proof}
 
-\begin{teorema}
-	Sia $V$ spazio vettoriale sul campo $K$ con $\dim V$ finita ($m$), sia $T$ un'endomorfismo in $V$, si ha che $T$ è diagonalizzabile $\iff$ $m_t(x) = (x-\lambda_1)\dots(x-\lambda_k)$, con $\{\lambda_i\}_{i=1}^k$ valori distinti di $K$.
+\begin{teorema} \label{t:diagonalizzabilita-polinomio-minimo}
+	Sia $V$ uno spazio vettoriale di dimensione finita sul campo $K$ e sia $T\in\End(V)$.
+	$T$ è diagonalizzabile se e solo se $m_T(x)=(x-\lambda_1)\cdots(x-\lambda_k)$, con distinti $\lambda_i\in K$.
 \end{teorema}
 \begin{proof}
-	\begin{itemize}
-		\item Sia prima $T$ diagonalizzabile.
-			Presi gli autovalori distinti $\{\lambda_i\}_{i=1}^k$ di $T$ e consideriamo $(T-\lambda_1 I),\dots,(T-\lambda_k I)$, sia inoltre $\alpha$ autovettore di $T$.
-			Il prododotto tra l'autovettore $\alpha$ e il corrispondente $(T-\lambda_j)$ deve dare lo zero per il teorema \ref{t:autovalore-determinante}.
-			Ora l'operazione tra i vari operatori precedenti potrebbe essere commutativa, se lo è aggiungendo $\alpha$ alla composizione essa è uguale allo zero, poichè vi si può affiancare il corrispondente operatore.
-			Quindi prendiamo due autovalori $\phi, \mu$ e verifichiamone la commutatività:
-			\begin{align*}
-				(T - \phi I)(T- \mu I) &= T^2 - \phi T - \mu T + \phi \mu T,\\
-				(T- \mu I)(T - \phi I) &= T^2 - \mu T -\phi T + \phi \mu T.
-			\end{align*}
-			Allora la composizione è commutativa e si ha
-			\begin{equation*}
-				(T-\lambda_1 I)\dots(T-\lambda_k I)(\alpha) = (T-\lambda_1)\dots(T-\lambda_k)(T-\lambda_j)(\alpha) = 0.
-			\end{equation*}
-			Ora possiamo scrivere $p(x) = (T-\lambda_1)\dots(T-\lambda_k)(T-\lambda_j)$, otteniamo allora che $p(T)\alpha = 0$ per ogni autovettore $\alpha$.
-			Abbiamo, per le ipotesi iniziali, che $T$ è diagonalizzabile, quindi deve esistere una base di autovettori, proprio per definizione di diagonalizzazione \ref{d:endomorfismo-diagonalizzabile}, $p(T)$  deve essere allora fatta in modo da annullare tutti gli elementi della base, di conseguenza è l'operatore nullo di $\End(V)$, quindi $p(T)\in I_T$ e sappaimo che $m_T(x)$ è il generatore monico di $I_T$, per definizione \ref{d:polinomio-minimo}.
-			Deve per forza essere che $m_T(x)=p(x)$ poichè $m_T(x)$ non può avere meno componenti di $p(x)$ perchè tutti gli zeri del polinomio devono per forza stare in esso (per conseguenza del teorema \ref{t:radici-polinomio-minimo-caratteristico}), allora
-			\begin{equation*}
-				p(x) = (x-\lambda_1)\dots(x-\lambda_k)(x-\lambda_j) = (x-\lambda_1 I)\dots(x-\lambda_k I) = m_T(x).
-			\end{equation*}
-		\item Sia ora il polinomio minimo esprimibile come sopra e $W \leq V$ sottospazio generato dagli autovettori di $T$.
-			Allora $W$ è $T$-invariante ed esiste una base di autovettori, posso fare in modo che coincida con una di $V$, questo è possibile se $W=V$, in quel caso $T$ è diagonalizzabile per la definizione \ref{d:endomorfismo-diagonalizzabile}.
-			Se invece $W\neq V$ procediamo per assurdo: se così fosse potrebbe esistere un elemento $\alpha\in V/W$, autovettore relativo a $\lambda_j$ autovalore di $T$, con $\beta = (T-\lambda_j I)\alpha\in W$ e $W$ è $T$-invariante.
-			Possiamo allora scrivere che $\forall h(x)\in K[x]$ si ha $h(T)\beta\in W$ e considerare il polinomio minimo escludendo il termine relativo a $\lambda_j$:
-			\begin{equation*}
-				m_T(x) = \prod\limits_{i=1 , i\neq j}^k(x-\lambda_i)(x-\lambda_j),
-			\end{equation*}
-			Rinominando la produttoria come $q$ e $q(\lambda_j) =(x-\lambda_j)$, consideriamo la differenza $q(x)-q(\lambda_j)$, questa differenza ha $\lambda_j$ come radice, quindi per il teorema di Ruffini \ref{t:ruffini}
-			\begin{equation*}
-				(x-\lambda_j)h(x) = q(x) - q(\lambda_j),
-			\end{equation*}
-			e valutandolo in $T$ e poi in $\alpha$, cioè l'autovettore prima definito, si ha
-			\begin{equation*}
-				\begin{aligned}
-					&(T-\lambda_j I) h(T) = q(T) -q(\lambda_j)I,\\
-					&(T-\lambda_j I) h(T) \alpha = q(T) \alpha -q(\lambda_j) \alpha,\\
-					& \beta h(T) =  q(T) \alpha -q(\lambda_j) \alpha,
-				\end{aligned}
-			\end{equation*}
-			con l'ultimo passaggio dovuto a come abbiamo prima definito $\beta$.
-			Abbiamo che  $q(\lambda_j) \alpha, \beta h(T)\in W$, dobbiamo però determinare l'insieme di appartenenza di $q(T) \alpha$, per farlo torniamo a considerare il polinomio minimo valutato in $T$ e poi in $\alpha$:
-			\begin{equation*}
-				\begin{aligned}
-					&m_T(T) = 0 = (T-\lambda_j)q(T),\\
-					&m_T(T)\alpha =  (T-\lambda_j)q(T)\alpha.
-				\end{aligned}
-			\end{equation*}
-			Poichè $q(T)\alpha \neq 0$ per le ipotesi fatte, allora deve essere un autovettore relativo a $\lambda_j$, se così fosse $q(T)\alpha\in W$ con $\alpha\notin W$, quindi ci sono due autovettori relativi all'autovalore $\lambda_j$, che di conseguenza avrebbe molteplicità algebrica almeno uguale a due.
-			Il polinomio minimo si potrebbe allora scrivere come
-			\begin{equation*}
-				m_T(x) = (x-\lambda_j)(x-\lambda_j) \prod\limits_{i=1 , i\neq j}^k(x-\lambda_i).
-			\end{equation*}
-			Avremmo quindi un polinomio di secondo grado all'interno di $m_T$, in contrasto con l'ipotesi iniziale.
-	\end{itemize}
+	Sia $T$ diagonalizzabile.
+	Presi gli autovalori distinti $\lambda_i$ di $T$, consideriamo gli endomorfismi $(T-\lambda_1 I),\dots,(T-\lambda_k I)$; sia inoltre $\alpha$ un autovettore di $T$.
+	Chiaramente $(T-\lambda_j I)\alpha=0$, se $\alpha$ è autovettore associato all'autovalore $\lambda'$, secondo il teorema \ref{t:autovalore-determinante}.
+	Se componiamo tutti gli operatori $T-\lambda_iI$, se essi commutassero troveremmo ancora 0 applicandoli ad $\alpha$: basterebbe scambiare l'ordine fino ad avere $T-\lambda' I$ applicato a $\alpha$, che fa zero, da cui tutto il prodotto è zero.
+	Verifichiamo questo fatto.
+	Dati $a,b$ autovalori di $T$, risulta
+	\begin{equation}
+		(T-aI)(T-bI)=T^2-aT-bT-abI=T^2-bI-aI-baI=(T-bI)(T-aI)
+	\end{equation}
+	dato che $a,b$ sono in un campo.
+	Allora
+	\begin{equation}
+		(T-\lambda_1 I)\cdots(T-\lambda_k I)(\alpha) = (T-\lambda_1)\cdots(T-\lambda_k)(T-\lambda'I)(\alpha) = (T-\lambda_1)\cdots(T-\lambda_k)(0)=0.
+		\label{eqdim:diagonalizzabilita-polinomio-minimo1}
+	\end{equation}
+	Definiamo dunque $p(x) = (T-\lambda_1)\cdots(T-\lambda_k)(T-\lambda_j)$.
+	Per la \ref{eqdim:diagonalizzabilita-polinomio-minimo1} allora $p(T)\alpha = 0$ per ogni autovettore $\alpha$ di $T$.
+	Ma $T$ è diagonalizzabile, perciò esiste una base di autovettori $\{\alpha_i\}_{i=1}^m$ di $V$ (con $m=\dim V$), per ognuno dei quali si ha
+	\begin{equation}
+		p(T)(\alpha_j)=\prod_{i=1}^k(T-\lambda_iI)(\alpha_j)=(T-\lambda_1I)\cdots(T-\lambda_kI)(T-\lambda_jI)(\alpha_j)=0.
+	\end{equation}
+	Ogni $v\in V$ si può scrivere come $\sum_{i=1}^mc_i\alpha_i$, per opportuni coefficienti $c_i\in K$, ma allora per linearità
+	\begin{equation}
+		p(T)(v)=p(T)\Big(\sum_{i=1}^mc_i\alpha_i\Big)=\sum_{i=1}^mc_ip(T)(\alpha_i)=0
+	\end{equation}
+	dunque $p(T)$ è l'operatore nullo, vale a dire $p\in (m_T)$.
+	Allora $m_T\dvd p$: ma $m_T$ ha come radici tutti gli autovalori $\lambda_1,\dots,\lambda_k$ per il teorema \ref{t:radici-polinomio-minimo-caratteristico}, dunque $p=m_T$ e ciò prova la tesi. 
+
+	Sia ora $m_T=\prod_{i=1}^k(x-\lambda_i)$ e $W\le V$ il sottospazio generato dagli autovettori di $T$: la sua base è composta da autovettori di $T$.
+	Possiamo assumere $W\ne V$, perch\'e altrimenti $V$ ammetterebbe una base di autovettori di $T$, che sarebbe dunque subito diagonalizzabile (la dimostrazione finirebbe qui).
+	Essendo la somma di autospazi di $T$, $W$ è $T$-invariante.
+	Se $W\ne V$, allora esiste un $\alpha\in V\setminus W$ tale per cui $\beta\defeq (T-\lambda_jI)(\alpha)\in W$: la sua esistenza è garantita dal lemma \ref{l:conducente}.
+	Vogliamo mostrare che un tale $\alpha$ non può esistere senza contraddire le ipotesi, e di conseguenza non può essere che $W\ne V$ (altrimenti un tale $\alpha$ esisterebbe sempre).
+	Sempre per l'invarianza di $W$, si ha $f(T)(\beta)\in W$ per ogni $f\in K[x]$, dal lemma \ref{l:ideale-conducente}.
+	Definiamo
+	\begin{equation*}
+		q_j(x)=\prod_{\substack{i=1 \\ i\ne j}}(x-\lambda_i),
+	\end{equation*}
+	tale che $m_T(x)=(x-\lambda_j)q_j(x)$.
+	Consideriamo $q_j(x)-q_j(\lambda_j)$: questo polinomio ha evidentemente $\lambda_j$ come radice, dunque è divisibile per $x-\lambda_j$, cioè $q_j(x)-q_j(\lambda_j)=h(x)(x-\lambda_j)$ per un certo $h\in K[x]$.
+	Valutiamo questo polinomio in $T$, e applichiamo l'operatore che ne risulta a $\alpha$:
+	\begin{equation}
+		[q_j(T)-q_j(\lambda_j)](\alpha)=[h(T)(T-\lambda_jI)](\alpha)=h(T)(\beta).
+		\label{eqdim:diagonalizzabilita-polinomio-minimo2}
+	\end{equation}
+	Sappiamo anche che $m_T(T)=0$ e $m_T(x)=(x-\lambda_j)q_j(x)$, perciò
+	\begin{equation}
+		0=m_T(T)(\alpha)=[(T-\lambda_jI)q_j(T)](\alpha)
+	\end{equation}
+	Ora, se $q_j(T)(\alpha)=0$ automaticamente appartiene a $W$; altrimenti, si ha comunque $(T-\lambda_jI)q_j(T)(\alpha)=0$ quindi per il teorema \ref{t:autovalore-determinante} $q_j(T)(\alpha)$ è un autovettore di $T$, quindi anche in questo caso appartiene a $W$.
+	Poich\'e dalla \ref{eqdim:diagonalizzabilita-polinomio-minimo2} risulta $q_j(\lambda_j)\alpha=q_j(T)(\alpha)-h(T)(\beta)$, e gli addendi del secondo membro appartengono a $W$, si ha $q_j(\lambda_j)\alpha\in W$.\footnote{Riguardo alla notazione: $q_j(\lambda_j)$ è un polinomio di $K[x]$ valutato in $\lambda_j\in K$, dunque è uno scalare di $K$: perciò usiamo la notazione moltiplicativa $q_j(\lambda_j)\alpha$ anzich\'e trattarlo come un operatore e scrivere $q_j(\lambda_j)(\alpha)$ come per i termini restanti.}
+	Ma $\alpha\notin W$, per come è stato scelto, di conseguenza deve essere $q_j(\lambda_j)=0$ (lo zero di $K$, poich\'e è uno scalare).
+	Ciò però significa che $m_T$ ha $\lambda_j$ come radice \emph{doppia}, che contraddice l'ipotesi su $m_T$ avente solo radici semplici.
+	Per questo non può esistere $\alpha\in V\setminus W$, cioè $V\setminus W=\emptyset$, dato che un tale elemento si può sempre trovare se $W$ non è l'intero $V$: allora $W=V$, cioè $T$ è diagonalizzabile.
 \end{proof}
 
 \section{Applicazioni e matrici triangolari}
