@@ -44,14 +44,10 @@ Possiamo quindi definire il \emph{determinante di un endomorfismo}, sapendo che 
 	Viceversa, se $\ker(T-\lambda I)\neq\{0_V\}$ vuol dire che esiste un $v\in V$ per cui $(T-\lambda I)(v)=0_V$, cioè risalendo i passaggi precedenti $T(v)=\lambda v$.
 
 	Se $T-\lambda I$ non è iniettivo, non può essere di conseguenza invertibile, quindi il suo determinante deve essere nullo.
-	Viceversa, se il determinante è nullo allora non è invertibile, vale a dire $T-\lambda I$ non è iniettivo o non è suriettivo.
-	Se fosse inettivo, l'applicazione dovrebbe essere, per come è definita un'isomorfismo, quindi il determinante non dovrebbe essere zero.
-	Questo caso è allora da escludere.
-	Se fosse suriettivo avremmo che per ogni $s\in V$ $(T-\lambda I)(v) =  s$.
-	Poichè $s$ può anche essere il vettore nullo questo significa che il $\ker(T-\lambda I)$ non può essere costituito dal solo zero.
-	Quindi se l'applicazone è suriettiva non può essere iniettiva e quindi un'isomorfismo.
-	Questo implica che l'ultima affermazione è equivalente alla seconda.
+	Viceversa, se il determinante è nullo allora non è invertibile, vale a dire $T-\lambda I$ non è iniettivo oppure non è suriettivo.
+	In spazi di dimensione finita, però, se un endomorfismo è iniettivo è automaticamente suriettivo (in virtù del primo teorema dell'isomorfismo \ref{t:primo-isomorfismo}), dunque le due affermazioni sono equivalenti: $T$ non è n\'e iniettivo n\'e suriettivo.
 \end{proof}
+
 \begin{definizione} \label{d:polinomio-caratteristico}
 	Si definisce \emph{poliniomio caratteristico} dell'applicazione $T\in\End(V)$ il polinomio $\chi_T(x)=\det(T-xI)$.
 \end{definizione}
@@ -159,10 +155,14 @@ La somma di due autovettori di $T$ associati a due autovalori distinti però \em
 	Sia $T\in\End(V)$, di dimensione finita.
 	$T$ si dice diagonalizzabile se esiste una base di $V$ costituita soltanto da autovettori di $V$.
 \end{definizione}
-%Siano $\lambda_1,\dots,\lambda_k$ autovalori di $T$, e $e_1,\dots,e_{\alpha_1}$ gli autovettori associati a $\lambda_1$, $e_{\alpha_1+1},\dots,e_{\alpha_2}$ associati a $\lambda_2$, quindi in generale $e_{\alpha_{j-1}+1},\dots,e_{\alpha_{j-1}+\alpha_j}$ sono gli autovettori associati a $\lambda_j$, con $j=1,\dots,k$. Si ha che $T( e_1)=\lambda_1 e_1$, e se $\alpha_1>1$ allora $T( e_2)=\lambda_1 e_2$, fino a $T( e_{\alpha_1})=\lambda_1 e_{\alpha_1}$, $T( e_{\alpha_1+1})=\lambda_2 e_{\alpha_1+1}$ e così via. Gli autovalori $\lambda_j$ sono quindi gli unici elementi non nulli, nelle righe e nelle colonne dove sono posti, della matrice associata a $T$. Tale matrice è diagonale, ossia gli unici elementi non nulli si trovano sulla diagonale e sono proprio gli autovalori. Dato che, come si era dimostrato in precedenza, gli autovalori non variano al cambiare della base, tale matrice è unica, a meno ovviamente di permutazioni.
-
-Se $T$ è rappresentato in una base $\mathcal B$ da una matrice $A$ ed è diagonalizzabile, tale matrice si può porre in forma diagonale con il coniugio $D=P^{-1}MP$, dove $P$ è la matrice le cui colonne sono gli autovettori di $T$ (espressi chiaramente nella base $\mathcal B$): essi infatti formano una base, e $P$ è proprio la matrice per cambiare la base da $\mathcal B$ a quella degli autovettori.
-La matrice diagonale risultante avrà l'$i$-esima colonna $A_i=\lambda_i e_i$, in ordine come sono stati posti in ordine gli autovettori nella base, e di conseguenza nella matrice $P$ utilizzata.
+In questa base di autovettori, la matrice che rappresenta $T$ è diagonale, e sappiamo che matrici di un medesimo endomorfismo associate a differenti basi sono simili.
+Dunque equivalentemente si può dire che una matrice $M\in\mat(n,K)$ è diagonalizzabile se $\exists P\in GL(n,K)$ tale per cui il coniugio $P^{-1}MP$ sia una matrice diagonale.
+Se chiamiamo $D=P^{-1}PM$ la matrice diagonale e $\mathcal B=\{b_1,\dots,b_n\}$ la base in cui rappresenta l'endomorfismo, allora $P$ è la matrice per cambiare la base da quella precedente di $M$ a quella in forma diagonale, cioè $P=(b_1|\cdots|b_n)$.
+Allora se $P^{-1}MP=D$ si ha $MP=PD$, ossia
+\begin{equation*}
+	(Mb_1|\cdots|Mb_n)=(b_1|\cdots|b_n)D=(d_1b_1|\cdots|d_nb_n)
+\end{equation*}
+cioè $Mb_i=d_ib_i$: i vettori $b_i$ della base (che di conseguenza non possono essere nulli) sono quindi gli autovettori di $M$.
 
 \begin{teorema} \label{t:diagonalizzabilita}
 	Siano $T\in\End(V)$ e $\lambda_1,\dots,\lambda_k$ i suoi autovalori distinti, di molteplicità geometrica $\gamma_1,\dots,\gamma_k$ e algebrica $\alpha_1,\dots,\alpha_k$.
