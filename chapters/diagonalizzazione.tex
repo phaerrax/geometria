@@ -493,7 +493,7 @@ La dimostrazione generale è però difficile; qui vediamo il teorema solo per en
 	La matrice che rappresenta $\overline{T}$ nella base $\{e_i\}_{i=1}^{m-1}$ di $W_{m-1}$ è triangolare, perciò $\chi_{\overline{T}}(x)=(a_{11}-x)\cdots(a_{m-1,m-1}-x)$.
 	Allora
 	\begin{equation*}
-		\chi_T(x) = \chi_{\overline{T}}(x)(x-a_{mm}),
+		\chi_T(x) = \chi_{\overline{T}}(x)(a_{mm}-x),
 	\end{equation*}
 	e se valutiamo tale polinomio in $T$ e lo applichiamo agli elementi $e_i$ della base, risulta
 	\begin{equation*}
@@ -513,10 +513,8 @@ La dimostrazione generale è però difficile; qui vediamo il teorema solo per en
 	\begin{equation*}
 		\begin{split}
 			\chi_T(T)(e_m)&=\chi_{\overline{T}}(T)(T-a_{mm}I)(e_m)=\\
-			&=\chi_{\overline{T}}(T)T(e_m)-a_{mm}\chi_{\overline{T}}(T)(e_m)=\\
-			&=\chi_{\overline{T}}(T)\Big(\sum_{i=1}^ma_{im}e_i\Big)-a_{mm}\chi_{\overline{T}}(T)(e_m)=\\
-			&=\sum_{i=1}^ma_{im}\chi_{\overline{T}}(T)(e_i)-a_{mm}\chi_{\overline{T}}(T)(e_m)=\\
-			&=a_{mm}\chi_{\overline{T}}(T)(e_m)-a_{mm}\chi_{\overline{T}}(T)(e_m)=0
+			&=\chi_{\overline{T}}(T)\Big(\sum_{i=1}^ma_{im}e_i-a_{mm}e_m\Big)=\\
+			&=\sum_{i=1}^{m-1}a_{im}\chi_{\overline{T}}(T)(e_i)=0
 		\end{split}
 	\end{equation*}
 	in virtù della \eqref{eqdim:cayley-hamilton1}.
@@ -530,4 +528,3 @@ La dimostrazione generale è però difficile; qui vediamo il teorema solo per en
 \begin{proof}
 	Se $T$ è triangolabile, per il teorema precedente, $\chi_T(T)=0$ dunque il polinomio caratteristico appartiene all'ideale $(m_T)$, vale a dire $m_T\dvd \chi_T$.
 \end{proof}
-% Vale anche l'inverso?
