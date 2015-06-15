@@ -459,20 +459,33 @@ La dimensione di $V$ (su $K$) si indica con $\dim_KV$ o anche solo, se non ci so
 Ad esempio, $\R$ è un sottospazio di $\R^3$: prendendo una base $\{  v\}$ del primo, si ottiene una base del secondo semplicemente aggiungendo due vettori (distinti) perpendicolari a $  v$.
 
 \begin{definizione} \label{d:insieme-linearmente-indipentente}
-	Un insieme $\{V_i\}_{i\in I}$ di sottospazi vettoriali di $V$ si dice linearmente indipendente se comunque si scelga un vettore $  x_i\neq O_V$ per ciascun $V_i$, l'insieme $\{  x_i\}_{i\in I}$ è linearmente indipendente.
+	Un insieme $\{V_i\}_{i\in I}$ di sottospazi vettoriali di $V$ si dice linearmente indipendente se comunque si scelga un vettore $x_i\neq 0$ per ciascun $V_i$, l'insieme $\{x_i\}_{i\in I}$ è linearmente indipendente.
 \end{definizione}
 \begin{teorema}
 	Un insieme $\{V_i\}_{i\in I}$ di sottospazi vettoriali di $V$ è linearmente indipendente se e solo se $\forall k\in I$ si ha che l'intersezione tra $V_k$ e lo spazio generato dai restanti $V_i$ contiene soltanto lo zero, cioè\footnote{Ricordiamo che la somma di più spazi vettoriali è lo spazio generato dalla loro unione, ossia $\sum_i V_i=\gen{\bigcup_i V_i}$.}
 	\begin{equation*}
-		V_k\cap\sum_{j\in I\setminus\{k\}}{V_j}=\{0_V\}.
+		V_k\cap\sum_{j\in I\setminus\{k\}}{V_j}=\{0\}.
 	\end{equation*}
 \end{teorema}
 \begin{proof}
-	Se $V_k\cap\sum_{j\in I\setminus\{k\}}{V_j}\neq\{O_V\}$ per qualche $k\in I$, allora esisterebbe un elemento $  v_k\in V_k$ non nullo che è combinazione lineare di elementi dei restanti sottospazi, cioè $  v_k=  x_{i_1}+\dots+  x_{i_m}$ con $\{i_1,\dots,i_r\}\subseteq I\setminus\{k\}$.
+	Se i sottospazi $V_i$ sono linearmente indipendenti, e per assurdo $V_k\cap\sum_{j\in I\setminus\{k\}}{V_j}\neq\{0\}$ per qualche $k\in I$, allora esisterebbe un elemento $v_k\in V_k$ non nullo che è combinazione lineare di elementi dei restanti sottospazi, cioè $v_k=x_{i_1}+\dots+x_{i_r}$ con $\{i_1,\dots,i_r\}\subseteq I\setminus\{k\}$.
 	Ma allora l'insieme $\{V_i\}_{i\in I}$ dei sottospazi non sarebbe linearmente indipendente, contraddicendo l'ipotesi, quindi l'uguaglianza deve essere vera.
 
-	Viceversa se abbiamo che $V_k\cap\sum_{j\in I\setminus\{k\}}{V_j}=\{0_V\}$, allora significa che l'unico vettore $  v$ che appartiene allo spazio considerato è il vettore nullo.
-	Poichè è comunque uno spazio vettoriale, possiamo scrivere $0_V$ come combinazione lineare di elementi degli altri sottospazi, quindi la famiglia di sottospazi è libera.  
+	Viceversa, se prendessimo una combinazione lineare nulla di elementi uno da ciascun sottospazio
+	\begin{equation}
+		a_{i_1}v_{i_1}+\dots+a_{i_k}v_{i_k}=0
+		\label{eqdim:sottospazi-linearmente-indipendenti}
+	\end{equation}
+	con $v_{i_j}\in V_{i_j}$ appartenenti tutti a sottospazi distinti, e ci fosse $a_{i^*}\ne 0$, allora potremmo scrivere
+	\begin{equation}
+		v_{i^*}=\sum_{j\in I\setminus\{i^*\}}c_jv_j
+	\end{equation}
+	ma allora $v_{i^*}\in V_{i^*}$ e anche $v_{i^*}\in\sum_{j\in I\setminus\{i^*\}}V_j$, ossia esiste un $i^*\in I$ tale per cui
+	\begin{equation*}
+		V_{i^*}\cap\sum_{j\in I\setminus\{i^*\}}V_j\ne\{0\}
+	\end{equation*}
+	che contraddice l'ipotesi.
+	Dunque nella \eqref{eqdim:sottospazi-linearmente-indipendenti} si ha $a_j=0$ per ogni $j\in I$, cioè i sottospazi sono linearmente indipendenti.
 \end{proof}
 
 \begin{teorema} \label{t:unione-sottospazi-linearmente-indipendente}
