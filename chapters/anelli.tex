@@ -989,40 +989,44 @@ In particolare, una radice di molteplicità algebrica 1 è detta \emph{semplice}
 	Date le radici distinte $\alpha_1,\dots,\alpha_k$ di $f$ con molteplicità algebrica rispettivamente $r_1,\dots,r_k$, si ha che $\sum_{i=1}^n r_i\le\deg f$.
 \end{teorema}
 \begin{proof}
-	Poniamo $f$, secondo il teorema \ref{t:fattorizzazione-unica}, come prodotto di opportuni polinomi $p_i$:
+	Secondo il teorema \ref{t:fattorizzazione-unica}, scriviamo $f$ come
 	\begin{equation}
-		f = p_1\dots p_k,
+		f = p_1p_2\dots p_k,
 	\end{equation}
-	Data una radice $\alpha_1$, si ha che $(x-\alpha_1)\dvd f$ e dunque possiamo dividere $f$ ottenendo
+	con ogni $p_i$ primo.
+	Data una radice $\alpha_1$, si ha che $(x-\alpha_1)\dvd f$, quindi divide uno dei $p_i$.
+	Riordiniamo l'ordine del prodotto in modo che $(x-\alpha_1)\dvd p_1$: poich\'e $p_1$ è primo, quindi irriducibile, dovrà essere della forma $h(x-\alpha_1)$ con $h\in K\setminus\{0\}$.
+	Raccogliendo tutti i fattori di questo tipo nel prodotto otteniamo
 	\begin{equation}
-		f(x) = (x-\alpha_1)\tilde{p}(x)p_2(x)\dots p_k(x).
+		f(x)=(x-\alpha_1)^{k_1}u(x)
 	\end{equation}
-	Iteriamo il procedimento $r_1$ volte, dove $r_1$ è la molteplicità algebrica di $\alpha_1$: infatti dalla definizione \ref{d:molteplicita-algebrica-radice} $(x-\alpha_1)^{r_1}\dvd f$.
-	Dunque risulta
+	con ovviamente $k_1\ge r_1$ (altrimenti $r_1$ non sarebbe la molteplicità di $\alpha_1$), e $x-\alpha_1$ che non divide $u$.
+	Allo stesso modo, però, $(x-\alpha_1)^{r_1}\dvd f$, dunque
 	\begin{equation}
-		f(x) = (x-\alpha_1)^{r_1}\dots(x-\alpha_k)^{r_1}g(x)
+		f(x)=(x-\alpha_1)^{r_1}v(x).
 	\end{equation}
-	per un certo $g\in K[x]$ non nullo.
-	Passiamo alla radice $\alpha_2$: poich\'e $\alpha_2\ne\alpha_1$, certamente $x-\alpha_2$ non divide $(x-\alpha_1)^{r_1}$, quindi dovrà dividere $g$.
-	Scomponendo $g$ in fattori, sempre per il teorema \ref{t:fattorizzazione-unica}, $x-\alpha_2$ dividerà uno di essi, e si procede a dividere $r_2$ volte, tante quante la molteplicità algebrica di $\alpha_2$, ottenendo
+	Eguagliando le due espressioni trovate abbiamo
 	\begin{equation}
-		f(x)=(x-\alpha_1)^{r_1}(x-\alpha_2)^{r_2}h(x)
+		(x-\alpha_1)^{k_1}u(x)=(x-\alpha_1)^{r_1}v(x)\quad\then\quad (x-\alpha_1)^{r_1-k_1}v(x)=u(x)
 	\end{equation}
-	per qualche $h\in K[x]$ non nullo.
-	Procedendo in questo modo fino ad esaurire i fattori di $f$.
-	Presa una radice $\alpha_i$, possiamo sempre dividere uno dei fattori del polinomio $r_i$ volte, per la definizione della molteplicità algebrica $r_i$, ottenendo infine
+	dato che $K[x]$ è un dominio d'integrità.
+	Se ora $r_1>k_1$, si avrebbe che $x-\alpha_1\dvd u$, ma ciò contrasta la scelta di $k_1$: allora $r_1=k_1$ da cui
 	\begin{equation}
-		f(x)=(x-\alpha_1)^{r_1}(x-\alpha_2)^{r_2}\dots(x-\alpha_k)^{r_k}z(x)
+		f(x)=(x-\alpha_1)^{r_1}u(x).
 	\end{equation}
-	con $z$ irriducibile.
+	Passiamo alla radice $\alpha_2$: poich\'e $\alpha_2\ne\alpha_1$, certamente $x-\alpha_2$ non divide $(x-\alpha_1)^{r_1}$, quindi dovrà dividere $u$.
+	Procediamo in questo modo fino ad esaurire le radici $\alpha_i$, giungendo a una forma
+	\begin{equation}
+		f(x)=(x-\alpha_1)^{r_1}\cdots(x-\alpha_k)^{r_k}g(x).
+	\end{equation}
 	Allora dalle proprietà \ref{pr:gradi-polinomi-operazioni} otteniamo
 	\begin{equation}
-		\deg f=\sum_{i=1}^kr_i+\deg z\ge\sum_{i=1}^kr_i
+		\deg f=\sum_{i=1}^kr_i+\deg g\ge\sum_{i=1}^kr_i
 	\end{equation}
-	che prova la tesi.
+	come volevamo dimostrare.
 \end{proof}
 
-\begin{corollario} [Principio d'identità dei polinomi] \label{c:principio-identita-polinomi}
+\begin{corollario}[Principio d'identità dei polinomi] \label{c:principio-identita-polinomi}
 	Siano $\alpha_1, \dots, \alpha_{n+1}$ elementi distinti di $K$.
 	Se $f,g\in K[x]$, al più di grado $n$, sono tali che $f(\alpha_i)=g(\alpha_i)$ $\forall i\in\{1,\dots,n+1\}$, allora $f=g$.
 \end{corollario}
