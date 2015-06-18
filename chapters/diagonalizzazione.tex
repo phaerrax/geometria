@@ -169,8 +169,8 @@ cioè $Mb_i=d_ib_i$: i vettori $b_i$ della base (che di conseguenza non possono 
 	Le seguenti affermazioni sono equivalenti:
 	\begin{itemize}
 		\item $T$ è diagonalizzabile;
-		\item $\sum_{i=1}^k\gamma_i=\dim V$;
 		\item il polinomio caratteristico è $\chi_T(x)=(\lambda_1-x)^{\alpha_1}\dots(\lambda_k-x)^{\alpha_k}$, con $\alpha_i=\gamma_i$ per ogni $i\in\{1,\dots,k\}$;
+		\item $\sum_{i=1}^k\gamma_i=\dim V$;
 	\end{itemize}
 \end{teorema}
 \begin{proof}
@@ -183,7 +183,7 @@ cioè $Mb_i=d_ib_i$: i vettori $b_i$ della base (che di conseguenza non possono 
 		e_{\gamma_1 + \dots + \gamma_{k-1}},\dots,e_{\gamma_1 + \dots + \gamma_{k-1} + \gamma_k}\in V_k
 	\end{gather*}
 	dove $V_j$ è l'autospazio dell'autovalore $\lambda_j$.
-In tale base, $T$ è rappresentato da una matrice $D$ diagonale, poich\'e $T(e_i)=\lambda_ie_i$: in ogni autospazio $V_i$ l'endomorfismo agisce infatti come $\lambda_i I_{\gamma_i}$, ossia come un multiplo dell'identità, quindi
+	In tale base, $T$ è rappresentato da una matrice $D$ diagonale, poich\'e $T(e_i)$ moltiplica $e_i$ per il rispettivo autovalore: in ogni autospazio $V_i$ l'endomorfismo agisce dunque come $\lambda_i I_{\gamma_i}$, ossia come un multiplo dell'identità, quindi
 	\begin{equation}
 		D=
 		\begin{bmatrix}
@@ -193,19 +193,19 @@ In tale base, $T$ è rappresentato da una matrice $D$ diagonale, poich\'e $T(e_i
 			0						& 0							& \cdots	& \lambda_k I_{\gamma_k}
 		\end{bmatrix}.
 	\end{equation}
+	scrivendo $D$ come matrice a blocchi.
 	Il polinomio caratteristico di $D$, quindi anche di $T$, è ovviamente
 	\begin{equation}
 		\chi_T(x)=(\lambda_1-x)^{\gamma_1}(\lambda_2-x)^{\gamma_2}\dots(\lambda_k-x)^{\gamma_k}=\prod_{i=1}^k(\lambda_i-x)^{\gamma_i}
 	\end{equation}
 	Sappiamo però che ogni $\lambda_i$ è radice di $\chi_T$ con molteplicità $\alpha_i$, dunque $\forall i\in\{1,\dots,k\}$ risulta $(\lambda_i-x)^{\alpha_i}\dvd\chi_T$.
-	Allora per il teorema di Ruffini \ref{t:ruffini} possiamo fattorizzare $\chi_T$ con le sue radici, come
+	Allora $\chi_T$ ammette una fattorizzazione unica in termini di polinomi irriducibili tra cui figurano certamente i fattori $(\lambda_i-x)^{\alpha_i}$, perciò
 	\begin{equation*}
 		\chi_T(x)=(\lambda_1-x)^{\alpha_1}(\lambda_2-x)^{\alpha_2}\dots(\lambda_k-x)^{\alpha_k}g(x)=g(x)\prod_{i=1}^k(\lambda_i-x)^{\alpha_i}
 	\end{equation*}
-	con $g\in K[x]$.
-	Ma $K[x]$ è un dominio a fattorizzazione unica % vedi teorema...
-	dunque le due versioni di $\chi_T$ devono coincidere, cioè i fattori irriducibili devono essere uguali: deve allora verificarsi che $\alpha_i=\gamma_i$ $\forall i\in\{1,\dots,k\}$.
-	Di conseguenza risulta $\deg g=0$, vale a dire $g=1$.
+	dove $g$ è il prodotto di altri polinomi irriducibili $K[x]$ diversi ovviamente dai $\lambda_i-x$.
+Per l'unicità della fattorizzazione cioè i fattori irriducibili delle due ``versioni'' devono essere uguali: deve allora verificarsi che $\alpha_i=\gamma_i$ $\forall i\in\{1,\dots,k\}$.
+	Di conseguenza $\deg g=0$, vale a dire $g=1$.
 	Quindi
 	\begin{equation*}
 		\chi_T(x)=\prod_{i=1}^k(\lambda_i-x)^{\alpha_i}.
@@ -216,20 +216,21 @@ In tale base, $T$ è rappresentato da una matrice $D$ diagonale, poich\'e $T(e_i
 		\dim V=\sum_{i=1}^k\alpha_i=\sum_{i=1}^k\gamma_i.
 	\end{equation}
 
-	In ogni autospazio $V_i$ troviamo $\gamma_i$ vettori linearmente indipendenti (tutti autovettori di $T$), che formano una base di tale sottospazio.
-	Riunendo le base di tutti gli autospazi, otteniamo ancora un insieme $\mathcal I$ linearmente indipendente, in base al teorema \ref{unioni-linearmente-indipendente} % da sistemare
+	In ogni autospazio $V_i$ troviamo $\gamma_i$ vettori linearmente indipendenti (tutti autovettori di $T$), che formano una base del sottospazio.
+	Riunendo le basi di tutti gli autospazi, otteniamo un insieme $\mathcal I$ linearmente indipendente in $V$, in base al teorema \ref{unioni-linearmente-indipendente} % da sistemare
 	in quanto gli autospazi sono linearmente indipendenti per il teorema \ref{t:autovettori-linearmente-indipendenti}.
 	Per il punto precedente, $\sum_{i=1}^k\gamma_i=\dim V$ quindi il numero di vettori in $\mathcal I$ è proprio $\dim V$.
 	Per il teorema \ref{t:basi-dimensioni} segue dunque che $\mathcal I$ è una base di $V$, e ciò prova che $T$ è diagonalizzabile.
 \end{proof}
-% Il seguente corollario non è già compreso nel teorema precedente?
-%\begin{corollario}
-%	Sia $T\in \End(V)$, con $\dim V=m<+\infty$.
-%	Se $T$ ha $m$ autovalori distinti, allora $T$ è diagonalizzabile.
-%\end{corollario}
-%\begin{proof}
-%	La dimostrazione è immediata, dato che esistono $m=\dim V$ linearmente indipendenti (per il teorema \ref{t:autovettori-linearmente-indipendenti}, dato che sono associati ad autovalori distinti), dunque essi formano una base di quindi $T$ è diagonalizzabile.
-%\end{proof}
+Segue immediatamente il seguente corollario.
+\begin{corollario}
+	Sia $T\in \End(V)$, con $\dim V=m<+\infty$.
+	Se $T$ ha $m$ autovalori distinti, allora $T$ è diagonalizzabile.
+\end{corollario}
+\begin{proof}
+	La dimostrazione è immediata, dato che esistono $m=\dim V$ autovettori linearmente indipendenti (per il teorema \ref{t:autovettori-linearmente-indipendenti}, dato che sono associati ad autovalori distinti), dunque essi formano una base di $V$, perciò $T$ è diagonalizzabile.
+\end{proof}
+
 \begin{teorema}
 	Sia $T\in \End(V)$ con $V$ di dimensione finita.
 	Dati $\lambda_1,\dots,\lambda_k$ autovalori distinti con i corrispondenti autospazi $V_{\lambda_1},\dots,V_{\lambda_k}$ si ha che $T$ è diagonalizzabile se $V$ può essere scritto come somma diretta degli autospazi, ossia $V =\bigoplus_{i=1}^k V_{\lambda i}$.
