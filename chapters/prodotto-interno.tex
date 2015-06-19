@@ -355,23 +355,20 @@ che deriva dal prodotto hermitiano che avevamo definito precedentemente.
 	L'uguaglianza vale per ogni $y\in V$, quindi i due endomorfismi coincidono.
 \end{proof}
 \begin{teorema} \label{t:matrice-aggiunta}
-	Rispetto a una base ortonormale, la matrice associata all'aggiunto di $T$ è la trasposta coniugata della matrice associata a $T$, cioè se $A$ è la matrice associata a $T$ si avrà $\conj{A^t} = A^*$.
+	Rispetto a una base ortonormale, la matrice associata all'aggiunto di $T$ è la trasposta coniugata della matrice associata a $T$, cioè se $A$ è la matrice associata a $T$ allora $A^*=\conj{A^T}$ è la matrice associata a $T^*$.
 \end{teorema}
 \begin{proof}
-	Sia $\{  e_i\}_{i=1}^n$, con $n=\dim V$, una base ortonormale di $V$.
+	Sia $\{e_i\}_{i=1}^n$, con $n=\dim V$, una base ortonormale di $V$.
 	Sia $A$ la matrice associata a $T$ in tale base, e $B$ quella associata a $\adj T$; indicheremo la matrice trasposta coniugata con il simbolo $\adj{A}$, come per l'endomorfismo.
-	La $j$-esima colonna di $A$ è $T(  e_i)=\sum_{j=1}^nA_{ji}  e_j$, quindi
-	\begin{equation}
-		\intern{T(  e_i)}{  e_k}=\intern{\sum_{j=1}^nA_{ji}  e_j}{  e_k}=\sum_{j=1}^nA_{ji}\intern{  e_j}{  e_k}=\sum_{j=1}^nA_{ji}\delta_{jk}=A_{ki}.
-	\end{equation}
-	Analogamente si prova che $B_{ki}=\intern{\adj T(  e_i)}{  e_k}$.
+	La $j$-esima colonna di $A$ è $T(e_i)=\sum_{j=1}^nA_{ji}e_j$, quindi per l'ortonormalità della base si ha $A_{ki}=\intern{T(e_i)}{e_k}$ e analogamente $B_{ki}=\intern{\adj T(e_i)}{e_k}$ in virtù del teorema \ref{t:identita-parseval-bessel}.
 	Ma allora possiamo scrivere le uguaglianze
-	 	\[
-	 	B_{ki}=\intern{\adj T(  e_i)}{  e_k}=\conj{\intern{  e_k}{\adj T(  e_i)}}=\conj{\intern{T(  e_k)}{  e_i}}=\conj A_{ik}=\conj{A^t}_{ki}.
-	 	\]
-	quindi $B=\conj{A^t}=\adj A$.
+	\begin{equation}
+	 	B_{ki}=\intern{\adj T(e_i)}{e_k}=\conj{\intern{e_k}{\adj T(e_i)}}=\conj{\intern{T(e_k)}{e_i}}=\conj A_{ik}=\conj{A^T}_{ki}.
+	\end{equation}
+	quindi $B=\conj{A^T}=\adj A$.
 \end{proof}
 Per le matrici reali, la trasposta coniugata si riduce alla sola trasposta.
+Notiamo che per $A\in\mat(n,\C)$ risulta $(\conj{A})^T=\conj{(A^T)}$ dunque non c'è ambiguità nella notazione.
 
 \begin{proprieta} \label{p:proprieta-aggiunto}
 	Sia $V$ uno spazio vettoriale di dimensione finita con il prodotto interno $\intern{}{}$.
