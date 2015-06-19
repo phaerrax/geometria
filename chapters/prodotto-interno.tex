@@ -485,14 +485,13 @@ poich\'e la norma è un numero reale, dunque lo è anche il suo quadrato che coi
 	Se $T$ è un endomorfismo normale di $V$ e $\lambda,\mu$ sono due suoi autovalori distinti, allora gli autospazi ad essi associati sono ortogonali.
 \end{proprieta}
 \begin{proof}
-	Siano $V_\lambda$ e $V_\mu$ gli autospazi relativi ai due autovalori $\lambda$ e $\mu$, distinti, e siano $  v\in V_\lambda$ e $  w\in V_\mu$.
-	Si ha che
+	Siano $V_\lambda$ e $V_\mu$ gli autospazi relativi ai due autovalori $\lambda$ e $\mu$, distinti, e siano $v\in V_\lambda$ e $w\in V_\mu$.
+	Si ha che\footnote{Il fatto che $T$ sia normale entra in gioco quando si determina $T^*(w)$: a priori, non possiamo sapere n\'e se $w$ sia un autovettore di $T^*$, n\'e tanto meno quale sia il suo autovalore, che potrebbe essere proprio $\conj{\lambda}$ rendendo vana la dimostrazione. La normalità di $T$ ci assicura che se $T(w)=\mu w$ allora $T^*(w)=\conj{\mu}w$ in virtù del teorema \ref{t:autovalori-operatore-normale}.}
 	\begin{equation}
-		\lambda\intern{  v}{  w}=\intern{\lambda  v}{  w}=\intern{T(  v)}{  w}=\intern{  v}{\adj T(  w)}=\intern{  v}{\conj{\mu}  w}=\mu\intern{  v}{  w}.
+		\lambda\intern{v}{w}=\intern{\lambda v}{w}=\intern{T(v)}{w}=\intern{v}{\adj T(w)}=\intern{v}{\conj{\mu}w}=\mu\intern{v}{w},
 	\end{equation}
-	Sottraendo il primo all'ultimo si ottiene che $(\lambda-\mu)\intern{  v}{  w}=0$.
-	Dato che i due autovalori sono distinti, ciò può accadere soltanto se $\intern{  v}{  w}=0$, quindi $  v\perp   w$.
-	Poich\'e questo accade per ogni $  v\in V_\lambda$ e $  w\in V_\mu$, allora $V_\lambda\perp V_\mu$.
+	ma $\lambda\ne\mu$ dunque tramite le leggi di cancellazione risulta $\intern{v}{w}=0$.
+	Poich\'e questo accade per ogni $v\in V_\lambda$ e $w\in V_\mu$, allora $V_\lambda\perp V_\mu$.
 \end{proof}
 
 La proprietà principale delle matrici normali è che sono \emph{sempre diagonalizzabili}, dunque in uno spazio vettoriale complesso si può sempre trovare una base ortonormale che è costituita da autovettori di un endomorfismo normale.
