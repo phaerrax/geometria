@@ -496,30 +496,29 @@ poich\'e la norma è un numero reale, dunque lo è anche il suo quadrato che coi
 
 La proprietà principale delle matrici normali è che sono \emph{sempre diagonalizzabili}, dunque in uno spazio vettoriale complesso si può sempre trovare una base ortonormale che è costituita da autovettori di un endomorfismo normale.
 Questo risultato prende il nome di \emph{teorema spettrale}.
-\begin{teorema}[Teorema spettrale] \label{t:spettrale}
-	Sia $V$ uno spazio vettoriale su $\C$ di dimensione finita, dotato del prodotto interno $\intern{}{}$, e $T$ un endomorfismo normale di $V$.
-	$T$ è sempre diagonalizzabile.
+\begin{teorema}[Teorema spettrale] \label{t:spettrale-complesso}
+	Sia $V$ uno spazio vettoriale su $\C$ di dimensione finita, dotato del prodotto interno $\intern{}{}$.
+	Ogni endomorfismo normale di $V$ è diagonalizzabile, e ammette una base ortonormale di autovettori.
 \end{teorema}
 \begin{proof}
-	Poiché il campo dello spazio è il campo dei numeri complessi, il polinomio caratteristico ammette sempre almeno una radice (per il teorema fondamentale dell'algebra \ref{t:fondamentale-algebra}).
-	Sia $\lambda_1$ tale radice: se $V_{\lambda_1}$ coincide con $V$, il teorema è subito dimostrato.
-	Si assuma quindi $V_{\lambda_1}\neq V$.
-	Poiché $T$ è normale, l'autospazio relativo a $\lambda_1$ coincide con quello relativo al suo coniugato $\conj{\lambda_1}$, perché quest'ultimo è un autovalore dell'aggiunto $\adj T$, per il teorema \ref{t:autovalori-operatore-normale}.
-	Allora dato che $\lambda_1$ è un autovalore di $T$, $V_{\lambda_1}$ è $T$-invariante per il lemma \ref{l:t-invarianza-autovalori}, quindi lo è anche $V_{\conj{\lambda_1}}
-	$, e analogamente entrambi sono anche $\adj T$-invarianti perch\'e $\conj\lambda$ è un autovalore di $\adj T$.
-	Inoltre $V_{\lambda_1}^\perp$ è $\adj T$-invariante per il teorema \ref{t:invariante-ortogonale}.
-	Ma $V_{\lambda_1}^\perp\equiv V_{\conj{\lambda_1}}^\perp$, quindi con lo stesso ragionamento di prima $V_{\lambda_1}^\perp$ è $\adj{(\adj T)}$-invariante, cioè $T$-invariante.
+	Sia $T\in\End(V)$ normale: dimostriamo la tesi per induzione sulla dimensione di $V$.
 
-	Si restringa dunque l'operatore $T$ al sottospazio $V_{\lambda_1}^\perp$. L'applicazione $T|_{V_{\lambda_1}^\perp}$ è un endomorfismo sul sottospazio $V_{\lambda_1}^\perp$, ed è ancora normale.
-	Questo sottospazio è ovviamente ancora costruito sul campo complesso e ha una dimensione finita non nulla, quindi $T|_{V_{\lambda_1}^\perp}$ ha sempre un autovalore, che indichiamo con $\lambda_2$, allora esiste $  w\in V_{\lambda_1}^\perp$, non nullo, tale che $T(  w)=\lambda_2  w$.
-	Necessariamente si ha $\lambda_1\neq\lambda_2$, perché altrimenti $  w$ apparterrebbe anche a $V_{\lambda_1}$, ma l'intersezione tra $V_{\lambda_1}$ e $V_{\lambda_1}^\perp$ è il solo zero.
-	Se ora $V_{\lambda_2}\equiv V_{\lambda_1}^\perp$, si ha che $V_{\lambda_2}\oplus V_{\lambda_1}=V_{\lambda_1}\oplus V_{\lambda_1}^\perp=V$ quindi il teorema è dimostrato.
-	Se invece $V_{\lambda_2}$ non coincide con $V_{\lambda_1}^\perp$, si ha almeno che $V_{\lambda_2}\oplus V_{\lambda_1}$ (che questa volta non coincide con tutto $V$) è $\adj T$-invariante, quindi il suo ortogonale $(V_{\lambda_2}\oplus V_{\lambda_1})^\perp$ è $T$-invariante.
-	Dunque, ancora una volta, $T$ ristretto a questo sottospazio è un endomorfismo normale, perciò esiste $  z\in(V_{\lambda_2}\oplus V_{\lambda_1})^\perp$ non nullo tale che $T(  z)=\lambda_3  z$, con $\lambda_3$ diverso da $\lambda_1$ e $\lambda_2$.
-
-	Procedendo in questo modo, ogni volta restringendo l'insieme di definizione di $T$, si giunge necessariamente con un numero finito di passi ad una conclusione in cui la somma diretta degli autospazi forma tutto $V$, poiché la sua dimensione è finita.
-	Dunque $T$ è diagonalizzabile.
+	Se $\dim V=1$, è ovvia.
+	Sia ora $n\defeq\dim V$, e assumiamo che la tesi valga per $n-1$.
+	Poich\'e $\chi_T\in\C[x]$ e $\deg\chi_T=n\ge 1$, esso ammette sempre una radice per il teorema fondamentale dell'algebra: sia $\lambda$ tale radice, e $v$ un autovettore ad essa associato.
+	Possiamo supporre $v$ di norma unitaria (è un autovettore, dunque non è nullo e si può normalizzare).
+	Chiamiamo $W\defeq\gen{\{v\}}^\perp$: per ogni $w\in W$ risulta
+	\begin{equation}
+		\intern{T(w)}{v}=\intern{w}{T^*(v)}=\intern{w}{\conj{\lambda}v}=\lambda\intern{w}{v}=0
+	\end{equation}
+	in virtù del teorema \ref{t:autovalori-operatore-normale} e poich\'e $w\perp v$; dunque $T(w)\in W$ cioè $W$ è $T$-invariante.
+	Possiamo allora restringere $T$ definendo $T|_W\colon W\to W$.
+	Esso è ovviamente normale anche in $W$, dato che se $T\big(T^*(x)\big)=T^*\big(T(x)\big)$ per ogni $x\in V$ vale sicuramente anche per $x\in W$.
+	Poich\'e $\dim W=n-1$, per l'ipotesi di induzione $T|_W$ è diagonalizzabile: allora esiste una base ortonormale $\mathcal B$, per $W$, di autovettori di $T|_W$, che sono anche autovettori di $T$.
+	Ma $v\perp b$ per ogni $b\in\mathcal B$, dunque l'insieme $\mathcal B\cup\{v\}$ è ancora ortonormale, ed è quindi la base cercata di $V$ (ha $n$ vettori ed è linearmente indipendente per il corollario \ref{c:ortonormale-linearmente-indipendente}).
 \end{proof}
+Il teorema non vale nel caso reale, dato che abbiamo fatto uso della chiusura algebrica di $\C$.
+Bisogno quindi assicurarsi che il polinomio caratteristico ammetta radici reali, e questo ha bisogno di ipotesi più forti della sola normalità dell'operatore.
 
 \section{Operatori autoaggiunti} \label{sec:operatori-autoaggiunti}
 \begin{definizione} \label{d:operatore-autoaggiunto}
@@ -567,7 +566,7 @@ La matrice associata, in una base ortonormale, ad un operatore autoaggiunto è u
 Grazie a questo risultato possiamo ottenere un risultato analogo al teorema spettrale su uno spazio vettoriale reale.
 Infatti una volta trovato il primo autovalore che chiamiamo $\lambda_1$, restringendo $T$ al sottospazio ortogonale all'autospazio $V_{\lambda_1}$ otteniamo ancora un endomorfismo (nel sottospazio) autoaggiunto, e possiamo ripetere il procedimento.
 Questo vale chiaramente anche su spazi vettoriali complessi, quindi diamo per dimostrato il seguente teorema.
-\begin{teorema}
+\begin{teorema} \label{t:spettrale-reale}
 	Sia $V$ uno spazio vettoriale reale dotato di prodotto interno.
 	Se $T\in\End(V)$ è autoaggiunto, allora è diagonalizzabile.
 \end{teorema}
