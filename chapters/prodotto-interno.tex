@@ -149,21 +149,24 @@ La dimostrazione è immediata: un sistema ortonormale non può ammettere element
 	Poiché la dimensione di $V$ è finita, le sue basi hanno un numero finito $m$ di elementi, quindi il procedimento deve avere una fine, arrivando all'insieme $\{  x_i\}_{i=1}^{n+r}$, con $n+r=m$, che è sempre ortonormale e linearmente indipendente; avendo inoltre $m$ elementi, per il teorema \ref{t:base-dimensione} esso è una base di $V$.
 \end{proof}
 \begin{teorema} \label{t:sistema-ortonormale-completo}
-	Sia $V$ uno spazio euclideo di dimensione $k<\pinf$ con il prodotto interno $\intern{}{}$ e $\{  v_i\}_{i=1}^k$ un insieme ortonormale.
+	Sia $V$ uno spazio euclideo di dimensione finita con il prodotto interno $\intern{}{}$ e $S=\{v_i\}_{i=1}^k$ un insieme ortonormale.
 	Le due seguenti affermazioni sono equivalenti:
 	\begin{enumerate}
-		\item $\{  v_i\}_{i=1}^k$ è una base di $V$;
-		\item se $\intern{  z}{  v_j}=0$ per ogni $j\in\{1,\dots,k\}$ allora $  z=0_V$.
+		\item $S$ è una base di $V$;
+		\item se $\intern{z}{v_j}=0$ per ogni $j\in\{1,\dots,k\}$ allora $z=0$.
 	\end{enumerate}
 \end{teorema}
 \begin{proof}
-	$(1\then 2)$ Per assurdo, esista un $  z\neq 0_V$ per cui $\intern{  z}{  v_j}=0$ per ogni $j\in\{1,\dots,k\}$.
-	Prendo $  e\defeq  z-\sum_{i=1}^k\intern{  z}{  v_i}  v_i$: esso è tale che $\intern{  e}{  v_j}=0$.
-	L'insieme $\{  v_i,\frac1{\sqrt{\intern{  e}{  e}}}\}_{i=1}^k$ è ancora ortonormale per il teorema precedente.
-	Questo insieme però ha più elementi della dimensione $k$ dello spazio, dunque non può essere linearmente indipendente per il teorema \ref{t:base-dimensione} e quindi non è nemmeno una base.
+	$(1\then 2)$ Se $S$ è una base di $V$, allora $\dim V=k$.
+	Per assurdo, esista un $z\ne 0$ per cui $\intern{z}{v_j}=0$ per ogni $j\in\{1,\dots,k\}$.
+	Allora come nel teorema predecente posso prendere $e\defeq z-\sum_{i=1}^k\intern{z}{v_i}v_i$, che è tale che $\intern{e}{v_j}=0$.
+	L'insieme $S\cup\Big\{\frac1{\sqrt{\intern{e}{e}}}e\Big\}$ è dunque ancora ortonormale e di conseguenza linearmente indipendente.
+	Questo insieme però ha più elementi della dimensione $k$ dello spazio, dunque ciò è assurdo per il teorema \ref{t:base-dimensione}.
+	Un tale $z\ne 0$ non può allora esistere.
 	
-	$(2\then 1)$ Se $\gen{\{  v_i\}_{i=1}^k}\neq V$, per il teorema precedente si troverebbe un elemento $  e$ non nullo tale che $\{  e,  v_i\}_{i=1}^k$ è ortonormale, ossia $\intern{  e}{  e_j}=0$ $\forall j\in\{1,\dots,k\}$, che contraddice l'ipotesi.
-	Allora deve essere $\gen{\{  v_i\}_{i=1}^k} = V$, e dato che è ortonormale è anche linearmente indipendente per il teorema \ref{c:ortonormale-linearmente-indipendente}, quindi è una base di $V$.
+	$(2\then 1)$ Se $V=\gen{S}$, $S$ è ovviamente già una base di $V$.
+	Se $\gen{S}\ne V$, per il teorema precedente si troverebbe un elemento $e\in V\setminus\gen{S}$ non nullo tale che $\{e\}\cup S$ è ortonormale, ossia $\intern{e}{e_j}=0$ $\forall j\in\{1,\dots,k\}$, che contraddice l'ipotesi.
+	Allora deve essere $\gen{S}=V$, e dato che è ortonormale è anche linearmente indipendente per il teorema \ref{c:ortonormale-linearmente-indipendente}, quindi è una base di $V$.
 \end{proof}
 
 \section{Spazi normati} \label{sec:spazi-normati}
