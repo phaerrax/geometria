@@ -557,20 +557,12 @@ La matrice associata, in una base ortonormale, ad un operatore autoaggiunto è u
 \begin{proof}
 	Se $V$ è sul campo complesso, poich\'e $T$ è normale, per il teorema spettrale \ref{t:spettrale} è addirittura sempre diagonalizzabile, quindi la tesi è immediata.
 	Diverso è il caso in cui $V$ è sul campo reale.
-	Prendiamo una base $\{  e_i\}_{i=1}^n$ ortonormale, e la matrice $A$ associata a $T$ in tale base.
-	Consideriamo lo spazio $\C^m$ con il prodotto hermitiano standard\footnote{Intendiamo in questa dimostrazione il prodotto hermitiano come $\hermit{  a}{  b}=  a^t A\conj{  b}$, con A la matrice identità poichè è il prodotto standard.} $\hermit{}{}$, e definiamo in esso l'operatore $S\in\End(\C^m)$ tale per cui $S(  x)=A  x$.
-	$S$ è autoaggiunto, infatti
-	\begin{equation}
-		\hermit{S(  x)}{  y}=\hermit{A  x}{  y}=  x^tA^t\conj{  y}=  x^t\conj{A  y}=\hermit{  x}{A  y}=\hermit{  x}{S(  y)},
-	\end{equation}
-	dato che $A$ è hermitiana quindi $A^t=\conj A$.
-	Prendiamo dunque il polinomio caratteristico $\chi_T(x)=\det(A-xI)$.
-	Poich\'e la matrice associata nella base canonica a $S$ è ancora $A$, risulta $\chi_T=\chi_S$.
-	Ma $\chi_S\in\C[x]$ quindi ammette almeno una radice complessa, e lo stesso per $\chi_T$ anche se è in $\R[x]$, perch\'e i due coincidono.
-	Se $\lambda$ è una radice di $\chi_T$, è allora un autovalore di $S$ (non è detto che lo sia di $T$, dato che i suoi autovalori sono reali).
-	Allora la matrice (reale) data da $A-\lambda I$ è singolare, cioè il sistema $(A-\lambda I)  x=  0$ ammette una soluzione non nulla, che indichiamo con $  b$, che appartiene a $\R^m$.
-	Posto $  b=(b_1,\dots,b_m)$, prendiamo il vettore $\valpha=\sum_{i=1}^nb_i  e_i$.
-	Per come è costruito $\valpha$ si ha che $T(\valpha)=\lambda\valpha$, dunque $\lambda$ è un autovalore di $T$.
+	Prendiamo una base $\mathcal B=\{b_i\}_{i=1}^n$ ortonormale, e sia $A$ la matrice associata a $T$ in tale base: $A$ è simmetrica essendo $T$ autoaggiunto.
+	Sia $S\in\End(\C^n)$ tale che $[S(x)]_\mathcal{B}=A[x]_\mathcal{B}$: $A$ risulta anche hermitiana se vista in $\mat(n,\C)$, dunque $S$ è autoaggiunto.
+	Ovviamente i polinomi caratteristici $\chi_T$ e $\chi_S$ coincidono.
+	Ma $\chi_S\in\C[x]$ quindi ammette almeno una radice complessa, che chiamiamo $\lambda$: essa per il teorema \ref{t:autovalori-operatore-autoaggiunto} è reale, ed è un autovalore di $S$.
+	La matrice $A-\lambda I$ allora è ancora reale, ed è singolare: il sistema $(A-\lambda I)x=0$ ammette allora una soluzione non nulla $x\in\R^n$.
+	Dette $x_i$ le coordinate di $x$, il vettore $\sum_{i=1}^nx_ib_i$ è dunque un autovettore di $T$ con autovalore $\lambda$.
 \end{proof}
 Grazie a questo risultato possiamo ottenere un risultato analogo al teorema spettrale su uno spazio vettoriale reale.
 Infatti una volta trovato il primo autovalore che chiamiamo $\lambda_1$, restringendo $T$ al sottospazio ortogonale all'autospazio $V_{\lambda_1}$ otteniamo ancora un endomorfismo (nel sottospazio) autoaggiunto, e possiamo ripetere il procedimento.
