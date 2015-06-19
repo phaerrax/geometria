@@ -328,19 +328,36 @@ che deriva dal prodotto hermitiano che avevamo definito precedentemente.
 	Se $V$ è uno spazio vettoriale di dimensione finita dotato del prodotto interno $\intern{}{}$, e $T$ un endomorfismo in esso, allore esiste un unico endomorfismo che sia l'aggiunto di $T$.
 \end{teorema}
 \begin{proof}
-	Sia $S\in\End(V)$ l'aggiunto di $T$, cioè sia $\intern{T(  x)}{  y}=\intern{  x}{S(  y)}$ per ogni $  x,  y\in V$.
+	Fissiamo $v\in V$ e prendiamo il funzionale $\phi(\cdot)=\intern{T(\cdot)}{v}$.
+	Per il teorema di rappresentazione \ref{t:riesz}, dato che $V$ ha dimensione finita, esiste un unico $r\in V$ tale per cui $\phi(\cdot)=\intern{\cdot}{r}$.
+	Poniamo dunque per ogni $x\in V$
+	\begin{equation}
+		\intern{x}{T^*(v)}=\intern{x}{r},
+	\end{equation}
+	ossia $T^*(v)=r$: allora $\intern{T(x)}{v}=\intern{x}{r}=\intern{x}{T^*(v)}$ per ogni $x,v\in V$.
+	Questo operatore $T^*$ è lineare, in quanto
+	\begin{multline}
+		\intern{x}{T^*(y+\lambda z)}=\intern{T(x)}{y+\lambda z}=\intern{T(x)}{y}+\conj{\lambda}\intern{T(x)}{z}=\\
+		=\intern{x}{T^*(y)}+\conj{\lambda}\intern{x}{T^*(z)}=\intern{x}{T^*(y)+\lambda T^*(z)}
+	\end{multline}
+	per ogni $x,y,z\in V$ e $\lambda\in K$, dunque
+	\begin{equation}
+		T^*(y+\lambda z)=\lambda T^*(y)+T^*(z)
+	\end{equation}
+	cioè $T^*\in\End(V)$: in spazi di dimensione finita dunque l'operatore aggiunto esiste sempre.
+
+	Mostriamo l'unicità: sia $S\in\End(V)$ l'aggiunto di $T$, cioè sia $\intern{T(x)}{y}=\intern{x}{S(y)}$ per ogni $x,y\in V$.
 	Allora
 	\begin{equation}
-		0=\intern{T(  x)}{  y}-\intern{T(  x)}{  y}=\intern{  x}{\adj{T}(  y)}-\intern{  x}{S(  y)}.
+		0=\intern{T(x)}{y}-\intern{T(x)}{y}=\intern{x}{\adj{T}(y)}-\intern{x}{S(y)}.
 	\end{equation}
-	Poich\'e vale per ogni $  x$, scegliamo $  x=\adj{T}(  y)-S(  y)$ ottenendo $\norm{\adj{T}(  y)-S(  y)}^2=0$ da cui $\adj{T}(  y)=S(  y)$.
-	L'uguaglianza vale per ogni $  y\in V$, quindi i due endomorfismi devono coincidere.
+	Poich\'e vale per ogni $x$, scegliamo $x=\adj{T}(y)-S(y)$ ottenendo $\norm{\adj{T}(y)-S(y)}^2=0$ da cui $\adj{T}(y)=S(y)$.
+	L'uguaglianza vale per ogni $y\in V$, quindi i due endomorfismi coincidono.
 \end{proof}
 \begin{teorema} \label{t:matrice-aggiunta}
 	Rispetto a una base ortonormale, la matrice associata all'aggiunto di $T$ è la trasposta coniugata della matrice associata a $T$, cioè se $A$ è la matrice associata a $T$ si avrà $\conj{A^t} = A^*$.
 \end{teorema}
 \begin{proof}
-	% Inserire la dimostrazione che l'aggiunto è lineare?
 	Sia $\{  e_i\}_{i=1}^n$, con $n=\dim V$, una base ortonormale di $V$.
 	Sia $A$ la matrice associata a $T$ in tale base, e $B$ quella associata a $\adj T$; indicheremo la matrice trasposta coniugata con il simbolo $\adj{A}$, come per l'endomorfismo.
 	La $j$-esima colonna di $A$ è $T(  e_i)=\sum_{j=1}^nA_{ji}  e_j$, quindi
