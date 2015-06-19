@@ -580,8 +580,14 @@ Questo vale chiaramente anche su spazi vettoriali complessi, quindi diamo per di
 		\intern{T(  x)}{T(  y)}_Z=\intern{  x}{  y}_V.
 	\end{equation*}
 \end{definizione}
+La condizione data nella definizione può essere sostituita da
+\begin{equation}
+	\norm{T(x)}_Z=\norm{x}_V\quad\forall x\in V.
+\end{equation}
+La precedente implica in modo ovvio quest'ultima, e le due sono equivalenti grazie alle formule di polarizzazione.
+
 Un'isometria dunque è un'applicazione che preserva il prodotto interno: negli spazi euclidei le isometrie in particolare preservano le distanze e gli angoli (che si possono derivare dalla norma e dal prodotto scalare).
-Si può vedere subito che un'isometria è necessariamente iniettiva, dato che se $T(  x)=0_Z$ allora $0=\intern{T(  x)}{T(  x)}_Z=\intern{  x}{  x}_V=\norm{  x}^2$ e quindi $  x=0_V$ e $\Ker T=\{0_V\}$; allo stesso tempo può benissimo non essere suriettiva.
+Si può vedere subito che un'isometria è necessariamente iniettiva, dato che se $T(  x)=0_Z$ allora $0=\norm{T(x)}_Z=\norm{x}_V$ e quindi $x=0_V$ e $\Ker T=\{0_V\}$; allo stesso tempo può benissimo non essere suriettiva.
 Le isometrie suriettive quindi sono anche automaticamente isomorfismi tra i due spazi\footnote{Chiameremo per brevità \emph{isomorfismi isometrici} le isometrie che sono suriettive, cioè isomorfismi.}, e in quanto tali ``portano'' delle basi di $V$ in basi di $Z$.
 La peculiarietà delle isometrie è che oltre a questo preservano l'ortonormalità di queste basi, come vediamo nel seguente teorema.
 \begin{teorema} \label{t:isometrie-basi-ortonormali}
@@ -589,24 +595,22 @@ La peculiarietà delle isometrie è che oltre a questo preservano l'ortonormalit
 	Dato $T\in\lin(V,Z)$, esso è un isomorfismo isometrico se e solo se l'immagine di una base ortonormale di $V$ attraverso $T$ è una base ortonormale di $Z$.
 \end{teorema}
 \begin{proof}
-	Cominciamo dall'ipotesi che $T$ sia un isomorfismo isometrico, e prendiamo una base ortonormale $\{  e_i\}_{i=1}^n$ di $V$.
-	Sappiamo che la sua immagine $\{T(  e_i)\}_{i=1}^n$ è una base di $Z$, essendo $T$ un isomorfismo.
-	Inoltre,
+	Cominciamo dall'ipotesi che $T$ sia un isomorfismo isometrico, e prendiamo una base ortonormale $\{e_i\}_{i=1}^n$ di $V$.
+	Sappiamo che la sua immagine $\{T(e_i)\}_{i=1}^n$ è una base di $Z$, essendo $T$ un isomorfismo.
+	Inoltre, essendo un'isometria,
 	\begin{equation}
-		\intern{T(  e_i)}{T(  e_j)}_Z=\intern{  e_i}{  e_j}_V=\delta_{ij}
-		\label{eq:dim-isometrie-basi-ortogonali1}
+		\intern{T(e_i)}{T(e_j)}_Z=\intern{e_i}{e_j}_V=\delta_{ij}
 	\end{equation}
 	dunque è anche una base ortonormale.
 
-	Sia ora $\{  e_i\}_{i=1}^n$ una base ortonormale di $V$ tale che $\{T(  e_i)\}_{i=1}^n$ sia una base ortonormale di $Z$.
-	Anche in questo caso si ha la \eqref{eq:dim-isometrie-basi-ortogonali1}.
-	Prendiamo due vettori di $V$, $  x=\sum_{i=1}^nx_i  e_i$ e $  y=\sum_{i=1}^ny_i  e_i$.
-	Il prodotto interno delle loro immagini è
-	\begin{equation}
-		\intern{T(  x)}{T(  y)}_Z=\sum_{i=1}^nx_i\conj{y_i}\intern{T(  e_i)}{T(  e_i)}_Z=\sum_{i=1}^nx_i\conj{y_i}\intern{  e_i}{  e_i}_V=\intern{  x}{  y}_V
-	\end{equation}
-	l'ultimo passaggio si ha per definizione di prodotto interno in basi ortonormali, si ha quindi che $T$ è un'isometria.
-	La sua suriettività è evidente, infatti l'immagine di $T$ è generata da una base di $Z$, cioè è tutto lo spazio $Z$.
+	Siano ora $\{e_i\}_{i=1}^n$ e $\{T(e_i)\}_{i=1}^n$ basi ortonormali.
+	Vediamo subito che $T$ è un isomorfismo poich\'e ``porta basi in basi''.
+	Inoltre, posti $x=\sum_{i=1}^nx_ie_i$ e $y=\sum_{i=1}^ny_ie_i$, risulta
+	\begin{multline}
+		\intern{T(x)}{T(y)}_Z=\intern{\sum_{i=1}^nx_iT(e_i)}{\sum_{j=1}^ny_jT(e_j)}_{\!\! Z}=\sum_{i=1}^nx_i\sum_{j=1}^nx_i\conj{y_j}\intern{T(e_i)}{T(e_j)}_Z=\\
+		=\sum_{i=1}^nx_i\sum_{j=1}^n\conj{y_j}\delta_{ij}=\sum_{i=1}^nx_i\conj{y_i}=\intern{x}{y}_V
+	\end{multline}
+	dunque è un'isometria.
 \end{proof}
 
 \begin{corollario} \label{t:spazi-isometrici}
@@ -614,15 +618,16 @@ La peculiarietà delle isometrie è che oltre a questo preservano l'ortonormalit
 	Essi sono isometrici, ossia esiste un'isometria $T\colon V\to Z$, se e solo se hanno dimensione uguale.
 \end{corollario}
 \begin{proof}
-	Supponiamo che esista un'isometria suriettiva, per il teorema \ref{t:isometrie-basi-ortonormali}, abbiamo che basi di uno spazio sono portate in basi di un'altro spazio, quindi si arriva banalmente a concludere che le basi devono avere dimensione uguale, di conseguenza anche gli spazi. 
+	Poich\'e le isometrie, come già visto, sono sempre iniettive, un'isometria suriettiva è un isomorfismo, dunque $V\cong Z$, di conseguenza hanno la stessa dimensione.
 	
-	Viceversa consideriamo due spazi che hanno uguale dimensione e verifichiamo che esista un'isometria suriettiva.
-	Poniamo $T\colon \{e_i\}_{i=1}^n\to \{g_k\}_{k=1}^n$, basi ortonormali, si ha che $  x = \sum_{i=1}^n x_i e_i$ e $T(  x) = \sum_{k=1}^n x_k g_k$.
-	Se la norma si preserva, allora rispetta il prodotto interno ed è un'isometria, infatti
+	Viceversa consideriamo due spazi che hanno uguale dimensione.
+	Prendiamo due basi ortonormali $\{e_i\}_{i=1}^n$ e $\{g_k\}_{k=1}^n$ rispettivamente di $V$ e di $Z$, e definiamo $T\in\lin(V,Z)$ tale che $T(e_k)=g_k$.
+	Sia $x=\sum_{i=1}^nx_ie_i$: allora $T(x)=\sum_{k=1}^nx_kg_k$ e risulta
 	\begin{equation*}
-		\norm{T(  x)}_Z^2 = \intern{T(x)}{T(x)}_Z = \sum_{k=1}^m x_k \conj {x_k} \intern{e_i}{e_i}_V = \intern{  x}{  x}_V = \norm {x}_V^2.
+		\norm{T(x)}_Z^2=\intern{T(x)}{T(x)}_Z=\sum_{k=1}^nx_k\sum_{j=1}^n\conj{x_j}\intern{g_k}{g_j}_Z=\sum_{k=1}^nx_k\sum_{j=1}^n\conj{x_j}\intern{e_k}{e_j}_V=\intern{x}{x}_V=\norm{x}_V^2
 	\end{equation*}
-	Quindi, si ha che esiste un'isometria suriettiva che porta basi ortonormali in basi ortonormali.
+	in quanto $\intern{g_k}{g_j}_Z=\delta_{kj}=\intern{e_k}{e_j}_V$.
+	Allora $T$ è l'isomorfismo isometrico richiesto.
 \end{proof}
 
 \begin{teorema} \label{t:isometrie-operatori-unitari}
