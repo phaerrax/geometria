@@ -148,7 +148,7 @@ La dimostrazione è immediata: un sistema ortonormale non può ammettere element
 	Se esso non genera ancora $V$, ripetiamo il procedimento aggiungendo altri elementi all'insieme.
 	Poiché la dimensione di $V$ è finita, le sue basi hanno un numero finito $m$ di elementi, quindi il procedimento deve avere una fine, arrivando all'insieme $\{  x_i\}_{i=1}^{n+r}$, con $n+r=m$, che è sempre ortonormale e linearmente indipendente; avendo inoltre $m$ elementi, per il teorema \ref{t:base-dimensione} esso è una base di $V$.
 \end{proof}
-\begin{teorema}
+\begin{teorema} \label{t:sistema-ortonormale-completo}
 	Sia $V$ uno spazio euclideo di dimensione $k<\pinf$ con il prodotto interno $\intern{}{}$ e $\{  v_i\}_{i=1}^k$ un insieme ortonormale.
 	Le due seguenti affermazioni sono equivalenti:
 	\begin{enumerate}
@@ -281,39 +281,37 @@ Ad esempio nello spazio $\cont{}\ab$ di funzioni a valori complessi possiamo def
 che deriva dal prodotto hermitiano che avevamo definito precedentemente.
 
 \begin{teorema} \label{t:identita-parseval-bessel}
-	Sia $V$ uno spazio dotato del prodotto interno $\intern{}{}$ e di dimensione finita, e sia $\{  e_i\}_{i=1}^n$ un insieme ortonormale.
+	Sia $V$ uno spazio dotato del prodotto interno $\intern{}{}$ e di dimensione finita, e sia $\{e_i\}_{i=1}^n$ un insieme ortonormale.
 	Le seguenti affermazioni sono equivalenti:
 	\begin{enumerate}
-		\item $\{  e_i\}_{i=1}^n$ è una base di $V$;
-		\item $\forall  x\in V$ si ha $  x=\sum_{i=1}^n\intern{  x}{  e_i}  e_i$;
-		\item $\forall  x,  y\in V$ si ha $\intern{  x}{  y}=\sum_{i=1}^n\intern{  x}{  e_i}\conj{\intern{  y}{  e_i}}$, nota come \emph{identità di Parseval};
-		\item $\forall  x\in V$ si ha $\norm{  x}^2=\sum_{i=1}^n\abs{\intern{  x}{  e_i}}^2$, nota come \emph{identità di Bessel}.
+		\item $\{e_i\}_{i=1}^n$ è una base di $V$;
+		\item $\forall x\in V$ si ha $x=\sum_{i=1}^n\intern{x}{e_i}e_i$;
+		\item $\forall x,y\in V$ si ha $\intern{x}{y}=\sum_{i=1}^n\intern{x}{e_i}\conj{\intern{y}{e_i}}$, nota come \emph{identità di Parseval};
+		\item $\forall x\in V$ si ha $\norm{x}^2=\sum_{i=1}^n\abs{\intern{x}{e_i}}^2$, nota come \emph{identità di Bessel}.
 	\end{enumerate}
 \end{teorema}
 \begin{proof}
-	$(1\then 2)$ $\{  e_i\}_{i=1}^n$ è una base quindi possiamo sempre scrivere $  x$ come combinazione lineare dei suoi elementi, cioè $  x=\sum_{j=1}^n\lambda_j  e_j$.
-	Se prendiamo poi il prodotto interno di $  x$ con un elemento della base otteniamo
+	$(1\then 2)$ $\{e_i\}_{i=1}^n$ è una base quindi $\dim V=n$ e possiamo sempre scrivere $x$ come combinazione lineare degli $e_i$, cioè $x=\sum_{j=1}^n\lambda_j e_j$.
+	Se prendiamo il prodotto interno di $x$ con un elemento della base otteniamo per linearità
 	\begin{equation}
-		\intern{  x}{  e_k}=\intern{\sum_{j=1}^n\lambda_j  e_j}{  e_k}=\sum_{j=1}^n\lambda_k\intern{  e_j}{  e_k}=\sum_{j=1}^n\lambda_k\delta_{jk}=\lambda_k
+		\intern{x}{e_k}=\intern{\sum_{j=1}^n\lambda_j e_j}{e_k}=\sum_{j=1}^n\lambda_k\intern{e_j}{e_k}=\sum_{j=1}^n\lambda_k\delta_{jk}=\lambda_k
 	\end{equation}
-	quindi i coefficienti sono dati dal prodotto interno con ciascun elemento della base, cioè $  x=\sum_{k=1}^n\intern{  x}{  e_k}  e_k$.
+	quindi i coefficienti sono dati dal prodotto interno con ciascun elemento della base, cioè $x=\sum_{k=1}^n\intern{x}{e_k} e_k$.
 
-	$(2\then 3)$ Esprimendo $  x$ e $  y$ come ricavato nel punto precedente abbiamo
+	$(2\then 3)$ Esprimendo $x$ e $y$ come ricavato nel punto precedente abbiamo
 	\begin{equation}
 		\begin{split}
-			\intern{  x}{  y}&=\intern{\sum_{i=1}^n\intern{  x}{  e_i}  e_i}{\sum_{j=1}^n\intern{  y}{  e_j}  e_j}=\\
-			&=\sum_{i=1}^n\intern{  x}{  e_i}\conj{\sum_{j=1}^n\intern{  y}{  e_j}}\intern{  e_i}{  e_j}=\\
-			&=\sum_{i=1}^n\intern{  x}{  e_i}\conj{\sum_{j=1}^n\intern{  y}{  e_j}}\delta_{ij}=\\
-			&=\sum_{i=1}^n\intern{  x}{  e_i}\conj{\intern{  y}{  e_i}}.
+			\intern{x}{y}&=\intern{\sum_{i=1}^n\intern{x}{e_i}e_i}{\sum_{j=1}^n\intern{y}{e_j}e_j}=\\
+			&=\sum_{i=1}^n\intern{x}{e_i}\sum_{j=1}^n\conj{\intern{y}{e_j}}\intern{e_i}{e_j}=\\
+			&=\sum_{i=1}^n\intern{x}{e_i}\sum_{j=1}^n\conj{\intern{y}{e_j}}\delta_{ij}=\\
+			&=\sum_{i=1}^n\intern{x}{e_i}\conj{\intern{y}{e_i}}.
 		\end{split}
 	\end{equation}
 	
-	$(3\then 4)$ Basta sostituire $  x$ a $  y$ per ottenere l'identità di Bessel in modo ovvio, dato che $\norm{  x}^2=\intern{  x}{  x}$.
+	$(3\then 4)$ Basta sostituire $x$ al posto di $y$ per ottenere l'identità di Bessel in modo ovvio, dato che $\norm{x}^2=\intern{x}{x}$.
 
-	$(4\then 1)$ Preso un qualunque $  z\in V$, per il punto 2 possiamo esprimerlo come $  z=\sum_{i=1}^n\intern{  z}{  e_i}  e_i$.
-	L'insieme $\{  e_i\}_{i=1}^n$ è linearmente indipendente: la combinazione lineare dei suoi elementi, che dà $  z$, non può mai dare il vettore nullo.
-	Infatti se $  z=0_V$ allora ovviamente $\intern{  z}{  e_j}=0$ per ogni $j\in\{1,\dots,n\}$, e viceversa se $\intern{  z}{  e_k}=0$ $\forall k\in\{1,\dots,n\}$ allora per l'identità di Bessel $\norm{  z}^2=\sum_{k=1}^n\abs{\intern{  z}{  e_k}}^2=0$ quindi $  z=0_V$.
-	Allora l'insieme degli $  e_i$ è linearmente indipendente e ha cardinalità $n=\dim V$, perciò ne è una base.
+	$(4\then 1)$ Dall'identità di Bessel abbiamo per un qualsiasi $x\in V$ che $\norm{x}^2=\sum_{i=1}^n\abs{\intern{x}{e_i}}^2$, dunque se $\intern{x}{e_i}=0$ per ogni $i\in\{1,\dots,n\}$ allora $\norm{x}=0$, ossia $x=0$.
+	Per il teorema \ref{t:sistema-ortonormale-completo} allora $\{e_i\}_{i=1}^n$ è una base di $V$.
 \end{proof}
 
 \section{Operatori aggiunti}
