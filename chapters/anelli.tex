@@ -636,15 +636,24 @@ D'ora in poi, quando ci riferiremo al massimo comune divisore, sottintenderemo c
 		r_1=q_3r_2+r_3.
 	\end{equation}
 	Se $r_3=0$, allora esattamente come prima si dimostra che $r_2$ è il massimo comune divisore tra $a$ e $b$.
-
 	Se $r_3\ne 0$, iteriamo ancora una volta dividendo $r_2$ per $r_3$ e distinguendo i casi se il resto di questa divisione è nullo o no.
-	Ad ogni passo, se il resto $r_k$ è nullo l'algoritmo ha fine e $r_{k-1}$ è il massimo comune divisore cercato.
-	Il procedimento deve necessariamente avere un termine, in quanto ad ogni passo il grado del resto è decrementato (almeno) di 1 a partire da $\deg b$, cioè
+
+	Il procedimento deve necessariamente avere un termine, in quanto a partire da $\deg b$ si ha la successione decrescente
 	\begin{equation}
 		\deg b>\deg r_1>\deg r_2>\dots
 	\end{equation}
-	e si giunge dopo un numero finito di passi con un resto non nullo.
-	Tale resto, come nei casi precedenti, è il massimo comune divisore di $a$ e $b$.
+	e si giunge dopo un numero finito di passi con un resto nullo.
+	Sia dunque $r_k=0$: abbiamo che
+	\begin{equation}
+		\begin{gathered}
+			r_{k-3}=q_{k-1}r_{k-2}+r_{k-1}\\
+			r_{k-2}=q_kr_{k-1}
+		\end{gathered}
+	\end{equation}
+	perciò $r_{k-1}\dvd r_{k-2}$.
+	Dalll'equazione precedente vediamo allora che $r_{k-1}\dvd r_{k-3}$ e cos\`i via per tutti i resti precedenti, fino a dividere anche $b$ e dunque $a$ dalla prima equazione $a=q_1b+r_1$.
+	Infine, se un $c\in K[x]$ dividesse $a$ e $b$, allora dividerebbe $r_1$: ma allora divide anche $r_2$ (con un ragionamento analogo al precedente) e cos\`i via si vede che divide tutti i resti fino a $r_{k-1}$.
+	Dunque il massimo comun divisore di $a$ e $b$ è proprio $r_{k-1}$.
 \end{proof}
 
 \begin{teorema}[Identità di B\'ezout] \label{t:bezout}
@@ -656,15 +665,17 @@ D'ora in poi, quando ci riferiremo al massimo comune divisore, sottintenderemo c
 \end{teorema}
 \begin{proof}
 	La determinazione di tali $\xi$ e $\eta$ si può fare tramite l'algoritmo di Euclide delle divisioni successive.
+	Se il massimo comun divisore è uno tra $a$ o $b$, la tesi è ovvia, prendendo $\xi=1$ e $\eta=0$ o viceversa.
+	
 	Effettuiamo la prima divisione ottenendo $a=q_1b+r_1$, da cui $r_1=a-q_1b$.
 	Se $r_1$ è il massimo comune divisore, ci basta porre $\xi=1$ e $\eta=-q_1$.
-	Altrimenti, seguendo il teorema precedente dividiamo $b$ come $b=q_2r_1+r_2$.
+	Altrimenti, seguendo il teorema precedente dividiamo $b$ (sappiamo che $r_1\ne 0$, altrimenti $b$ sarebbe il massimo comun divisore) come $b=q_2r_1+r_2$.
 	Se $r_2$ è il massimo comune divisore,
 	\begin{equation}
 		r_2=b-q_2r_1=b-q_2(a-q_1b)=-q_2a+(1-q_1q_2)b
 	\end{equation}
 	perciò poniamo $\xi=-q_2$ e $\eta=1-q_2q_2$ per trovare la \eqref{eq:bezout}.
-	Altrimenti dividiamo ancora $r_1$ per $r_2$ e procediamo, una volta trovato il massimo comune divisore, ad esprimerlo tramite i resti delle divisioni precedenti fino a risalire ad $a$ e $b$.
+	Altrimenti dividiamo ancora $r_1$ per $r_2$ (anche stavolta, $r_2\ne 0$ perch\'e $r_1$ non è il massimo comun divisore) e procediamo, una volta trovato il massimo comune divisore, ad esprimerlo tramite i resti delle divisioni precedenti fino a risalire ad $a$ e $b$.
 	Anche in questo caso, come nell'algoritmo di Euclide, il numero di iterazioni è finito quindi in un numero finito di passi siamo sicuri di trovare due termini $\xi$ e $\eta$ che soddisfino la \eqref{eq:bezout}.
 \end{proof}
 Vediamo un esempio pratico: siano $a(x)=x^3-5$ e $b(x)=x^2+4$, due polinomi in $\Q[x]$.
@@ -676,7 +687,7 @@ Dividiamo $a$ per $b$ con l'algoritmo di Euclide, ottenendo
 		4x-5&=\Big(\frac{64}{41}x-\frac{80}{41}\Big)\cdot\frac{41}{16}
 	\end{aligned}
 \end{equation*}
-perciò $4x-5$, ossia $x-\frac54$, (data la convenzione stabilita precedentemente), è un massimo comune divisore di $a$ e $b$.
+perciò $\frac{41}{16}$, ossia $1$, (se lo prendiamo monico), è il massimo comune divisore di $a$ e $b$.
 \begin{comment}
 Risaliamo da esso ai polinomi di partenza sostituendo i vari resti dalle equazioni precedenti:
 \begin{equation*}
