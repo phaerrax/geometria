@@ -764,20 +764,40 @@ Notiamo subito che tutti i polinomi di grado 1, ossia della forma $p(x)=x-\alpha
 	Dato che $\deg g>0$ e $\deg\xi\ge 0$, questo è assurdo: ciò prova che non esistono $f,g$ diversi da multipli scalari di $a$ e di grado positivo che dividono $a$, che quindi non è riducibile.
 \end{proof}
 
-\begin{teorema}[della fattorizzazione unica] \label{t:fattorizzazione-unica}
-	Ogni polinomio $a\in K[x]$, con $\deg a>0$, può essere scritto come prodotto di polinomi irriducibili (almeno uno), non necessariamente distinti.
-	Tale fattorizzazone, a meno di permutazioni, è unica.
+\begin{teorema}[di fattorizzazione unica] \label{t:fattorizzazione-unica}
+	Ogni polinomio $a\in K[x]$, con $\deg a>0$, può essere scritto come un prodotto
+	\begin{equation}
+		up_1\cdots p_n
+	\end{equation}
+	dove $u\in K$ e tutti i $p_i$ sono irridubicili.
+	La fattorizzazione è essenzialmente unica, nel senso che se $a=kp_1\cdots p_n=hq_1\cdots q_t$ con $h,k\in K$ e $p_i,q_i$ irriducibili, allora $n=t$ e a meno di permutazioni $p_i=cq_i$ con $c\in K$ per ogni $i$.
 \end{teorema}
 \begin{proof}
-	Dimostriamolo per induzione su $\deg a=n$
-	Per prima cosa sia $n=1$: per quanto già detto, essendo di primo grado è già irriducibile, quindi è la fattorizzazione cercata.
+	Dimostriamo per induzione su $n\defeq\deg a$.
+
+	Per prima cosa sia $n=1$: per quanto già detto, essendo di primo grado è già irriducibile, quindi è la fattorizzazione cercata, che è ovviamente anche unica.
+
 	Supponiamo che la tesi sia vera da 1 a $n$.
-	Se $a$ è irriducibile, la dimostrazione è conclusa; altrimenti, scriviamo $a=gh$ per qualche $g,h\in K[x]$.
+	Se $a$ è irriducibile, la dimostrazione è conclusa, altrimenti scriviamo $a=gh$ per qualche $g,h\in K[x]$.
 	Se $g$ e $h$ sono entrambi irriducibili abbiamo trovato la fattorizzazione; se non è questo il caso, almeno uno tra $g$ e $h$ ha comunque un grado minore di quello di $a$, e per l'ipotesi di induzione è dunque riducibile.
-	Procediamo scomponendo $g$ o $h$, fino a trovare $a=q_1q_2\dots q_n$, dove $q_n$ deve per forza essere irriducibile per le ipotesi fatte.
+	Procediamo scomponendo $g$ o $h$, fino a trovare $a=p_1p_2\dots p_n$, dove ogni $p_i$ è irriducibile.
 	
-	Potendo scrivere $a=p_1\dots p_s=q_1\dots q_t$, con $p_i,q_j$ ($i\in\{1,\dots,n\}$ e $j\in\{1,\dots,t\}$) irriducibili, si possono riordinare i fattori in modo da avere $s=t$ riscrivendo i vari $p_i=k_iq_i$, con $k_i\in K\setminus\{0\}$.
-	% Forse andrebbe migliorata questa parte di dimostrazione...
+	Ammettiamo che esistano due fattorizzazioni
+	\begin{equation}
+		a=up_1p_2\cdots p_n=vq_1q_2\cdots q_t.
+	\end{equation}
+	con $u,v\in K$.
+	Poich\'e $p_1$ divide $a$, divide uno dei fattori $q_i$ al secondo membro, e sicuramente non $v$.
+	Riordiniamoli in modo che $p_1\dvd q_1$: poich\'e $q_1$ è irriducibile, ciò significa che $q_1=k_1p_1$, con $k_1\in K$ (l'ipotesi $p_1\in K$ è chiaramente da escludere).
+	Troviamo allora 
+	\begin{equation}
+		up_1\cdots p_n=vk_1p_1q_2\cdots q_t.
+	\end{equation}
+	ed essendo $K[x]$ un dominio d'integrità e $p_1\ne 0$ possiamo dividere per esso ottenendo
+	\begin{equation}
+		up_2\cdots p_n=vk_1q_2\cdots q_t.
+	\end{equation}
+	Ora al primo membro abbiamo $n-1<n$ fattori $p_i$, e proseguendo con lo stesso ragionamento precedente vediamo che al secondo ne abbiamo $t-1=n-1$, dunque per l'ipotesi di induzione abbiamo che $p_i=k_iq_i$ per qualche $k_i\in K$ per ogni $2\le i\le n$, e ciò prova la tesi.
 \end{proof}
 A questo punto, possiamo dividere tutti i fattori irriducibili per delle costanti opportune in $K$ per renderli monici, come nel seguente corollario.
 \begin{corollario} \label{c:fattorizzazione-polinomi-monici}
