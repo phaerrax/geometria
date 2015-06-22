@@ -78,10 +78,13 @@ Elenchiamo ora una serie di proprietà di base sugli spazi vettoriali, in cui as
 \section{Sottospazi vettoriali} \label{ref:sottospazi-vettoriali}
 \begin{definizione} \label{d:sottospazio-vettoriale}
 	Sia $V$ uno spazio vettoriale sul campo $K$.
-	Un suo sottoinsieme $W\subseteq V$ non vuoto si dice \emph{sottospazio} vettoriale se $(W,+,\cdot)$, per il quale le operazioni sono ristrette nel modo $+\colon W\times W\to W$ e $\ \cdot\colon K\times W\to W$, è uno spazio vettoriale.
+	Un suo sottoinsieme $W\subseteq V$ non vuoto si dice \emph{sottospazio} vettoriale se $(W,+,\cdot)$, con le operazioni indotte da $V$, è a sua volta uno spazio vettoriale.
 \end{definizione}
-Con la restrizione delle operazioni si intende che operando tra due vettori di $W$ il risultato è ancora un vettore di $W$ (e non di $V$), e lo stesso per il prodotto tra un vettore di $W$ e uno scalare di $K$. Si scrive anche che $W\leq V$.
-\paragraph{Esempi}
+In altre parole un sottospazio (ometteremo spesso l'attributo ``vettoriale'' per brevità) è un sottoinsieme che risulta chiuso rispetto alle due operazioni dello spazio vettoriale che lo contiene.
+Per verificare che un insieme $W$ sia un sottospazio bisogna dunque provare che le combinazioni lineari di elementi di $W$ siano ancora in $W$: una condizione necessaria facile da verificare è che $W$ deve contenere lo $0_V$.
+
+Ogni spazio vettoriale $V$ contiene sempre due spazi vettoriali, che sono banalmente $\{0_V\}$ e $V$ stesso.
+Vediamone altri esempi.
 \begin{itemize}
 	\item Preso lo spazio vettoriale $\R^n$, l'insieme
 		\begin{equation*}
@@ -92,39 +95,22 @@ Con la restrizione delle operazioni si intende che operando tra due vettori di $
 			\colon x_1,\dots,x_{n-1}\in\R\right\}
 		\end{equation*}
 		è un sottospazio vettoriale, perché ognuna delle due operazioni dà sempre come risultato un vettore con l'$n$-esima componente nulla.
-	\item Dato lo spazio vettoriale $V$, $\{0_V\}$ è un sottospazio vettoriale di $V$. Anche $V$ è un sottospazio vettoriale di se stesso.
 	\item Dato $\R[x]$, l'insieme dei polinomi di grado non maggiore di $n$, indicato con $\R_n[x]=\{p(x)=a_0+a_1x+\dots+a_nx^n\colon a_0,a_1,\dots,a_n\in\R\}$, formano un sottospazio vettoriale di $\R[x]$.
 		Infatti la somma di due poliniomi di grado massimo $n$ è ancora un polinomio di grado massimo $n$, mentre moltiplicando un polinomio per uno scalare non nullo si moltiplicano i coefficienti di ogni termine per tale scalare, quindi il grado rimane immutato.
 		Moltiplicando per zero si ottiene invece un polinomio nullo, che ha ancora ovviamente grado minore di $n$.
 		Lo stesso vale per $\C_n[x]\leq \C[x]$.
-	%\item Dato lo spazio delle matrici quadrate $\mat_{n,n}(\R)$, l'insieme delle matrici dette \emph{diagonali}, ossia con componenti nulle tranne che sulla diagonale,
-	%	\begin{equation*}
-	%		D=\left\{
-	%		\begin{pmatrix}
-	%			a_{11}	&0		&\cdots	&0\\
-	%			0		&a_{22}	&\cdots	&0\\
-	%			\vdots	&\vdots	&\ddots	&\vdots\\
-	%			0		&0		&\cdots	&a_{nn}
-	%		\end{pmatrix}
-	%		\colon a_{ii}\in\R\right\},
-	%	\end{equation*}
-	%	è un sottospazio vettoriale di $\mat_{n,n}(\R)$. Analogamente anche l'insieme matrici triangolari, ossia con tutti i termini sotto (o sopra) della diagonale esclusa nulli, è un sottospazio vettoriale di $\mat_{n,n}(\R)$.
-	\item L'insieme $\cont{}(\R)$ delle funzioni definite da $\R$ a $\R$ e continue è un sottospazio vettoriale dello spazio delle funzioni (qualsiasi) $\R\to\R$.
+	\item L'insieme $\cont{}(\R)$ delle funzioni definite da $\R$ a $\R$ e continue è un sottospazio vettoriale dello spazio delle funzioni $f\colon\R\to\R$.
 		Infatti sommando due funzioni continue si ottiene una funzione continua, e ovviamente anche moltiplicando una funzione continua per uno scalare.
 \end{itemize}
 
 \begin{teorema} \label{t:intersezione-sottospazi}
-	Sia $V$ uno spazio vettoriale su un campo $K$ e sia $\{W_i\}_{i\in I}$ una famiglia di sottospazi vettoriali di $V$.
-	Allora
-	\begin{equation*}
-		\bigcap_{i\in I}W_i
-	\end{equation*}
-	è ancora un sottospazio vettoriale di $V$.
+	Sia $V$ uno spazio vettoriale su un campo $K$ e sia $\{W_i\}_{i\in I}$ un insieme di sottospazi vettoriali di $V$.
+	Allora la loro intersezione	$\bigcap_{i\in I}W_i$ è ancora un sottospazio vettoriale di $V$.
 \end{teorema}
 \begin{proof}
-	Siano $  w_1,  w_2\in\bigcap_{i\in I}W_i$.
-	Allora $\forall i\in I$, $  w_1$ e $  w_2$ appartengono a $W_i$ (appartengono a tutti i sottospazi).
-	Poiché i $W_i$ sono sottospazi vettoriali, allora accade sempre che $\forall i\in I$, $  w_1+  w_2\in W_i$, quindi appartengono anche a $\bigcap_{i\in I}$.
+	Siano $w_1,w_2\in\bigcap_{i\in I}W_i$.
+	Allora $\forall i\in I$, $w_1$ e $w_2$ appartengono a $W_i$ (appartengono a tutti i sottospazi).
+	Poiché i $W_i$ sono sottospazi vettoriali, allora accade sempre che $\forall i\in I$, $w_1+w_2\in W_i$, quindi appartengono anche a $\bigcap_{i\in I}$.
 	Un ragionamento analogo si effettua per il prodotto per scalare.
 	Quindi $\bigcap_{i\in I}$ è un sottospazio vettoriale di $V$.
 \end{proof}
