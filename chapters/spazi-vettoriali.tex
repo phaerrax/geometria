@@ -129,31 +129,33 @@ Prendendo però un elemento del primo e uno del secondo, $\big(\begin{smallmatri
 	Siano $V$ uno spazio vettoriale su $K$ e $S\subseteq V$ un insieme non vuoto, esiste sempre $\gen{S}$ ed è unico.
 \end{teorema}
 \begin{proof}
-	\textit{(Unicità)} Siano $Z_1\neq Z_2$ due sottospazi vettoriali di $V$ che soddisfino la definizione \ref{d:sottospazio-generato} di sottospazio generato.
-	Poiché per tale definizione $S\subseteq Z_1$, dato $W$ sottospazio di $V$ e $S\subseteq W$ segue che $Z_1\leq W$.
-	Si ripete lo stesso ragionamento per $Z_2$, per cui anche $Z_2\leq W$, quindi sia $Z_1$ che $Z_2$ sono sottospazi vettoriali di $V$ come di $W$, quindi sostituendoli si conclude che $Z_1\leq Z_2$ ma anche $Z_2\leq Z_1$.
-	Poiché un sottospazio vettoriale è anche un sottoinsieme, segue che $Z_1\subseteq Z_2$ e $Z_2\subseteq Z_1$, ossia $Z_1\equiv Z_2$.
-
-	\textit{(Esistenza)} Sia $\gen{S}=\bigcap_{i=I}Z_i$ dove $\{Z_i\}_{i\in I}$ sono tutti sottospazi vettoriali di $V$ che includono $S$; ogni $Z_i$ non è vuoto perché include $S$.
+	Mostriamo l'esistenza: costruiamo l'insieme $\gen{S}=\bigcap_{i\in I}Z_i$ dove $\{Z_i\}_{i\in I}$ sono tutti sottospazi vettoriali di $V$ che includono $S$; ogni $Z_i$ non è vuoto perché include $S$.
 	Sicuramente $\gen{S}$ è, a sua volta, un sottospazio di $V$ per il teorema \ref{t:intersezione-sottospazi}.
 	$S$ è contenuto in ogni $Z_i$, quindi è incluso anche in $\gen{S}=\bigcap_{i\in I}Z_i$.
-	Inoltre, sia $W$ un sottospazio di $V$ tale che $S\subseteq W$.
-	Sicuramente, poiché $\gen{S}$ è un sottospazio vettoriale, una combinazione lineare di elementi di $S$ lo è anche di elementi di $\gen{S}$ quindi è un elemento di $\gen{S}$; ora, tutti gli elementi di $S$ sono anche elementi di $W$, quindi $\gen{S}$ soddisfa la definizione \ref{d:sottospazio-vettoriale} e dunque $\gen{S}\leq W$.
-	Allora uno spazio che soddisfi la definizione \ref{d:sottospazio-generato} si può sempre costruire.
+	Inoltre, sia $W$ un sottospazio di $V$ tale che $S\subseteq W$: allora $S\subseteq\gen{S}\subseteq W$.
+	Poiché $\gen{S}$ è un sottospazio vettoriale, per ogni $x,y\in S$ e $\lambda,\mu\in K$ ($x$ e $y$ appartengono a $\gen{S}$ e a $W$), mentre $\lambda x+\mu y\in\gen{S}$, quindi $\gen{S}\leq W$.
+	Tale $\gen{S}$ rispetta dunque la definizione \ref{d:sottospazio-generato}.
+
+	Vediamo ora l'unicità.
+	Se $Z_1,Z_2$ sono due sottospazi vettoriali di $V$ che soddisfano la definizione \ref{d:sottospazio-generato}, allora $S\subseteq Z_1$ e $S\subseteq Z_2$.
+	Se poi per un altro sottospazio vettoriale $W$ si ha $S\subseteq W$, allora sempre dalla definizione si deve avere $Z_1\le W$ e analogamente $Z_2\le W$.
+	Ma anche $Z_2$ è un sottospazio di $V$ e $S\subseteq Z_2$, dunque $Z_1\le Z_2$, e allo stesso modo $Z_2\le Z_1$, quindi $Z_1=Z_2$.
 \end{proof}
 
-Definiamo ora la somma di sottospazi come l'insieme $U+W=\{  u+  w\colon  u\in U,   w\in W\}$: esso è un sottospazio vettoriale, infatti
-\begin{itemize}
-	\item $(  u_1+  w_1)+(  u_2+  w_2)=(  u_1+  u_2)+(  w_1+  w_2)\in U+W$;
-	\item $\lambda(  u+  w)=\lambda  u+\lambda  w\in U+W$.
-\end{itemize}
+Definiamo ora la somma di sottospazi come l'insieme $U+W=\{u+w\colon u\in U,w\in W\}$: esso è un sottospazio vettoriale, infatti
+\begin{equation*}
+	\begin{gathered}
+		(u_1+w_1)+(u_2+w_2)=(u_1+u_2)+(w_1+w_2)\in U+W\\
+		\lambda(u+w)=\lambda u+\lambda w\in U+W.
+	\end{gathered}
+\end{equation*}
 Dimostriamo inoltre che $U+W$ è lo spazio generato dall'unione dei due sottospazi, seguendo la definizione \ref{d:sottospazio-generato}.
 \begin{teorema}
 	Siano $U,W$ sottospazi vettoriali di $V$ su un campo $K$. Allora $\gen{U\cup W}\equiv U+W$.
 \end{teorema}
 \begin{proof}
-	Ogni $  u\in U$ si può scrivere come $  u+0_W=  u+  0_V$ che quindi appartiene a $U+W$, quindi $U\subseteq U+W$ e analogamente $W\subseteq U+W$, quindi $U\cup W\subseteq U+W$.
-	Consideriamo un sottospazio vettoriale $T$ di $V$ che includa $U\cup W$: ogni elemento $  u+  w$ appartiene anche a $T$ per qualunque $  u$ e $  w$, ma allora $U+W$ è un sottoinsieme di $T$ oltre che uno spazio vettoriale, e ciò lo rende un sottospazio vettoriale di $T$.
+	Ogni $u\in U$ si può scrivere come $u+0_W=u+0_V$ che quindi appartiene a $U+W$, quindi $U\subseteq U+W$ e analogamente $W\subseteq U+W$, quindi $U\cup W\subseteq U+W$.
+	Consideriamo un sottospazio vettoriale $T$ di $V$ che includa $U\cup W$: ogni elemento $u+w$ appartiene anche a $T$ per qualunque $u$ e $w$, ma allora $U+W$ è un sottoinsieme di $T$ oltre che uno spazio vettoriale, e ciò lo rende un sottospazio vettoriale di $T$.
 	Abbiamo allora dimostrato che $U+W$ soddisfa la definizione \ref{d:sottospazio-vettoriale}, perciò $U+W=\gen{U\cup W}$.
 \end{proof}
 
