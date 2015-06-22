@@ -10,11 +10,11 @@
 	\end{itemize}
 \end{definizione}
 Gli elementi di $V$ si chiamano \emph{vettori} mentre quelli di $K$ \emph{scalari}.
-L'elemento neutro della somma, che per le proprietà note dei gruppi esiste ed è unico, sarà indicato con $0$, oppure $O_V$ in caso di ambiguità.
-Lo zero e l'unità del campo $K$ seguono la convenzione già usata per la quale saranno indicati con $0$ e $1$, o anche $0_K$ e $1_K$; il fatto che $0$ indichi sia lo zero di $K$ che quello di $V$ sarà chiaro dal contesti
+L'elemento neutro della somma, che per le proprietà note dei gruppi esiste ed è unico, sarà indicato con $0$, oppure $0_V$ in caso di ambiguità.
+Lo zero e l'unità del campo $K$ seguono la convenzione già usata per la quale saranno indicati con $0$ e $1$, o anche $0_K$ e $1_K$; il fatto che $0$ indichi sia lo zero di $K$ che quello di $V$ sarà spesso chiaro dal contesto.
 \paragraph{Esempi}
 \begin{itemize}
-	\item $(\R^n,+,\cdot)$ è uno spazio vettoriale su $\R$, infatti $\forall\lambda\in\R$ si ha, rappresentando i vettori come colonne,
+	\item $(\R^n,+,\cdot)$, l'insieme delle $n$-uple ordinate di numeri reali, è uno spazio vettoriale su $\R$, infatti $\forall\lambda\in\R$ si ha, rappresentando i vettori come colonne,
 		\begin{equation*}
 			\lambda\cdot
 			\begin{pmatrix}
@@ -25,33 +25,25 @@ Lo zero e l'unità del campo $K$ seguono la convenzione già usata per la quale 
 				\lambda x_1\\\vdots\\\lambda x_n
 			\end{pmatrix}
 		\end{equation*}
-		eccetera.
-	\item L'anello dei polinomi $\R[x]$ è uno spazio vettoriale su $\R$ con l'usuale addizione e con il prodotto per un numero reale.
-		Siano infatti $p(x)=a_0+a_1x+a_2x^2+\dots+a_nx^n$ e $  q(x)=b_0+b_1x+b_2x^2+\dots+b_mx^m$, con $m<n$, allora
-		\begin{multline*}
-			p(x)+q(x)=a_0+b_0+(a_1+b_1)x+(a_2+b_2)x^2+\dots+\\+(a_m+b_m)x^m+a_{m+1}x^{m+1}+\dots+a_nx^n,
-		\end{multline*}
-		che è un polinomio appartenente a $\R[x]$.
-		Moltiplicare un polinomio per uno scalare $\lambda$ equivale a moltiplicare per tale scalare tutti i suoi termini.
-	\item L'insieme $\mathcal{F}(X,\R)=\{f\colon X\to\R\}$, con $X\neq\emptyset$, è l'insieme delle funzioni (qualunque) definite in $X$ e a valori reali.
-		Si hanno le operazioni $(f+g)(x)=f(x)+g(x)$ e $(\lambda f)(x)=\lambda f(x)$, quindi $\mathcal{F}(X,\R)$ è uno spazio vettoriale.
-	\item Ogni campo può essere visto come spazio vettoriale su se stesso o un suo opportuno sottoinsieme.
-		Ad esempio $(\R,+,\cdot)$ è uno spazio vettoriale su $\R$, e $(\C,+,\cdot)$ è uno spazio vettoriale su $\C$ ma anche su $\R$.
+		eccetera definendo somma e prodotto per scalare componente per componente.
+	\item L'anello dei polinomi $\R[x]$ è uno spazio vettoriale su $\R$ con l'addizione e il prodotto per un numero reale, dove moltiplicare un polinomio per $\lambda\in\R$ equivale a moltiplicare per tale scalare tutti i suoi termini.
+	\item L'insieme delle funzioni (qualunque) definite da un insieme $X\ne\emptyset$ e a valori reali forma uno spazio vettoriale, con le operazioni di addizione e prodotto per numero reale ``puntuali'', ossia $(f+g)(x)=f(x)+g(x)$ e $(\lambda f)(x)=\lambda f(x)$.
+	\item Ogni campo può essere visto come spazio vettoriale su se stesso: ad esempio $(\R,+,\cdot)$ è uno spazio vettoriale su $\R$, e $(\C,+,\cdot)$ è uno spazio vettoriale su $\C$ ma anche su $\R$ se lo consideriamo come l'insieme delle coppie $(a,b)=a+ib$ con $a,b\in\R$.
 \end{itemize}
 
 Elenchiamo ora una serie di proprietà di base sugli spazi vettoriali, in cui assumiamo $V$ come spazio vettoriale su un campo $K$.
 \begin{proprieta} \label{p:annullamento-vettore}
-	Per ogni vettore $  x\in V$, $0_K  x=0_V$.
+	Per ogni vettore $x\in V$, $0_K x=0_V$.
 \end{proprieta}
 \begin{proof}
-	Lo $0_K$ si può sempre scrivere come somma di $0_K$ con se stesso, quindi $0_K  x=(0_K+0_K)  x=0_K  x+0_K  x$.
-	Poiché $V$ è abeliano, sommando l'inverso di $0_K  x$ ai due membri si ottiene $0_K  x=0_V$
+	Lo $0_K$ si può sempre scrivere come somma di $0_K$ con se stesso, quindi $0_K x=(0_K+0_K)x=0_K x+0_K x$.
+	Poiché $V$ è abeliano, sommando l'inverso di $0_K  x$ ai due membri si ottiene $0_K x=0_V$
 \end{proof}
 \begin{proprieta} \label{p:scalare-opposto}
-	Per ogni scalare $a\in K$ e $\forall  x\in V$, $-(a  x)=(-a)  x$.
+	Per ogni scalare $a\in K$ e $\forall x\in V$, $-(ax)=(-a)x$.
 \end{proprieta}
 \begin{proof}
-	Per la proprietà precedente si ha $0_V=0_K  x$, e lo zero scalare si scrive come somma degli inversi $a+(-a)$, quindi $0_V=[a+(-a)]  x=a  x+(-a)  x$, che significa che $(-a)  x$ è il vettore inverso di $a  x$ --- quindi è $-(a  x)$ --- rispetto alla somma perché insieme danno $0_V$.
+	Per la proprietà precedente si ha $0_V=0_K x$, e lo zero scalare si scrive come somma degli inversi $a+(-a)$, quindi $0_V=[a+(-a)]x=ax+(-a)x$, che significa che $(-a)x$ è il vettore inverso di $ax$ rispetto alla somma, ossia $(-a)x=-(ax)$.
 \end{proof}
 \begin{proprieta} \label{p:scalare-per-vettore-nullo}
 	Per ogni $a\in K$, $a0_V=0_V$.
@@ -60,27 +52,27 @@ Elenchiamo ora una serie di proprietà di base sugli spazi vettoriali, in cui as
 	Si ha che $a0_V=a(0_V+0_V)=a0_V+a0_V$, e come per la proprietà \ref{p:annullamento-vettore} poiché $V$ è abeliano si somma ai due membri dell'uguaglianza l'inverso di $a0_V$, ottenendo $a0_V=0_V$.
 \end{proof}
 \begin{proprieta} \label{p:annullamento-prodotto-scalare-vettore}
-	Se $a  x=0_V$ per $a\in K$ e $  x\in V$, allora $a=0_K$ o $  x=0_V$.
+	Se $ax=0_V$ per $a\in K$ e $x\in V$, allora $a=0_K$ o $x=0_V$.
 \end{proprieta}
 \begin{proof}
-	Sia $a\neq 0_K$: allora esiste il suo inverso, $a^{-1}\in K$, rispetto al prodotto in $K$ (cioè tale che $aa^{-1}=1_K$).
-	Quindi $0_V=a^{-1}0_V$, e poiché per per ipotesi $a  x=0$ segue che $0_V=a^{-1}(a  x)=(aa^{-1})  x=1_K  x=  x$, perciò $  x=0_V$.
+	Se $a=0_K$ è ovvia, se invece $a\neq 0_K$ allora esiste il suo inverso, $a^{-1}\in K$, rispetto al prodotto in $K$ (cioè tale che $aa^{-1}=1_K$).
+	Quindi $0_V=a^{-1}0_V$, e poiché per per ipotesi $ax=0$ segue che $0_V=a^{-1}(ax)=(aa^{-1})x=1_K x=x$, perciò $x=0_V$.
 \end{proof}
 \begin{proprieta} \label{p:cancellazione-vettore}
-	Per ogni $a,b\in K$ e per ogni $  x\in V$, se $a  x=b  x$ allora $a=b$ oppure $  x=0_V$.
+	Per ogni $a,b\in K$ e per ogni $x\in V$, se $ax=bx$ allora $a=b$ oppure $x=0_V$.
 \end{proprieta}
 \begin{proof}
-	Se vale che $a  x=b  x$, allora aggiungendo l'inverso di $b  x$ per la somma si ottiene $a  x+\big(-(b  x)\big)=0_V$.
-	Inoltre per la proprietà distributiva questo è uguale ad $a  x+(-b)  x=\big(a+(-b)\big)  x=0_V$.
-	Per la proprietà \ref{p:annullamento-prodotto-scalare-vettore}, infine, $a+(-b)=0_K$ oppure $  x=0_V$.
-	Sommando $b$ alla prima delle due risulta $a=b$ o $  x=0_V$.
+	Se vale che $ax=bx$, allora aggiungendo l'inverso di $bx$ per la somma si ottiene $ax-(bx)=0_V$.
+	Inoltre per la proprietà distributiva questo è uguale ad $ax+(-b)x=(a-b)x=0_V$.
+	Per la proprietà \ref{p:annullamento-prodotto-scalare-vettore}, infine, $a+(-b)=0_K$ oppure $x=0_V$.
+	Sommando $b$ alla prima delle due risulta $a=b$ o $x=0_V$.
 \end{proof}
 \begin{proprieta} \label{p:cancellazione-scalare}
-	Per ogni scalare $\lambda\in K$ e $\forall  x,  y\in V$, se $\lambda  x=\lambda  y$ allora $\lambda=0_K$ o $  x=  y$.
+	Per ogni scalare $\lambda\in K$ e $\forall x,y\in V$, se $\lambda x=\lambda y$ allora $\lambda=0_K$ o $x=y$.
 \end{proprieta}
 \begin{proof}
-	Se $\lambda  x=\lambda  y$, allora $\lambda  x+\big(-(\lambda  y)\big)=\lambda  x+\lambda(-  y)=0_V$.
-	Per la proprietà distributiva equivale a $\lambda\big(  x+(-  y)\big)=0_V$, da cui sempre per la \ref{p:annullamento-prodotto-scalare-vettore} $\lambda=0_K$ oppure $  x+(-  y)=0_V$, da cui sommando $  y$ ai due membri risulta che $\lambda=0_K$ oppure $  x=  y$.
+	Da $\lambda x=\lambda y$ risulta $\lambda x+\big(-(\lambda y)\big)=\lambda x+\lambda(-y)=0_V$.
+	Per la proprietà distributiva equivale a $\lambda\big(x+(-y)\big)=0_V$, da cui sempre per la \ref{p:annullamento-prodotto-scalare-vettore} $\lambda=0_K$ oppure $  x+(-y)=0_V$, da cui sommando $y$ ai due membri risulta $\lambda=0_K$ oppure $x=y$.
 \end{proof}
 
 \section{Sottospazi vettoriali} \label{ref:sottospazi-vettoriali}
