@@ -262,63 +262,63 @@ Il seguente teorema indica un modo più semplice di verificare questa definizion
 \begin{definizione} \label{d:base}
 	Si chiama \emph{base} di uno spazio vettoriale $V$ ogni sistema $S$ linearmente indipendente che genera $S$.
 \end{definizione}
-	Un sistema di generatori esiste sempre per ogni spazio non vuoto: semmai si può prendere lo spazio stesso; non è sempre certa, però, l'esistenza di un insieme linearmente indipendente.
+La base in un certo senso ``codifica'' tutto ciò che è necessario sapere dello spazio vettoriale: tramite delle combinazioni lineari possiamo ricostruire tutto lo spazio a partire da un numero limitato di elementi.
+Il vantaggio delle basi è che esiste sempre un unico modo di esprimere ogni vettore dello spazio in termini dei suoi elementi, come dimostriamo nel teorema seguente.
 \begin{teorema}
-	Sia $\{  e_i\}_{i\in I}$ un insieme di $V$.
-	Esso è una base di $V$ se e solo se ogni elemento $  v\in V$ (non nullo) si può scrivere in modo univoco come combinazione lineare finita, a coefficienti non nulli, di elementi di $\{  e_i\}_{i\in I}$.
+	Sia $\{e_i\}_{i\in I}$ un insieme di $V$.
+	Esso è una base di $V$ se e solo se ogni elemento $v\in V$ non nullo si può scrivere in modo univoco come combinazione lineare finita, a coefficienti non nulli, di elementi di $\{e_i\}_{i\in I}$.
 \end{teorema}
-Gli elementi $  v$ non devono essere nulli, perché $0_V$ si può scrivere come combinazione lineare di \emph{qualunque} sistema di vettori; inoltre i coefficienti della combinazione non devono essere nulli, altrimenti si potrebbe affermare che $  v=a  e_1+b  e_2$ ma anche $  v=a  e_1+b  e_2+0_K  e_3+\dots+0_K  e_n+\dots$ quanto si vuole.
+Gli elementi $v$ non devono essere nulli, perché $0_V$ si può scrivere come combinazione lineare di \emph{qualunque} sistema di vettori; inoltre i coefficienti della combinazione non devono essere nulli poich\'e altrimenti si potrebbe affermare che $v=ae_1+be_2$ ma anche $v=ae_1+be_2+0_Ke_3+\dots+0_Ke_n+\dots$ a piacere.
 \begin{proof}
 	Dimostriamo che la condizione è necessaria.
-	Sia $\{  e_i\}_{i\in I}$ una base di $V$: allora genera tutto $V$.
-	Preso un elemento $  v\in V$ non nullo, si può scrivere come la combinazione lineare finita
+	Sia $\{e_i\}_{i\in I}$ una base di $V$: essa per definizione genera tutto $V$.
+	Preso un elemento $v\in V$ non nullo, possiamo scriverlo come una combinazione lineare finita
 	\begin{equation} \label{eq:dim-base1}
-		  v=\sum_{i\in I_0}\lambda_i  e_i,
+		  v=\sum_{i\in I_0}\lambda_ie_i,
 	\end{equation}
 	con $I_0\subset I$ di cardinalità finita.
-	Dimostriamo che questa scrittura è unica: supponiamo che $\forall i\in I_0$ $\lambda_i\neq 0_K$ (eventuali termini nulli nella combinazione lineare si trascurano); allora esiste anche 
+	Dimostriamo che questa scrittura è unica: supponiamo che $\forall i\in I_0$ $\lambda_i\neq 0_K$ (eventuali termini nulli nella combinazione lineare si trascurano), e supponiamo che esista anche
 	\begin{equation} \label{eq:dim-base2}
-		  v=\sum_{j\in J_0}\mu_j  e_j
+		  v=\sum_{j\in J_0}\mu_je_j
 	\end{equation}
-	con $\mu_j\neq 0_K$ $\forall j\in J_0\subset I$ e di cardinalità finita.
+	con $\mu_j\neq 0_K$ $\forall j\in J_0\subset I$ e tale $J_0$ di cardinalità finita.
 	Sommando gli opposti della \eqref{eq:dim-base2} alla \eqref{eq:dim-base1} si ha
 	\begin{equation*}
-		\sum_{i\in I_0}\lambda_i  e_i+\sum_{j\in J_0}-\mu_j  e_j=0_V.
+		\sum_{i\in I_0}\lambda_ie_i+\sum_{j\in J_0}-\mu_je_j=0_V.
 	\end{equation*}
-	Sia $I_0\subseteq J_0$, e ipotizziamo che esista $j_0$ appartenente a $J_0$ ma non a $I_0$.
-	Allora l'elemento $  e_{j_0}$, nella combinazione, è associato al coefficiente $-\mu_{j_0}\neq 0_K$ (quindi esiste il suo reciproco).
+	Sia $I_0\ne J_0$, e prendiamo $j_0\in J_0$ ma $\notin I_0$.
+	L'elemento $e_{j_0}$, nella combinazione, è associato a un coefficiente $-\mu_{j_0}\neq 0_K$ (quindi esiste il suo reciproco).
 	Portando $-\mu_{j_0}  e_{j_0}$ al secondo membro dell'uguaglianza e moltiplicando per il reciproco di $\mu_{j_0}$ risulta
 	\begin{equation*}
-		\sum_{i\in I_0}(\lambda_i\mu_{j_0}^{-1})  e_i+\sum_{j\in J_0}(\mu_j\mu_{j_0}^{-1})  e_j=  e_{j_0},
+		\sum_{i\in I_0}(\lambda_i\mu_{j_0}^{-1})e_i+\sum_{j\in J_0}(\mu_j\mu_{j_0}^{-1})e_j=e_{j_0},
 	\end{equation*}
-	cioè uno degli elementi di $\{  e_i\}$ è espresso come combinazione lineare degli altri, vale a dire che la base è linearmente dipendente, il che è assurdo perché è una base: quindi non può esistere un $j_0$ che appartiene a $J_0$ ma non a $I_0$.
-	Ponendo $J_0\subseteq I_0$ si ottiene allo stesso modo un altra contraddizione.
-	Allora non può che essere $I_0\equiv J_0$, ma ciò significa che
+	cioè uno degli $e_i$ è espresso come combinazione lineare degli altri, vale a dire la base è linearmente dipendente, il che è assurdo: quindi non può esistere un $j_0$ che appartiene a $J_0$ ma non a $I_0$.
+	Ponendo $j_0\in I_0$ e $\notin J_0$ si ottiene allo stesso modo un altra contraddizione.
+	Allora non può che essere $I_0=J_0$, ma ciò significa che
 	\begin{equation*}
-		\sum_{i\in I_0}(\lambda_i-\mu_i)  e_i=0_V,
+		\sum_{i\in I_0}(\lambda_i-\mu_i)e_i=0_V,
 	\end{equation*}
-	cui segue che $\lambda_i=\mu_i$ $\forall i\in I_0$, cioè le \eqref{eq:dim-base1} e \eqref{eq:dim-base2} sono identiche e dunque la scrittura di $  v$ in termini della base è unica.
+	cui segue che $\lambda_i=\mu_i$ $\forall i\in I_0$, cioè le \eqref{eq:dim-base1} e \eqref{eq:dim-base2} sono identiche: dunque la scrittura di $v$ in termini della base è unica.
 
-	Mostriamo ora che la condizione è anche sufficiente: innanzitutto, $\gen{\{  e_i\}_{i\in I}}=V$ perché per ipotesi possiamo scrivere ogni vettore di $V$ come combinazione lineare di elementi di questo insieme.
-	Supponiamo che esista $I_0\subset I$ di cardinalità finita, per cui
+	Mostriamo ora che la condizione è anche sufficiente: innanzitutto, $\gen{\{e_i\}_{i\in I}}=V$ perché per ipotesi possiamo scrivere ogni vettore di $V$ come combinazione lineare di elementi di questo insieme.
+	Supponiamo per assurdo che $\{e_i\}_{i\in I}$ sia linearmente dipendente, ossia che esista $I_0\subset I$ di cardinalità finita per cui
 	\begin{equation} \label{eq:dim-base3}
-		\sum_{i\in I_0}\lambda_i  e_i=0_V,
+		\sum_{i\in I_0}\lambda_ie_i=0_V,
 	\end{equation}
-e come prima che $\lambda_i\neq 0_K$ $\forall i\in I_0$.
+	e come prima che $\lambda_i\neq 0_K$ $\forall i\in I_0$.
 	Considerando un $i^*\in I_0$, $\lambda_{i^*}$ non è nullo, quindi moltiplicando la \eqref{eq:dim-base3} per il suo inverso si trova
 	\begin{equation*}
-		\sum_{i\in I_0}(\lambda_{i^*}^{-1}\lambda_i)  e_i=0_V.
+		\sum_{i\in I_0}(\lambda_{i^*}^{-1}\lambda_i)e_i=0_V.
 	\end{equation*}
 	Isolando il termine in $i^*$ si ottiene poi che
-	\begin{equation*}
-		\sum_{i^*\neq i\in I_0} (\lambda_{i^*}^{-1}\lambda_i)  e_i=-  e_{i^*}
-	\end{equation*}
-	vale a dire che $  e_{i^*}$ si esprime come combinazione lineare di altri elementi dell'insieme.
-	Questo elemento però non è unico, dato che il ragionamento vale per qualsiasi $i\in I_0$ preso volta per volta.
-	Allora è assurdo che esista un tale $I_0$, cioè che per tali $i\in I_0$ la combinazione lineare sia nulla pur non avendo tutti i coefficienti nulli; dunque l'insieme è linearmente indipendente, e dato che genera $V$ è una sua base.
+	\begin{equation}
+		\sum_{i^*\neq i\in I_0}(\lambda_{i^*}^{-1}\lambda_i)e_i=-e_{i^*}
+		\label{eqdim:unicita-scrittura-base-1}
+	\end{equation}
+	vale a dire che $e_{i^*}$ si esprime come combinazione lineare di altri elementi dell'insieme.
+	Ma allora ogni volta che scriviamo un vettore come combinazione lineare che contenga $e_{i*}$ possiamo scegliere di usare, indifferentemente, il primo o il secondo membro della \eqref{eqdim:unicita-scrittura-base-1}, e ciò viola l'ipotesi che la scrittura di ogni vettore di $V$ in termini degli $e_i$ sia unica.
+	Dunque un tale $I_0$ non può esistere: dunque l'insieme è linearmente indipendente, e dato che genera $V$ è una sua base.
 \end{proof}
-In $\R^3$ ad esempio ogni punto è univocamente individuato da un vettore $  v$ che è esprimibile nelle sue (tre) coordinate come $  v=xe_1+ye_2+ze_3$, infatti l'insieme $\{e_1,e_2,e_3\}=\{(1,0,0),(0,1,0),(0,0,1)\}$ è una base di $\R^3$ (detta comunemente \emph{base canonica}).
-I coefficienti di ogni termine formano le componenti del vettore.
 
 \begin{definizione}
 	Sia $V$ uno spazio vettoriale su $K$: esso si dice di dimensione finita se ammette un sistema finito di generatori, altrimenti si dice di dimensione infinita.
