@@ -325,32 +325,37 @@ Gli elementi $v$ non devono essere nulli, perché $0_V$ si può scrivere come co
 \end{definizione}
 \begin{teorema} \label{t:esistenza-base}
 	Sia $G\subset V$ un sistema di generatori di $V$ finito.
-	Se $S$ è un sottoinsieme di $G$ linearmente indipendente, allora esiste una base $B$ di $V$ tale da comprendere il sistema $S$ e che sia inclusa in $G$ (cioè $S\subseteq B\subseteq G$).
+	Se $S\subseteq G$ è linearmente indipendente, allora esiste una base $B$ di $V$ tale che $S\subseteq B\subseteq G$.
 \end{teorema}
 \begin{proof}
-	Si supponga che $V$ abbia dimensione finita: allora esiste un sistema di generatori $G$.
+	Si supponga che $V$ abbia dimensione finita: allora esiste un sistema di generatori $G$.\footnote{Esiste sempre un sistema di generatori per qualsiasi spazio: nel peggiore dei casi, $V$ genera se stesso, ossia $\gen{V}=V$, dunque possiamo prendere $G=V$.}
 	Escludiamo il caso in cui $V\equiv\{0_V\}$ perché non esisterebbe nemmeno una base.
-	Esiste $  e\in G$, non nullo, che ovviamente forma un sistema linearmente indipendente poiché $\lambda  e\neq 0_V$ $\forall\lambda\neq 0_K$.
-	Inoltre, per come si è scelto $  e$, $S\equiv\{  e\}\subseteq G$.
-	Quindi esiste sempre una base di $V$ per cui $\{  e\}\subseteq B\subseteq G$.
 
 	Indichiamo con $S_n$ il fatto che nell'insieme linearmente indipendente $S$ ci siano $n$ vettori.
 	Potrebbe essere che $\gen{S_n}\equiv V$, ma allora possiamo scegliere subito $S_n$ come base per $V$, e poiché $B=S_n\subseteq G$ il teorema è dimostrato.
-	Sia allora $\gen{S_n}\lneqq V$: deve esistere $  x_{n+1}\in G$, ma $\notin\gen{S_n}$, perché altrimenti dato che $\gen{S}\supseteq G$ si avrebbe che $\gen{S_n}\equiv V$.
-	Definiamo $S_{n+1}=S_n\cup\{  x_{n+1}\}$ (quindi l'insieme ha $n+1$ elementi), per cui sicuramente vale $S_n\subseteq S_{n+1}\subseteq G$. Questo $S_{n+1}$ è un insieme linearmente indipendente, altrimenti avremmo che $  x_{n+1}\in\gen{S_n}$.
+	Sia allora $\gen{S_n}\ne V$: deve esistere $x_{n+1}\in G$, ma $\notin\gen{S_n}$ (perché altrimenti dato che $\gen{S}\supseteq G$ si avrebbe che $\gen{S_n}\equiv V$).
+	Definiamo $S_{n+1}=S_n\cup\{x_{n+1}\}$, per cui sicuramente vale $S_n\subseteq S_{n+1}\subseteq G$.
+	Questo $S_{n+1}$ è un insieme linearmente indipendente, altrimenti avremmo che $x_{n+1}\in\gen{S_n}$.
 	Se $\gen{S_{n+1}}=V$ il teorema è dimostrato, altrimenti procediamo aggiungendo un altro elemento di $G\setminus\gen{S_{n+1}}$.
-	Iteriamo il processo per $n+2$, $n+3$ e così via, fino a quando si esauriscono gli elementi di $G$, ottenendo la relazione
+	Iteriamo il processo per $n+2$, $n+3$ e così via: il processo deve necessariamente terminare poich\'e
 	\begin{equation*}
-		S_n\subseteq S_{n+1}\subseteq S_{n+2}\subseteq\dots\subseteq G.
+		S_n\subseteq S_{n+1}\subseteq S_{n+2}\subseteq\dots\subseteq G
 	\end{equation*}
-	La dimensione di $G$ è finita, quindi prima o poi gli elementi da aggiungere termineranno: esisterà $k\in\N$ per cui $\gen{S_{n+k}}=\gen{G}$, e anche in questo caso abbiamo trovato che $S_{n+k}$ è base di $V$.
+	e $G$ è finito.
+	Esisterà dunque $k\in\N$ per cui $\gen{S_{n+k}}=\gen{G}$, e anche in questo caso abbiamo trovato che $S_{n+k}$ (che è ancora linearmente indipendente per costruzione) è base di $V$.
 \end{proof}
-Sempre in $\R^3$, per esempio, una delle possibili basi è quella composta dai tre versori $\{\ii,\jj,\kk\}=\{(1,0,0),(0,1,0),(0,0,1)\}$, ma anche $\{  e_1,  e_2,  e_3\}=\{\ii,\jj,(\jj+\kk)\}$ è un'altra base.
-In effetti ruotando $\ii$, $\jj$ e $\kk$ di un angolo qualsiasi si ottiene un altra base, e se ne ottengono ancora delle altre moltiplicando per degli scalari (anche differenti) i tre versori.
+Sempre in $\R^3$, per esempio, una delle possibili basi è quella composta dai tre versori $\{e_1,e_2,e_3\}=\{(1,0,0),(0,1,0),(0,0,1)\}$, ma anche $\{e_1,e_2,e_2+e_3\}$ è un'altra base.
+In effetti ruotando $e_1$, $e_2$ e $e_3$ di un angolo qualsiasi si ottiene un altra base, e se ne ottengono ancora delle altre moltiplicando per degli scalari (anche differenti) i tre versori.
 Quindi le basi di uno spazio vettoriali sono infinite; quello che non cambia è il numero di elementi di queste basi, che è sempre costante (in questo esempio, la base è sempre composta da tre vettori).
 \begin{corollario}
 	Ogni spazio vettoriale $V\neq\{0_V\}$ di dimensione finita ammette almeno una base.
 \end{corollario}
+\begin{proof}
+	L'esistenza di un sistema di generatori $G$ per $V$ è garantita (semmai prendiamo $G=V$).
+	In tale insieme, un elemento singolo $v\ne 0_V$ forma da solo un insieme linearmente indipendente $\{v\}$.
+	Il teorema precedente assicura dunque l'esistenza di una base $\mathcal B$ di $V$ tale che $\{v\}\subseteq\mathcal B\subseteq G$.
+\end{proof}
+
 \begin{teorema} \label{t:base-dimensione}
 	Sia $V$ uno spazio vettoriale di dimensione finita, contenente una base di $n$ vettori.
 	Allora:
