@@ -328,7 +328,7 @@ Gli elementi $v$ non devono essere nulli, perché $0_V$ si può scrivere come co
 	Se $S\subseteq G$ è linearmente indipendente, allora esiste una base $B$ di $V$ tale che $S\subseteq B\subseteq G$.
 \end{teorema}
 \begin{proof}
-	Si supponga che $V$ abbia dimensione finita: allora esiste un sistema di generatori $G$.\footnote{Esiste sempre un sistema di generatori per qualsiasi spazio: nel peggiore dei casi, $V$ genera se stesso, ossia $\gen{V}=V$, dunque possiamo prendere $G=V$.}
+	Si supponga che $V$ abbia dimensione finita: allora esiste un sistema di generatori $G$.\footnote{Esiste sempre un sistema di generatori per qualsiasi spazio: nel peggiore dei casi, $V$ genera se stesso, ossia $\gen{V}=V$, dunque possiamo prendere $G=V$. La dimensione finita di $V$ ci assicura che esiste un tale $G$ finito.}
 	Escludiamo il caso in cui $V\equiv\{0_V\}$ perché non esisterebbe nemmeno una base.
 
 	Indichiamo con $S_n$ il fatto che nell'insieme linearmente indipendente $S$ ci siano $n$ vettori.
@@ -412,37 +412,38 @@ Quindi le basi di uno spazio vettoriali sono infinite; quello che non cambia è 
 	Sia $V$ uno spazio vettoriale di dimensione finita, contenente una base di $n$ vettori.
 	Ogni altra base $V$ ha a sua volta esattamente $n$ vettori.
 \end{corollario}
+
 \begin{definizione} \label{d:dimensione}
 	Dato uno spazio vettoriale $V\neq\{0_V\}$ su $K$ di dimensione finita, si dice \emph{dimensione} di $V$ su $K$ il numero di vettori di una sua base qualunque.
 \end{definizione}
-La dimensione di $V$ (su $K$) si indica con $\dim_KV$ o anche solo, se non ci sono ambiguità, con $\dim V$. Convenzionalmente, allo spazio contenente soltanto $\{0_V\}$ si assegna la dimensione 0.
+La dimensione di $V$ (su $K$) si indica con $\dim_KV$ o anche solo, se non ci sono ambiguità, con $\dim V$.
+Convenzionalmente, allo spazio contenente soltanto $\{0_V\}$ si assegna la dimensione 0.
+
+Ad esempio, preso un campo generico $K$, nello spazio $K^n$ (insieme delle $n$-uple di elementi in $K$) possiamo vedere facilmente che ogni base possiede $n$ elementi, dunque $\dim_KK^n=n$.
+La dimensione può cambiare però se modifichiamo il campo su cui definiamo lo spazio vettoriale: un noto esempio è $\C^n$.
+Ovviamente, sul campo complesso, abbiamo $\dim_\C\C^n=n$; allo stesso tempo, però, possiamo vedere $\C^n$ come spazio vettoriale su $\R$: ogni componente di un vettore di $\C^n$ è una coppia di numeri reali, perciò $\dim_\R\C^n=2n$.
+
 \begin{teorema}
-	Sia $V$ uno spazio vettoriale, e $W$ un suo sottospazio.
-	Se $\dim V$ è finita, allora $\dim W\leq\dim V$.
+	Sia $V$ uno spazio vettoriale su un campo $K$, e $W$ un suo sottospazio.
+	Se $\dim_K V$ è finita, allora $\dim_K W\leq\dim_K V$.
 \end{teorema}
 \begin{proof}
 	Nel caso banale in cui $W=\{0_V\}$, la sua dimensione è 0 quindi è ovviamente minore o uguale della dimensione di $V$, qualunque essa sia.
-	Se invece $W$ non contiene soltanto il vettore nullo, una base qualunque di $W$ è un sistema linearmente indipendente anche in $V$.
-	Siccome $W\neq\{0_V\}$, esiste un vettore $  w_1\in W$ non nullo.
-	Se $\gen{  w_1}=W$ allora $\{  w_1\}$ è una base di $W$ da cui si ottiene subito la tesi: infatti $  w_1$ appartiene anche a $V$ che dunque ha almeno dimensione 1.
-	Altrimenti $\gen{  w_1}\neq W$ ma comunque esiste un altro vettore di $W$, $  w_2\notin\gen{  w_1}$ (quindi appartenente a $W\setminus\gen{  w_1}$).
-	Sia $S=\{  w_1,  w_2\}$: esso è un sistema linearmente indipendente per come abbiamo scelto $  w_2$.
-	%Nella combinazione lineare $\lambda_1  w_1+\lambda_2  w_2=0_V$ non può essere $\lambda_1=0$ perché $\{  w_1\}$ è un sistema libero, mentre ugualmente $\lambda_2\neq 0$ perché\dots?
-	Se $\gen{S}=W$, come nel caso precedente abbiamo dimostrato il teorema: per teorema precedente (\ref{t:base-dimensione}) $V$ ha due vettori linearmente indipendenti dunque deve essere $\dim V\geq 2=\dim W$.
-	Se invece $\gen{S}\neq W$, si consideri un altro $  w_3\in W\setminus\gen{  w_1,  w_2}$ e si ripete il ragionamento compiuto in precedenza.
-	Ogni volta si trova un nuovo insieme $S=\{  w_1,  w_2,\dots,  w_n\}$, ancora linearmente indipendente in $V$.
-	Per il punto 3, sempre del teorema \ref{t:base-dimensione}, $\dim V\geq\abs{S}$, quindi $W$ ha dimensione finita, inoltre $n=\dim W=\abs{S}\leq\dim V$.
+
+	Siano $m\defeq\dim_K W$ e $n\defeq\dim_K V$.
+	Se $W$ non contiene soltanto il vettore nullo, una base $\mathcal B$ (che possiede $m$ elementi) qualunque di $W$ è un insieme linearmente indipendente anche in $V$.
+	Se $m>n$, per il teorema \ref{t:base-dimensione} $\mathcal B$ sarebbe linearmente dipendente, il che è assurdo poich\'e è una base, dunque $\dim_K W=m\le n=\dim_K V$.
 \end{proof}
 
 \begin{teorema}\label{estensione-base}
-	Sia $V$ uno spazio vettoriale di dimensione finita, $W$ un suo sottospazio e $B_W$ una base di $W$.
-	Allora tale base si può estendere per formare una base di $V$, cioè $\exists B_V\colon B_W\subseteq B_V$.
+	Sia $V$ uno spazio vettoriale di dimensione finita, $W$ un suo sottospazio e $\mathcal B_W$ una base di $W$.
+	Allora tale base si può estendere per formare una base di $V$, cioè $\exists\mathcal B_V\colon\mathcal B_W\subseteq\mathcal B_V$.
 \end{teorema}
 \begin{proof}
-	$B_W$ è linearmente indipendente in $W$ in quanto è una base, e lo è quindi anche in $V$ (quindi $\dim V\geq\abs{B_W}$), che deve avere un sistema finito $G$ di generatori.
-	Allora $B_W\cup G$ è ancora un sistema di generatori per $V$, ed è anche finito.
-	Da questo insieme, che per generare $V$ deve essere tale che $\dim V\leq\abs{B_W\cup G}$, possiamo estrarre $\dim V$ elementi linearmente indipendenti.
-	Poiché $B_W\subseteq B_W\cup G$ è già linearmente indipendente, esiste una base $B_V$ di $V$ contenente $B_W$ (e contenuta in $B_W\cup G$).
+	Prendiamo una base $\mathcal B_W$ di $W$ e un sistema di generatori $G$, finito, di $V$.
+	Sicuramente $\mathcal B_W\cup G$ genera ancora $V$.
+	Esso contiene inoltre la base di $W$ che per definizione è linearmente indipendente.
+	Per il teorema \ref{t:esistenza-base} allora possiamo trovare una base $\mathcal B_V$ di $V$ tale che $\mathcal B_W\subseteq \mathcal B_V\subseteq (\mathcal B_W\cup G)$, e ciò prova la tesi.
 \end{proof}
 Ad esempio, $\R$ è un sottospazio di $\R^3$: prendendo una base $\{  v\}$ del primo, si ottiene una base del secondo semplicemente aggiungendo due vettori (distinti) perpendicolari a $  v$.
 
