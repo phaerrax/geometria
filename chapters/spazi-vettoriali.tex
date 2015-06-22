@@ -497,17 +497,22 @@ Ad esempio, $\R$ è un sottospazio di $\R^3$: prendendo una base $\{  v\}$ del p
 \end{proof}
 
 \begin{definizione} \label{d:somma-diretta}
-	Uno spazio vettoriale $V$ si dice \emph{somma diretta} di un insieme di sottospazi vettoriali $\{V_i\}_{i\in I}$ se $\{V_i\}_{i\in I}$ è linearmente indipendente e se $\sum_{i\in I}V_i\equiv V$.
+	Uno spazio vettoriale $V$ si dice \emph{somma diretta} di un insieme di sottospazi vettoriali $\{V_i\}_{i\in I}$ se $\{V_i\}_{i\in I}$ è linearmente indipendente e se $\sum_{i\in I}V_i=V$.
 \end{definizione}
-Per indicare che $V$ è composto dalla somma diretta degli spazi $V_i$ si usa la scrittura $V=\bigoplus\limits_{i\in I}V_i$.
+Per indicare che $V$ è composto dalla somma diretta degli spazi $V_i$ si usa la scrittura $V=\bigoplus_{i\in I}V_i$.
+Per verificare che due spazi siano in somma diretta, per esempio che $V=W\oplus U$, dove $W,U$ sono sottospazi di $V$, è sufficiente verificare che:
+\begin{itemize}
+	\item $U+W=V$, cioè $\gen{U\cup W}=V$, ossia che l'unione delle basi contenga una base di $V$;
+	\item $U\cap W=\{0\}$.
+\end{itemize}
 \paragraph{Esempi}
 \begin{itemize}
 	\item Lo spazio $\R[x]$ è generato dall'insieme $\{1,x,x^2,\dots\}$.
-		Posto $V_j=\gen{x^j}$, con $j\in\N_0$, si ha che
+		Posto $V_j=\gen{\{x^j\}}$, con $j\in\N_0$, si ha che
 		\begin{equation*}
-			\R[x]=\bigoplus_{j\in\N_0}V^j=\bigoplus_{j\in\N_0}\gen{x^j}.
+			\R[x]=\bigoplus_{j\in\N_0}V_j.
 		\end{equation*}
-	\item In $\R^3$, siano $V_1=\gen{\begin{psmallmatrix}1\\0\\0\end{psmallmatrix},\begin{psmallmatrix}0\\1\\0\end{psmallmatrix}}$ e $V_2=\gen{\begin{psmallmatrix}0\\1\\0\end{psmallmatrix},\begin{psmallmatrix}0\\0\\1\end{psmallmatrix}}$.
+	\item In $\R^3$, siano $V_1=\gen{\Big\{\begin{psmallmatrix}1\\0\\0\end{psmallmatrix},\begin{psmallmatrix}0\\1\\0\end{psmallmatrix}\Big\}}$ e $V_2=\gen{\Big\{\begin{psmallmatrix}0\\1\\0\end{psmallmatrix},\begin{psmallmatrix}0\\0\\1\end{psmallmatrix}\Big\}}$.
 		Certamente $V_1+V_2=\R^3$, ma la somma non è diretta poiché la loro intersezione è l'asse $y$.
 \end{itemize}
 
