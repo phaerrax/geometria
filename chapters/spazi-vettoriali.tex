@@ -552,6 +552,40 @@ Le definizioni appaiono del tutto naturali se interpretiamo $W$ in queste formul
 La terna $(V\quot W,+,\cdot)$ è dunque per quanto mostrato uno spazio vettoriale su $K$, dove $V$ è a sua volta uno spazio vettoriale sul medesimo campo.
 Infatti, oltre alle proprietà appena dimostrate, esiste l'elemento neutro rispetto all'addizione, che è $W+0_V$ (si indica anche solamente con $W$), e l'opposto, che è $-(W+a)=W+(-a)$.
 
+\begin{teorema} \label{t:dimensione-quoziente}
+	Sia $W\leq V$ con $V$ di dimensione finita.
+	La dimensione di $V/W$ è finita e vale $\dim V-\dim W$.
+\end{teorema}
+\begin{proof}
+	Il sottospazio $W$ ha certamente dimensione finita: siano $n\defeq\dim W$ e $n+m\defeq\dim V$.
+	Sia $\{e_i\}_{i=1}^n$ una base di $W$.
+	Essa si può estendere ad una base di V, per il teorema \ref{estensione-base}.
+	Allora sia $\mathcal B=\{e_1,e_2,\dots,e_n,f_{n+1},\dots,f_{n+m}\}$ una base di $V$.
+
+	Ora, presa una classe $W+a$, il rappresentante $a\in V$ si può scrivere come combinazione lineare degli elementi di $\mathcal B$:
+	\begin{equation*}
+		a=\mu_1e_1+\dots+\mu_ne_n+\mu_{n+1}f_{n+1}+\dots+\mu_{n+m}f_{n+m}.
+	\end{equation*}
+	Poich\'e i termini fino a $\lambda_ne_n$ individuano un elemento di $W$, risulta $W+a=W+\mu_1f_{n+1}+\dots+\mu_mf_{n+m}$.
+	Per come è definita la somma nello spazio quoziente questo è equivalente ad $W+a=\mu_1(W+f_{n+1})+\dots+\mu_m(W+f_{n+m})$: l'insieme $\{W+f_{n+i}\}_{i=1}^m$ genera dunque $V\quot W$.
+
+	Verifichiamo che è anche linearmente indipendente.
+	Prendiamo una combinazione lineare nulla
+	\begin{equation}
+		\lambda_1(W+f_{n+1})+\lambda_2(W+f_{n+2})+\dots+\lambda_m(W+f_{n+m})=0_{V\quot W}=W+0_V.
+	\end{equation}
+	Essa è per definizione equivalente a $W+(\lambda_1f_{n+1}+\dots+\lambda_mf_{n+m})$.
+	Per l'uguaglianza precedente, quindi, deve essere
+	\begin{equation}
+		\sum_{i=1}^m\lambda_if_{n+i}\sim 0_V\quad\then\quad\sum_{i=1}^n\lambda_if_{n+i}\in W.
+	\end{equation}
+	Ma gli $f_{n+i}$ sono tutti vettori che non appartengono a $W$: dato che formano insieme agli $e_i$ la base $\mathcal B$, non è possibile che una combinazione lineare degli $f_{n+i}$ dia un elemento di $W$ (che, ricordiamo, è generato da $\{e_i\}_{i=1}^n$), altrimenti $\mathcal B$ sarebbe linearmente dipendente.
+	Se la loro somma deve essere in $W$, quindi, l'unico modo è che tutti i $\lambda_i$ siano nulli.
+	Ma allora l'insieme $\{W+f_{n+i}\}_{i=1}^m$ è linearmente indipendente, come volevasi dimostrare: perciò è una base di $V\quot W$.
+
+	La dimensione dello spazio quoziente è di conseguenza $\dim V\quot W=m=\dim V-\dim W$.
+\end{proof}
+
 \section{Algebre}
 \begin{definizione} \label{d:algebra}
 	Si definisce \emph{algebra} sul campo $K$ uno spazio vettoriale $A$ sul campo $K$ munito di un'ulteriore operazione interna di prodotto, che sia associativo e distributivo rispetto alla somma, ossia tale per cui
