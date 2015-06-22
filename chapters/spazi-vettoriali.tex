@@ -518,35 +518,39 @@ Per verificare che due spazi siano in somma diretta, per esempio che $V=W\oplus 
 
 \section{Spazi quoziente} \label{sec:spazi_quoziente}
 Sia $W$ un sottospazio vettoriale di $V$.
-Definiamo la relazione $  x\sim   y$, con $x,y\in V$, se $  x-  y\in W$: essa è di equivalenza, perché soddisfa le tre proprietà della definizione \ref{d:relazione-equivalenza}.
-Infatti $  x-  x=0_V$ che certamente appartiene a $W$; se $  x-  y=  w\in W$ esiste, allora deve esistere il suo opposto in $W$ (ed esiste, dato che $W$ è uno spazio vettoriale) che è $-  w=  y-  x\in W$; infine se $  x-  y=  w_1$ e $  y-  z=  w_2$ sono vettori di $W$, allora sommandoli si ottiene $  w_1-  w_2=  x-  y+  y-  z=  x-  z$ che poiché $W$ è uno spazio vettoriale, vi appartiene.
-Prendiamo un elemento $  a\in V$: la sua classe di equivalenza è formata da tutti quegli elementi di $V$ tali che $  a-  v\in W$, cioè
+Definiamo la relazione $x\sim y$, con $x,y\in V$, se $x-y\in W$.
+È una relazione di equivalenza, perché soddisfa le tre proprietà della definizione \ref{d:relazione-equivalenza}:
+\begin{itemize}
+	\item è riflessiva perch\'e $x-x=0\in W$ per ogni $x\in V$;
+	\item se $x-y=w\in W$, allora $-w=y-x\in W$;
+	\item se $x-y=w_1\in W$ e $y-z=w_2\in W$ allora anche $w_1+w_2=x-y+(y-z)=x-z\in W$.
+\end{itemize}
+Prendiamo un elemento $a\in V$: la sua classe di equivalenza, detta anche classe laterale, è formata dunque da tutti i $v\in V$ tali che $a-v\in W$, cioè
 \begin{equation*}
-	[  a]=\{  x\in V\colon  x-  a=  w\in W\}=\{  w+  a\colon  w\in W\}.
+	[a]_W=\{x\in V\colon x-a=w\in W\}=\{w+a\colon w\in W\}.
 \end{equation*}
-Questa classe si indica anche come $W+  a$, che si può leggere come l'insieme degli elementi che sono somma di un elemento di $W$ e di $  a$ (e che danno un elemento di $V$): essa si chiama anche \emph{laterale} destro\footnote{In questo caso il laterale è detto \emph{destro} perché il rappresentante $  a$ si trova alla destra dell'operazione. Ovviamente esistono anche laterali sinistri, che in questo caso sarebbero della forma $  a+W$. Trovandoci in spazi vettoriali, però, la somma è commutativa quindi non ha senso distinguere i due casi.} di $W$ in $V$, con rappresentante $  a$.
-L'insieme di queste classi di equivalenza distinte, come appena descritte, di $W$ in $V$ si indica con $V\quot W$ e si chiama \emph{spazio quoziente}.
+Poich\'e ogni elemento di $[a]_W$ è somma di un elemento (qualsiasi) di $W$ e di $a$, indichiamo la classe di equivalenza anche come $W+a$.\footnote{È inutile in questo contesto specificare le classi laterali \emph{destre} e \emph{sinistre}, dato che la somma è commutativa, quindi $W+a=a+W$.}
+L'insieme delle classi di equivalenza definite da questa relazione è lo spazio quoziente $V\quot W$.
 
-Nello spazio quoziente possiamo definire la somma, che indicheremo con il simbolo $\oplus$, di due laterali come
-\begin{equation*}
-	(W+  a)\oplus(W+  b)=W+(  a+  b).
-\end{equation*}
-Se anche fosse $[  a]\equiv[  a']$ e $[  b]\equiv[  b']$, non è detto a priori che si abbia $  a+  b=  a'+  b'$ come conseguenza della proprietà transitiva\footnote{Ovviamente con $  a\neq  a'$ e $  b\neq  b'$, altrimenti sarebbe ovvia: è sufficiente a questo scopo che $  a\sim  a'$, e lo stesso per $  b$.}.
-Perché ciò accada serve un'ulteriore condizione, che la relazione sia una \emph{relazione di congruenza}, ossia che sia compatibile con le operazioni in $V$.
-Se da $  x\sim  x'$ e $  y\sim  y'$ seguono le relazioni $  x+  y\sim   x'+  y'$ e $\lambda  x\sim\lambda  x'$, allora la relazione $\sim$ è una relazione di congruenza nello spazio vettoriale: mostriamo che la relazione da noi usata per definire lo spazio quoziente lo è.
-% Magari aggiungere un enunciato!
-\begin{proof}
-	Se $  x\sim  x'$, allora $  x-  x'=  w_1\in W$, e analogamente $  y-  y'=  w_2\in W$.
-	Sommandoli, si ottiene $  w_1+  w_2=  x-  x'+  y-  y'=(  x+  y)-(  x'+  y')$ che essendo $W$ un sottospazio vettoriale vi appartengono: allora $  x+  y\sim  x'+  y'$.
-	Anche per il prodotto con uno scalare $\lambda$, si ottiene analogamente che se $  x-  x'=  w\in W$, allora sempre poiché $W$ è un sottospazio vettoriale si ha che $\lambda  x-\lambda  x'=\lambda  w$ che appartiene a $W$.
-\end{proof}
-Come per $\oplus$, definiamo anche l'operazione analoga al prodotto scalare, che indichiamo con $\odot$:
-\begin{equation*}
-	\lambda\odot(W+  a)=W+\lambda  a.
-\end{equation*}
+Esso possiede una struttura di spazio vettoriale, con le operazioni indotte da $V$ sui rappresentanti.
+Più precisamente, definiamo la somma tra due classi e il prodotto per scalare come
+\begin{equation}
+	(W+a)+(W+b)=W+a+b,\hspace{1cm}\lambda(W+a)=W+\lambda a.
+	\label{eq:operazioni-spazio-quoziente}
+\end{equation}
+Le definizioni appaiono del tutto naturali se interpretiamo $W$ in queste formule come un elemento, appunto, di $W$: allora troviamo $W+W=W$ e $\lambda W=W$, essendo che sommando due elementi di $W$ o moltiplicandoli per uno scalare otteniamo ancora un elemento in $W$, per cui possiamo immaginare di svolgere le \eqref{eq:operazioni-spazio-quoziente} proprio come normali operazioni tra vettori.
 
-La terna $(V\quot W,\oplus,\odot)$ è uno spazio vettoriale su $K$, dove $V$ è a sua volta uno spazio vettoriale sul medesimo campo.
-Infatti, oltre alle proprietà appena dimostrate, esiste l'elemento neutro rispetto a $\oplus$, che è $W+0_V$ (si indica anche solamente con $W$), e l'opposto, che è $-(W+  a)=W+(-  a)$.
+\begin{osservazione} \label{o:spazio-quoziente-congruenza}
+	Se anche fosse $[a]_W=[a']_W$ e $[b]_W=[b']_W$, non è detto a priori che si abbia $[a+b]_W=[a'+b']_W$ o $[\lambda a]_W=[\lambda a']_W$ come conseguenza della proprietà transitiva.\footnote{Ovviamente con $a\ne a'$ e $b\ne b'$, altrimenti sarebbe ovvia.}
+	Perché ciò accada serve un'ulteriore condizione, che la relazione sia una \emph{relazione di congruenza}, ossia che sia compatibile con le operazioni in $V$.
+	Questo fatto si verifica facilmente sfruttando la struttura di sottospazio vettoriale di $W$.
+	Se $x\sim x'$ e $y\sim y'$, allora $x-x'=w_1$ e $y-y'=w_2$ per qualche $w_1,w_2\in W$.
+	Sommandoli, otteniamo $W\ni w_1+w_2=x-x'+y-y'=(x+y)-(x'+y')$: allora $x+y\sim x'+y'$.
+	Anche per il prodotto con uno scalare $\lambda\in K$, si ottiene analogamente che se $z-z'=w_3\in W$, allora si ha che $W\ni\lambda w_3=\lambda(z-z')=\lambda z-\lambda z'$ perciò $\lambda z\sim \lambda z'$.
+\end{osservazione}
+
+La terna $(V\quot W,+,\cdot)$ è dunque per quanto mostrato uno spazio vettoriale su $K$, dove $V$ è a sua volta uno spazio vettoriale sul medesimo campo.
+Infatti, oltre alle proprietà appena dimostrate, esiste l'elemento neutro rispetto all'addizione, che è $W+0_V$ (si indica anche solamente con $W$), e l'opposto, che è $-(W+a)=W+(-a)$.
 
 \section{Algebre}
 \begin{definizione} \label{d:algebra}
