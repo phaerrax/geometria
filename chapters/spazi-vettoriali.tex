@@ -168,28 +168,32 @@ Le combinazioni lineari (sempre finite!) di elementi di $S$ sono definite come
 con $\lambda_i\in K$, $  s_i\in S$ e $n\in\N$.
 
 \begin{teorema}
-	Sia $V$ uno spazio vettoriale su $K$, e $S\subseteq V$ non vuoto. Allora
+	Sia $V$ uno spazio vettoriale su $K$, e $S\subseteq V$ non vuoto.
+	Allora
 	\begin{equation*}
-		\gen{S}=\left\{\sum_{i=1}^n\lambda_i  s_i\colon \lambda_i\in K,   s_i\in S, i=1,2,\dots,n, n\in\N\right\}.
+		\gen{S}=\left\{\sum_{i=1}^n\lambda_i s_i\colon \lambda_i\in K, s_i\in S, i=1,2,\dots,n, n\in\N\right\}.
 	\end{equation*}
 \end{teorema}
 \begin{proof}
 	Questo particolare $\gen{S}$ deve soddisfare la definizione \ref{d:sottospazio-generato}:
 	\begin{itemize}
-		\item i $  s_i$ appartengono a $S$, e possiamo esprimerli come $  s_i=1_K  s_i$ quindi $S\subseteq\gen{S}$;
-		\item se $W\leq V$ e $S\subseteq W$, allora dato che $\gen{S}\supseteq S$ se prendiamo una combinazione lineare di due elementi di $S$, lo è anche di elementi di $W$, e poiché il risultato è sempre un elemento di $\gen{S}$ quest'ultimo è un sottospazio vettoriale di $W$.
+		\item gli elementi $s_i$ appartengono a $S$, e possiamo esprimerli come $s_i=1_Ks_i$ quindi $S\subseteq\gen{S}$;
+		\item se $W\leq V$ e $S\subseteq W$, allora dato che $\gen{S}\supseteq S$ se prendiamo una combinazione lineare di due elementi di $S$, lo è anche di elementi di $W$, e poiché il risultato è sempre un elemento di $\gen{S}$ quest'ultimo è un sottospazio vettoriale di $W$.\qedhere
 	\end{itemize}
 \end{proof}
+Per l'unicità del sottospazio generato, questa è anche l'unica forma che $\gen{S}$ assume.
 
 \begin{definizione}
-	Sia $V$ uno spazio vettoriale sul campo $K$ e sia $S\subseteq V$ un insieme non vuoto. $S$ è detto \emph{sistema di generatori} per $V$ se $\gen{S}=V$.
+	Sia $V$ uno spazio vettoriale sul campo $K$ e sia $S\subseteq V$ un insieme non vuoto.
+	$S$ è detto \emph{sistema di generatori} per $V$ se $\gen{S}=V$.
 \end{definizione}
-Con questa definizione possiamo studiare anziché l'intero spazio vettoriale $V$ solo un suo sottoinsieme.
+Il fatto che con alcuni elementi di uno spazio $V=\gen{S}$ possiamo ricostruire tramite delle combinazioni lineari tutti i restanti è molto utile, in quanto possiamo dedurre molte proprietà di $V$ studiando soltanto $S$.
+La situazione però si può ancora migliorare, come vedremo in seguito: il problema principale è che, senza ulteriori ipotesi, potrebbero esistere molti modi di esprimere $v\in V$ in termini di combinazioni lineari di elementi di $S$.
 \paragraph{Esempi}
 \begin{itemize}
 	\item Come già detto, i vettori di $\R^n$ sono definiti dalle loro coordinate, quindi possono essere scritti come combinazioni lineari di questi elementi: allora
 		\begin{equation*}
-			\R^n=\gen{
+			\R^n=\gen{\left\{
 				\begin{pmatrix}
 					1\\0\\\vdots\\0
 				\end{pmatrix},
@@ -199,60 +203,59 @@ Con questa definizione possiamo studiare anziché l'intero spazio vettoriale $V$
 				\begin{pmatrix}
 					0\\0\\\vdots\\1
 				\end{pmatrix}
+			\right\}
 			}
 		\end{equation*}
-		I vettori dello spazio generatore sono a tutti gli effetti dei versori di $\R^n$, in questo esempio sono i versori allineati con gli assi cartesiani.
+		I vettori dello spazio generatore sono a tutti gli effetti dei versori di $\R^n$; in questo esempio sono i versori allineati con gli assi cartesiani.
 	\item $\R[x]$ è generato da $\{1,x,x^2,\dots,x^n,\dots\}$; questo insieme è infinito, perché non esiste un polinomio ``di grado massimo''.
-		Ogni $  x\in\R[x]$ è determinato da una combinazione lineare di questi componenti, in modo univoco.
-	\item In $\R^2$ si può individuare il sistema di generatori $\gen{\big(\begin{smallmatrix} 0\\1 \end{smallmatrix}\big),\big(\begin{smallmatrix} 1\\0 \end{smallmatrix}\big),\big(\begin{smallmatrix} 1\\1 \end{smallmatrix}\big)}$.
+		Ogni $x\in\R[x]$ è determinato da una combinazione lineare di questi componenti, in modo univoco.
+	\item In $\R^2$ si può individuare il sistema di generatori $\Big\{\big(\begin{smallmatrix} 0\\1 \end{smallmatrix}\big),\big(\begin{smallmatrix} 1\\0 \end{smallmatrix}\big),\big(\begin{smallmatrix} 1\\1 \end{smallmatrix}\big)\Big\}$.
 		Con questo insieme però si può scrivere l'elemento $\big(\begin{smallmatrix} 2\\2 \end{smallmatrix}\big)$ in due modi diversi, ossia come $2\big(\begin{smallmatrix} 0\\1 \end{smallmatrix}\big)+2\big(\begin{smallmatrix} 1\\0 \end{smallmatrix}\big)+0\big(\begin{smallmatrix} 1\\1 \end{smallmatrix}\big)$ ma anche come $0\big(\begin{smallmatrix} 0\\1 \end{smallmatrix}\big)+0\big(\begin{smallmatrix} 1\\0 \end{smallmatrix}\big)+2\big(\begin{smallmatrix} 1\\1 \end{smallmatrix}\big)$.
-		Questo sistema di generatori quindi non permette di scrivere in maniera univoca i vettori di $\R^2$.
 \end{itemize}
 
 \begin{definizione} \label{d:dipendenza-lineare}
-	Sia $V$ uno spazio vettoriale su $K$, e $\{  v_i\}_{i\in I}\subseteq V$.
-	Si dice che l'insieme $\{v_i\}$ è \emph{linearmente dipendente} se esiste $I_0\subseteq I$, di cardinalità $n$ finita, e un insieme di scalari $\{\lambda_1,\lambda_2,\dots,\lambda_n\}\in K\setminus\{0_K\}$ tali per cui
+	Sia $V$ uno spazio vettoriale su $K$, e $\{v_i\}_{i\in I}\subseteq V$.
+	Si dice che l'insieme $\{v_i\}_{i\in I}$ è \emph{linearmente dipendente} se esiste $I_0\subseteq I$, di cardinalità $n$ finita, e un insieme di scalari $\{\lambda_i\}_{i\in I}$ non tutti nulli tali per cui
 	\begin{equation*}
-		\sum_{i=1}^n\lambda_i  v_i=0_V,
+		\sum_{i\in I}\lambda_i v_i=0_V.
 	\end{equation*}
-	dove $\{  v_i\}_{i=1}^n$ è una numerazione di $\{  v_i\}_{i\in I}$.
 \end{definizione}
-In parole povere, un insieme è linearmente dipendente se esiste almeno una combinazione lineare (con i coefficienti non tutti nulli) dei suoi componenti che dia lo zero dello spazio.
-Per l'ultimo degli esempi precedenti l'insieme $\big\{\big(\begin{smallmatrix} 0\\1 \end{smallmatrix}\big),\big(\begin{smallmatrix} 1\\0 \end{smallmatrix}\big),\big(\begin{smallmatrix} 1\\1 \end{smallmatrix}\big)\big\}$ è linearmente dipendente.
+Nell'ultimo degli esempi precedenti l'insieme $\big\{\big(\begin{smallmatrix} 0\\1 \end{smallmatrix}\big),\big(\begin{smallmatrix} 1\\0 \end{smallmatrix}\big),\big(\begin{smallmatrix} 1\\1 \end{smallmatrix}\big)\big\}$ è linearmente dipendente.
 
-Ovviamente, un sistema che non è linearmente dipendente si dice \emph{linearmente indipendente}, o anche \emph{libero}.
+Ovviamente, un sistema che non è linearmente dipendente si dice \emph{linearmente indipendente}.
 
 \begin{definizione} \label{d:indipendenza-lineare}
-	Un insieme finito di vettori $\{  v_1,  v_2,\dots,  v_k\}$ si dice \emph{linearmente indipendente}, se in ogni combinazione lineare dei $k$ vettori che produce $0_V$ i coefficienti sono tutti nulli:
+	Un insieme finito di vettori $\{v_1, v_2,\dots, v_k\}$ si dice \emph{linearmente indipendente}, se in ogni combinazione lineare dei $k$ vettori che produce $0_V$ i coefficienti sono tutti nulli:
 	\begin{equation*}
-		\lambda_1  v_1+\lambda_2  v_2+\dots+\lambda_k  v_k=0_V\ \then\ \lambda_1=\lambda_2=\dots=\lambda_k=0_K.
+		\lambda_1 v_1+\lambda_2 v_2+\dots+\lambda_k v_k=0_V\quad\then\quad\lambda_1=\lambda_2=\dots=\lambda_k=0_K.
 	\end{equation*}
-	Un insieme infinito di vettori $\{  v_i\}_{i\in I}$ (con $I$ quindi anche di cardinalità infinita) è linearmente indipendente se $\forall J\subseteq I$ di cardinalità finita $\{  v_j\}_{j\in J}$ è linearmente indipendente (cioè se lo è ogni suo sottoinsieme).
+	Un insieme infinito di vettori $\{v_i\}_{i\in I}$ è linearmente indipendente se $\forall J\subseteq I$ di cardinalità finita $\{v_j\}_{j\in J}$ è linearmente indipendente.
 \end{definizione}
 Alcuni esempi di insiemi linearmente indipendenti:
 \begin{itemize}
 	\item il sistema che genera $K_n[x]$, ossia $\{1,x,x^2,\dots,x^n\}$, è linearmente indipendente perché un polinomio è identicamente nullo se e solo se tutti i coefficienti dei vari termini sono nulli.
 		Lo stesso vale per i polinomi di grado non limitato di $K[x]$, poiché la definizione è verificata da ``blocchi'' di termini.
-	\item l'insieme $\{  v,  w,0_V,  z\}\subset V$ spazio vettoriale su $K$ non lo è, poiché $0_K  v+0_K  w+1_K0_V+0_K  z=0_V$ anche se uno dei coefficienti, $1_K$, non è nullo.
+	\item l'insieme $\{v,w,0_V,z\}\subset V$ spazio vettoriale su $K$ non lo è, poiché $0_Kv+0_Kw+1_K0_V+0_Kz=0_V$ anche se uno dei coefficienti, $1_K$, non è nullo.
+		In generale ogni insieme che contenga l'elemento nullo dello spazio è sempre linearmente dipendente.
 \end{itemize}
 Il seguente teorema indica un modo più semplice di verificare questa definizione.
 \begin{teorema}
-	Un insieme di vettori $\{  v_i\}_{i\in i}\subset V$ è linearmente dipendente se e solo se almeno uno di essi è una combinazione lineare di un numero finito dei rimanenti.
+	Un insieme di vettori $\{v_i\}_{i\in I}\subset V$ è linearmente dipendente se e solo se almeno uno di essi è una combinazione lineare di un numero finito dei rimanenti.
 \end{teorema}
 \begin{proof}
-	Sia dato l'insieme, linearmente dipendente, $\{  v_i\}_{0<i\leq k}$: esiste una combinazione lineare $\sum_{n=1}^k\lambda_n  v_n$ nulla senza che tutti i $\lambda_n$ siano nulli.
-	Trascurando nella serie gli eventuali termini nulli, rimangono un numero finito di termini tali che ad esempio $\lambda_1  v_1=-\lambda_2  v_2-\dots-\lambda_n  v_n$.
-	Poiché $\lambda_1$ non è nullo, esiste il suo inverso rispetto al rapporto, $(\lambda_1)^{-1}$, e moltiplicando la precedente equazione per questo risulta che il primo termine è $(\lambda_1)^{-1}(\lambda_1  v_1)=(\lambda_1^{-1}\lambda_1)  v_1=1_K  v_1=v_1$, allora
+	Sia dato un insieme $\{v_i\}_{i=1}^k$ linearmente dipendente: esiste allora una combinazione lineare $\sum_{n=1}^k\lambda_n v_n=0_V$ senza che tutti i $\lambda_n$ siano nulli.
+	Trascurando nella serie gli eventuali termini nulli, possiamo allora scrivere $\lambda_1 v_1=-\lambda_2 v_2-\dots-\lambda_n v_n$.
+	Poiché $\lambda_1$ non è nullo, esiste il suo inverso rispetto al rapporto, $(\lambda_1)^{-1}$, e moltiplicando la precedente equazione per questo risulta che il primo termine è $(\lambda_1)^{-1}(\lambda_1 v_1)=(\lambda_1^{-1}\lambda_1)v_1=v_1$ da cui
 	\begin{equation*}
-	  v_1=(\lambda_1^{-1})(-\lambda_2  v_2-\dots-\lambda_n  v_n),
+	  v_1=(\lambda_1^{-1})(-\lambda_2 v_2-\dots-\lambda_n v_n),
 	\end{equation*}
-	che è quindi combinazione lineare degli altri vettori dell'insieme.
+	cioè $v_1$ è combinazione lineare degli altri vettori dell'insieme.
 
-	Sia $  v^*\neq 0_V$ un vettore dell'insieme dato, combinazione lineare (in cui quindi i coefficienti non possono essere tutti nulli) di alcuni dei vettori rimanenti, quindi
+	Viceversa, sia $v^*\neq 0_V$ un vettore dell'insieme dato, combinazione lineare (in cui quindi i coefficienti non possono essere tutti nulli) di alcuni dei vettori rimanenti, quindi
 	\begin{equation*}
-		  v^*=\mu_1  v_1+\mu_2  v_2+\dots+\mu_r  v_r.
+		  v^*=\mu_1 v_1+\mu_2 v_2+\dots+\mu_r v_r.
 	\end{equation*}
-	Portando tutto al primo termine risulta $  v^*-\mu_1  v_1-\mu_2  v_2-\dots-\mu_r  v_r=0_V$ sebbene non siano tutti nulli.
+	Portando tutto al primo termine risulta $v^*-\mu_1 v_1-\mu_2 v_2-\dots-\mu_r v_r=0_V$ sebbene non siano tutti nulli, ossia l'insieme dei $v_i$ è linearmente dipendente.
 \end{proof}
 
 \section{Basi e dimensioni} \label{sec:basi-dimensioni}
