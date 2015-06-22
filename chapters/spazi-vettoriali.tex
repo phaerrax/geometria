@@ -447,10 +447,10 @@ Ovviamente, sul campo complesso, abbiamo $\dim_\C\C^n=n$; allo stesso tempo, per
 \end{proof}
 Ad esempio, $\R$ è un sottospazio di $\R^3$: prendendo una base $\{  v\}$ del primo, si ottiene una base del secondo semplicemente aggiungendo due vettori (distinti) perpendicolari a $  v$.
 
-\begin{definizione} \label{d:insieme-linearmente-indipentente}
+\begin{definizione} \label{d:insieme-linearmente-indipendente}
 	Un insieme $\{V_i\}_{i\in I}$ di sottospazi vettoriali di $V$ si dice linearmente indipendente se comunque si scelga un vettore $x_i\neq 0$ per ciascun $V_i$, l'insieme $\{x_i\}_{i\in I}$ è linearmente indipendente.
 \end{definizione}
-\begin{teorema}
+\begin{teorema} \label{t:sottospazi-linearmente-indipendenti-intersezione}
 	Un insieme $\{V_i\}_{i\in I}$ di sottospazi vettoriali di $V$ è linearmente indipendente se e solo se $\forall k\in I$ si ha che l'intersezione tra $V_k$ e lo spazio generato dai restanti $V_i$ contiene soltanto lo zero, cioè\footnote{Ricordiamo che la somma di più spazi vettoriali è lo spazio generato dalla loro unione, ossia $\sum_i V_i=\gen{\bigcup_i V_i}$.}
 	\begin{equation*}
 		V_k\cap\sum_{j\in I\setminus\{k\}}{V_j}=\{0\}.
@@ -482,13 +482,17 @@ Ad esempio, $\R$ è un sottospazio di $\R^3$: prendendo una base $\{  v\}$ del p
 	Se $\forall i\in I$ il sistema di vettori $S_i\subset V_i$ è linearmente indipendente, allora $\bigcup_{i\in I}S_i$ è linearmente indipendente in $V$.
 \end{teorema}
 \begin{proof}
-	Consideriamo un sistema linearmente indipendente di vettori $S_i\subset V_i$ e ipotizziamo per assurdo che l'unione non sia linearmente indipendente.
-	Questo implica che, considerando gli elementi $y^k_i\in S_i$ con $i,k\in I_0$ in cui $I_0\in I$ ha cardinalità finita, 
+	Consideriamo un sistema linearmente indipendente di vettori $S_i=\{x_k\}_{k=1}^{n_i}\subset V_i$ e ipotizziamo per assurdo che l'unione non sia linearmente indipendente.
+	Questo implica che, considerando gli elementi $x_k^i\in S_i$ con $i\in I_0$ e $1\le k\le n_i$ (in cui $I_0\in I$ ha cardinalità finita) troviamo 
 	\begin{equation*}
-		\sum_{1\leq k \leq n_i} \lambda^k_i y_k^i = 0,
+		\sum_{1\leq k \leq n_i}\lambda_k^ix_k^i = 0,
 	\end{equation*}
-	per ogni $\lambda^k_i$ meno un $\lambda^k_{\tilde{i}}$, corrispondente a un $\tilde{k}$.
-	Posto $  x_i = \sum\limits_{1\leq k \leq n_i} \lambda^k_i x_k^i$ sappiamo che $\sum_{i\in I_0}  x_i = 0$ e che un elemento di questa sommatoria non è nullo, ma per ipotesi $  x_i\subset S_i$ che è una combinazione di vettori linearmente indipendente, allora deve essere $  x_{\tilde{i}} = 0$.
+	con $\lambda_k^i$ nulli per ogni $i,k$ tranne (almeno) un $\lambda_{k^*}^{i^*}$.
+	Posto $y^i=\sum_{k=1}^{n_i}\lambda_k^ix_k^i$ sappiamo che $\sum_{i\in I_0}y^i=0$ e che $y^{i^*}\ne 0$, ma allora
+	\begin{equation*}
+		y^{i^*}=-\sum_{i\in I_0\setminus\{i^*\}}y^i\quad\then\quad V_{i^*}\cap\sum_{i\in I_0\setminus\{i^*\}}V_i\ni y^{i^*}\ne 0
+	\end{equation*}
+	che contraddice l'indipendenza lineare dei sottospazi, per il teorema \ref{t:sottospazi-linearmente-indipendenti-intersezione}.
 	L'unione $S$ dei vari $S_i$ è allora linearmente indipendente. 
 \end{proof}
 
