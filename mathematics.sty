@@ -16,39 +16,15 @@
 \usepackage{amsfonts}
 \usepackage{a4wide}
 \usepackage{amsthm}
-\usepackage{siunitx}
 \usepackage{amssymb}
-\usepackage{booktabs}
-\usepackage{color}
 \usepackage{mathrsfs}
 \usepackage{xfrac}
 \usepackage{graphicx}
-\usepackage{eufrak} %math fraktur font
 \usepackage[usenames,dvipsnames]{xcolor}
 \usepackage{enumitem} %numeri di elenchi personalizzati
 \usepackage{comment}
 \usepackage{hyperxmp}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Impostazioni e caricamento di pgfplots
-\usepackage{pgfplots}
-	\pgfplotsset{compat=newest}
-	\tikzset{
-	small dot/.style={fill=black,circle,scale=0.3}
-	}
-	\pgfplotsset{
-		standard/.style={
-			axis lines=middle,
-			axis on top,
-			enlargelimits,
-			legend pos=outer north east,
-			every axis x label/.style={at={(current axis.right of origin)},anchor=west},
-			every axis y label/.style={at={(current axis.above origin)},anchor=south}
-		}
-	}
-\usepackage{tikz-3dplot}
-	\tdplotsetmaincoords{75}{60} %angoli di orientazione degli assi in 3d
-	
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Altri pacchetti di formattazione del testo e PDF
 \usepackage{sectsty}
@@ -85,12 +61,6 @@
 \newcommand{\tot}{_\textup{tot}} %pedice "tot"
 \renewcommand{\vec}[1]{\mathbf{#1}} %indica vettori in grassetto
 %\renewcommand{\vec}[1]{\underline{#1}} %indica vettori sottolineati
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Definizioni di nuovi colori
-\colorlet{darkgreen}{green!75!black}
-\colorlet{darkyellow}{yellow!75!orange}
-\colorlet{indigo}{blue!50!violet}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Simboli matematici
@@ -144,10 +114,7 @@
 \newcommand*{\defeq}{
 	\mathrel{\vcenter{\baselineskip0.5ex \lineskiplimit0pt \hbox{\scriptsize.} \hbox{\scriptsize.}}} =
 }
-\newcommand{\sve}{(V,\intern{\cdot}{\cdot})}
-\newcommand{\bra}[1]{\left\langle{#1}\right|}
-\newcommand{\ket}[1]{\left|{#1}\right\rangle}
-\newcommand{\braket}[2]{\left\langle{#1}\middle|{#2}\right\rangle}
+%\newcommand{\sve}{(V,\intern{\cdot}{\cdot})}
 
 %OPERATORI MATEMATICI: come lim, sen, etc. che hanno dello spazio prima e dopo la parola stampata
 \DeclareMathOperator{\diam}{diam} %diametro (di un intervallo etc.)
@@ -217,15 +184,4 @@
 \newcommand{\Rex}{\overline{\mathbb{R}}} %extended real
 \newcommand{\C}{\mathbb{C}} %complex
 \newcommand{\T}{\mathbb{T}} %circular group
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Versori
-\newcommand{\ii}{\boldsymbol{\hat{\textbf{\i}}}}
-\newcommand{\jj}{\boldsymbol{\hat{\textbf{\j}}}}
-\newcommand{\kk}{\vec{\hat{k}}}
-\newcommand{\rr}{\vec{\hat{r}}}
-\newcommand{\thetavers}{\vec{\hat{\uptheta}}}
-\newcommand{\rhovers}{\vec{\hat{\uprho}}}
-\newcommand{\phivers}{\vec{\hat{\upphi}}}
-%trovare altri nomi per gli ultimi tre ASAP
 
