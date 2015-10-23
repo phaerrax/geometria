@@ -1,0 +1,1070 @@
+\chapter{Gruppi e anelli}
+\section{Gruppi} \label{sec:gruppi}
+\begin{definizione} \label{d:gruppo}
+Si definisce \emph{gruppo} un insieme $G$ non vuoto munito di un'operazione binaria interna $*\colon G\times G\to G$, ossia tale per cui sono rispettati gli assiomi seguenti:
+\begin{enumerate}
+\item vale la proprietà associativa, cioè $\forall g_1,g_2,g_3\in G$ vale $g_1*(g_2*g_3)=(g_1*g_2)*g_3$;
+\item esiste l'elemento neutro, cioè $\exists e\in G\colon\forall g\in G$, $g*e=e*g=g$;
+\item esiste l'inverso, ossia $\forall g\in G$ $\exists g'\in G\colon g*g'=g'*g=e$.
+\end{enumerate}
+\end{definizione}
+Dove non ci saranno ambiguità, d'ora in poi indicheremo l'operazione interna del gruppo come una moltiplicazione, omettendo il simbolo $*$: scriveremo dunque $x*y=xy$. L'inverso di un elemento $x$ sarà indicato, coerentemente, con $x^{-1}$.
+
+La struttura di gruppo si compone sempre di un insieme e di un'operazione, perciò si identifica convenzionalmente con la coppia $(G,*)$; uno insieme può formare gruppi differenti in base all'operazione associata.
+Il gruppo è detto \emph{commutativo} (o \emph{abeliano}) se vale anche la proprietà commutativa, cioè $\forall x,y\in G$, $xy=yx$.
+
+L'elemento neutro di un gruppo è sempre unico: se $e$ ed $e'$ rispettano la seconda proprietà, allora $e'=ee'=e$ quindi coincidono.
+Lo stesso vale per l'inverso, dato $x\in G$: se $a$ e $b$ sono due inversi di $x$, allora
+\begin{equation}
+	b=eb=(ax)b=a(xb)=ae=a.
+	\label{eq:unicita-inverso}
+\end{equation}
+
+Elenchiamo di seguito alcuni esempi, più o meno immediati, di gruppi.
+\begin{itemize}
+	\item Gli insiemi $\Z$, $\Q$, $\R$, $\C$ con l'usuale operazione di addizione. Più in generale, gli elementi di un campo qualsiasi formano un gruppo rispetto all'addizione.
+	\item Gli insiemi $\Q$, $\R$, e $\C$, privati dello zero, con l'usuale moltiplicazione. Lo stesso accade per gli elementi non nulli di un campo qualsiasi: dato un campo $K$, saremo soliti indicare il gruppo moltiplicativo $(K\setminus\{0\},\cdot)$ con il simbolo $K^\times$.
+	\item Le rotazioni in un piano, con l'operazione di composizione, che è anche abeliano.
+	\item Le rotazioni in $\R^3$, sempre con la composizione, sono ancora un gruppo. Esso però non è abeliano, perch\'e due rotazioni effettuate rispetto ad assi differenti in generale non commutano.
+	\item L'insieme $\{-1,1\}$ forma un gruppo rispetto alla moltiplicazione.
+\end{itemize}
+
+\begin{definizione} \label{d:sottogruppo}
+	Un sottoinsieme $H$ di un gruppo $G$ è detto \emph{sottogruppo} di $G$ se è a sua volta un gruppo con l'operazione di $G$.
+\end{definizione}
+In altre parole, $H$ è un gruppo contenuto in un gruppo più grande.
+Questa definizione equivale alle richieste:
+\begin{enumerate}
+	\item $H$ deve essere chiuso rispetto all'operazione del gruppo $G$, ossia se $a,b\in H$ allora $ab,ba\in H$;
+	\item ogni elemento di $H$ deve avere il suo inverso in $H$.
+\end{enumerate}
+Di conseguenza, $H$ deve anche contenere l'elemento neutro (lo stesso!) di $G$, poich\'e se $x\in H$, allora anche $x^{-1}$ vi appartiene, dunque anche $xx^{-1}=e$.
+
+Ogni gruppo ammette sempre due sottogruppi: il gruppo stesso e il \emph{sottogruppo banale} $\{e\}$ del suo elemento neutro.
+Gli altri sottogruppi, se esistono, sono detti \emph{propri}.
+Se un gruppo è abeliano, allora anche tutti i suoi sottogruppi lo sono.
+Alcuni esempi di sottogruppi sono i seguenti.
+\begin{itemize}
+	\item L'insieme $\T=\{z\in\C\colon \abs{z}=1\}$, detto \emph{gruppo circolare}, è un sottogruppo di $\C^\times$.
+		Poich\'e $\C^\times$ è abeliano, lo è anche $\T$.
+	\item In $\R^2$, sia $R(\theta)$ la rotazione antioraria di un angolo $\theta$.
+		L'insieme $\{R(0), R(\pi/2), R(\pi), R(3\pi/2)\}$ è un sottogruppo del gruppo delle rotazioni nel piano.
+\end{itemize}
+
+\section{Relazioni di equivalenza} \label{sec:relazioni-equivalenza}
+Una relazione binaria su un insieme $X$ lega due elementi dell'insieme.
+Essa si definisce come un sottoinsieme di $X\times X$, intendendo che due elementi $a,b$ sono messi in relazione da $R$ se $(a,b)\in R$.
+Solitamente una relazione di questo tipo si indica con il simbolo $\sim$, cioè $a\sim b$.
+\begin{definizione} \label{d:relazione-equivalenza}
+	La relazione $\sim$ è una relazione di equivalenza su $X$ se è binaria e valgono le seguenti proprietà:
+	\begin{enumerate}
+		\item è riflessiva: $a\sim a$;
+		\item è simmetrica: se $a\sim b$, allora $b\sim a$;
+		\item è transitiva: se $a\sim b$ e $b\sim c$, allora anche $a\sim c$.
+	\end{enumerate}
+\end{definizione}
+Con questa relazione di equivalenza possiamo ``raggruppare'' gli elementi di $X$ in vari insiemi di elementi tutti in relazione tra loro.
+Vediamo se questa suddivisione è buona, cioè se un elemento è categorizzato in uno solo di questi insiemi o meno.
+\begin{definizione}
+	Si chiama \emph{classe di equivalenza} di un elemento $a\in X$, rispetto alla relazione $\sim$, l'insieme
+	\begin{equation*}
+		[a]=\{b\in X\colon b\sim a\}.
+	\end{equation*}
+	L'elemento $a$ è detto \emph{rappresentante} della classe $[a]$.
+\end{definizione}
+\begin{teorema}
+	Due classi di equivalenza, rispetto alla relazione $\sim$, $[a]$ e $[a']$ coincidono se e solo se $a\sim a'$.
+\end{teorema}
+\begin{proof}
+	Siano le due classi $[a]=\{x\in X\colon x\sim a\}$ e $[a']=\{y\in X\colon y\sim a'\}$.
+	Sia $[a]\subseteq[a']$: preso un elemento $x\in[a]$, si ha ovviamente che $x\sim a$.
+	Poiché $a\sim a'$, per la proprietà transitiva $x\sim a'$ quindi $x\in[a']$, e viceversa per simmetria: allora $[a]\equiv[a']$.
+	Poniamo ora le due classi coincidenti, siccome $a\in[a]$ e $a'\in[a']$, poichè le due classi coincidono si ha che $a$ appartiene anche ad $[a']$ e $a'$ appartiene anche ad $[a]$, quindi $a\sim a'$.
+\end{proof}
+
+\begin{teorema}
+	Due classi di equivalenza sono distinte se e solo se sono disgiunte: se $[a]\neq[b]$ allora $[a]\cap[b]=\emptyset$.
+\end{teorema}
+\begin{proof}
+	Sia per assurdo che esista un elemento $c\in[a]\cap[b]$.
+	Allora esso è in relazione sia con $a$ che con $b$, ma allora per la proprietà transitiva $a\sim b$, quindi le due classi coincidono, il che è una contraddizione.
+	Le due classi devono quindi essere disgiunte.
+\end{proof}
+
+Le classi distinte individuate da una relazione di equivalenza in $X$ costituiscono una partizione di $X$.
+\begin{definizione} \label{d:partizione}
+	Sia $\{S_i\}_{i\in I}$ una famiglia di sottoinsiemi di un insieme $X$. Tale famiglia si dice \emph{partizione} di $X$ se:
+	\begin{itemize}
+		\item $S_i\neq\emptyset$ $\forall i\in I$;
+		\item $S_i\cap S_j=\emptyset$ per ogni $i\neq j$;
+		\item $\bigcup_{i\in I}S_i\equiv X$.
+	\end{itemize}
+\end{definizione}
+Sia $\{S_i\}_{i\in I}$ una partizione di un insieme $X$: si può sempre definire una relazione di equivalenza $\sim$ su $X$, ponendo che $\forall a,b\in X$, $a\sim b$ se e solo se $\exists i\in I\colon a,b\in S_i$.
+Una tale relazione soddisfa la definizione di relazione di equivalenza:
+\begin{enumerate}
+	\item Qualsiasi $a\in X$ sta in almeno uno dei sottoinsiemi $S_i$, per il terzo punto della \ref{d:partizione}, quindi $a\sim a$.
+	\item Se esiste un $i\in I$ per cui $a,b\in S_i$, certamente scambiando l'ordine di $b$ e $a$ entrambi appartengono comunque a $S_i$, quindi se $a\sim b$ anche $b\sim a$.
+	\item Se $a\sim b$ e $b\sim c$, allora esiste $i\in I$ per il quale $a,b\in S_i$ ed esiste un altro indice $j\in I$ per cui $b,c\in S_j$.
+		Se $i\neq j$, però, $b$ non potrebbe appartenere ad entrambi perché la loro intersezione sarebbe vuota.
+		Allora $i=j$, e per tale indice $a,b,c\in S_i$ (o $S_j$), quindi $a\sim c$.
+\end{enumerate}
+
+
+
+\section{Anelli} \label{sec:anelli}
+\begin{definizione} \label{d:anello}
+Un insieme non vuoto $A$, dotato di due operazioni binarie interne $*$ e $\diamond$, si dice anello se valgono le seguenti proprietà:
+\begin{enumerate}
+\item $(A,*)$ è un gruppo abeliano;
+\item $(A,\diamond)$ è un semigruppo, cioè è solo associativo;
+\item $\forall a,b,c\in A$ valgono $(a* b)\diamond c=(a\diamond c)*(b\diamond c)$ e $a\diamond(b* c)=(a\diamond b)*(a\diamond c)$.
+\end{enumerate}
+\end{definizione}
+Intenderemo sempre che la seconda operazione avrà sempre la precedenza sulla prima, se non diversamente specificato: vale a dire, $x* y\diamond z$ significherà $x*(y\diamond z)$; in caso contrario si usano le parentesi dove necessario.
+D'ora in poi, per mantenere una notazione più familiare e semplice, ci riferiremo all'operazione $*$ come ad un'\emph{addizione} (e la indicheremo con $+$), e all'operazione $\diamond$ come ad una \emph{moltiplicazione}.
+Infatti l'addizione e la moltiplicazione che tutti conosciamo soddisfano questi assiomi, che comunque possono essere generalizzati ad operazioni differenti, come il prodotto tra polinomi o matrici.
+
+L'anello si dice \emph{commutativo} se anche $(A,\cdot)$ è commutativo, cioè $ab=ba$ $\forall a,b\in A$; la commutatività dell'addizione è sempre garantita dal fatto che $(A,+)$ è abeliano.
+L'elemento neutro dell'addizione in un anello esiste sempre, dato che $(A,+)$ è un gruppo: indicheremo tale elemento con $0$, o con $0_A$ se ci sarà bisogno di specificare l'anello al quale appartiene.
+L'esistenza dell'elemento neutro della moltiplicazione, invece, non è data per certa: se esiste, l'anello si dice \emph{dotato di unità}, e la indicheremo con $1$ o $1_A$.
+
+Ecco alcuni esempi di anelli.
+\begin{itemize}
+\item $\Z$ è un anello con le usuali operazioni di addizione e moltiplicazione, come del resto $\Q$, $\R$, $\C$ e ogni altro campo.
+%\item Fissato un numero $n$ intero e non nullo, si stabilisce la relazione $\sim$ definita come $a\sim b\iff n\divides a-b$, ossia $n$ divide la differenza $a-b$. Si scrive anche che $a\equiv b\mod n$.
+%Si dimostra che $\sim$ così definita è una relazione di equivalenza e congruenza.
+%L'insieme delle classi di equivalenza distinte, indicato con $\Z_n$, è un anello rispetto alle operazioni di somma e prodotto definite come segue: $\forall [a]_n,[b]_n\in\Z_n$, $[a]_n+[b]_n=[a+b]_n$ e $[a]_n[b]_n=[ab]_n$. La classe $[1]_n$ è l'unità (per qualsiasi $n$) per il prodotto; inoltre, $[a]_n\equiv[b]_n$ se e solo se $a\sim b$ cioè $b=a+kn$, quindi $[a]_n=\{a+kn,\ k\in\Z\}$.
+\item L'insieme $K[x]$ dei polinomi (di grado qualunque) con termini presi da un campo $K$ forma un anello con le note operazioni di somma e prodotto tra polinomi.
+\end{itemize}
+
+Definiamo per $n\in\Z$ l'addizione di $a$ con se stesso $n-1$ volte come
+\begin{equation}
+	na=\underbracket[.5pt]{a+a+\cdots+a}_\textup{$n$ volte},
+\end{equation}
+per $n\in\N$, e con $0a=0_A$; per $n<0$, basta porre $na=-(-n)a$ per ricondursi ai casi precedenti.
+Definiamo poi $a$ moltiplicato con se stesso $n-1$ volte come
+\begin{equation}
+	a^n=\underbracket[.5pt]{a\cdot a\cdot a\cdots a}_\textup{$n$ volte}
+\end{equation}
+con $n>0$, e (se esiste l'unità) $a^0=1_A$.
+Per $n<0$ questa operazione non è definita.
+
+Ricaviamo alcune semplici proprietà delle due operazioni.
+\begin{itemize}
+	\item $0_Aa=a0_A=0_A$.
+		Possiamo infatti scrivere sempre $0_Aa=(0_A+0_A)a$, e per la proprietà distributiva abbiamo $0_Aa=0_Aa+0_Aa$, per cui aggiungendo l'opposto $-0_Aa$ ai due membri (esiste sempre, essendo $(A,+)$ un gruppo) troviamo $0_aa=0$.
+		La dimostrazione è analoga per $a0_A$.
+	\item $(na)b=a(nb)=n(ab)$, che di dimostra facilmente sfruttando la proprietà distributiva partendo da $(a+a+\dots+a)b$.
+	\item $a(-b)=(-a)b=-(ab)$, ponendo $n=-1$ nella precedente.
+\end{itemize}
+
+\begin{definizione} \label{d:divisore-zero}
+Un elemento $a\neq 0_A$ di un anello $A$ si dice \emph{divisore dello zero} se esiste un elemento $b\in A$ tale che $ab=0_A$ oppure $ba=0_A$.
+\end{definizione}
+Ovviamente i due casi coincidono se l'anello è commutativo, ma in generale non lo si può affermare.
+\paragraph{Esempi}
+\begin{itemize}
+	\item L'insieme $\cont{}(-1,1)$ delle funzioni $f\colon(-1,1)\to\R$ continue è un anello con addizione e moltiplicazione.
+			In esso, definiamo le funzioni
+			\begin{equation*}
+				f(x)=
+				\begin{cases}
+					0& -1<x<0\\
+					x^2&0\le x<1
+				\end{cases}\qquad\text{e}\qquad
+				g(x)=
+				\begin{cases}
+					x^2& -1<x<0\\
+					0&0\le x<1
+				\end{cases}
+			\end{equation*}
+			La $f$ è un divisore dello zero, in quanto $g$ non è la funzione identicamente nulla di $\cont{}(-1,1)$, ma $fg=0$ per ogni $x\in(-1,1)$.
+			Per lo stesso motivo, ovviamente, anche $g$ è divisore dello zero.
+\begin{comment}
+		\item Nell'anello $\mat_{2,2}(\R)$, la matrice $\begin{psmallmatrix}1&0\\0&0\end{psmallmatrix}$ è un divisore dello zero perché
+		\begin{equation*}
+			\begin{pmatrix}1&0\\0&0\end{pmatrix}\begin{pmatrix}0&0\\1&0\end{pmatrix}=\begin{pmatrix}0&0\\0&0\end{pmatrix}.
+		\end{equation*}
+	Tale proprietà può essere estesa alle matrici $2\times 2$ in un campo $K$ generico, utilizzando l'unità e lo zero $1_K$ e $0_K$.
+		\item In $\Z_{10}$, si prendano le classi $[2]_{10}$ e $[5]_{10}$. Entrambe non sono nulle, perché 2 e 5 non sono divisibili per 10 (non valgono le relazioni $2\equiv 0\mod 10$ e $5\equiv 0\mod 10$). Moltiplicandole, però, risulta $[2]_{10}[5]_{10}=[10]_{10}=[0]_{10}$, perché ovviamente 10 è divisibile per se stesso, quindi $[2]_{10}$ è un divisore dello zero in $\Z_{10}$. Per la commutatività dell'anello, anche $[5]_{10}$ lo è.
+	Più in generale, in un anello $\Z_n$ sono divisori dello zero le classi $[a]_n$ dove $a$ è un divisore non banale di $n$.
+\end{comment}
+\end{itemize}
+
+\begin{teorema}
+	Un anello $A$ è privo di divisori dello zero se e solo se valgono le leggi di cancellazione per il prodotto.\footnote{Ossia se per ogni $a,x,y\in A$ con $a\ne 0$ le relazioni $ax=ay$ e $xa=ya$ implicano $x=y$.}
+\end{teorema}
+\begin{proof}
+	Supponiamo che $A$ sia un anello privo di divisori dello zero, e prendiamo l'ipotesi $ax=ay$: dalla proprietà distributiva si ha $a(x-y)=0$.
+	Dato che non esistono divisori dello zero in $A$, se $a\ne 0$ deve necessariamente essere $x-y=0$, ossia $x=y$.
+	La dimostrazione per $xa=ya\then x=y$ è del tutto analoga.
+	
+	Partiamo ora dalle relazioni $ax=ay\then x=y$ e $xa=ya\then x=y$.
+	Se esistessero $x,y\ne 0$ tali che $xy=0$ (ossia $x$ e $y$ divisori dello zero), allora risulterebbe anche $xy=0=x0$ da cui $y=0$, poich\'e valgono le leggi di cancellazione del prodotto.
+	Ma ciò contraddice l'ipotesi che $x,y\ne 0$ quindi tali $x$ e $y$ non possono esistere: allora $A$ è privo di divisori dello zero.
+\end{proof}
+
+\begin{definizione} \label{d:elemento-invertibile}
+	Sia $A$ un anello con unità.
+	Un elemento $a\in A$ si dice \emph{invertibile} se esiste $b\in A$ tale per cui $ab=ba=1$.
+	Tale $b$ si indica con $a^{-1}$.
+\end{definizione}
+
+\begin{teorema}
+	Se $A$ è un anello dotato di unità, i suoi elementi invertibili non sono divisori dello zero.
+\end{teorema}
+\begin{proof}
+	Se esistesse un elemento $a\in A$ invertibile e divisore dello zero, allora esisterebbe un elemento $b\in A\setminus\{0\}$ tale che $ab=0$.
+	Si ottiene però che
+	\begin{equation}
+		b = 1b = a^{-1}ab = a^{-1}0 = 0
+	\end{equation}
+	ossia $b=0$, che contraddice l'ipotesi $b\ne 0$ legata all'esistenza di $b$.
+	Dunque non può esistere un tale $b$: vale a dire, $a$ non è un divisore dello zero.
+\end{proof}
+
+\begin{definizione} \label{d:dominio-integrita}
+	Un anello si dice \emph{dominio d'integrità} se è commutativo ed è privo di divisori dello zero.
+\end{definizione}
+Sono domini d'integrità gli anelli di $\Z$, $\Q$, $\R$, $\C$ con le usuali operazioni di somma e prodotto.
+
+\begin{definizione}
+Si chiama \emph{corpo} un anello dotato di unità in cui ogni elemento non nullo è invertibile.
+\end{definizione}
+
+\begin{definizione} \label{d:campo1}
+Si dice \emph{campo} un corpo commutativo con almeno due elementi.
+\end{definizione}
+Il piccolo teorema di Wedderburn afferma, inoltre, che ogni corpo finito è un campo.
+Possiamo dare una definizione alternativa di campo, equivalente alla precedente, basata su degli assiomi.
+\begin{definizione} \label{d:campo2}
+Si definisce \emph{campo} la terna $(K,+,\cdot)$ in cui $K$ è un insieme non vuoto e $+$ e $\cdot$ sono operazioni interne $K\times K\to K$, per le quali:
+\begin{itemize}
+\item $(K,+)$ è un gruppo abeliano, con elemento neutro $0_K$;
+\item $(K\setminus\{0_K\},\cdot)$ è un gruppo abeliano, con elemento neutro $1_K$;
+\item vale la proprietà distributiva, per cui $\forall a,b,c\in K$ vale $a\cdot(b+c)=a\cdot b+a\cdot c$.
+\end{itemize}
+\end{definizione}
+Questa definizione è in sostanza una generalizzazione della struttura di $(\R,+,\cdot)$. È quindi, ovviamente, un campo $(\R,+,\cdot)$, e lo sono anche $(\Q,+,\cdot)$ e $(\C,+,\cdot)$.
+
+
+\section{Ideali} \label{sec:ideali}
+\begin{definizione} \label{d:ideale}
+	Sia $A$ un anello e $I$ un suo sottoinsieme.
+	Se $(I,+)$ è un sottogruppo di $(A,+)$ e per ogni $x\in I$ e $a\in A$:
+	\begin{itemize}
+		\item $ax\in I$, allora $I$ è detto \emph{ideale sinistro};
+		\item $xa\in I$, allora $I$ è detto \emph{ideale destro};
+		\item $ax,xa\in I$, allora $I$ è detto \emph{ideale bilatero}.
+	\end{itemize}
+\end{definizione}
+In altre parole, preso un elemento di un ideale sinistro (destro) possiamo moltiplicarlo a sinistra (destra) per qualsiasi elemento dell'anello e ottenere ancora un elemento dell'ideale.
+Nel caso di un anello commutativo, le tre definizioni naturalmente coincidono, e parleremo semplicemente di \emph{ideale}.
+
+Dalla chiusura di $I$ rispetto alla somma otteniamo inoltre che qualsiasi ideale deve sempre contenere lo zero dell'anello.
+Ogni anello ammette sempre due ideali detti \emph{banali}: $\{0\}$ e l'anello $A$ stesso.
+Gli ideali non banali sono detti \emph{propri}.
+Se l'anello è dotato di unità, allora un ideale è proprio se e solo se non la contiene: se infatti $I\ni 1$, allora poich\'e il prodotto $1a$ per qualsiasi $a$ nell'intero anello deve essere incluso in $I$, tale ideale contiene tutti gli elementi di $A$, ma allora $I=A$.
+
+Degli esempi importanti di ideali, che incontreremo in seguito, sono i seguenti.
+\begin{itemize}
+	\item Dato $p\in\Z$, chiamiamo $p\Z$ l'insieme $\{x\in\Z\colon x=np, n\in\Z\}$ ossia l'insieme dei multipli interi di un certo intero $p$.
+		Se $x,y\in p\Z$, siano essi $x=np$ e $y=mp$, allora $x+y=(n+m)p$ e poich\'e $n+m\in\Z$ allora $x+y\in p\Z$.
+		Per un qualunque $z\in\Z$, inoltre, $xz=npz=(nz)p$ e $nz\in\Z$ quindi $xz\in p\Z$.
+		L'insieme $p\Z$ è dunque un ideale di $\Z$, per qualunque $p$.
+	\item I numeri pari formano l'insieme $2\Z$, che è un ideale per il punto precedente.
+		I numeri dispari, invece, non formano un ideale, in quanto non comprendono lo zero.
+	\item Nell'anello delle funzioni continue $\cont{}(\R)$, è un ideale l'insieme delle funzioni che si annullano in un dato punto, ad esempio per cui $f(1)=0$.
+\end{itemize}
+
+Definiamo ora alcuni tipi particolari di ideali (per semplicità, le daremo per anelli commutativi).
+\begin{definizione} \label{d:ideale-primo}
+	Un ideale $I$ di un anello $A$ è detto \emph{primo} se:
+	\begin{itemize}
+		\item è un sottoinsieme proprio di $A$;
+		\item se $a,b\in A$ sono tali che $ab\in I$, allora almeno uno dei due appartiene a $I$.
+	\end{itemize}
+\end{definizione}
+Questo concetto ricalca la definizione di \emph{numeri primi}: se un numero $p\in\Z$ è primo, ogni volta che divide un prodotto $xy$ con $x,y\in\Z$ allora $p$ divide $a$ oppure $b$.
+Le due definizioni sono in effetti collegate: un numero intero (positivo) $n$ è primo se e solo se $n\Z$ è un ideale primo.
+ 
+\begin{definizione} \label{d:ideale-massimale}
+	Un ideale $A$ si dice \emph{massimale} se $I\neq A$, per ogni ideale $J\supseteq I$ si ha o che $J=I$ oppure $J=A$.
+\end{definizione}
+Gli ideali massimali sono dunque degli elementi massimali rispetto all'operazione di inclusione insiemistica tra gli \emph{ideali propri} di un anello (escludendo quindi dalle opzioni l'anello stesso).
+Essi non sono contenuti propriamente in nessun altro ideale proprio dell'anello.
+
+Se ogni elemento $x$ di un ideale $I$, di un anello $A$, può essere scritto come
+\begin{equation*}
+	x=\sum_{i=1}^na_ki_k
+\end{equation*}
+con $a_k\in A$ e $i_k\in I$, ossia come combinazione lineare di un numero finito di suoi elementi $\{i_k\}_{k=1}^n$, diciamo che l'ideale è \emph{generato} da tali elementi, e si indica solitamente come $I=(i_1,\dots,i_n)$.
+Il caso in cui l'ideale è generato da un solo elemento è di particolare importanza, e merita una sua definizione.
+\begin{definizione} \label{d:ideale-principale}
+	Un ideale $I$ di un anello $A$ si dice \emph{principale} se è generato da un solo elemento.
+\end{definizione}
+In linea con la notazione precedente, l'ideale principale generato da $a$ si indica con $(a)$.
+Si può dimostrare che l'ideale principale $(a)$ è il più piccolo ideale che comprende $a$.
+
+\section{Anelli quoziente} \label{sec:anelli-quoziente}
+Riprendiamo ora le relazioni di equivalenza, introdotte nel capitolo \ref{sec:relazioni-equivalenza}.
+Dati un ideale (bilatero) $I$ di un anello $A$ e due elementi $a,b\in A$, stabiliamo la relazione
+\begin{equation*}
+	a\sim b\iff a-b\in I.
+\end{equation*}
+È facile vedere, con le proprietà degli ideali, che tale relazione è anche di congruenza.
+Se $a\sim b$ si dice anche che $a$ e $b$ sono \emph{congruenti modulo $I$}.
+Da essa possiamo costruire le classi di equivalenza nell'anello: la classe $[a]_I$ (indichiamo con il pedice $[\cdot]_I$ il fatto che la relazione è basata sull'ideale $I$, per maggiore chiarezza) consiste in tutti quegli elementi $x$ di $A$ che ``distano $a$ dall'ideale $I$'', ossia tali per cui $x-a\in I$.
+Alternativamente, gli elementi $x\in[a]_I$ sono la somma di $a$ e di un elemento dell'ideale $I$, e per questo motivo si indica la classe di equivalenza come $I+a$.
+Formalmente, dunque,
+\begin{equation*}
+	[a]_I=I+a=\{x\in A\colon x=a+i, i\in I\}.
+\end{equation*}
+Possiamo definire delle operazioni su queste classi come di seguito:
+\begin{itemize}
+	\item l'addizione di $[a]_I=I+a$ e $[b]_I=I+b$ come la classe di rappresentante $a+b$, ossia $I+(a+b)$;
+	\item analogamente, la moltiplicazione di due classi $[a]_I[b]_I=(I+a)(I+b)$ come la classe che ha come rappresentante il prodotto dei due rappresentanti, ossia $I+ab$.
+\end{itemize}
+Si può verificare che queste operazioni sono ben definite, ossia che non dipendono dalla scelta dei rappresentanti.
+Con queste due operazioni, l'insieme delle classi di equivalenza forma un anello, detto \emph{anello quoziente} (rispetto alla relazione stabilita).
+
+\begin{definizione} \label{d:anello-quoziente}
+	Dato un ideale bilatero $I$ di un anello $A$, si chiama \emph{anello quoziente} l'insieme, indicato con $A\quot I$, delle classi di equivalenza $[a]_I=\{x\in A\colon x=a+i, i\in I\}$, con le operazioni
+	\begin{equation}
+		\begin{gathered}
+			(I+a)+(I+b)=I+(a+b)\\ (I+a)(I+b)=I+ab.
+		\end{gathered}
+		\label{eq:operazioni-anello-quoziente}
+	\end{equation}
+\end{definizione}
+Lo zero dell'anello quoziente è indicato come $I+0$, ed è chiaramente l'ideale $I$ stesso.
+Notiamo che se $a\in I$, allora $I+a$ è ancora lo zero di $A\quot I$: infatti, essendo $I$ chiuso rispetto alla somma, l'addizione di un elemento dell'ideale (cioè $I$) con $a$ (che è in $I$) produce ancora un elemento nell'ideale, vale a dire un elemento di $I=I+0$.
+L'identità moltiplicativa, se esiste, sarà indicata con $I+1$.
+
+Proviamo a prendere il quoziente di $A$ con gli ideali banali.
+\begin{itemize}
+	\item Per $I=\{0\}$, scelto un $a\in A$ abbiamo che $b\in [a]=I+a$ se $b-a\in I$, cioè $b-a=0$: ma ciò è possibile solo se $b=a$, dunque $I+a=\{a\}$ per qualsiasi $a\in A$.
+	\item Per $I=A$, se $b\in I+a$ dovrà essere $b-a\in A$: questo è sempre vero qualsiasi sia $b$, quindi $I+a=A$ per qualsiasi $a$!
+		Ciò significa che $A\quot A$ è composto da un solo elemento.
+\end{itemize}
+
+L'ideale $I=2\Z$ di $\Z$ è massimale: infatti se un ideale $J$ contiene $I$, allora $J=k\Z$ per un $k\in N$ che sia divisore di 2.
+Ma allora $k\in\{1,2\}$, cioè $k\Z$ è ancora $2\Z$ oppure è tutto $\Z$.
+Perciò $2\Z$ è un ideale massimale; lo stesso di dimostra per qualsiasi $p\Z$ con $p$ primo.
+Questo risultato si generalizza nel seguente teorema.
+\begin{teorema} \label{t:ideale-primo-quoziente-integro}
+	Sia $A$ un anello commutativo con unità e sia $I\subset A$ un ideale proprio: allora $I$ è primo se e solo se $A/I$ è un dominio d'integrità.
+\end{teorema}
+\begin{proof}
+	Supponiamo che $A\quot I$ sia un dominio di integrità, per cui prese due classi $I+a$ e $I+b$, se $I+ab=I+0$ deve necessariamente risultare $I+a=I+0$ oppure $I+b=I+0$.
+	Passando dalle classi di $A\quot I$ agli elementi di $A$, il fatto che $I+ab$ sia $I+0$ significa che $ab$ è nell'ideale $I$.
+	Analogamente se $I+a=I+0$ significa che $a\in I$.
+	Ma ciò vuol dire che se $ab\in I$ allora uno dei due tra $a$ e $b$ è necessariamente nell'ideale: questa è proprio la definizione di ideale primo, quindi $I$ è primo.
+
+	Sia ora $I$ un ideale primo: se $ab\in I$, almeno uno tra $a$ e $b$ deve appartenere a $I$.
+	Nel linguaggio delle classi di equivalenza ciò significa che se $(I+a)(I+b)=I+ab=I+0$, allora $I+a=I+0$ oppure $I+b=0$.
+	Queste affermazioni sono equivalenti a dire che non esistono $a,b\notin I$ tali che $ab\in I$, cioè
+	\begin{equation*}
+		\nexists I+a, I+b\in A\quot I\colon (I+a)(I+b)=I+0
+	\end{equation*}
+	quindi $A\quot I$ è un dominio di integrità.
+\end{proof}
+
+\begin{teorema} \label{t:ideale-massimale-quoziente-campo}
+	Sia $A$ un anello commutativo con unità e sia $I\subset A$ un ideale proprio: $I$ è massimale se e solo se $A/I$ è un campo.
+\end{teorema}
+\begin{proof}
+	Sia $I$ un ideale massimale: allora non può esistere un ideale $J$ tale che $I\subset J\subset A$.
+	Dimostriamo che $A\quot I$ è un campo mostrando che ogni suo elemento non nullo è invertibile.
+	Sia $I+a$ un elemento non nullo di $A\quot I$, ossia deve essere $a\notin I$.
+	Fissato questo elemento, costruiamo l'insieme $J_a=\{j\in A\colon j=i+ax, i\in I, x\in A\}$.
+	Sicuramente, poich\'e $A$ è commutativo, lo è anche $J_a$.
+	Inoltre è anche un ideale: infatti, dati $j_1=i_1+ax_1$, $j_2=i_2+ax_2$ e $b\in A$ abbiamo
+	\begin{equation}
+		\begin{gathered}
+			j_i+j_2=\underbracket[.5pt]{i_1+i_2}_{\in I}+a(\underbracket[.5pt]{x_1+x_2}_{\in A})\in J_a;\\
+			j_1b=(i_1+ax_1)b=\underbracket[.5pt]{i_1b}_{\in I}+a(\underbracket[.5pt]{x_1b}_{\in A})\in J_a.
+		\end{gathered}
+	\end{equation}
+	Tutti gli elementi $i\in I$ sono della forma $i+a0$, dunque $I\subseteq J$.
+	Esistono anche elementi di $J$ che non appartengono a $I$?
+	Dato che $I$ è proprio, non può contenere l'unità, come avevamo già visto.
+	Allora l'elemento $i+a1=i+a$ appartiene a $J$, ma non a $I$.\footnote{Se $i+a\in I$, ossia $i+a=i'$ per qualche $i'\in I$, allora seguirebbe che $a=i'-i$, cioè $a\in I$.}
+	Di conseguenza $I\subset J$: per la massimalità di $I$, però, ciò implica $J\equiv A$.
+	Perciò $J$ deve contenere l'unità, che potremo dunque scrivere come $i^*+ax^*$ per qualche $i^*\in I$ e $x^*\in A$.
+	Preso questo $x^*$, vediamo che la classe $I+x^*\in A\quot I$ è l'inverso di $I+a$:
+	\begin{equation}
+		(I+x^*)(I+a)=I+ax^*=I+(1-i^*)=I+1
+	\end{equation}
+	poich\'e se $i^*+ax^*=1$ allora $ax^*=1-i^*$, e $I-i^*= I$.
+	Ma $I+1$ è l'unità di $A\quot I$, dunque ogni elemento non nullo (ossia con $a\notin I$) di $A\quot I$ ammette un inverso: ciò prova che $A\quot I$ è un campo.
+
+	Sia ora $A\quot I$ un campo: allora, poich\'e deve possedere almeno due elementi, $I$ non può essere uguale ad $A$, perch\'e come abbiamo già visto $A\quot A$ contiene un solo elemento.
+	Dunque $I$ è un ideale proprio.
+	Prendiamo ora un ideale $J$ tale che $I\subseteq J\subseteq A$ con $I\ne J$.
+	Esiste dunque un $x$ che appartiene a $J$ ma non a $I$, di conseguenza $I+x\ne I+0$.
+	Non essendo l'elemento nullo di $A\quot I$, che per ipotesi è un campo, $I+x$ è invertibile: esiste una classe $I+y\in A\quot I$ tale per cui
+	\begin{equation*}
+		I+1=(I+y)(I+x)=I+xy,
+	\end{equation*}
+	quindi $xy=1+i^*$ per qualche $i^*\in I$.
+	Ora, $I\subseteq J$, perciò $i^*\in J$, e analogamente $x\in J$ quindi anche $xy\in J$: ma allora anche $1=xy-i^*$ appartiene a $J$.
+	Dato che $J$ contiene l'unità, segue necessariamente che $J=A$, perciò $I$ è massimale.
+\end{proof}
+\begin{corollario} \label{c:ideale-massimale-primo}
+	In un anello commutativo con unità, ogni ideale massimale è primo.
+\end{corollario}
+\begin{proof}
+	Se $I$ è massimale, per il teorema \ref{t:ideale-massimale-quoziente-campo} $A\quot I$ è un campo, quindi in particolare è anche un dominio di integrità: ma allora dal teorema \ref{t:ideale-primo-quoziente-integro} $I$ è primo.
+\end{proof}
+L'implicazione inversa, ossia che ogni ideale primo è massimale, in generale è falsa (il problema sta nell'affermazione ``un campo è un dominio d'integrità'', che non si può invertire).
+Vedremo in che ambito essa è vera quando introdurremo i domini \emph{a ideali principali}.
+
+\section{Omomorfismi di anelli}
+\begin{definizione} \label{d:omomorfismo-anelli}
+	Siano $(A,+,\cdot)$ e $(B,*,\diamond)$ due anelli: un \emph{omomorfismo} di anelli è un'applicazione $\phi\colon A\to B$ che preserva le operazioni, cioè tale che per ogni $a,b\in A$ si ha 
+	\begin{equation}
+		\phi(a+b)=\phi(a)*\phi(b)\text{ e }\phi(ab)=\phi(a)\diamond\phi(b).
+	\end{equation}
+	Se gli anelli sono dotati di unità, si richiede che l'omomorfismo, oltre alle operazioni, preservi anche l'unità, ossia $\phi(1_A)=1_B$.
+\end{definizione}
+Ad esempio la funzione da $\Z$ in s\'e definita come $\phi(a)=0$ per qualsiasi $a\in\Z$, cioè che porta qualsiasi elemento nello zero, chiaramente preserva le operazioni, ma non è un omomorfismo d'anelli in quanto $\phi(1)=0$ che ovviamente non è l'unità di $\Z$.
+
+\begin{definizione} \label{d:nucleo-omomorfismo-anelli}
+	Sia $\psi\colon A\to B$ un omomorfismo di anelli. Si definisce \emph{nucleo} di $\psi$ e si denota con $\Ker\psi$ l'insieme
+	\begin{equation*}
+		\Ker\psi=\{a\in A\colon\psi(a)=0_B\},
+	\end{equation*}
+	ossia l'insieme degli elementi di $A$ che hanno lo zero di $B$ come immagine.
+\end{definizione}
+
+\begin{teorema} \label{t:nucleo-ideale}
+	Se $\psi\colon A\to B$ è un omomorfismo di anelli, allora il suo nucleo è un ideale di $A$.
+\end{teorema}
+\begin{proof}
+	Verifichiamo le proprietà di ideale: per $x,y\in\Ker\psi$ e $a\in A$, si ha
+	\begin{equation}
+		\psi(x+y)=\psi(x)+\psi(y)=0_B+0_B=0_B
+	\end{equation}
+	quindi $x+y\in\Ker\psi$, e
+	\begin{equation}
+		\psi(ax)=\psi(a)\psi(x)=\psi(a)0_B=0_B
+	\end{equation}
+	quindi anche $ax\in\Ker\psi$, e analogamente per $xa$.
+	Allora $\Ker\psi$ è proprio un ideale di $A$.
+\end{proof}
+Come già visto negli omomorfismi tra gruppi, anche un omomorfismo tra gli anelli $A$ e $B$ è iniettivo se e solo se il suo nucleo è $\{0_A\}$.
+Se l'anello è commutativo, i suoi ideali sono tutti anche nuclei di omomorfismi di anelli.
+
+\section{Anelli dei polinomi}
+Passiamo ora a trattare un tipo di anelli molto importante: gli anelli composti da polinomi.
+\begin{definizione} \label{d:polinomio}
+	Si dice \emph{polinomio} a coefficienti in un anello $A$ una successione di elementi di $A$ definitivamente nulla:
+	\begin{equation*}
+		p=(a_0,a_1,a_2,\dots,a_n,0,0,\dots).
+	\end{equation*}
+\end{definizione}
+I polinomi si rappresentano anche, più comunemente, indicando il posto di ogni elemento della successione con delle potenze di un'incognita, come ad esempio
+\begin{equation}
+	p(x)=a_0+a_1x+a_2x^2+\dots+a_nx^n.
+\end{equation}
+Generalmente, indicheremo i polinomi semplicemente con delle lettere, senza usare la notazione ``funzionale'' $p(x)$ ma solo $p$.
+Useremo $p(x)$ invece quando esprimeremo il polinomio tramite le potenze di $x$, per evitare di confonderlo con i termini noti.
+
+L'ultimo coefficiente non nullo del polinomio, $a_n$, che nella scrittura predecente è il coefficiente assegnato alla potenza di grado massimo, si dice \emph{coefficiente direttivo}.
+Il termine $a_0$ è invece il \emph{termine noto}.
+
+Tra polinomi definiamo la somma come
+\begin{multline}
+	(a_0,a_1,a_2,\dots,a_n,0,0,\dots)+(b_0,b_1,b_2,\dots,b_m,0,0,\dots)=\\
+	(a_0+b_0,a_1+b_1,a_2+b_2,\dots,a_m+b_m,a_{m+1}+0,a_{m+2}+0,\dots,a_n,0,0,\dots),
+\end{multline}
+dove in questo caso $n>m$, e il prodotto come il polinomio che ha come componente di posto $k$ il coefficiente
+\begin{equation}
+	c_k=\sum_{i=0}^ka_ib_{k-i}.
+\end{equation}
+Con queste due operazione è facile vedere che $A[x]$, l'insieme dei polinomi a coefficienti in $A$, è a sua volta un anello.
+Il polinomio unità di $A[x]$ è il polinomio avente come primo coefficiente l'unità di $A$, $1_A$, e tutti i successivi nulli; il polinomio nullo è il polinomio con tutti i coefficienti nulli.
+
+Possiamo definire un'applicazione lineare $j\colon A\to A[x]$ che porta un elemento di $A$ nel polinomio avente come termine noto tale elemento, ossia la mappa
+\begin{equation*}
+	j(a)=(a,0,0,\dots).
+\end{equation*}
+Tale applicazione è un omomorfismo di anelli, in quanto preserva le operazioni e l'unità: infatti dati $a,b\in A$ risulta
+\begin{gather*}
+	j(a+b)=(a+b,0,0,\dots)=(a,0,0,\dots)+(b,0,0,\dots)=j(a)+j(b)\\
+	j(ab)=(ab,0,0,\dots)=(a,0,0,\dots)(b,0,0,\dots)=j(a)j(b),
+\end{gather*}
+mentre porta l'unità $1_A$ nel polinomio $(1_A,0,0,\dots)$ che è l'unità di $A[x]$.
+Si nota facilmente anche che tale omomorfismo $j$ è iniettivo, dato che $\Ker j=\{0_A\}$.
+
+Ordinando gli elementi del polinomio in ordine di indici crescenti, la posizione del coefficiente direttivo indica il \emph{grado} del polinomio, che quando scritto come combinazione lineare di potenze è anche il grado della potenza massima che appare.
+
+Un polinomio non nullo $p(x)=a_nx^n+\dots+a_0\in A[x]$, con $a_n\neq 0$, si dice di grado $n$, e si indica con $\deg p=\deg p(x)=n$.
+Convenzionalmente si assegna al polinomio (identicamente) nullo il grado $-1$.
+Se $a_n=1$, il polinomio si dice \emph{monico}.
+
+\begin{proprieta} \label{pr:gradi-polinomi-operazioni}
+Si hanno le seguenti proprietà tra i gradi dei polinomi e le operazioni:
+\begin{itemize}
+	\item $\deg(a+b)\leq\max\{\deg a,\deg b\}$;
+	\item $\deg(ab)\leq\deg a+\deg b$.\footnote{Contrariamente a ciò che ci si aspetterebbe, non è un'uguaglianza perché pur essendo i coefficienti direttivi dei due polinomi non nulli, potrebbero esistere divisori dello zero in $A$, dunque non è detto che se $a,b\in A$ non sono nulli si abbia necessariamente $ab\neq 0$.}
+\end{itemize}
+\end{proprieta}
+
+Ad esempio, nell'anello $\Z\quot 12\Z$, si considerino i due polinomi $a(x)=[6]x^2$ e $b(x)=[2]x$: si ha che $\deg a=2$ e $\deg b=1$.
+La loro somma è un polinomio di grado 2, ma per il prodotto si vede che sebbene nell'anello $[6]$ e $[2]$ non siano nulli, lo è il loro prodotto perché $12$ appartiene alla stessa classe di equivalenza di $0$, quindi $a(x)b(x)=[6][2]x^3=[12]x^3=[0]x^3=[0]$; di conseguenza $\deg\big(ab\big)=-1\neq\deg a+\deg b=3$.
+Le due proprietà precedenti sono in ogni caso rispettate.
+
+Il caso dell'uguaglianza accade quindi soltanto se non esistono divisori dello zero nell'anello, vale a dire che esso è un dominio d'integrità: in questo caso il prodotto di due elementi non nulli non è mai nullo.
+
+Siano $A$ e $B$ due anelli con unità, e $f\colon A\to B$ un omomorfismo d'anelli con unità.
+Anche $\tilde{f}\colon A[x]\to B[x]$ definito come $\tilde{f}\big(p(x)\big)=f(a_n)x^n+\dots+f(a_0)$, con $f(a_i)\in B$, allora, è un omomorfismo di anelli con unità.
+Non è detto però che sia $\deg\tilde{f}(p)=\deg p$: potrebbe accadere infatti che il coefficiente direttivo di $p$ appartenga al nucleo di $f$.
+Infine, come richiesto dalla definizione, $\tilde{f}(1_{A[x]})=\big(f(1_A),0,0,\dots\big)=(1_B,0,0,\dots)=1_{B[x]}$.
+
+\section{Divisione tra polinomi}
+Sia $K[x]$ l'anello dei polinomi su un campo $K$: non avendo divisori dello zero, $ab\neq 0_K$ se $a$ e $b$ (elementi di $K$) non sono nulli.
+Vale sempre, allora, l'uguaglianza $\deg(fg)=\deg f+\deg g$.
+
+\begin{teorema}[Algoritmo euclideo delle divisioni successive]
+	Sia $K$ un campo, e $a,b\in K[x]$, con $b$ diverso dal polinomio nullo.
+	Esistono sempre, e sono unici, due polinomi $r$ e $q$ tali che
+	\begin{equation}
+		a=qb+r,\text{ con }\deg r<\deg b.
+		\label{eq:algoritmo-divisione-polinomi}
+	\end{equation}
+\end{teorema}
+\begin{proof}
+	Dimostriamo l'esistenza dei due polinomi, per induzione, su $n=\deg a$.
+	Se $n=-1$, allora $q=r=0$, cioè $qb+r=0$, e poiché per ipotesi $\deg b\ne -1$ perché non è nullo, si ha automaticamente che $\deg b>-1=\deg r$.
+	I due polinomi cercati quindi sono entrambi dei polinomi identicamente nulli.
+	Sia ora $n>-1$, e siano $a(x)=a_nx^n+\dots+a_0$, $b(x)=b_mx^m+\dots+b_0$.
+	\begin{itemize}
+		\item se $m>n$, allora poniamo $a=0\cdot b+a$ (scegliamo cioè $q=0$ nella \eqref{eq:algoritmo-divisione-polinomi}), e ciò significa che il resto è proprio $a$.
+			Dunque $\deg r=n<m=\deg b$.
+		\item se $m\leq n$, definiamo $\tilde{a}=\tilde{a}(x)=a(x)-b_m^{-1}a_nx^{n-m}b(x)$.
+			Il coefficiente di grado massimo dell'ultimo termine è $-b_m^{-1}a_nx^{n-m}b_mx^m=-b_m^{-1}b_ma_nx^{n-m+m}=-a_nx^n$, quindi $\deg\tilde{a}\leq n-1$ poiché il coefficiente di grado $n$, che è il grado massimo di $a$, è cancellato.
+		Per l'ipotesi di induzione, quindi, esistono due polinomi $\tilde{q}$ e $\tilde{r}$ tali che $\tilde{a}=\tilde{q}b+\tilde{r}$, per cui $\deg\tilde{r}<\deg b$.
+		Risulta quindi
+		\begin{align*}
+			a(x)&=\tilde{q}(x)b(x)+b_m^{-1}a_nx^{n-m}b(x)+\tilde{r}(x)=\\
+			&=\big(\tilde{q}(x)+b_m^{-1}a_nx^{n-m}\big)b(x)+\tilde{r}(x).
+		\end{align*}
+		Scelti $q(x)=\tilde{q}(x)+b_m^{-1}a_nx^{n-m}$ e $r(x)=\tilde{r}(x)$, si ha dunque l'uguaglianza $a=qb+r$ con $\deg r=\deg\tilde{r}<\deg b$.
+	\end{itemize}
+	Abbiamo trovato dunque che $q$ e $r$ secondo la \eqref{eq:algoritmo-divisione-polinomi} esistono sempre, qualunque sia il grado di $a$.
+
+	Siano $q,r$ e $\overline{q},\overline{r}\in A[x]$ tali da soddisfare entrambe (le coppie) la \eqref{eq:algoritmo-divisione-polinomi}, ossia che $a=\overline{q}b+\overline{r}$ e $a=qb+r$, con $\deg\overline{r}<\deg b$ e $\deg r<\deg b$.
+	Allora risulta
+	\begin{equation}
+		0=a-a=(q-\overline{q})b+r-\overline{r}
+		\label{eqdim:unicita-quoziente-resto}
+	\end{equation}
+	Per la prima delle \ref{pr:gradi-polinomi-operazioni} risulta $\deg(r-\overline{r}\big)<\max\{\deg r,\deg\overline{r}\}<\deg b$.
+	Se $\overline{q}\neq q$, poich\'e la loro differenza non sarebbe un polinomio nullo, si avrebbe $\deg(q-\overline{q})\ge 0$, e il prodotto $(\overline{q}-q)b$ darebbe un polinomio di grado sicuramente maggiore di quello di $b$, poiché $K$ non ha divisori dello zero: dunque $\deg\big((q-\overline{q})b\big)>\deg b$.
+	Ma se dalla \eqref{eqdim:unicita-quoziente-resto} risulta $(\overline{q}-q)b=r-\overline{r}$, quindi i loro gradi devono essere uguali.
+	Troviamo allora
+	\begin{equation}
+		\deg(r-\overline{r})=\deg\big((\overline{q}-q)b\big)>\deg b>\deg(r-\overline{r})
+	\end{equation}
+	che è chiaramente un assurdo.
+	Di conseguenza deve essere $\overline{q}=q$ e $\overline{r}=r$, cioè i polinomi quoziente e resto sono unici.
+\end{proof}
+La dimostrazione di questo teorema è molto rigorosa, ma non è che una trascrizione ``più tecnica'' di quello che dovrebbe già essere noto dalla divisione tra polinomi (ma anche tra numeri naturali!):
+\begin{itemize}
+	\item Se $a$ è nullo, allora quoziente e resto sono entrambi nulli.
+	\item Se $a$ ha un grado minore di $b$, il quoziente è nullo e il resto è $a$ stesso.
+	\item Se $a$ ha un grado maggiore di $b$, allora abbiamo una divisione ``non banale'' e ci aspettiamo un quoziente che ha come grado la differenza tra quelli di $a$ e $b$.
+\end{itemize}
+
+Quando il resto della divisione è nullo, ossia $a=qb$, diremo che $b$ \emph{divide} $a$, e lo indicheremo con la notazione $a\dvd b$.
+Poich\'e gli elementi dell'ideale principale $(a)$ sono della forma $ax$ per $x\in A$, vediamo subito che $a\dvd b$ implica $b\in(a)$, e viceversa.
+\begin{definizione} \label{d:mcd}
+	Dato un campo $K$, siano $a,b\in K[x]$ due polinomi non nulli.
+	Si dice \emph{massimo comune divisore} tra $a$ e $b$ ogni polinomio $d\in K[x]$ tale che:
+	\begin{itemize}
+		\item $d$ divide sia $a$ che $b$;
+		\item se un altro polinomio $c$ divide $a$ e $b$, allora divide anche $d$.
+	\end{itemize}
+\end{definizione}
+Questa definizione ricalca quella del massimo comune divisore tra numeri interi.
+Per i numeri in $\Z$, però, è noto che se $z$ è il massimo comune divisore tra $m$ e $n$, allora lo è anche $-z$.
+Anche per i polinomi vale un risultato simile: dato un massimo comune divisore in $K[x]$, tutti i suoi multipli per una costante in $K$ lo sono ancora.
+\begin{teorema} \label{t:altri-mcd}
+	Siano $a,b\in K[x]$ non nulli, e $d$ un massimo comun divisore tra i due.
+	Se $d'$ è un altro massimo comune divisore, allora vale la relazione $d'=kd$ per qualche $k\in K\setminus\{0\}$.
+\end{teorema}
+\begin{proof}
+	Per la definizione di massimo comune divisore, $d$ e $d'$ dividono entrambi $a$ e $b$, e si dividono a vicenda, ossia $d\dvd d'$ e $d'\dvd d$.
+	Dunque esistono $\alpha,\beta\in K[x]$ tali che $d=\alpha d'$ e $d'=\beta d$.
+	Otteniamo da queste due uguaglianze che $d=\alpha\beta d$.
+	Poich\'e $d\neq 0$ --- altrimenti dovrebbe essere $a=0$, contro le ipotesi fatte --- per le leggi di cancellazione si ha $\alpha\beta=1$.
+	La somma dei gradi di $\alpha$ e $\beta$ deve quindi essere nulla, cioè il grado del polinomio unità: l'unico modo possibile affinché accada è che $\deg\alpha=\deg\beta=0$, ossia che entrambi siano, oltre che polinomi, anche elementi (scalari) del campo $K$, cioè $\alpha=k\in K$ e $\beta=h\in K$.
+	Ma allora $hk=1$, cioè $h$ e $k$ sono invertibili, perciò non possono essere nulli.
+	Dunque $d'=kd$ con $k\in K\setminus\{0\}$.
+\end{proof}
+A causa di questa arbitrarietà nella costante moltiplicativa, è conveniente stabilire la seguente definizione.
+\begin{definizione}\label{d:mcd-monico}
+	Dati $a,b\in K[x]$ non nulli, il massimo comune divisore di $a$ e $b$ con coefficiente direttivo unitario è detto \emph{massimo comune divisore monico}.
+\end{definizione}
+D'ora in poi, quando ci riferiremo al massimo comune divisore, sottintenderemo che prendiamo quello monico.
+
+\begin{teorema}[Algoritmo di Euclide] \label{t:esistenza-mcd}
+	Dato un campo $K$, e $a,b\in K[x]$ non nulli, esiste sempre un massimo comune divisore tra di loro.
+\end{teorema}
+\begin{proof}
+	Dato che $b\neq 0$, esistono $q_1,r_1\in K[x]$ tali da poter scrivere $a=q_1b+r_1$ e per cui $\deg r_1<\deg b$.
+	Se $r_1=0$, allora $a=qb$, quindi $b\dvd a$ e ovviamente anche $b\dvd b$; se esiste un $c\in K[x]$ tale che $c\dvd a$, esso è $b$ che è quindi il massimo comune divisore. % Da migliorare...
+	
+	Se $r_1\ne 0$, dividiamo $b$ per esso: esistono $q_2,r_2\in K[x]$ per cui $\deg r_2<\deg r_1$ e
+	\begin{equation}
+		b=q_2r_1+r_2.
+	\end{equation}
+	Se adesso $r_2=0$, troviamo che $r_1$ è il massimo comune divisore.
+	Infatti, $r_1\dvd b$ dal fatto che $b=r_1q_2$, inoltre $a=q_1b+r_1=q_1(q_2r_1)+r_1=(q_1q_2+1)r_1$ dunque $r_1\dvd a$.
+	Prendiamo dunque un $c\in K[x]$ che divida sia $a$ che $b$: ciò significa che esistono $\alpha,\beta\in K[x]$ tali che $a=c\alpha$ e $b=c\beta$.
+	\begin{equation}
+		c\alpha=a=q_1b+r_1=q_1c\beta+r_1\then r_1=(\alpha-q_1\beta)c
+	\end{equation}
+	ossia $c\dvd r_1$.
+	Il polinomio $r_1$ soddisfa dunque la definizione \ref{d:mcd} di massimo comune divisore.
+
+	Se invece $r_2\ne 0$, ancora possiamo dividere $r_1$ per $r_2$, dato che esistono $q_3,r_3\in K[x]$ tali che $\deg r_3<\deg r_2$ e
+	\begin{equation}
+		r_1=q_3r_2+r_3.
+	\end{equation}
+	Se $r_3=0$, allora esattamente come prima si dimostra che $r_2$ è il massimo comune divisore tra $a$ e $b$.
+	Se $r_3\ne 0$, iteriamo ancora una volta dividendo $r_2$ per $r_3$ e distinguendo i casi se il resto di questa divisione è nullo o no.
+
+	Il procedimento deve necessariamente avere un termine, in quanto a partire da $\deg b$ si ha la successione decrescente
+	\begin{equation}
+		\deg b>\deg r_1>\deg r_2>\dots
+	\end{equation}
+	e si giunge dopo un numero finito di passi con un resto nullo.
+	Sia dunque $r_k=0$: abbiamo che
+	\begin{equation}
+		\begin{gathered}
+			r_{k-3}=q_{k-1}r_{k-2}+r_{k-1}\\
+			r_{k-2}=q_kr_{k-1}
+		\end{gathered}
+	\end{equation}
+	perciò $r_{k-1}\dvd r_{k-2}$.
+	Dalll'equazione precedente vediamo allora che $r_{k-1}\dvd r_{k-3}$ e cos\`i via per tutti i resti precedenti, fino a dividere anche $b$ e dunque $a$ dalla prima equazione $a=q_1b+r_1$.
+	Infine, se un $c\in K[x]$ dividesse $a$ e $b$, allora dividerebbe $r_1$: ma allora divide anche $r_2$ (con un ragionamento analogo al precedente) e cos\`i via si vede che divide tutti i resti fino a $r_{k-1}$.
+	Dunque il massimo comun divisore di $a$ e $b$ è proprio $r_{k-1}$.
+\end{proof}
+
+\begin{teorema}[Identità di B\'ezout] \label{t:bezout}
+	Dato un campo $K$ e $a,b\in K[x]$, se $d$ è il loro massimo comune divisore, allora esistono $\xi,\eta\in K[x]$ tali per cui si ha
+	\begin{equation}
+		d=\xi a+\eta b.
+		\label{eq:bezout}
+	\end{equation}
+\end{teorema}
+\begin{proof}
+	La determinazione di tali $\xi$ e $\eta$ si può fare tramite l'algoritmo di Euclide delle divisioni successive.
+	Se il massimo comun divisore è uno tra $a$ o $b$, la tesi è ovvia, prendendo $\xi=1$ e $\eta=0$ o viceversa.
+	
+	Effettuiamo la prima divisione ottenendo $a=q_1b+r_1$, da cui $r_1=a-q_1b$.
+	Se $r_1$ è il massimo comune divisore, ci basta porre $\xi=1$ e $\eta=-q_1$.
+	Altrimenti, seguendo il teorema precedente dividiamo $b$ (sappiamo che $r_1\ne 0$, altrimenti $b$ sarebbe il massimo comun divisore) come $b=q_2r_1+r_2$.
+	Se $r_2$ è il massimo comune divisore,
+	\begin{equation}
+		r_2=b-q_2r_1=b-q_2(a-q_1b)=-q_2a+(1-q_1q_2)b
+	\end{equation}
+	perciò poniamo $\xi=-q_2$ e $\eta=1-q_2q_2$ per trovare la \eqref{eq:bezout}.
+	Altrimenti dividiamo ancora $r_1$ per $r_2$ (anche stavolta, $r_2\ne 0$ perch\'e $r_1$ non è il massimo comun divisore) e procediamo, una volta trovato il massimo comune divisore, ad esprimerlo tramite i resti delle divisioni precedenti fino a risalire ad $a$ e $b$.
+	Anche in questo caso, come nell'algoritmo di Euclide, il numero di iterazioni è finito quindi in un numero finito di passi siamo sicuri di trovare due termini $\xi$ e $\eta$ che soddisfino la \eqref{eq:bezout}.
+\end{proof}
+Vediamo un esempio pratico: siano $a(x)=x^3-5$ e $b(x)=x^2+4$, due polinomi in $\Q[x]$.
+Dividiamo $a$ per $b$ con l'algoritmo di Euclide, ottenendo
+\begin{equation*}
+	\begin{aligned}
+		x^3-5&=x\cdot(x^2+4)+(4x-5)\\
+		x^2+4&=\Big(\frac14x+\frac5{16}\Big)(4x-5)+\frac{41}{16}\\
+		4x-5&=\Big(\frac{64}{41}x-\frac{80}{41}\Big)\cdot\frac{41}{16}
+	\end{aligned}
+\end{equation*}
+perciò $\frac{41}{16}$, ossia $1$, (se lo prendiamo monico), è il massimo comune divisore di $a$ e $b$.
+\begin{comment}
+Risaliamo da esso ai polinomi di partenza sostituendo i vari resti dalle equazioni precedenti:
+\begin{equation*}
+	\begin{split}
+		4x-5&=\Big(\frac{64}{41}x-\frac{80}{41}\Big)\cdot\frac{41}{16}=\\
+		&=\Big(\frac{64}{41}x-\frac{80}{41}\Big)\Big[x^2+4-\Big(\frac14x+\frac5{16}\Big)(4x-5)\Big]=\\
+		&=\Big(\frac{64}{41}x-\frac{80}{41}\Big)\Big\{x^2+4-\Big(\frac14x+\frac5{16}\Big)[x^3-5-x(x^2+4)]\Big\}
+	\end{split}
+\end{equation*}
+da cui si ricava l'identità di B\'ezout per $a$ e $b$
+\begin{equation*}
+	\begin{split}
+		4x-5&=-\Big(\frac{64}{41}x-\frac{80}{41}\Big)\Big(\frac14x+\frac5{16}\Big)(x^3-5)+\Big(\frac{64}{41}x-\frac{80}{41}\Big)\Big[1+x\Big(\frac14x+\frac5{16}\Big)\Big](x^2+4)=\\
+		&=\Big(-\frac{16}{41}x^2-\frac{25}{41}\Big)(x^3-5)+\Big(\frac{16}{41}x^3+\frac{39}{41}x-\frac{80}{41}\Big)(x^2+4)		
+	\end{split}
+\end{equation*}
+\end{comment}
+
+\section{Polinomi primi e irriducibili}
+\begin{definizione} \label{d:polinomio-primo}
+	Dato $a\in K[x]$ con $\deg a>0$, esso si dice \emph{primo} se ogniqualvolta $a\dvd bc$ allora $a\dvd b$ o $a\dvd c$.
+\end{definizione}
+Il seguente lemma mostra un legame tra i polinomi primi e i corrispettivi ideali principali generati da essi.
+\begin{lemma} \label{l:ideale-polinomio-primo}
+	Dato $a\in K[x]$ con $\deg a>0$, l'ideale $(a)$ è primo se e solo se $a$ è primo.
+\end{lemma}
+\begin{proof}
+	Siano $b,c\in K[x]$.
+	Se $(a)$ è primo e $a\dvd bc$, allora $bc\in(a)$.
+	Per la definizione di ideale primo, però, ciò implica che $b\in(a)$ o $c\in(a)$, ossia $a\dvd b$ o $a\dvd c$.
+	Dunque $a$ è primo.
+
+	Sia ora $a$ un polinomio primo: se $a\dvd bc$ allora $a\dvd b$ oppure $a\dvd c$.
+	Ma $a\dvd bc$ implica $bc\in(a)$, e analogamente $a\dvd x$ implica $x\in(a)$.
+	Allora $(a)$ è un ideale primo.
+\end{proof}
+
+\begin{definizione} \label{d:polinomio-irriducibile}
+	Sia $a\in K[x]$ con $\deg a=n>0$.
+	Esso si dice \emph{irriducibile} se è divisibile solo per i polinomi $c\in K[x]$ con $\deg c=0$ e per quelli della forma $\lambda a$, con $\lambda\in K\setminus\{0\}$.
+\end{definizione}
+Notiamo subito che tutti i polinomi di grado 1, ossia della forma $p(x)=x-\alpha$, sono sempre irriducibili.
+
+\begin{teorema} \label{t:polinomio-irriducibile-primo}
+	Dato un campo $K$, un polinomio in $K[x]$ di grado positivo è irriducibile se e solo se è primo.
+\end{teorema}
+\begin{proof}
+	Sia $a\in K[x]$ irriducibile: prendiamo $b,c\in K[x]$ e supponiamo che $a\dvd bc$.
+	Mostriamo che se $a$ non divide $b$, allora $a\dvd c$.
+	Escludiamo il caso $b=0$, per il quale si avrebbe che $a\dvd b$: abbiamo quindi $a,b\ne 0$.
+	Sia dunque $d$ il massimo comune divisore tra $a$ e $b$.
+	Essendo $a$ irriducibile, abbiamo che o $d=\lambda$ o $d=\mu a$, per $\lambda,\mu\in K\setminus\{0\}$.
+	Il secondo caso non è possibile, perch\'e a quel punto $a=\mu^{-1}d$ quindi dividerebbe $b$.
+	Dunque $d=\lambda$, con $\lambda=1$ prendendo il polinomio monico.
+	Per l'identità di B\'ezout \ref{t:bezout}, abbiamo allora
+	\begin{equation*}
+		d=1=\xi a+\eta b
+	\end{equation*}
+	per qualche $\xi,\eta\in K[x]$.
+	Moltiplicando per $c$, otteniamo $c=c\xi a+c\eta b$: poich\'e per ipotesi però $a\dvd bc$, esiste $g\in K[x]$ tale per cui $ga=bc$.
+	Allora
+	\begin{equation*}
+		c=c\xi a+\eta ga=(c\xi+\eta g)a
+	\end{equation*}
+	ossia $a\dvd c$.
+
+	Sia ora $a\in K[x]$ primo: se fosse riducibile, allora $\exists f,g\in K[x]$ (diversi da multipli scalari di $a$) con $\deg f,\deg g>0$ tali che $a=fg$: allora $a\dvd fg$.
+	Essendo primo, però, divide sicuramente uno dei due, sia esso $f$: esiste quindi $\xi\in K[x]$, non nullo, per il quale $f=a\xi$.
+	Ma allora
+	\begin{equation*}
+		a=fg=a\xi g \then (1-\xi g)a=0
+	\end{equation*}
+	ossia $\xi g=1$: di conseguenza $\deg\xi+\deg g=0$.
+	Dato che $\deg g>0$ e $\deg\xi\ge 0$, questo è assurdo: ciò prova che non esistono $f,g$ diversi da multipli scalari di $a$ e di grado positivo che dividono $a$, che quindi non è riducibile.
+\end{proof}
+
+\begin{teorema}[di fattorizzazione unica] \label{t:fattorizzazione-unica}
+	Ogni polinomio $a\in K[x]$, con $\deg a>0$, può essere scritto come un prodotto
+	\begin{equation}
+		up_1\cdots p_n
+	\end{equation}
+	dove $u\in K$ e tutti i $p_i$ sono irridubicili.
+	La fattorizzazione è essenzialmente unica, nel senso che se $a=kp_1\cdots p_n=hq_1\cdots q_t$ con $h,k\in K$ e $p_i,q_i$ irriducibili, allora $n=t$ e a meno di permutazioni $p_i=cq_i$ con $c\in K$ per ogni $i$.
+\end{teorema}
+\begin{proof}
+	Dimostriamo per induzione su $n\defeq\deg a$.
+
+	Per prima cosa sia $n=1$: per quanto già detto, essendo di primo grado è già irriducibile, quindi è la fattorizzazione cercata, che è ovviamente anche unica.
+
+	Supponiamo che la tesi sia vera da 1 a $n$.
+	Se $a$ è irriducibile, la dimostrazione è conclusa, altrimenti scriviamo $a=gh$ per qualche $g,h\in K[x]$.
+	Se $g$ e $h$ sono entrambi irriducibili abbiamo trovato la fattorizzazione; se non è questo il caso, almeno uno tra $g$ e $h$ ha comunque un grado minore di quello di $a$, e per l'ipotesi di induzione è dunque riducibile.
+	Procediamo scomponendo $g$ o $h$, fino a trovare $a=p_1p_2\dots p_n$, dove ogni $p_i$ è irriducibile.
+	
+	Ammettiamo che esistano due fattorizzazioni
+	\begin{equation}
+		a=up_1p_2\cdots p_n=vq_1q_2\cdots q_t.
+	\end{equation}
+	con $u,v\in K$.
+	Poich\'e $p_1$ divide $a$, divide uno dei fattori $q_i$ al secondo membro, e sicuramente non $v$.
+	Riordiniamoli in modo che $p_1\dvd q_1$: poich\'e $q_1$ è irriducibile, ciò significa che $q_1=k_1p_1$, con $k_1\in K$ (l'ipotesi $p_1\in K$ è chiaramente da escludere).
+	Troviamo allora 
+	\begin{equation}
+		up_1\cdots p_n=vk_1p_1q_2\cdots q_t.
+	\end{equation}
+	ed essendo $K[x]$ un dominio d'integrità e $p_1\ne 0$ possiamo dividere per esso ottenendo
+	\begin{equation}
+		up_2\cdots p_n=vk_1q_2\cdots q_t.
+	\end{equation}
+	Ora al primo membro abbiamo $n-1<n$ fattori $p_i$, e proseguendo con lo stesso ragionamento precedente vediamo che al secondo ne abbiamo $t-1=n-1$, dunque per l'ipotesi di induzione abbiamo che $p_i=k_iq_i$ per qualche $k_i\in K$ per ogni $2\le i\le n$, e ciò prova la tesi.
+\end{proof}
+A questo punto, possiamo dividere tutti i fattori irriducibili per delle costanti opportune in $K$ per renderli monici, come nel seguente corollario.
+\begin{corollario} \label{c:fattorizzazione-polinomi-monici}
+	Dato $a\in K[x]$, con $\deg a=s>0$, esso si può sempre scrivere univocamente come $a=ka_1\dots a_s$, in cui
+	\begin{itemize}
+		\item $k\in K\setminus\{0\}$ è il coefficiente direttivo di $a$;
+		\item $a_i$, $\forall i\in\{1,\dots,s\}$ è monico e irriducibile.
+	\end{itemize}
+\end{corollario}
+\begin{proof}
+	Preso $a\in K[x]$, possiamo esprimerlo come $a=k_1a_1$ con $a_1$ monico.
+	Se si esegue lo stesso ragionamento su $a=p_1\dots p_t$, nel teorema precedente, si ottiene $a=k_1k_2\dots k_sa_1\dots a_s$ con i vari $a_i$ monici e irriducibili $\forall i\in\{1,\dots,n\}$, si ha che $k_1k_2\dots k_s\in K$, perciò deve essere il coefficiente direttivo del polinomio corrispondente.
+\end{proof}   
+
+\section{Domini a ideali principali}
+\begin{definizione} \label{d:dominio-ideali-principali}
+	Un dominio d'integrità $A$ è detto \emph{a ideali principali} se è tutti i suoi ideali propri sono principali, ossia se per ogni ideale $I\subset A$ esiste $a\in A$ per cui $I=(a)$.
+\end{definizione}
+Dimostriamo subito l'inverso del corollario \ref{c:ideale-massimale-primo} che avevamo anticipato.
+\begin{teorema} \label{t:ideale-massimale-primo}
+	In un dominio a ideali principali, un ideale è primo se e solo se è massimale.
+\end{teorema}
+\begin{proof}
+	Abbiamo già dimostrato nel corollario \ref{c:ideale-massimale-primo} che se un ideale è primo, allora è anche massimale.
+	Sia $A$ un dominio a ideali principali, $I$ un suo ideale primo e $J$ un altro ideale tali che $I\subseteq J\subseteq A$.
+	Sappiamo che esistono $a,b\in A$ tali che $I=(a)$ e $J=(b)$.
+	Poich\'e $(a)\subseteq(b)$, si ha $a\in(b)$ quindi esiste $x\in A$ tale che $a=xb$: allora $a\dvd xb$.
+	L'ideale $I$ è primo, quindi anche $a$ è un polinomio primo, perciò abbiamo che $a\dvd b$ oppure $a\dvd x$.
+	Nel primo caso, si ha $b\in(a)$ perciò $(a)=(b)$, ossia $I=J$.
+	Nel secondo caso, esiste $y\in A$ tale che $ya=x$, ma allora $x=y(xb)=x(yb)$.
+	Poich\'e $A$ è un dominio di integrità, e $x\ne 0$, ciò implica che $yb=1$, e di conseguenza $1\in(b)$.
+	Ma un ideale che contiene l'unità coincide con l'anello intero, perciò $(b)=A$.
+	Ciò prova che $I$ è massimale.
+\end{proof}
+Mostriamo ora che possiamo sfruttare molte utili proprietà, come la completa equivalenza tra ``primo'' e ``irriducibile'', nello studio degli anelli di polinomi in una incognita, in virtù del seguente teorema.
+\begin{teorema}
+	Dato un campo $K$, l'anello $K[x]$ è un dominio a ideali principali.
+\end{teorema}
+\begin{proof}
+	Sia $I$ un ideale di $K[x]$.
+	Se $I=\{0\}$, ovviamente $I=(0)$ quindi è un ideale principale.
+	Se $I\ne\{0\}$ allora in esso ci sono dei polinomi di grado maggiore di zero.
+	Poniamo
+	\begin{equation*}
+		m\defeq\min\{\deg p\colon p\in I\}
+	\end{equation*}
+	che esiste per il principio del buon ordinamento.\footnote{Il principio del buon ordinamento afferma che \emph{ogni insieme di numeri naturali non vuoto contiene un numero che è più piccolo di tutti gli altri}.}
+	Sia $g\in I\setminus\{0\}$ tale che $\deg g=m$: vogliamo mostrare che $(g)=I$.
+	Chiaramente $(d)\subseteq I$ dalla definizione di ideale.
+	Prendiamo inolte $y\in I$: certamente esistono $q,r\in K[x]$ tali per cui $\deg r<\deg y$ e $y=qg+r$.
+	Di conseguenza, $r=y-qg\in I$: se però $r\ne 0$, avremmo $\deg r<\deg g$ che viola l'ipotesi fatta ($g$ ha il grado minore tra tutti i polinomi di $I$).
+	Deve necessariamente essere allora $r=0$, da cui $y=qg$.
+	Ma allora $g\dvd y$, e poich\'e questo vale per ogni $y\in I$ risulta $I\subseteq (d)$.
+	Ciò prova che $I=(d)$, perciò ogni ideale di $K[x]$ è un ideale principale.
+\end{proof}
+\begin{corollario} \label{c:unicita-generatore-monico}
+	Ogni ideale principale $I\in K[x]$, con $I\ne (0)$, ha un unico generatore monico.
+\end{corollario}
+\begin{proof}
+	Poniamo $I=(g)$ con $g(x) = a_nx^n+\dots+a_0$ con $a_n\ne 0$.
+	Possiamo allora moltiplicare $g$ per $a_n^{-1}$, ottenendo che $I$ è anche generato da $\tilde{g} = a_n^{-1}g$ che è monico, cioè $(\tilde{g}) = (g)$: ciò prova l'esistenza di un generatore monico di $I$.
+	Dimostriamone l'unicità: sia $I=(h)$, con $h$ monico.
+	Poich\'e $(h)=(\tilde{g})$, risulta che $\tilde{g}\dvd h$ e $h\dvd \tilde{g}$ ossia esistono $\alpha,\beta\in K[x]$ per cui $h=\alpha\tilde{g}$ e $\tilde{g}=\beta h(x)$.
+	Quindi $h=\alpha\beta h$, e poich\'e $I\ne\{0\}$ e $K[x]$ è un dominio d'integrità risulta $\alpha\beta=1$.
+	Dunque $\alpha,\beta\in K\setminus\{0\}$: $h=\alpha\tilde{g}$ per ipotesi è monico, e dato che lo è anche $\tilde{g}$ si ottiene $\alpha=1$.
+	Di conseguenza $h=\tilde{g}$, cioè il generatore monico è unico.
+\end{proof}
+\begin{teorema} \label{t:rappresentazione-laterali-ideale-principale}
+	Sia $(g)$ un ideale non nullo di $K[x]$.
+	Ogni classe laterale di $(g)\in K[x]\quot g$ si può rappresentare univocamente nella forma $(g)+r$, con $\deg r<\deg g$.
+\end{teorema}
+\begin{proof}
+	Una classe laterale dell'ideale $(g)$ è del tipo $(g)+f$, per $f\in K[x]$.
+	Per il teorema \ref{t:esistenza-mcd} esistono sempre $q,r\in K[x]$, con $\deg r<\deg g$ tali che $f=qg+r$.
+	Si ha allora
+	\begin{equation*}
+		(g) + f = (g) + qg + r = (g) + r,
+	\end{equation*}
+	dato che $qg\in (g)$, quindi un tale $r$ esiste.
+	Mostriamo che è unico.
+	Supponiamo che esista anche un $r'\in K[x]$ tale che la classe laterale si possa rappresentare come $(g)+r'$, con $\deg r'<\deg g$.
+	Dalle proprietà \ref{pr:gradi-polinomi-operazioni} risulta
+	\begin{equation*}
+		\deg (r'-r)\leq\max\{\deg r',\deg r\}<\deg g.
+	\end{equation*}
+	Ora, nel caso $\deg(r'-r)\ge 0$, se fosse $r'-r\in(g)$ allora si avrebbe $r'-r=hg$ per qualche $h\in K[x]$, ma allora $\deg(r'-r)=\deg(hg)$ e contemporaneamente
+	\begin{equation*}
+		\deg(r'-r)<\deg g\ge \deg(hg)
+	\end{equation*}
+	che porta ad una contraddizione.
+	Dunque $\deg(r'-r)=0$, ossia $r'-r=0=0\cdot g$ perciò $r'-r\in(g)$.
+	Avendo i due rappresentanti in relazione, le due classi laterali sono equivalenti.
+\end{proof}
+\begin{corollario}
+	Sia $K$ un campo finito e $g\in K[x]$ di grado $n>0$.
+	Allora $|K[x]\quot(g)|=|K|^n$.
+\end{corollario}
+\begin{proof}
+	Sapendo che le classi laterali sono scritte come $(g)+r(x)$, ora ipotizziamo due casi, cioè $\deg r(x) = 0$, oppure $\deg r(x) = -1$, ricaviamo:
+	\begin{align*}
+		\deg r(x) &= 0 \text{ si ha $(g) + r(x) = (g) + a_0$,}\\
+		\deg r(x) &= 1 \text{ si ha $(g) + r(x) = (g) + a_1x + a_0$.}
+	\end{align*}
+	Nel primo caso si ritrovano tutte le possibili combinazioni degli $a_0\in K$, che sono $m$, nel secondo caso le possibili combinazioni sono $m^2$. Si può arrivare dunque a dimostrare la tesi.
+\end{proof}
+\begin{teorema}
+	Sia $g\in K[x]$ con $\deg g>0$.
+	L'ideale $(g)$ è massimale se e solo se $g$ è irriducibile.
+\end{teorema}
+\begin{proof}
+	Non bisogna far altro che applicare dei teoremi già visti in precedenza:
+	\begin{equation*}
+		(g)\text{ è massimale }\iff (g)\text{ è primo }\iff g\text{ è primo }\iff g\text{ è irriducibile}
+	\end{equation*}
+	per i teoremi, in ordine, \ref{t:ideale-massimale-primo}, \ref{l:ideale-polinomio-primo} e \ref{t:polinomio-irriducibile-primo}.
+\end{proof}
+\begin{corollario}
+	Dato $g\in K[x]$ con $\deg g>0$, $K[x]\quot(g)$ è un campo se e solo se $g$ è irriducibile.
+\end{corollario}
+\begin{proof}
+	Dal teorema precedente abbiamo che $g$ è irriducibile se e solo se $(g)$ è massimale.
+	Collegando anche il teorema \ref{t:ideale-massimale-quoziente-campo} troviamo la tesi.
+\end{proof}
+Vediamo un esempio concreto delle conseguenze di questi teoremi.
+Partiamo dall'anello $\R[x]$ dei polinomi a coefficienti reali, e un polinomio irriducibile di grado maggiore di 1, come $x^2+1$.
+Essendo irriducibile, l'ideale $(x^2+1)$ è primo e massimale, e $\R[x]\quot (x^2+1)$ un campo.
+I suoi elementi, dal teorema \ref{t:rappresentazione-laterali-ideale-principale}, si scrivono tutti come un elemento di $(x^2+1)$ più un polinomio di primo grado, ossia se $p\in\R[x]\quot(x^2+1)$ allora
+\begin{equation}
+	p=(x^2+1)+ax+b.
+\end{equation}
+Prendiamo un'altro elemento $q=(x^2+1)+cx+d$.
+La somma di due elementi è definita in modo naturale come
+\begin{equation}
+	p+q=(x^2+1)+ax+b+(x^2+1)+cx+d=(x^2+1)+(a+c)x+b+d
+\end{equation}
+e il prodotto come
+\begin{equation}
+	pq=[(x^2+1)+ax+b]\cdot[(x^2+1)+cx+d]=(x^2+1)+acx^2+(ad+bc)x+bd.
+\end{equation}
+Il termine $acx^2$ però ha lo stesso grado di $x^2+1$, quindi non deve comparire.
+Possiamo in effetti trovare un modo per eliminarlo: aggiungendo e sottraendo $ac$ al risultato, otteniamo
+\begin{equation}
+	\begin{split}
+		pq&=(x^2+1)+acx^2+ac+(ad+bc)x+bd-ac=\\
+		&=(x^2+1)+ac(x^2+1)+(ad+bc)x+bd-ac=\\
+		&=(x^2+1)+(ad+bc)x+bd-ac
+	\end{split}
+\end{equation}
+dato che $ac(x^2+1)\in(x^2+1)$ quindi viene ``assorbito'' dall'ideale.
+
+Prendiamo ora l'insieme $\R^2$ delle coppie di numeri reali, e dotiamolo delle operazioni
+\begin{equation}
+	\begin{gathered}
+		(b,a)+(\beta,\alpha)=(b+\beta,a+\alpha)\\
+		(b,a)(\beta,\alpha)=(a\beta+b\alpha, b\beta-a\alpha).
+	\end{gathered}
+\end{equation}
+Questa struttura individua un ulteriore campo, di cui non è difficile notare il legame con il precedente $\R[x]\quot (x^2+1)$.
+Troviamo infatti un isomorfismo $\gamma\colon\R[x]\quot(x^2+1)\to\R^2$, definito come
+\begin{equation}
+	\gamma\colon (x^2+1)+ax+b\mapsto (b,a)
+\end{equation}
+che li lega.
+Ovviamente quest'ultimo campo $\R^2$, con le operazioni definite, non è altro che il campo complesso come costruito da Hamilton, ma con la coppia $(a,b)$ in ordine contrario.
+Per passare alla notazione comune $a+ib$ non dobbiamo far altro che definire un nuovo insieme $\hat{\C}=\{a+ib\colon a,b\in\R\}$ con le note operazioni, e tale che $i^2=-1$.
+L'isomorfismo che mette in relazione i due campi è evidentemente un $\phi\colon\C\to\hat{\C}$ per il quale
+\begin{equation}
+	\phi(b,a)=a+ib.
+\end{equation}
+\section{Radici di un polinomio}
+\begin{definizione} \label{d:radice-polinomio}
+	Dato un anello $A$ commutativo e con unità e un polinomio $p\in A[x]$, si dice \emph{radice} di $p$ un elemento $\alpha\in A$ per cui $p(\alpha)=0$.
+\end{definizione}
+
+\begin{teorema}[di Ruffini] \label{t:ruffini}
+	Dato un campo $K$ e un polinomio $p\in K[x]$, $\alpha$ è una radice di $p$ se e solo se $(x-\alpha)\dvd p$.
+\end{teorema}
+\begin{proof}
+	Sia $\alpha$ una radice di $p$.
+	Possiamo dividere $p$ per $x-\alpha$, il cui grado non è nullo, ottenendo che
+	\begin{equation*}
+		p(x)=q(x)(x-\alpha)+r(x)
+	\end{equation*}
+	con $\deg r<\deg\big( (x-\alpha)\big)=1$.
+	Dato che $\deg r\in\{0,1\}$, quindi, $r(x)=k$ per qualche $k\in K$, eventualmente $k=0$ se $\deg r=-1$.
+	Ma essendo $\alpha$ una radice di $p$, valutando $p(\alpha)$ otteniamo
+	\begin{equation*}
+		0=p(\alpha)=q(\alpha)(\alpha-\alpha)+k=k
+	\end{equation*}
+	perciò $k=r(x)=0$: di conseguenza $p(x)=q(x)(x-\alpha)$, ossia $(x-\alpha)\dvd p$.
+	
+	Sia ora $(x-\alpha)\dvd p$: possiamo dunque scrivere $p(x)=g(x)(x-\alpha)$ per qualche $g\in K[x]$.
+	Ma allora, valutandolo in $\alpha$, risulta
+	\begin{equation*}
+		p(\alpha)=g(\alpha)(\alpha-\alpha)=0
+	\end{equation*}
+	quindi $\alpha$ è una radice di $p$.
+\end{proof}
+Per esempio, sia $f(x) = a_1 x + a_0 \in K[x]$ con $a_1 \neq 0$.
+Si ha che $\alpha = - \frac{a_0}{a_1}$ è sempre una radice.
+
+Si può, visti i teoremi precedenti, porre una relazione tra la presenza di una radice e la possibilità di ridurre un polinomio. Sia $f(x)\in K[x]$ e $\deg f(x) > 1$, se $f(x)$ ammette una radice $\alpha$, allora $f(x)$ deve essere riducibile come $f(x) = (x-\alpha) g(x)$.
+
+Non è detto, in generale, che ogni polinomio riducibile abbia necessariamente una radice: basta prendere in $\R[x]$ il polinomio $x^4+2x^2+1$.
+Esso si può scomporre in $(x^2+1)(x^2+1)$, che chiaramente non hanno radici reali.
+Se invece il polinomio \emph{è riducibile} e ha grado 2 o 3, allora certamente ha una radice: in fatti almeno uno dei fattori in cui è scomposto deve avere grado 1, cioè sarà della forma $x-\lambda$, perciò tale $\lambda$ è una radice.
+
+Un caso importante è quello dei numeri complessi: in tale campo, si può sempre scomporre un polinomio (non costante) in un prodotto di opportuni polinomi di primo grado, per via del seguente teorema (che non dimostriamo).
+\begin{teorema}[Teorema fondamentale dell'algebra] \label{t:fondamentale-algebra}
+	Ogni polinomio in $\C[x]$ di grado positivo ammette sempre una radice in $\C$.
+\end{teorema}
+
+\begin{definizione} \label{d:molteplicita-algebrica-radice}
+	Siano $K$ un campo, $f\in K[x]$ e $\alpha\in K$.
+	Si dice che $\alpha$ è una radice di $f$ con \emph{molteplicità algebrica} $r\in \N$ se $(x-\alpha)^r\dvd f$ ma $(x-\alpha)^{r+1}$ non divide $f$.
+\end{definizione}
+In particolare, una radice di molteplicità algebrica 1 è detta \emph{semplice}.
+\begin{teorema}\label{dimensione-molteplicita-algebrica}
+	Sia $f\in K[x]$ con $\deg f\ge 0$.
+	Date le radici distinte $\alpha_1,\dots,\alpha_k$ di $f$ con molteplicità algebrica rispettivamente $r_1,\dots,r_k$, si ha che $\sum_{i=1}^n r_i\le\deg f$.
+\end{teorema}
+\begin{proof}
+	Secondo il teorema \ref{t:fattorizzazione-unica}, scriviamo $f$ come
+	\begin{equation}
+		f = p_1p_2\dots p_k,
+	\end{equation}
+	con ogni $p_i$ primo.
+	Data una radice $\alpha_1$, si ha che $(x-\alpha_1)\dvd f$, quindi divide uno dei $p_i$.
+	Riordiniamo l'ordine del prodotto in modo che $(x-\alpha_1)\dvd p_1$: poich\'e $p_1$ è primo, quindi irriducibile, dovrà essere della forma $h(x-\alpha_1)$ con $h\in K\setminus\{0\}$.
+	Raccogliendo tutti i fattori di questo tipo nel prodotto otteniamo
+	\begin{equation}
+		f(x)=(x-\alpha_1)^{k_1}u(x)
+	\end{equation}
+	con ovviamente $k_1\ge r_1$ (altrimenti $r_1$ non sarebbe la molteplicità di $\alpha_1$), e $x-\alpha_1$ che non divide $u$.
+	Allo stesso modo, però, $(x-\alpha_1)^{r_1}\dvd f$, dunque
+	\begin{equation}
+		f(x)=(x-\alpha_1)^{r_1}v(x).
+	\end{equation}
+	Eguagliando le due espressioni trovate abbiamo
+	\begin{equation}
+		(x-\alpha_1)^{k_1}u(x)=(x-\alpha_1)^{r_1}v(x)\quad\then\quad (x-\alpha_1)^{r_1-k_1}v(x)=u(x)
+	\end{equation}
+	dato che $K[x]$ è un dominio d'integrità.
+	Se ora $r_1>k_1$, si avrebbe che $x-\alpha_1\dvd u$, ma ciò contrasta la scelta di $k_1$: allora $r_1=k_1$ da cui
+	\begin{equation}
+		f(x)=(x-\alpha_1)^{r_1}u(x).
+	\end{equation}
+	Passiamo alla radice $\alpha_2$: poich\'e $\alpha_2\ne\alpha_1$, certamente $x-\alpha_2$ non divide $(x-\alpha_1)^{r_1}$, quindi dovrà dividere $u$.
+	Procediamo in questo modo fino ad esaurire le radici $\alpha_i$, giungendo a una forma
+	\begin{equation}
+		f(x)=(x-\alpha_1)^{r_1}\cdots(x-\alpha_k)^{r_k}g(x).
+	\end{equation}
+	Allora dalle proprietà \ref{pr:gradi-polinomi-operazioni} otteniamo
+	\begin{equation}
+		\deg f=\sum_{i=1}^kr_i+\deg g\ge\sum_{i=1}^kr_i
+	\end{equation}
+	come volevamo dimostrare.
+\end{proof}
+
+\begin{corollario}[Principio d'identità dei polinomi] \label{c:principio-identita-polinomi}
+	Siano $\alpha_1, \dots, \alpha_{n+1}$ elementi distinti di $K$.
+	Se $f,g\in K[x]$, al più di grado $n$, sono tali che $f(\alpha_i)=g(\alpha_i)$ $\forall i\in\{1,\dots,n+1\}$, allora $f=g$.
+\end{corollario}
+\begin{proof}
+	Supponiamo per assurdo che sia $f\ne g$.
+	Allora si ha che $f-g\ne 0$, perciò $n\ge\deg (f-g)\ge 0$.
+	Se $f(\alpha_i)=g(\alpha_i)$ $\forall i\in\{1,\dots,n+1\}$, allora ogni $\alpha_i$ è radice di $f-g$, che ha quindi $n+1$ radici.
+	Per il teorema precedente, però, risulterebbe $\deg(f-g)\ge\sum_{k=1}^{n+1}r_i\ge n+1$ (nel migliore dei casi, $\deg(f-g)=n+1$ se ogni radice è semplice), che è assurdo perch\'e come visto si ha $\deg(f-g)\le n$.
+	Dunque deve essere $f-g=0$, ossia $f=g$.
+\end{proof}

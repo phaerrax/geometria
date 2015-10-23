@@ -2,23 +2,44 @@
 
 \usepackage{mathematics}
 \hypersetup{
-	pdftitle={Geometria},
-	pdfauthor={Davide Ferracin},
-	pdfcreator={Davide Ferracin},
+	pdftitle={Geometria 1},
+	pdfauthor={Ferracin Davide},
+	pdflang={it},
 	pdfsubject={Appunti del corso di Geometria 1},
-	pdfproducer={Rompileballealprossimo Editore}
+	pdfcreator={Davide Ferracin},
+	pdfcaptionwriter={Davide Ferracin}
+	pdfcopyright={Creative Commons Attribution-ShareAlike 4.0 International},
+	pdflicenseurl={http://creativecommons.org/licenses/by-sa/4.0/},
+	pdfmetalang={it}
 }
 
 %titolo e pagina iniziale
 \title{
-	{\sffamily\fontsize{35}{42}\selectfont Geometria}
+	{\sffamily\fontsize{35}{42}\selectfont Geometria 1}
 }
-\author{}
-\date{\today}
+\author{
+	{\small a cura di}\\
+	Davide Ferracin
+}
+\date{}
 
 \begin{document}
 \maketitle
-\vspace{2cm}
-\toccontents
+
+\null % Serve scrivere qualcosa prima di \vfill altrimenti non funziona
+\vfill % Riempie lo spazio verticale della pagina
+\hspace*{-1.5em}\includegraphics[scale=.7]{by-sa-icon.pdf}
+\begin{flushleft}
+	Quest'opera è stata rilasciata con licenza \emph{Creative Commons} Attribuzione - Condividi allo stesso modo 4.0 Internazionale. Per leggere una copia della licenza visita il sito web \url{http://creativecommons.org/licenses/by-sa/4.0/}.\\
+	2015, Davide Ferracin (\href{mailto:davide.ferracin@studenti.unimi.it}{\ttfamily davide.ferracin@studenti.unimi.it})\\[1cm]
+	Versione aggiornata al \today.
+\end{flushleft}
+
+\include{chapters/anelli}
+\include{chapters/spazi-vettoriali}
 \include{chapters/prodotto-interno}
+
+\cleardoublepage
+\pdfbookmark[-1]{Indice}{contents}
+\tableofcontents
 \end{document}
