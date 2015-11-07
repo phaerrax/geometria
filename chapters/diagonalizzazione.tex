@@ -54,26 +54,26 @@ Possiamo quindi definire il \emph{determinante di un endomorfismo}, sapendo che 
 È possibile definire il polinomio caratteristico di un endomorfismo, equivalentemente, come $\det(A-xI)$ dive $A$ rappresenta $T$ in qualche base $\mathcal B$.
 Ma se $\tilde{\mathcal B}$ è un'altra base e $L$ la matrice di cambiamento di base tra le due, allora la matrice che rappresenta $T$ in $\tilde{\mathcal B}$ è $\tilde{A}=L^{-1}AL$.
 Il polinomio caratteristico di questa nuova matrice è
-\begin{equation*}
-	\chi_{\tilde{A}}(x)=\det(\tilde{A}-xI)=\det(L^{-1}AL-xI)=\det(L^{-1}AL-L^{-1}xIL)=\det(L^{-1})\det(A-xI)\det L=\chi_A(x)
-\end{equation*}
-quindi matrici simili hanno il medesimo polinomio caratteristico.
-La definizione data tramite l'endomorfismo è quindi ben posta, in quanto le matrici rappresentanti un endomorfismo rispetto a basi differenti sono tutte simili.\footnote{Questo ovviamente vale purch\'e le basi di partenza e di arrivo coincidono!}
+\begin{multline}
+	\chi_{\tilde{A}}(x)=\det(\tilde{A}-xI)=\det(L^{-1}AL-xI)=\det(L^{-1}AL-L^{-1}xIL)=\\=
+	\det(L^{-1})\det(A-xI)\det L=\det(A-xI)=\chi_A(x)
+\end{multline}
+quindi matrici simili hanno il medesimo polinomio caratteristico: anch'esso dunque non dipende dalla base in cui l'endomorfismo è associato alla matrice.
+La definizione data di $\chi_T$ con endomorfismi è quindi ben posta, in quanto le matrici rappresentanti un endomorfismo rispetto a basi differenti sono tutte simili.\footnote{Questo ovviamente vale purch\'e le basi di partenza e di arrivo coincidano!}
 
-Le radici di $\chi_T(x)$, per l'ultimo punto del teorema precedente, sono chiaramente gli autovalori di $T$. Il grado di questo polinomio inoltre equivale alla dimensione dello spazio vettoriale $V$.
+L'importanza del polinomio caratteristico è che le sue radici, per l'ultimo punto del teorema precedente, sono chiaramente gli autovalori di $T$.
+Il grado di questo polinomio inoltre equivale alla dimensione dello spazio vettoriale $V$.
 Si può alternativamente definire il polinomio caratteristico come $\chi_T(x)=\det(xI-T)$: gli autovalori trovati come radici non variano, perché per le proprietà del determinante vale $\det(xI-T)=(-1)^m\det(T-xI)$, dove $m=\dim V$, quindi le radici sono le stesse per entrambe le definizioni.
 
 Rifacendosi al primo esempio
 \begin{equation*}
-A=\begin{pmatrix}\cos\alpha&-\sin\alpha\\\sin\alpha&\cos\alpha\end{pmatrix},
+	A=\begin{pmatrix}\cos\alpha&-\sin\alpha\\\sin\alpha&\cos\alpha\end{pmatrix},
 \end{equation*}
 il polinomio caratteristico di $A$ è
 \begin{equation*}
-	\begin{split}
-		\chi_A(x)&=\begin{vmatrix}\cos\alpha-\lambda&-\sin\alpha\\\sin\alpha&\cos\alpha-\lambda\end{vmatrix}=\\
-		&=(\cos\alpha-\lambda)^2+\sin^2\alpha=\\
-		&=\lambda^2-2\cos\alpha\lambda+1,
-	\end{split}
+		\chi_A(x)=\begin{vmatrix}\cos\alpha-\lambda&-\sin\alpha\\\sin\alpha&\cos\alpha-\lambda\end{vmatrix}=\\
+		(\cos\alpha-\lambda)^2+\sin^2\alpha=\\
+		\lambda^2-2\cos\alpha\lambda+1,
 \end{equation*}
 il cui discriminante è $-4\sin^2\alpha$, che quindi non è negativo solo se $\alpha=k\pi$ ($k\in\Z$).
 Soltanto per questi valori $A$ ammette dunque autovalori.
