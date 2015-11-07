@@ -134,18 +134,20 @@ La somma di due autovettori di $T$ associati a due autovalori distinti però \em
 	Se $\lambda$ è un autovalore, esiste un autospazio ad esso associato non vuoto, che ha quindi una dimensione non nulla; inoltre esiste una radice di $\chi_T(x)$, ed essa ha quindi una molteplicità non nulla.
 	Allora $\alpha_\lambda,\gamma_\lambda\geq 1$.
 
-	L'autospazio è un sottospazio vettoriale di $V$, quindi $\gamma_\lambda\dim V_\lambda\leq\dim V$, e il grado di $\chi_T(x)$ (che equivale alla dimensione di $V$) non può essere superato dalla somma delle molteplicità delle radici per il teorema \ref{dimensione-moltiplicità-algebrica} dunque $\alpha_\lambda\le\dim V$.
-	Si può individuare una base dell'autospazio $V_\lambda$ composta da $\gamma_\lambda$ elementi, che sono autovettori associati a $\lambda$.
-	Nell'autospazio $V_\lambda$ l'endomorfismo $T$ si comporta come un multiplo dell'identità, precisamente $\lambda I_n$ (dove $n$ è la dimensione dell'autospazio, cioè è $\gamma_\lambda$), dato che sono tutti autovettori con autovalore $\lambda$.
+	L'autospazio è un sottospazio vettoriale di $V$, quindi $\gamma_\lambda=\dim V_\lambda\leq\dim V$; il grado di $\chi_T(x)$ (che equivale alla dimensione di $V$) non può essere superato dalla somma delle molteplicità delle radici per il teorema \ref{dimensione-moltiplicità-algebrica}.
+	Risulta allora $\alpha_\lambda\le\dim V$.
+
+	Possiamo ora individuare una base dell'autospazio $V_\lambda$ composta da $\gamma_\lambda$ elementi, che sono autovettori associati all'autovalore $\lambda$.
+	In tale autospazio l'endomorfismo $T$ si comporta come un multiplo dell'identità, precisamente $\lambda I_n$ (dove $n$ è la dimensione dell'autospazio, cioè $\gamma_\lambda$), dato che sono tutti autovettori con autovalore $\lambda$.
 	Nella base scelta, dunque, $T$ è rappresentato da
 	\begin{equation*}
 		A=
-		\begin{bmatrix}
+		\begin{pmatrix}
 			\lambda I_n & 0\\
 			0			& M
-		\end{bmatrix}
+		\end{pmatrix}
 	\end{equation*}
-	con $n=\gamma_\lambda$ come già visto, e $M$ è una matrice qualunque (è il blocco corrispondente all'azione di $T$ su $V$ meno l'autospazio $V_\lambda$).
+con $n=\gamma_\lambda$ come già visto, e $M$ una matrice qualunque.\footnote{La matrice $M$ è il blocco corrispondente all'azione di $T$ sul sottoinsieme di $V$ generato dagli elementi della base che non sono nell'autospazio $V_\lambda$.}
 	Il suo polinomio caratteristico è $\chi_T(x)=\det(A-xI)=\det(\lambda I_n-xI_n)\det(M-xI_{\dim V-n})=(\lambda-x)^ng(x)$ dove $g(x)=\det(M-xI_{\dim V-n})$ è un generico polinomio di grado $\dim V-n$.
 	Allora $\lambda-x$ divide $\chi_T(x)$ almeno $\gamma_\lambda$ volte, vale a dire che la molteplicità della radice $\lambda$ non è minore di $\gamma_\lambda$, cioè $\alpha_\lambda\ge\gamma_\lambda$.
 \end{proof}
