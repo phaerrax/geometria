@@ -235,10 +235,16 @@ Segue immediatamente il seguente corollario.
 
 \begin{teorema}
 	Sia $T\in \End(V)$ con $V$ di dimensione finita.
-	Dati $\lambda_1,\dots,\lambda_k$ autovalori distinti con i corrispondenti autospazi $V_{\lambda_1},\dots,V_{\lambda_k}$ si ha che $T$ è diagonalizzabile se $V$ può essere scritto come somma diretta degli autospazi, ossia $V =\bigoplus_{i=1}^k V_{\lambda i}$.
+	Dati $\lambda_1,\dots,\lambda_k$ autovalori distinti con i corrispondenti autospazi $V_1,\dots,V_k$ si ha che $T$ è diagonalizzabile se e solo se $V$ può essere scritto come somma diretta degli autospazi, ossia $V=\bigoplus_{i=1}^k V_i$.
 \end{teorema}
 \begin{proof}
-	La dimostrazione è analoga alla seconda parte di quella svolta nel teorema \ref{d:relazione-diagonalizzabilita}.
+	Se $V=V_1\oplus\cdots\oplus V_k$ allora tutti i $V_i$ sono linearmente indipendenti, per la definizione di somma diretta.
+	Possiamo quindi prendere per ciascun $V_i$ una base $\mathcal B_i$ (chiaramente composta da autovettori di $T$), ciascuna con un numero di elementi pari alla molteplicità geometrica di $\lambda_i$, $\gamma_i$, e unirle tutte formando $\mathcal B=\bigcup_{i=1}^k\mathcal B_i$ che è un insieme linearmente indipendente in $V$.
+	Allora $\mathcal B$ è un insieme linearmente indipendente che contiene $\sum_{i=1}^k\gamma_i=\dim V$ elementi, quindi è una base di $V$, perciò $T$ è diagonalizzabile.
+
+	Se $T$ è diagonalizzabile esiste una base $\mathcal B$ di $V$ di autovettori.
+	L'autospazio $V_i$ è quindi lo spazio generato dagli elementi di $\mathcal B$ relativi all'autovalore $\lambda_i$.
+	Evidentemente allora $V_1+\cdots+V_k=V$, e gli autospazi sono linearmente indipendenti quindi $V=V_1\oplus\cdots\oplus V_k$.
 \end{proof}
 
 \section{Polinomio minimo}
