@@ -330,17 +330,17 @@ Ecco alcuni esempi di sottospazi invarianti.
 \begin{itemize}
 	\item Per alcune applicazioni, i sottospazi banali sono gli unici sottospazi invarianti: un facile esempio è una rotazione in $\R^2$ di un angolo diverso da $k\pi$, per $k\in\Z$.
 	\item Per ogni spazio $V$ e $T\in\End(V)$, $\Ker T$ e $\Imm T$ sono $T$-invarianti.
-		Se infatti $v\in\Ker T$, allora $T(v)=0$ e $0\in\Ker T$, come in tutti i sottospazio vettoriali.
+		Se infatti $v\in\Ker T$, allora $T(v)=0$ e chiaramente $0$ appartiene a $\Ker T$, come in tutti i sottospazi vettoriali.
 		Analogamente $T(v)\in\Imm T$, banalmente, qualsiasi sia $v\in V$, dunque anche per $v\in\Imm T$.
 	\item Un autospazio $V_\lambda$ associato a un autovalore $\lambda$ di un $T\in\End(V)$ è $T$-invariante, poich\'e per ogni $v\in V_\lambda$ si ha $T(v)=\lambda v\in V_\lambda$.
-	\item Se $T,S\in\End(V)$ commutano, se $a\in\Ker T$ allora $T\big(S(a)\big)=S\big(T(a)\big)=S(0)=0$ quindi $S(a)\in\Ker T$, cioè $\Ker T$ è $S$-invariante.
+	\item Se $T,S\in\End(V)$ commutano, ossia $T\circ S=S\circ T$, se $a\in\Ker T$ allora $T\big(S(a)\big)=S\big(T(a)\big)=S(0)=0$ quindi $S(a)\in\Ker T$, cioè $\Ker T$ è $S$-invariante.
 		Vale anche per $\Imm T$?
 \end{itemize}
 
-Sia $W \leq V$ sottospazio dello spazio vettoriale $V$ sul campo $K$.
+Sia $W$ un sottospazio dello spazio vettoriale $V$ sul campo $K$.
 Dato $T\in\End(V)$, posto $v\in V$ definiamo l'insieme
 \begin{equation*}
-	S_T(v, W)= \{ g\in K[x]\colon g(T)(v)\in W\}
+	S_T(v,W)\defeq\{ g\in K[x]\colon g(T)(v)\in W\}
 \end{equation*}
 ossia, fissati $v\in V$ e il sottospazio $W$, l'insieme dei polinomi di $K[x]$ tali che, valutati in $T$, portano $v$ in $W$.
 Il polinomio minimo appartiene a questo insieme: risulta infatti $m_T(T)(v)=0(v)=0\in W$, per ogni $v\in V$ e $W\le V$.
