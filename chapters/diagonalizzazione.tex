@@ -248,30 +248,31 @@ Segue immediatamente il seguente corollario.
 \end{proof}
 
 \section{Polinomio minimo}
-% Introdurre il discorso con il fatto che End(V) è un'algebra su K, dunque sono lecite le potenze di T, si ha T^0=I (le algebre sono strutture anche moltiplicative, tipo gli anelli?)
-Sia $V$ uno spazio vettoriale sul campo $K$ e $T\in \End(V)$.
-Diciamo che un polinomio $f\in K[x]$ \emph{annulla} $T$ se $f(T) = 0$ (l'endomorfismo nullo).
-Considerando $T\in \End(V)$ ho che la dimensione della matrice associata, se la dimensione di $V$ è $m$ ed è finita, è $m^2$, ora consideriamo $f(T)$ come il polinomio che annulla $T$, si ha quindi $f(T) = 0$, quindi $T^0 = I,T=T^1, T^2=T\circ T, \dots, T^k = T\circ T^{k-1}$, possiamo riscrivere con queste considerazioni prendendo la matrice associata a $V$ rispetto a $L$:
-\begin{equation*}
-	f(T) = a_{m^2}T^{m^2} +a_{m^2-1}T^{m^2-1}+\dots+a_0I,
-\end{equation*}
-ora le varie potenze presenti in $T$ sono $m^2+1$ quindi il sistema deve essere linearmente dipendente.
-Esistono allora opportuni $a_i$ per cui il sistema ammette una soluzione.
-Concludiamo che esiste sempre un polinomio, al massimo di grado $m^2$ che annulla l'operatore $T$.
+Preso uno spazio vettoriale $V$ sul campo $K$ e un suo endomorfismo $T$, abbiamo visto come associare a esso un polinomio, il polinomio caratteristico, le cui radici sono precisamente tutti gli autovalori di $T$.
+Dato un polinomio in $K[x]$ come $p(x)=a_nx^x+\cdots+a_1x+a_0$, possiamo ``valutare'' $p$ nell'endomorfismo $T$ sostituendo a $x^n$ la corrispondente potenza $T^n$, intesa come la composizione di $T$ con s\'e stesso $n-1$ volte: ad esempio $T^0=I$ (l'identità di $\End(V)$), $T^1=T$, $T^2=T\circ T$ e cos\`i via.
+Questo è sempre possibile poich\'e lo spazio $\End(V)$ forma un'algebra rispetto alla composizione.
+Scriviamo dunque $p(T)=a_nT^n+\cdots+a_1T+a_0I$.
 
-Chiamiamo $I_T$, con  $T\in \End(V)$ e $V$ spazio di dimensione finita e sul campo $K$, l'insieme
+Diciamo che un polinomio $f\in K[x]$ \emph{annulla} $T$ se $f(T) = 0$, cioè è l'endomorfismo nullo.
+Ora, se $\dim V=m$, la dimensione di $\End(V)$ è $m^2$, perciò un insieme di $m^2+1$ elementi di $\End(V)$ deve necessariamente essere linearmente dipendente.
+Di conseguenza esiste sempre un insieme $\{c_0,c_1,\dots,c_{m^2}\}\subset K$ tale che
+\begin{equation*}
+	a_{m^2}T^{m^2}+a_{m^2-1}T^{m^2-1}+\cdots+a_2T^2+a_1T+a_0I=0.
+\end{equation*}
+Il polinomio avente questi $a_i$ come coefficienti dunque annulla $T$; perciò esiste sempre un polinomio, di grado $m^2$, che annulla ogni operatore di $\End(V)$.
+
+Chiamiamo $I_T$ l'insieme
 \begin{equation*}
 	I_T = \{ p\in K[x]\colon p(T) = 0 \}
 \end{equation*}
-che non è mai uguale al solo $0\in \End(V)$.
-Si ha che per $p,q\in I_T$ la loro somma sta ancora in $I_T$, perch\'e $(p+q)(T)=p(T)+q(T)=0+0=0$, e analogamente $(\lambda p)(T)=\lambda p(T)=\lambda 0=0$, dunque $I_T$ è un ideale.
+che per quanto visto non si riduce mai al solo $\{0\}$.
+Presi $p,q\in I_T$ la loro somma sta ancora in $I_T$, perch\'e $(p+q)(T)=p(T)+q(T)=0+0=0$, e analogamente $(\lambda p)(T)=\lambda p(T)=\lambda 0=0$, dunque $I_T$ è un ideale.
 Essendo $K[x]$ un dominio a ideali principali, quindi, $I_T$ ammette un (unico) generatore monico.
 \begin{definizione} \label{d:polinomio-minimo}
 	Sia $T\in \End(V)$, con $V$ spazio di dimensione finita e sul campo $K$, si definisce \emph{polinomio minimo} di $T$, e si indica com $m_T(x)$, il generatore monico dell'ideale $I_T$ dei polinomi che annullano $T$.
 \end{definizione}
 Poich\'e $T^n\in\End(V)$ per ogni $n\in\N_0$, ogni polinomio $f\in K[x]$ è tale che $f(T)\in\End(V)$.
 In virtù dell'isomorfismo tra matrici quadrate ed endomorfismi, se $T$ è rappresentato da $A$ allora l'endomorfismo $f(T)$ è rappresentato da $f(A)$.
-
 È inoltre facile vedere che due matrici simili hanno lo stesso polinomio minimo: infatti se $C=B^{-1}AB$, allora
 \begin{gather*}
 	C^0=I=B^{-1}IB\\
