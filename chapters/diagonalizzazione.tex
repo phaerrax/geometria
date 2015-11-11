@@ -290,17 +290,17 @@ Si possono raggruppare allora tutti i termini $B^{-1}$ e $B$, per cui per qualsi
 \end{teorema}
 \begin{proof}
 	Sia $\lambda\in K$ una radice del polinomio minimo, ossia $m_T(\lambda)=0$.
-	Per il teorema di Ruffini \ref{t:ruffini} allora $(x-\lambda)\dvd m_T$, dunque possiamo scrivere il polinomio minimo come $m_T(x)=(x-\lambda)q(x)$ per un certo $q\in K[x]$.
-	Inoltre $\deg q<\deg m_T$, perciò $q\notin I_T$ non essendo un multiplo di $m_T$: di conseguenza $q\ne 0$.
-	Esiste allora $v\in V$ tale che $q(T)(v)\ne 0$: sia $w=q(T)(v)$.
-	Poich\'e per come è definito il polinomio minimo $m_T(T)=0$, si ha dunque
-	\begin{equation*}
+	Per il teorema \ref{t:ruffini} di Ruffini $(x-\lambda)\dvd m_T$: possiamo dunque scrivere il polinomio minimo come $m_T(x)=(x-\lambda)q(x)$ per un certo $q\in K[x]$.
+	Evidentemente $\deg q<\deg m_T$, perciò $q$ non può essere un multiplo di $m_T$: di conseguenza $q\notin I_T$.
+	Dato che $q(T)\ne 0$, esiste qualche $v\in V$ tale che $q(T)(v)\ne 0$: definiamo quindi $w\defeq q(T)(v)$.
+	Poich\'e $m_T(T)=0$ si ha dunque
+	\begin{equation}
 		0=m_T(T)(v)=\big[(T-\lambda I)q(T)\big](v)=(T-\lambda I)(w)
-	\end{equation*}
+	\end{equation}
 	cioè $w$ è un autovettore di $T$ con autovalore $\lambda$: ma allora $\chi_T(\lambda)=0$.
 
 	Viceversa, sia ora $\lambda\in K$ tale che $\chi_T(\lambda) = 0$.
-	Allora $\lambda$ è un autovalore di $T$, dunque esiste un $v\in V$ per il quale	$T(v)=\lambda v$, di conseguenza $m_T(T)(v)=m_T(\lambda)(v)$.\footnote{Ciò vale per un generico $f\in K[x]$: ad esempio, se $f(x)=ax^2+bx+c$, allora $f(T)(v)=aT^2(v)+bT(v)+cI(v)=aT(\lambda v)+b\lambda v+cv=a\lambda^2 v+b\lambda v+cv=f(\lambda)(v)$.}
+	Allora $\lambda$ è un autovalore di $T$: esiste dunque un $v\in V$ per il quale	$T(v)=\lambda v$, e di conseguenza $m_T(T)(v)=m_T(\lambda)v$.\footnote{Si intende qui che valutare il polinomio $m_T(T)$ (ottenendo un endomorfismo) e applicare il risultato all'autovettore $v$ è equivalente a moltiplicare $v$ per lo scalare $m_T(\lambda)$. Tra l'altro, ciò vale per un generico $f\in K[x]$: ad esempio, se $f(x)=ax^2+bx+c$, allora $f(T)(v)=aT^2(v)+bT(v)+cI(v)=aT(\lambda v)+b\lambda v+cv=a\lambda^2 v+b\lambda v+cv=f(\lambda)v$.}
 	Dunque $0=m_T(T)(v)=m_T(\lambda)(v)$.
 	Poich\'e $v\ne 0$, deve necessariamente essere $m_T(\lambda)=0$, quindi $\lambda$ è una radice del polinomio minimo.
 \end{proof}
@@ -315,7 +315,7 @@ Rispetto alla base canonica, la matrice che lo rappresenta è
 	\end{pmatrix}
 \end{equation*}
 e il suo polinomio caratteristico è $\chi_T(x)=\det(A-xI_3)=-x^3+2x^2-x=-x(x-1)^2$.
-Allo stesso tempo, poich\'e è una proiezione, sappiamo che $T^2-T=0$, ossia $T^2-T=0$.
+Allo stesso tempo, poich\'e è una proiezione, sappiamo che è idempotente ossia $T^2=T$, perciò $T^2-T=0$.
 Il polinomio $x^2-x$ dunque annulla $T$, ed è anche il suo polinomio minimo: esso ha 0 e 1 come radici, che sono anche quelle di $\chi_T$, seppur con molteplicità diversa.
 
 \section{Sottospazi invarianti} \label{sec:sottospazi-invarianti}
