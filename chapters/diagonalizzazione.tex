@@ -467,14 +467,14 @@ Dato l'insieme $S_T(\alpha,W)$ come definito in precedenza, chiamiamo polinomio 
 \end{proof}
 
 \section{Triangolarizzazione}
-\begin{definizione} \label{d:endomorfismo-triangolabile}
-	Sia $T\in \End(V)$, con $V$ spazio vettoriale sul campo $K$, $T$ si dice \emph{triangolabile} (o triangolarizzabile) se esiste una base $\{e_i\}_{i=1}^n\in V$ tale che la matrice associata a $T$ rispetto a quella base è in forma triangolare (v. definizione \ref{d:matrice-triangolare}).
-\end{definizione}
 Il teorema di Cayley-Hamilton mostra un importante risultato: per ogni endomorfismo $T$ di uno spazio $V$ di dimensione finita,
 \begin{equation*}
 	\chi_T(T)=0.
 \end{equation*}
 La dimostrazione generale è però difficile; qui vediamo il teorema solo per endomorfismi triangolabili.
+\begin{definizione} \label{d:endomorfismo-triangolabile}
+	Siano $V$ uno spazio vettoriale sul campo $K$ e $T\in \End(V)$: $T$ si dice \emph{triangolabile} (o anche triangolarizzabile) se esiste una base $\{e_i\}_{i=1}^n\in V$ tale che la matrice associata a $T$ rispetto a quella base è in forma triangolare.
+\end{definizione}
 \begin{teorema}[di Cayley-Hamilton] \label{t:cayley-hamilton}
 	Sia $T\in \End(V)$, con $V$ spazio vettoriale di dimensione finita su un campo $K$.
 	Se $T$ è triangolabile, allora $\chi_T(T) = 0$.
