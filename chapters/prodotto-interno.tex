@@ -221,7 +221,41 @@ Abbiamo che $\norm{  x+  y}^2=\intern{  x+  y}{  x+  y}=\intern{  x}{  x}+\inter
 \end{equation*}
 Poiché entrambi i membri sono positivi, basta prendere la radice quadrata di entrambi per verificare la proprietà.
 
-Ecco un esempio di norma che non deriva da un prodotto interno: prendiamo lo spazio $\ell^1(\R)$ delle successioni di numeri reali sommabili, ossia
+La seguente proprietà, detta \emph{legge del parallelogramma}, ci permette di verificare se una norma discende o meno da un prodotto interno.
+\begin{proprieta} \label{p:legge-parallelogramma}
+	Sia $V$ uno spazio normato.
+	La sua norma $\norm{\cdot}$ proviene da un prodotto interno se e solo se rispetta l'equazione, per ogni $x,y\in V$,
+	\begin{equation}
+		\norm{x+y}^2+\norm{x-y}^2=2(\norm{x}^2+\norm{y}^2).
+		\label{eq:legge-parallelogramma}
+	\end{equation}
+\end{proprieta}
+\begin{proof}
+	Se la norma discende da un prodotto interno $\intern{}{}$, abbiamo $\norm{x}^2=\intern{x}{x}$, da cui
+	\begin{equation*}
+		\begin{split}
+			\norm{x+y}^2+\norm{x-y}^2&=\intern{x+y}{x+y}+\intern{x-y}{x-y}=\\
+			&=\intern{x}{x+y}+\intern{y}{x+y}+\intern{x}{x-y}-\intern{y}{x-y}=\\
+			&=\intern{x}{x}+\intern{x}{y}+\intern{y}{x}+\intern{y}{y}+\intern{x}{x}-\intern{x}{y}-\intern{y}{x}+\intern{y}{y}=\\
+			&=2\intern{x}{x}+2\intern{y}{y}=\\
+			&=2\norm{x}^2+2\norm{y}^2.\qedhere
+		\end{split}
+	\end{equation*}
+\end{proof}
+Ecco un esempio di norma che non deriva da un prodotto interno: dotiamo $\R^n$ della norma
+\begin{equation}
+	\norm{x}_{\infty}=\max\{\abs{x_1},\dots,\abs{x_n}\}
+	\label{eq:norma-inf}
+\end{equation}
+dove $x=(x_1,\dots,x_n)$.
+Nel caso di $\R^2$ (per $n\in\N$ generico è analoga) prendiamo i vettori $x_1=(0,1)$ e $x_2=(1,0)$: abbiamo $\norm{x_1}_{\infty}=\norm{x_2}_{\infty}=1$, mentre $\norm{x_1-x_2}_{\infty}=\norm{x_1+x_2}_{\infty}=1$.
+Allora
+\begin{equation*}
+	\norm{x_1+x_2}_{\infty}^2+\norm{x_1-x_2}_{\infty}^2=2\ne 4=2(\norm{x_1}_{\infty}^2+\norm{x_2}_{\infty}^2)
+\end{equation*}
+perciò la norma non può discendere da un prodotto interno.
+
+Un altro esempio lo possiamo trovare nello spazio $\ell^1(\R)$ delle successioni di numeri reali sommabili, ossia
 \begin{equation*}
 	\ell^1(\R)=\bigg\{\{a_n\}_{n\in\N}\subset\R\colon\sum_{n\in\N}\abs{a_n}<\pinf\bigg\}.
 \end{equation*}
@@ -238,27 +272,7 @@ La quarta:
 \end{equation*}
 in cui abbiamo potuto separare la serie di $(\abs{a_n}+\abs{b_n})$ nella somma delle due serie poiché sono assolutamente convergenti.
 
-\begin{proprieta} \label{p:regola-parallelogramma}
-	Sia $V$ uno spazio normato con il prodotto interno $\intern{}{}$.
-	La sua norma $\norm{}$ proviene da un prodotto interno se e solo se rispetta l'equazione, per ogni $  x,  y\in V$,
-	\begin{equation}
-		\norm{  x+  y}^2+\norm{  x-  y}^2=2(\norm{  x}^2+\norm{  y}^2).
-		\label{eq:regola-parallelogramma}
-	\end{equation}
-\end{proprieta}
-\begin{proof}
-	Scrivendo la norma dei vettori come il loro prodotto interno con se stessi, abbiamo che
-	\begin{equation*}
-		\begin{split}
-			\norm{  x+  y}^2+\norm{  x-  y}^2&=\intern{  x+  y}{  x+  y}+\intern{  x-  y}{  x-  y}=\\
-			&=\intern{  x}{  x+  y}+\intern{  y}{  x+  y}+\intern{  x}{  x-  y}-\intern{  y}{  x-  y}=\\
-			&=\intern{  x}{  x}+\intern{  x}{  y}+\intern{  y}{  x}+\intern{  y}{  y}+\intern{  x}{  x}-\intern{  x}{  y}-\intern{  y}{  x}+\intern{  y}{  y}=\\
-			&=2\intern{  x}{  x}+2\intern{  y}{  y}=\\
-			&=2\norm{  x}^2+2\norm{  y}^2.
-		\end{split}
-	\end{equation*}
-\end{proof}
-
+Una volta che la norma soddisfa la proprietà precedente, con le seguenti \emph{identità di polarizzazione} possiamo definire un prodotto interno a partire da essa.
 \begin{proprieta} \label{p:formule-polarizzazione}
 	Sia $V$ uno spazio normato dal prodotto interno $\intern{}{}$.
 	Allora per ogni $x,y\in V$ si ha
@@ -270,7 +284,7 @@ in cui abbiamo potuto separare la serie di $(\abs{a_n}+\abs{b_n})$ nella somma d
 	\end{gather}
 \end{proprieta}
 \begin{proof}
-	Dimostriamo la prima formula, esprimendo la norma della somma e della sottrazione in termini del prodotto interno.
+	Esprimiamo la norma della somma e della sottrazione in termini del prodotto interno:
 	\begin{multline*}
 		\norm{x+y}^2=\intern{x+y}{x+y}=\intern{x}{x+y}+\intern{y}{x+y}=\\
 		=\intern{x}{x}+\intern{y}{y}+2\intern{x}{y}=\norm{x}^2+\norm{y}^2+2\intern{x}{y}
