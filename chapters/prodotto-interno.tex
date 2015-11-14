@@ -223,18 +223,18 @@ Poiché entrambi i membri sono positivi, basta prendere la radice quadrata di en
 
 Ecco un esempio di norma che non deriva da un prodotto interno: prendiamo lo spazio $\ell^1(\R)$ delle successioni di numeri reali sommabili, ossia
 \begin{equation*}
-	\ell^1(\R)=\bigg\{\{a_n\}_{n\in\N}\subset\R\colon\ser{i}\abs{a_n}<\pinf\bigg\}.
+	\ell^1(\R)=\bigg\{\{a_n\}_{n\in\N}\subset\R\colon\sum_{n\in\N}\abs{a_n}<\pinf\bigg\}.
 \end{equation*}
-In esso si può definire la norma $\norm{\{a_n\}}\defeq\ser{i}\abs{a_n}$.
+In esso si può definire la norma $\norm{\{a_n\}}\defeq\sum_{n\in\N}\abs{a_n}$.
 Ovviamente è sempre positiva, ed è nulla solo se $a_n=0$ $\forall n\in N$.
 Verifichiamo la terza proprietà: $\lambda\{a_n\}=\{\lambda a_n\}$, quindi
 \begin{equation*}
-	\norm{\lambda\{a_n\}}=\ser{i}\abs{\lambda a_n}=\abs{\lambda}\ser{i}\abs{a_n}=\lambda\norm{\{a_n\}}.
+	\norm{\lambda\{a_n\}}=\sum_{n\in\N}\abs{\lambda a_n}=\abs{\lambda}\sum_{n\in\N}\abs{a_n}=\abs{\lambda}\norm{\{a_n\}}.
 \end{equation*}
 La quarta:
 \begin{equation*}
-	\norm{\{a_n\}+\{b_n\}}=\ser{i}\abs{a_n+b_n}\leq\ser{i}(\abs{a_n}+\abs{b_n})
-	=\ser{i}\abs{a_n}+\ser{i}\abs{b_n}=\norm{\{a_n\}}+\norm{\{b_n\}},
+	\norm{\{a_n\}+\{b_n\}}=\sum_{n\in\N}\abs{a_n+b_n}\leq\sum_{n\in\N}(\abs{a_n}+\abs{b_n})
+	=\sum_{n\in\N}\abs{a_n}+\sum_{n\in\N}\abs{b_n}=\norm{\{a_n\}}+\norm{\{b_n\}},
 \end{equation*}
 in cui abbiamo potuto separare la serie di $(\abs{a_n}+\abs{b_n})$ nella somma delle due serie poiché sono assolutamente convergenti.
 
