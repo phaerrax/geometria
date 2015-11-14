@@ -261,22 +261,35 @@ in cui abbiamo potuto separare la serie di $(\abs{a_n}+\abs{b_n})$ nella somma d
 
 \begin{proprieta} \label{p:formule-polarizzazione}
 	Sia $V$ uno spazio normato dal prodotto interno $\intern{}{}$.
-	Allora per ogni $  x,  y\in V$ si ha
+	Allora per ogni $x,y\in V$ si ha
 	\begin{gather}
-		\intern{  x}{  y}=\frac14\norm{  x+  y}^2-\frac14\norm{  x-  y}^2\text{ se il campo è }\R
+		\intern{x}{y}=\frac14\norm{x+y}^2-\frac14\norm{x-y}^2\text{ se il campo è }\R
 		\label{eq:polarizzazione-R}\\
-		\intern{  x}{  y}=\frac14\norm{  x+  y}^2-\frac14\norm{  x-  y}^2+\frac{i}4\norm{  x+i  y}^2-\frac{i}4\norm{  x-i  y}^2\text{ se il campo è }\C
+		\intern{x}{y}=\frac14\norm{x+y}^2-\frac14\norm{x-y}^2+\frac{i}4\norm{x+iy}^2-\frac{i}4\norm{x-iy}^2\text{ se il campo è }\C
 		\label{eq:polarizzazione-C}
 	\end{gather}
 \end{proprieta}
 \begin{proof}
 	Dimostriamo la prima formula, esprimendo la norma della somma e della sottrazione in termini del prodotto interno.
 	\begin{multline*}
-		\norm{  x+  y}^2=\intern{  x+  y}{  x+  y}=\intern{  x}{  x+  y}+\intern{  y}{  x+  y}=\\
-		=\intern{  x}{  x}+\intern{  y}{  y}+2\intern{  x}{  y}=\norm{  x^2}+\norm{  y}^2+2\intern{  x}{  y}
+		\norm{x+y}^2=\intern{x+y}{x+y}=\intern{x}{x+y}+\intern{y}{x+y}=\\
+		=\intern{x}{x}+\intern{y}{y}+2\intern{x}{y}=\norm{x}^2+\norm{y}^2+2\intern{x}{y}
 	\end{multline*}
-	e allo stesso modo si ha $\norm{  x+  y}^2=\norm{  x}^2+\norm{  y}^2-2\intern{  x}{  y}$.
-	Sottraendole si ottiene $\norm{  x+  y}^2-\norm{  x-  y}^2=4\intern{  x}{  y}$ da cui la tesi. Il caso due non è invece qui dimostrato.
+	e allo stesso modo si ha $\norm{x+y}^2=\norm{x}^2+\norm{y}^2-2\intern{x}{y}$.
+	Sottraendole si ottiene $\norm{x+y}^2-\norm{x-y}^2=4\intern{x}{y}$ da cui la tesi.
+
+	La seconda parte è analoga: abbiamo $\norm{x+y}^2=\norm{x}^2+\norm{y}^2+\intern{x}{y}+\intern{y}{x}$ e $\norm{x-y}^2=\norm{x}^2+\norm{y}^2-\intern{x}{y}-\intern{y}{x}$.
+	Questa volta non possiamo sfruttare la bilinearità, quindi servono anche i termini $\norm{x+iy}^2=\norm{x}^2+\norm{y}^2-i\intern{x}{y}+i\intern{y}{x}$ e $\norm{x-iy}^2=\norm{x}^2+\norm{y}^2+i\intern{x}{y}-i\intern{y}{x}$.
+	Risulta allora
+	\begin{equation}
+		\begin{aligned}
+			&\norm{x+y}^2-\norm{x-y}^2+i\norm{x+iy}^2-i\norm{x-iy}^2=\\
+			=&\intern{x}{y}+\intern{y}{x}+\intern{x}{y}+\intern{y}{x}+i(-i\intern{x}{y}+i\intern{y}{x})-i(i\intern{x}{y}-i\intern{y}{x})=\\
+			=&\intern{x}{y}+\intern{y}{x}+\intern{x}{y}+\intern{y}{x}+\intern{x}{y}-\intern{y}{x}+\intern{x}{y}-\intern{y}{x}=\\
+			=&4\intern{x}{y}
+		\end{aligned}
+	\end{equation}
+	e dividendo per 4 otteniamo la \eqref{eq:polarizzazione-C}.
 \end{proof}
 Ad esempio nello spazio $\cont{}\ab$ di funzioni a valori complessi possiamo definire la norma
 \begin{equation*}
