@@ -3,8 +3,9 @@ Negli spazi vettoriali abbiamo trattato finora soltanto le operazioni di somma e
 Introduciamo ora un'altra operazione, detta \emph{prodotto interno}, che associa a due elementi dello spazio vettoriale uno scalare del campo.
 In questo capitolo indicheremo con $K$ sempre il campo dei numeri reali o dei numeri complessi.
 Il più noto esempio di prodotto interno è il prodotto scalare tra due vettori di $\R^n$, che restituisce un numero reale: questo è solo uno dei tanti tipi di prodotto interno che si possono costruire in uno spazio vettoriale.
-\section{Forme bilineari} \label{sec:forme-bilineari}
-Un prodotto interno è innanzitutto una forma bilineare, ossia un'applicazione lineare in entrambe le variabili.
+
+\section{Prodotto interno} \label{sec:prodotto-interno}
+Prima di studiare il prodotto interno, diamo la definizione di \emph{forma bilineare}.
 \begin{definizione} \label{d:forma-bilineare}
 	Sia $V$ uno spazio vettoriale sul campo $K$.
 	Un'applicazione $g\colon V\times V\to K$ è detta \emph{forma bilineare} su $V$ se rispetta le seguenti proprietà:
@@ -18,7 +19,6 @@ Si può osservare che, fissata una delle due variabili, le applicazioni $g(  x,\
 La forma bilineare si dice inoltre \emph{simmetrica} se $g(  x,  y)=g(  y,  x)$ qualunque siano $  x,  y\in V$.
 A partire da questo diamo ora degli assiomi di definizione dei prodotti interni.
 
-\section{Prodotto interno}	\label{ref:prodotto-interno}
 \begin{definizione} \label{d:prodotto-interno}
 	Sia $V$ uno spazio vettoriale su $K$.
 	Si definisce \emph{prodotto interno} su $V$ l'applicazione $\intern{}{}\colon V\to K$ che gode delle seguente proprietà: per ogni $  a,  b,  c\in V$ e $\lambda\in K$
@@ -33,6 +33,7 @@ Si faccia attenzione particolare alla seconda proprietà: il prodotto interno è
 \begin{equation*}
 	\intern{  a}{\lambda  b}=\conj{\intern{\lambda  b}{  a}}=\conj{\lambda\intern{  b}{  a}}=\conj{\lambda}\intern{  a}{  b}.
 \end{equation*}
+Per questo motivo se $V$ è uno spazio vettoriale su $\R$ il prodotto interno è anche una forma bilineare, ma in generale non lo è.\footnote{Una forma con queste caratteristiche è anche detta \emph{sesquilineare}, ossia ``una volta e mezza lineare'' in quanto non è omogenea nella seconda variabile, che è una delle due proprietà affinch\'e sia lineare.}
 Notiamo inoltre che la quarta proprietà è ben definita, in quanto il prodotto interno di un vettore con sé stesso è sempre un numero reale, dato che $\intern{  x}{  x}=\conj{\intern{  x}{  x}}$ per la terza proprietà, dunque ha senso dire che è maggiore o uguale a zero.
 Ecco alcuni esempi di prodotti interni:
 \begin{itemize}
