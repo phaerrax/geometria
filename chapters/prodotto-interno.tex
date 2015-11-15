@@ -1,0 +1,728 @@
+\chapter{Spazi con prodotto interno} \label{ch:spazi-prodotto-interno}
+Negli spazi vettoriali abbiamo trattato finora soltanto le operazioni di somma e di prodotto con uno scalare.
+Introduciamo ora un'altra operazione, detta \emph{prodotto interno}, che associa a due elementi dello spazio vettoriale uno scalare del campo.
+In questo capitolo indicheremo con $K$ sempre il campo dei numeri reali o dei numeri complessi.
+Il più noto esempio di prodotto interno è il prodotto scalare tra due vettori di $\R^n$, che restituisce un numero reale: questo è solo uno dei tanti tipi di prodotto interno che si possono costruire in uno spazio vettoriale.
+
+\section{Prodotto interno} \label{sec:prodotto-interno}
+Prima di studiare il prodotto interno, diamo la definizione di \emph{forma bilineare}.
+\begin{definizione} \label{d:forma-bilineare}
+	Sia $V$ uno spazio vettoriale sul campo $K$.
+	Un'applicazione $g\colon V\times V\to K$ è detta \emph{forma bilineare} su $V$ se rispetta le seguenti proprietà:
+	\begin{itemize}
+		\item per ogni $  v_1,  v_2,  w_1,  w_2\in V$ si ha $g(  v_1+  v_2,  w_1)=g(  v_1,  w_1)+g(  v_2,  w_1)$ e $g(  v_1,  w_1+  w_2)=g(  v_1,  w_1)+g(  v_1+  w_2)$;
+		\item per ogni $  v,  w\in V$ e $\lambda,\mu\in K$ si ha $g(\lambda  v,  w)=\lambda g(  v,  w)$ e $g(  v,\mu  w)=\mu g(  v,  w)$
+	\end{itemize}
+	ossia è lineare nella prima e nella seconda variabile.
+\end{definizione}
+Si può osservare che, fissata una delle due variabili, le applicazioni $g(  x,\cdot)$ e $g(\cdot,  x)$ sono dei funzionali lineari, cioè appartengono a $V^*$.
+La forma bilineare si dice inoltre \emph{simmetrica} se $g(  x,  y)=g(  y,  x)$ qualunque siano $  x,  y\in V$.
+A partire da questo diamo ora degli assiomi di definizione dei prodotti interni.
+
+\begin{definizione} \label{d:prodotto-interno}
+	Sia $V$ uno spazio vettoriale su $K$.
+	Si definisce \emph{prodotto interno} su $V$ l'applicazione $\intern{}{}\colon V\to K$ che gode delle seguente proprietà: per ogni $  a,  b,  c\in V$ e $\lambda\in K$
+	\begin{enumerate}
+		\item $\intern{  a+  b}{  c}=\intern{  a}{  c}+\intern{  b}{  c}$, e analogamente nella seconda variabile $\intern{  a}{  b+  c}=\intern{  a}{  b}+\intern{  a}{  c}$;
+		\item $\intern{\lambda  a}{  c}=\lambda\intern{  a}{  c}$;
+		\item $\intern{  a}{  b}=\conj{\intern{  b}{  a}}$;
+		\item $\intern{  a}{  a}\geq 0$, ed è nullo se e solo se $  a=0_V$.
+	\end{enumerate}
+\end{definizione}
+Si faccia attenzione particolare alla seconda proprietà: il prodotto interno è lineare solo nella prima variabile, e non lo è nella seconda: se si vuole ``portare fuori'' lo scalare bisogna prendere il suo coniugato, infatti
+\begin{equation*}
+	\intern{  a}{\lambda  b}=\conj{\intern{\lambda  b}{  a}}=\conj{\lambda\intern{  b}{  a}}=\conj{\lambda}\intern{  a}{  b}.
+\end{equation*}
+Per questo motivo se $V$ è uno spazio vettoriale su $\R$ il prodotto interno è anche una forma bilineare, ma in generale non lo è.\footnote{Una forma con queste caratteristiche è anche detta \emph{sesquilineare}, ossia ``una volta e mezza lineare'' in quanto non è omogenea nella seconda variabile, che è una delle due proprietà affinch\'e sia lineare.}
+Notiamo inoltre che la quarta proprietà è ben definita, in quanto il prodotto interno di un vettore con sé stesso è sempre un numero reale, dato che $\intern{  x}{  x}=\conj{\intern{  x}{  x}}$ per la terza proprietà, dunque ha senso dire che è maggiore o uguale a zero.
+Ecco alcuni esempi di prodotti interni:
+\begin{itemize}
+	\item In $\R^n$, possiamo prendere $\intern{  x}{  y}=\sum_{i=1}^nx_iy_i$, che è il prodotto scalare citato in precedenza.
+		Esso soddisfa in modo ovvio tutte le proprietà date;
+	\item In $\C^n$ definiamo \emph{prodotto hermitiano} il prodotto interno $\intern{  x}{  y}=\sum_{i=1}^nx_i\conj{y_i}$, che si indica usualmente con $\hermit{  x}{  y}$;
+	\item Possiamo definire anche forme diverse di prodotti interni, come $\intern{  x}{  y}=x_1y_1-x_2y_1-x_1y_2+4x_2y_2$ per $  x,  y\in\R^2$.
+		Esso soddisfa le prime tre proprietà, e verifichiamo la quarta: $\intern{  x}{  x}=(x_1-x_2)^2+3x_2^2$, che chiaramente è sempre positivo e nullo solo se $  x=(0,0)^t$.
+	\item Nello spazio $\cont{}\ab$ delle funzioni continue definite da un intervallo $[a,b]$ a valori complessi, definiamo
+		\begin{equation*}
+			\hermit{f}{g}=\int_a^bf(x)\conj{g(x)}\,\dd x.
+		\end{equation*}
+		Risulta evidente che $\hermit{f}{f}=\int_a^b\abs{f(x)}^2\,\dd x\geq 0$, che inoltre è nullo solo se $f$ è identicamente nulla su $[a,b]$, cioè $f\equiv 0$.
+		%Magari si può passare all'integrale di Lebesgue e allo spazio L anziche C?
+\end{itemize}
+
+\begin{definizione} \label{d:spazio-euclideo}
+	Uno spazio vettoriale $V$ sul campo $K=\R,\C$ dotato di un prodotto interno si chiama \emph{spazio euclideo}.
+\end{definizione}
+% Ho qualche dubbio su questa definizione: altrove gli spazi euclidei sono gli R^n vari con il prodotto scalare standard. Nel dubbio, non mi riferirò mai a spazi euclidei d'ora in poi, ma specificherò sempre lo spazio e il prodotto interno ogni volta.
+
+Avevamo detto in precedenza che, fissata una delle due variabili, una forma bilineare può essere vista come funzionale lineare.
+Dato che il prodotto interno in generale \emph{non} è bilineare, dobbiamo avere qualche accorgimento: fissiamo cioè solo la seconda (in ordine) delle due variabili, ossia consideriamo $\intern{}{a}$ come funzionale, che è quindi lineare.
+Questo è alla base del teorema, di fondamentale importanza, che segue il lemma.
+\begin{lemma} \label{l:base-reciproca}
+	Data una base $\{e_i\}_{i=1}^n$ di uno spazio vettoriale $V$ di dimensione finita, i funzionali lineari $\intern{}{e_i}$ per $i\in\{1,\dots,n\}$ costituiscono una base dello spazio duale $V^*$.
+\end{lemma}
+\begin{proof}
+	Se $\mu_1,\dots,\mu_n$ sono tali che
+	\begin{equation}
+		0=\sum_{i=1}^n\mu_i\intern{}{e_i}=\sum_{i=1}^n\intern{}{\conj{\mu_i}e_i}
+	\end{equation}
+	allora per ogni $v\in V$ risulta
+	\begin{equation}
+		\intern{v}{\sum_{i=1}^n\conj{\mu_i}e_i}=0
+	\end{equation}
+	e per le proprietà del prodotto interno segue, prendendo $v=\sum_{i=1}^n\conj{\mu_i}e_i$, che $\sum_{i=1}^n\conj{\mu_i}e_i=0$.
+	Ma $\{e_i\}_{i=1}^n$ è una base di $V$, dunque $\conj{\mu_1}=\cdots=\conj{\mu_n}=0$ ossia $\mu_1=\cdots=\mu_i=0$.
+	Di conseguenza i $\intern{}{e_i}$ sono $n$ ($=\dim V^*$) elementi linearmente indipendenti di $V^*$, cioè ne sono una base.
+\end{proof}
+\begin{teorema}[di rappresentazione, di Riesz] \label{t:riesz}
+	Sia $V$ uno spazio euclideo di dimensione finita con un prodotto interno $\intern{}{}$ non degenere, e $\phi\in V^*$.
+	Allora esiste uno ed un solo elemento $r\in V$ tale per cui $\phi=\intern{}{r}$, ossia $\phi(v)=\intern{v}{r}$ per ogni $v\in V$.
+\end{teorema}
+\begin{proof}
+	Dimostriamo dapprima l'esistenza di tale vettore: scelta una base canonica $\{e_i\}_{i=1}^n$, individuiamo la base $\{\intern{}{e_i}\}_{i=1}^n$ di $V^*$
+	Preso $\phi\in V^*$ esistono dunque dei coefficienti $\lambda_i$ tali che
+	\begin{equation}
+		\phi=\sum_{i=1}^n\lambda_i\intern{}{e_i}
+	\end{equation}
+	ma allora per ogni $v\in V$ possiamo scrivere
+	\begin{equation*}
+		\phi(v)=\sum_{i=1}^n\lambda_i\intern{v}{e_i}=\sum_{i=1}^n\intern{v}{\conj{\lambda_i}e_i}
+	\end{equation*}
+	e il vettore $\sum_{k=1}^n\conj{\lambda_k}e_k$ è proprio il vettore $r\in V$ cercato.
+	
+	Passiamo a dimostrare l'unicità: se esistesse $r'\in V$ tale che $\phi=\intern{}{r'}$, allora si dovrebbe avere che $\intern{}{r}=\intern{}{r'}$, o anche
+	\begin{equation*}
+		\intern{x}{r}=\intern{x}{r'}\ \forall x\in V.
+	\end{equation*}
+	Ma allora risulterebbe $\intern{x}{r-r'}=0$: poiché vale per qualsiasi $x\in V$, vale anche per $r-r'$ stesso (che appartiene certamente a $V$), quindi $\intern{r-r'}{r-r'}=0$ che vale solo se $r-r'=0_V$, cioè $r=r'$, quindi tale vettore è unico.
+\end{proof}
+Si noti che $  r$ nella seconda variabile del prodotto interno rende $\phi$ lineare, senza aver bisogno di introdurre i numeri coniugati, poiché nella prima variabile il prodotto interno è lineare. 
+
+\section{Ortogonalità} \label{sec:ortogonalita}
+Dalla definizione di prodotto interno possiamo generalizzare a tutti gli spazi il concetto di vettori ortogonali: $  a$ e $  b$ sono ortogonali se il loro prodotto interno è nullo.
+Estendiamo la definizione a interi insiemi di vettori.
+\begin{definizione} \label{d:insieme-ortogonale}
+	Un insieme di vettori $\{  v_i\}_{i\in I}\subset V$ si dice ortogonale se per ogni $j\neq k$ si ha $\intern{  v_j}{  v_k}=0$.
+	Inoltre, l'insieme si dice \emph{ortonormale} se $\forall j,k$ si ha $\intern{  v_j}{  v_k}=\delta_{ij}$.
+\end{definizione}
+Il concetto di ortogonalità (e automaticamente di ortonormalità) è indissolubile dal prodotto interno rispetto a cui la si valuta: un insieme di vettori può ben essere ortogonale rispetto ad un prodotto interno, e non esserlo rispetto ad uno differente. 
+La base canonica di $\R^n$ è ortonormale rispetto al prodotto scalare $\intern{  x}{  y}=\sum_{i=1}^nx_iy_i$: si vede facilmente che $x_iy_i=1$ solo se entrambi sono 1, ma questo non accade, a meno ovviamente che $  x=  y$ per cui $x_iy_i=1$ una sola volta da $i=1$ a $i=n$.
+Lo stesso accade per la base ortonormale di $\C^n$ con il prodotto hermitiano standard.
+
+Estendiamo ulteriormente il concetto ad interi spazi: sappiamo in $\R^3$ che esistono rette ortogonali anche a un piano, che è non un vettore ma un sottospazio.
+Il concetto sottinteso è che la retta è ortogonale al piano perché è ortogonale a tutti le rette contenute nel piano (più rigorosamente, che si intersechino con la prima retta).
+\begin{definizione} \label{d:spazio-ortogonale}
+	Sia $V$ uno spazio vettoriale su $K$ dotato del prodotto interno $\intern{}{}$ e $S$ un suo sottoinsieme. L'insieme
+	\begin{equation*}
+		S^\perp=\{  x\in V\colon\forall  s\in S\intern{  x}{  s}=0\}
+	\end{equation*}
+	è detto insieme ortogonale a $S$, o $S$-ortogonale.
+\end{definizione}
+Questo insieme è inoltre un sottospazio di $V$: per ogni $  s\in S$ e $  x,  y\in V$, e per ogni $\lambda\in K$ si ha $\intern{  s}{  x+\lambda  y}=\intern{  s}{  x}+\intern{  s}{\lambda  y}=\intern{  s}{  x}+\conj{\lambda}\intern{  s}{  y}=0$.
+
+Gli insiemi ortogonali hanno delle importanti proprietà: innanzitutto, il seguente teorema mostra che sono sempre linearmente indipendenti.
+\begin{teorema} \label{t:ortogonale-linearmente-indipendente}
+	Siano $V$ uno spazio vettoriale su $K$ dotato del prodotto interno $\intern{}{}$ e $\{  v_i\}_{i\in I}\subset V$ un insieme ortogonale di vettori non nulli.
+	Tale insieme è linearmente indipendente.
+\end{teorema}
+\begin{proof}
+	Per ogni sottoinsieme di cardinalità finita $I_0\subset I$, si ha che se $\sum_{i\in I_0}\lambda_i  v_i=0_V$ allora per ogni indice $k\in I_0$ risulterebbe 
+	\begin{equation*}
+		\intern{\sum_{i\in I_0}\lambda_i  v_i}{  v_k}=0
+	\end{equation*}
+	perché il primo termine del prodotto è nullo; per linearità portiamo fuori in ciascun addendo $\lambda_i$, ottenendo
+	\begin{equation*}
+		\sum_{i\in I_0}\lambda_i\intern{  v_i}{  v_k}=0.
+	\end{equation*}
+	Poiché l'insieme è ortogonale però tutti i prodotti interni sono nulli eccetto $\intern{  v_k}{  v_k}$ e noi abbiamo $\lambda_k\intern{  v_k}{  v_k}=0$.
+	Ma $  v_k\neq 0_V$, perché per ipotesi sono tutti non nulli, dunque deve essere $\lambda_k=0$.
+	Poiché questo vale $\forall k\in I_0$, la combinazione lineare $\sum_{i\in I_0}\lambda_i  v_i$ è nulla solo quando tutti i $\lambda_i$ sono nulli, quindi l'insieme è linearmente indipendente.
+\end{proof}
+\begin{corollario} \label{c:ortonormale-linearmente-indipendente}
+	Siano $V$ uno spazio vettoriale su $K$ dotato del prodotto interno $\intern{}{}$ e $\{  v_i\}_{i\in I}\subset V$ un insieme ortonormale.
+	Tale insieme è linearmente indipendente.
+\end{corollario}
+La dimostrazione è immediata: un sistema ortonormale non può ammettere elementi nulli, altrimenti non si avrebbe $\intern{  v_i}{  v_i}=1$ per tutti i suoi elementi, quindi ci si riporta immediatamente al teorema precedente.
+
+\begin{teorema}
+	Sia $V$ uno spazio vettoriale di dimensione finita con il prodotto interno $\intern{}{}$ e $S=\{  x_i\}_{i=1}^n$ un insieme ortonormale: esso si può completare ad una base ortonormale di $V$.
+\end{teorema}
+\begin{proof}
+	Se $\gen{S}=V$, ne è già una base ortonormale, dunque discutiamo il caso $\gen{S}\neq V$. Deve esistere un $  z\in V\setminus\gen{S}$, e considero il vettore $  e\defeq  z-\sum_{k=1}^n\intern{  z}{  x_k}  x_k$, che non può essere nullo altrimenti sarebbe $  z\in\gen{S}$. Allora
+	\begin{equation*}
+		\begin{split}
+			\intern{  e}{  x_j}=&\intern{  z-\sum_{i=1}^n\intern{  z}{  x_i}  x_i}{  x_j}=\\
+				&=\intern{  z}{  x_j}-\sum_{i=1}^n\intern{  z}{  x_k}\intern{  x_k}{  x_j}=\\
+				&=\intern{  z}{  x_j}-\sum_{i=1}^n\intern{  z}{  x_k}\delta_{kj}=\\
+				&=\intern{  z}{  x_j}-\intern{  z}{  x_j}=0
+		\end{split}
+	\end{equation*}
+	quindi $  e$ e $  x_j$ sono ortogonali, per ogni $j\in\{1,\dots,n\}$.
+	Definisco allora
+	\begin{equation*}
+		  x_{n+1}\defeq \frac{  e}{\sqrt{\intern{  e}{  e}}}.
+	\end{equation*}
+	L'insieme $\{  x_i\}_{i=1}^{n+1}$ è ortonormale, e per il corollario precedente anche linearmente indipendente.
+	Se esso non genera ancora $V$, ripetiamo il procedimento aggiungendo altri elementi all'insieme.
+	Poiché la dimensione di $V$ è finita, le sue basi hanno un numero finito $m$ di elementi, quindi il procedimento deve avere una fine, arrivando all'insieme $\{  x_i\}_{i=1}^{n+r}$, con $n+r=m$, che è sempre ortonormale e linearmente indipendente; avendo inoltre $m$ elementi, per il teorema \ref{t:base-dimensione} esso è una base di $V$.
+\end{proof}
+\begin{teorema} \label{t:sistema-ortonormale-completo}
+	Sia $V$ uno spazio euclideo di dimensione finita con il prodotto interno $\intern{}{}$ e $S=\{v_i\}_{i=1}^k$ un insieme ortonormale.
+	Le due seguenti affermazioni sono equivalenti:
+	\begin{enumerate}
+		\item $S$ è una base di $V$;
+		\item se $\intern{z}{v_j}=0$ per ogni $j\in\{1,\dots,k\}$ allora $z=0$.
+	\end{enumerate}
+\end{teorema}
+\begin{proof}
+	$(1\then 2)$ Se $S$ è una base di $V$, allora $\dim V=k$.
+	Per assurdo, esista un $z\ne 0$ per cui $\intern{z}{v_j}=0$ per ogni $j\in\{1,\dots,k\}$.
+	Allora come nel teorema predecente posso prendere $e\defeq z-\sum_{i=1}^k\intern{z}{v_i}v_i$, che è tale che $\intern{e}{v_j}=0$.
+	L'insieme $S\cup\Big\{\frac1{\sqrt{\intern{e}{e}}}e\Big\}$ è dunque ancora ortonormale e di conseguenza linearmente indipendente.
+	Questo insieme però ha più elementi della dimensione $k$ dello spazio, dunque ciò è assurdo per il teorema \ref{t:base-dimensione}.
+	Un tale $z\ne 0$ non può allora esistere.
+	
+	$(2\then 1)$ Se $V=\gen{S}$, $S$ è ovviamente già una base di $V$.
+	Se $\gen{S}\ne V$, per il teorema precedente si troverebbe un elemento $e\in V\setminus\gen{S}$ non nullo tale che $\{e\}\cup S$ è ortonormale, ossia $\intern{e}{e_j}=0$ $\forall j\in\{1,\dots,k\}$, che contraddice l'ipotesi.
+	Allora deve essere $\gen{S}=V$, e dato che è ortonormale è anche linearmente indipendente per il teorema \ref{c:ortonormale-linearmente-indipendente}, quindi è una base di $V$.
+\end{proof}
+
+\section{Spazi normati} \label{sec:spazi-normati}
+Definiamo innanzizutto la norma, una particolare applicazione dallo spazio $V$ al campo dei numeri reali.
+\begin{definizione} \label{d:norma}
+	Dato uno spazio vettoriale $V$ sul campo $K$, si definisce \emph{norma} l'applicazione $\norm{\cdot}\colon V\to\R$ che soddisfa le seguenti proprietà, per ogni $  x,  y\in V$:
+	\begin{enumerate}
+		\item $\norm{  x}\geq 0$;
+		\item $\norm{  x}=0$ se e solo se $  x=0_V$;
+		\item $\norm{\lambda  x}=\abs{\lambda}\norm{  x}$ per ogni $\lambda\in K$;
+		\item $\norm{  x+  y}\leq\norm{  x}+\norm{  y}$.
+	\end{enumerate}
+\end{definizione}
+Uno spazio vettoriale in cui è definita una norma si chiama \emph{spazio normato}.
+Da un prodotto interno si può sempre definire una norma, con
+\begin{equation*}
+	\norm{  x}=\sqrt{\intern{  x}{  x}}.
+\end{equation*}
+Le prime due proprietà sono automaticamente soddisfatte dalle proprietà della radice quadrata e del prodotto interno. Inoltre
+\begin{equation*}
+	\begin{split}
+		\norm{\lambda  x}&=\sqrt{\intern{\lambda  x}{\lambda  x}}=\sqrt{\lambda\conj{\lambda}\intern{  x}{  x}}=\\
+			 &=\sqrt{\abs{\lambda}^2\intern{  x}{  x}}=\abs{\lambda}\sqrt{\intern{  x}{  x}}=\abs{\lambda}\norm{  x}.
+	\end{split}
+\end{equation*}
+La quarta proprietà discende dalla disuguaglianza di Cauchy-Schwarz, che ora dimostriamo.
+\begin{proprieta} \label{pr:cauchy-schwarz}
+	Dato uno spazio vettoriale $V$, su un campo $K=\R,\C$, dotato del prodotto interno $\intern{}{}$, per ogni $x,y\in V$ si ha
+	\begin{equation}
+		\abs{\intern{x}{y}}\leq\norm{x}\norm{y}.
+		\label{eq:cauchy-schwarz}
+	\end{equation}
+\end{proprieta}
+\begin{proof}
+	Chiamiamo $\alpha\defeq\intern{y}{y}$ e $\beta\defeq-\intern{x}{y}$.
+	Il prodotto interno di $\alpha x+\beta y$ con sé stesso è sempre positivo, dunque scomponendolo otteniamo
+	\begin{equation}
+		\begin{split}
+			\intern{\alpha x+\beta y}{\alpha x+\beta y}
+			&=\intern{\alpha x}{\alpha x}+\intern{\beta y}{\alpha x}+\intern{\alpha x}{\beta y}+\intern{\beta y}{\beta y}=\\
+			&=\alpha\conj{\alpha}\intern{x}{x}+\beta\conj{\alpha}\intern{y}{x}+\alpha\conj{\beta}\intern{x}{y}+\beta\conj{\beta}\intern{y}{y}\geq 0.
+		\end{split}
+	\end{equation}
+	Risulta ora $\alpha=\intern{y}{y}=\norm{y}^2\in\R$, e sostituendo i valori di $\alpha$ e $\beta$ abbiamo
+	\begin{equation}
+		\norm{y}^4\norm{x}^2-2\norm{y}^2\intern{x}{y}\conj{\intern{x}{y}}+\norm{y}^2\intern{x}{y}\conj{\intern{x}{y}}\geq 0.
+	\end{equation}
+	Poiché $\conj{\intern{x}{y}}\intern{x}{y}=\abs{\intern{x}{y}}^2$ abbiamo inoltre
+	\begin{equation}
+		\norm{y}^2\abs{\intern{x}{y}}^2\leq\norm{x}^2\norm{y}^4.
+	\end{equation}
+	Se $\norm{y}=0$ allora $y=0_V$ e la \eqref{eq:cauchy-schwarz} è ovvia, altrimenti si ottiene dividendo per $\norm{y}^2$ e prendendo le radici quadrate dei due membri.
+\end{proof}
+Verifichiamo quindi la quarta proprietà della norma dal prodotto interno usando questo risultato.
+Abbiamo che $\norm{  x+  y}^2=\intern{  x+  y}{  x+  y}=\intern{  x}{  x}+\intern{  x}{  y}+\intern{  y}{  x}+\intern{  y}{  y}$, ma $\intern{  x}{  y}+\intern{  y}{  x}=\intern{  x}{  y}+\conj{\intern{  x}{  y}}\leq 2\abs{\intern{  x}{  y}}$, quindi dalla disuguaglianza di Cauchy-Schwarz\footnote{Ricordiamo che per $z\in\C$ si ha $z+\conj{z}\leq2\abs{z}$. Infatti sia $z=\rho\cos\theta+i\rho\sin\theta$ in forma trigonometrica: allora $z+\conj{z}=\rho\cos\theta+i\sin\theta+\rho\cos\theta-i\sin\theta=2\rho\cos\theta\leq 2\rho=2\abs{z}$. }
+\begin{equation*}
+	\norm{  x+  y}^2\leq \norm{  x}^2+2\abs{\intern{  x}{  y}}+\norm{  y}^2
+	\leq\norm{  x}^2+2\norm{  x}\norm{  y}+\norm{  y}^2=(\norm{  x}+\norm{  y})^2.
+\end{equation*}
+Poiché entrambi i membri sono positivi, basta prendere la radice quadrata di entrambi per verificare la proprietà.
+
+La seguente proprietà, detta \emph{legge del parallelogramma}, ci permette di verificare se una norma discende o meno da un prodotto interno.
+\begin{proprieta} \label{p:legge-parallelogramma}
+	Sia $V$ uno spazio normato.
+	La sua norma $\norm{\cdot}$ proviene da un prodotto interno se e solo se rispetta l'equazione, per ogni $x,y\in V$,
+	\begin{equation}
+		\norm{x+y}^2+\norm{x-y}^2=2(\norm{x}^2+\norm{y}^2).
+		\label{eq:legge-parallelogramma}
+	\end{equation}
+\end{proprieta}
+\begin{proof}
+	Se la norma discende da un prodotto interno $\intern{}{}$, abbiamo $\norm{x}^2=\intern{x}{x}$, da cui
+	\begin{equation*}
+		\begin{split}
+			\norm{x+y}^2+\norm{x-y}^2&=\intern{x+y}{x+y}+\intern{x-y}{x-y}=\\
+			&=\intern{x}{x+y}+\intern{y}{x+y}+\intern{x}{x-y}-\intern{y}{x-y}=\\
+			&=\intern{x}{x}+\intern{x}{y}+\intern{y}{x}+\intern{y}{y}+\intern{x}{x}-\intern{x}{y}-\intern{y}{x}+\intern{y}{y}=\\
+			&=2\intern{x}{x}+2\intern{y}{y}=\\
+			&=2\norm{x}^2+2\norm{y}^2.\qedhere
+		\end{split}
+	\end{equation*}
+\end{proof}
+Ecco un esempio di norma che non deriva da un prodotto interno: dotiamo $\R^n$ della norma
+\begin{equation}
+	\norm{x}_{\infty}=\max\{\abs{x_1},\dots,\abs{x_n}\}
+	\label{eq:norma-inf}
+\end{equation}
+dove $x=(x_1,\dots,x_n)$.
+Nel caso di $\R^2$ (per $n\in\N$ generico è analoga) prendiamo i vettori $x_1=(0,1)$ e $x_2=(1,0)$: abbiamo $\norm{x_1}_{\infty}=\norm{x_2}_{\infty}=1$, mentre $\norm{x_1-x_2}_{\infty}=\norm{x_1+x_2}_{\infty}=1$.
+Allora
+\begin{equation*}
+	\norm{x_1+x_2}_{\infty}^2+\norm{x_1-x_2}_{\infty}^2=2\ne 4=2(\norm{x_1}_{\infty}^2+\norm{x_2}_{\infty}^2)
+\end{equation*}
+perciò la norma non può discendere da un prodotto interno.
+
+Un altro esempio lo possiamo trovare nello spazio $\ell^1(\R)$ delle successioni di numeri reali sommabili, ossia
+\begin{equation*}
+	\ell^1(\R)=\bigg\{\{a_n\}_{n\in\N}\subset\R\colon\sum_{n\in\N}\abs{a_n}<\pinf\bigg\}.
+\end{equation*}
+In esso si può definire la norma $\norm{\{a_n\}}\defeq\sum_{n\in\N}\abs{a_n}$.
+Ovviamente è sempre positiva, ed è nulla solo se $a_n=0$ $\forall n\in N$.
+Verifichiamo la terza proprietà: $\lambda\{a_n\}=\{\lambda a_n\}$, quindi
+\begin{equation*}
+	\norm{\lambda\{a_n\}}=\sum_{n\in\N}\abs{\lambda a_n}=\abs{\lambda}\sum_{n\in\N}\abs{a_n}=\abs{\lambda}\norm{\{a_n\}}.
+\end{equation*}
+La quarta:
+\begin{equation*}
+	\norm{\{a_n\}+\{b_n\}}=\sum_{n\in\N}\abs{a_n+b_n}\leq\sum_{n\in\N}(\abs{a_n}+\abs{b_n})
+	=\sum_{n\in\N}\abs{a_n}+\sum_{n\in\N}\abs{b_n}=\norm{\{a_n\}}+\norm{\{b_n\}},
+\end{equation*}
+in cui abbiamo potuto separare la serie di $(\abs{a_n}+\abs{b_n})$ nella somma delle due serie poiché sono assolutamente convergenti.
+
+Una volta che la norma soddisfa la proprietà precedente, con le seguenti \emph{identità di polarizzazione} possiamo definire un prodotto interno a partire da essa.
+\begin{proprieta} \label{p:formule-polarizzazione}
+	Sia $V$ uno spazio normato dal prodotto interno $\intern{}{}$.
+	Allora per ogni $x,y\in V$ si ha
+	\begin{gather}
+		\intern{x}{y}=\frac14\norm{x+y}^2-\frac14\norm{x-y}^2\text{ se il campo è }\R
+		\label{eq:polarizzazione-R}\\
+		\intern{x}{y}=\frac14\norm{x+y}^2-\frac14\norm{x-y}^2+\frac{i}4\norm{x+iy}^2-\frac{i}4\norm{x-iy}^2\text{ se il campo è }\C
+		\label{eq:polarizzazione-C}
+	\end{gather}
+\end{proprieta}
+\begin{proof}
+	Esprimiamo la norma della somma e della sottrazione in termini del prodotto interno:
+	\begin{multline*}
+		\norm{x+y}^2=\intern{x+y}{x+y}=\intern{x}{x+y}+\intern{y}{x+y}=\\
+		=\intern{x}{x}+\intern{y}{y}+2\intern{x}{y}=\norm{x}^2+\norm{y}^2+2\intern{x}{y}
+	\end{multline*}
+	e allo stesso modo si ha $\norm{x+y}^2=\norm{x}^2+\norm{y}^2-2\intern{x}{y}$.
+	Sottraendole si ottiene $\norm{x+y}^2-\norm{x-y}^2=4\intern{x}{y}$ da cui la tesi.
+
+	La seconda parte è analoga: abbiamo $\norm{x+y}^2=\norm{x}^2+\norm{y}^2+\intern{x}{y}+\intern{y}{x}$ e $\norm{x-y}^2=\norm{x}^2+\norm{y}^2-\intern{x}{y}-\intern{y}{x}$.
+	Questa volta non possiamo sfruttare la bilinearità, quindi servono anche i termini $\norm{x+iy}^2=\norm{x}^2+\norm{y}^2-i\intern{x}{y}+i\intern{y}{x}$ e $\norm{x-iy}^2=\norm{x}^2+\norm{y}^2+i\intern{x}{y}-i\intern{y}{x}$.
+	Risulta allora
+	\begin{equation}
+		\begin{aligned}
+			&\norm{x+y}^2-\norm{x-y}^2+i\norm{x+iy}^2-i\norm{x-iy}^2=\\
+			=&\intern{x}{y}+\intern{y}{x}+\intern{x}{y}+\intern{y}{x}+i(-i\intern{x}{y}+i\intern{y}{x})-i(i\intern{x}{y}-i\intern{y}{x})=\\
+			=&\intern{x}{y}+\intern{y}{x}+\intern{x}{y}+\intern{y}{x}+\intern{x}{y}-\intern{y}{x}+\intern{x}{y}-\intern{y}{x}=\\
+			=&4\intern{x}{y}
+		\end{aligned}
+	\end{equation}
+	e dividendo per 4 otteniamo la \eqref{eq:polarizzazione-C}.
+\end{proof}
+Ad esempio nello spazio $\cont{}\ab$ di funzioni a valori complessi possiamo definire la norma
+\begin{equation*}
+	\norm{f}=\bigg(\int_a^b\abs{f(x)}^2\,\dd x\bigg)^2,
+\end{equation*}
+che deriva dal prodotto hermitiano che avevamo definito precedentemente.
+
+\begin{teorema} \label{t:identita-parseval-bessel}
+	Sia $V$ uno spazio dotato del prodotto interno $\intern{}{}$ e di dimensione finita, e sia $\{e_i\}_{i=1}^n$ un insieme ortonormale.
+	Le seguenti affermazioni sono equivalenti:
+	\begin{enumerate}
+		\item $\{e_i\}_{i=1}^n$ è una base di $V$;
+		\item $\forall x\in V$ si ha $x=\sum_{i=1}^n\intern{x}{e_i}e_i$;
+		\item $\forall x,y\in V$ si ha $\intern{x}{y}=\sum_{i=1}^n\intern{x}{e_i}\conj{\intern{y}{e_i}}$, nota come \emph{identità di Parseval};
+		\item $\forall x\in V$ si ha $\norm{x}^2=\sum_{i=1}^n\abs{\intern{x}{e_i}}^2$, nota come \emph{identità di Bessel}.
+	\end{enumerate}
+\end{teorema}
+\begin{proof}
+	$(1\then 2)$ $\{e_i\}_{i=1}^n$ è una base quindi $\dim V=n$ e possiamo sempre scrivere $x$ come combinazione lineare degli $e_i$, cioè $x=\sum_{j=1}^n\lambda_j e_j$.
+	Se prendiamo il prodotto interno di $x$ con un elemento della base otteniamo per linearità
+	\begin{equation}
+		\intern{x}{e_k}=\intern{\sum_{j=1}^n\lambda_j e_j}{e_k}=\sum_{j=1}^n\lambda_k\intern{e_j}{e_k}=\sum_{j=1}^n\lambda_k\delta_{jk}=\lambda_k
+	\end{equation}
+	quindi i coefficienti sono dati dal prodotto interno con ciascun elemento della base, cioè $x=\sum_{k=1}^n\intern{x}{e_k} e_k$.
+
+	$(2\then 3)$ Esprimendo $x$ e $y$ come ricavato nel punto precedente abbiamo
+	\begin{equation}
+		\begin{split}
+			\intern{x}{y}&=\intern{\sum_{i=1}^n\intern{x}{e_i}e_i}{\sum_{j=1}^n\intern{y}{e_j}e_j}=\\
+			&=\sum_{i=1}^n\intern{x}{e_i}\sum_{j=1}^n\conj{\intern{y}{e_j}}\intern{e_i}{e_j}=\\
+			&=\sum_{i=1}^n\intern{x}{e_i}\sum_{j=1}^n\conj{\intern{y}{e_j}}\delta_{ij}=\\
+			&=\sum_{i=1}^n\intern{x}{e_i}\conj{\intern{y}{e_i}}.
+		\end{split}
+	\end{equation}
+	
+	$(3\then 4)$ Basta sostituire $x$ al posto di $y$ per ottenere l'identità di Bessel in modo ovvio, dato che $\norm{x}^2=\intern{x}{x}$.
+
+	$(4\then 1)$ Dall'identità di Bessel abbiamo per un qualsiasi $x\in V$ che $\norm{x}^2=\sum_{i=1}^n\abs{\intern{x}{e_i}}^2$, dunque se $\intern{x}{e_i}=0$ per ogni $i\in\{1,\dots,n\}$ allora $\norm{x}=0$, ossia $x=0$.
+	Per il teorema \ref{t:sistema-ortonormale-completo} allora $\{e_i\}_{i=1}^n$ è una base di $V$.
+\end{proof}
+
+\section{Operatori aggiunti}
+\begin{definizione} \label{d:aggiunto}
+	Sia $V$ uno spazio vettoriale dotato del prodotto interno $\intern{}{}$, e $T$ un endomorfismo in $V$.
+	Si definisce \emph{aggiunto} di $T$, se esiste, l'operatore $\adj T$ (anch'esso un endomorfismo di $V$) tale per cui per ogni coppia $  x,  y\in V$ risulta
+	\begin{equation*}
+		\intern{T(  x)}{  y}=\intern{  x}{\adj T(  y)}.
+	\end{equation*}
+\end{definizione}
+\begin{teorema} \label{t:unicita-aggiunto}
+	Se $V$ è uno spazio vettoriale di dimensione finita dotato del prodotto interno $\intern{}{}$, e $T$ un endomorfismo in esso, allore esiste un unico endomorfismo che sia l'aggiunto di $T$.
+\end{teorema}
+\begin{proof}
+	Fissiamo $v\in V$ e prendiamo il funzionale $\phi\colon x\mapsto\intern{T(x)}{v}$.
+	Per il teorema di rappresentazione \ref{t:riesz}, dato che $V$ ha dimensione finita, esiste un unico $r\in V$ tale per cui $\phi=\intern{}{r}$.
+	Poniamo dunque per ogni $x\in V$
+	\begin{equation}
+		\intern{x}{T^*(v)}=\intern{x}{r},
+	\end{equation}
+	ossia $T^*(v)=r$: allora $\intern{T(x)}{v}=\intern{x}{r}=\intern{x}{T^*(v)}$ per ogni $x,v\in V$.
+	Questo operatore $T^*$ è lineare, in quanto
+	\begin{multline}
+		\intern{x}{T^*(y+\lambda z)}=\intern{T(x)}{y+\lambda z}=\intern{T(x)}{y}+\conj{\lambda}\intern{T(x)}{z}=\\
+		=\intern{x}{T^*(y)}+\conj{\lambda}\intern{x}{T^*(z)}=\intern{x}{T^*(y)+\lambda T^*(z)}
+	\end{multline}
+	per ogni $x,y,z\in V$ e $\lambda\in K$, dunque
+	\begin{equation}
+		T^*(y+\lambda z)=\lambda T^*(y)+T^*(z)
+	\end{equation}
+	cioè $T^*\in\End(V)$: in spazi di dimensione finita dunque l'operatore aggiunto esiste sempre.
+
+	Mostriamo l'unicità: sia $S\in\End(V)$ l'aggiunto di $T$, cioè sia $\intern{T(x)}{y}=\intern{x}{S(y)}$ per ogni $x,y\in V$.
+	Allora
+	\begin{equation}
+		0=\intern{T(x)}{y}-\intern{T(x)}{y}=\intern{x}{\adj{T}(y)}-\intern{x}{S(y)}.
+	\end{equation}
+	Poich\'e vale per ogni $x$, scegliamo $x=\adj{T}(y)-S(y)$ ottenendo $\norm{\adj{T}(y)-S(y)}^2=0$ da cui $\adj{T}(y)=S(y)$.
+	L'uguaglianza vale per ogni $y\in V$, quindi i due endomorfismi coincidono.
+\end{proof}
+\begin{teorema} \label{t:matrice-aggiunta}
+	Rispetto a una base ortonormale, la matrice associata all'aggiunto di $T$ è la trasposta coniugata della matrice associata a $T$, cioè se $A$ è la matrice associata a $T$ allora $A^*=\conj{A^T}$ è la matrice associata a $T^*$.
+\end{teorema}
+\begin{proof}
+	Sia $\{e_i\}_{i=1}^n$, con $n=\dim V$, una base ortonormale di $V$.
+	Sia $A$ la matrice associata a $T$ in tale base, e $B$ quella associata a $\adj T$; indicheremo la matrice trasposta coniugata con il simbolo $\adj{A}$, come per l'endomorfismo.
+	La $j$-esima colonna di $A$ è $T(e_i)=\sum_{j=1}^nA_{ji}e_j$, quindi per l'ortonormalità della base si ha $A_{ki}=\intern{T(e_i)}{e_k}$ e analogamente $B_{ki}=\intern{\adj T(e_i)}{e_k}$ in virtù del teorema \ref{t:identita-parseval-bessel}.
+	Ma allora possiamo scrivere le uguaglianze
+	\begin{equation}
+	 	B_{ki}=\intern{\adj T(e_i)}{e_k}=\conj{\intern{e_k}{\adj T(e_i)}}=\conj{\intern{T(e_k)}{e_i}}=\conj A_{ik}=\conj{A^T}_{ki}.
+	\end{equation}
+	quindi $B=\conj{A^T}=\adj A$.
+\end{proof}
+Per le matrici reali, la trasposta coniugata si riduce alla sola trasposta.
+Notiamo che per $A\in\mat(n,\C)$ risulta $(\conj{A})^T=\conj{(A^T)}$ dunque non c'è ambiguità nella notazione.
+
+\begin{proprieta} \label{p:proprieta-aggiunto}
+	Sia $V$ uno spazio vettoriale di dimensione finita con il prodotto interno $\intern{}{}$.
+	Per $T,S\in\End(V)$ e $\lambda\in K$ si hanno le seguenti proprietà:
+	\begin{enumerate}
+		\item $\adj{(T+S)}=\adj T+\adj S$;
+		\item $\adj{(\lambda T)}=\conj{\lambda}\adj T$;
+		\item $\adj{(T\circ S)}=\adj S\circ\adj T$;
+		\item $\adj{(\adj T)}=T$;
+		\item se $T$ è inoltre invertibile, $\adj{(T^{-1})}=(\adj T)^{-1}$.
+	\end{enumerate}
+\end{proprieta}
+\begin{proof}
+	La prima discende dalla linearità nella prima variabile del prodotto interno, basta considerare
+	\[\begin{split}
+		\intern{(T+S)(  x)}{  y} &= \intern{T(  x)+S(  x)}{  y} = \intern{T(  x}{  y} + \intern{S(  x)}{  y} =\\ &= \intern{  x}{\adj T(  y)} + \intern{  x}{\adj S(  y)} = \intern{  x}{\adj T(  x) + \adj S(  x)} = \intern{  x}{(\adj T + \adj S)(  x)},
+	\end{split}\]
+	in cui i passaggi sono stati possibili per la  linearità dell'applicazione e per le proprietà dell'aggiunto.
+	Quindi $(\adj T + \adj S) = \adj{(T + S)}$.
+	
+	La seconda si ricava dall'antilinearità nella seconda variabile sempre del prodotto interno, per vederlo è sufficiente analizzare
+	\[
+		\intern{\lambda T(  x)}{  y} = \lambda \intern{T(  x)}{  y} = \lambda \intern{  x }{\adj T(  y)} = \intern{  x}{ \conj{\lambda}\adj T(  y)},
+	\]
+	Si ricava allora che deve essere $\adj T \conj{\lambda} = \adj{( T \lambda)}$.
+	
+	Per la terza proprietà abbiamo per ogni $  x,  y\in V$
+	\begin{equation}
+		\intern{(T\circ S)(  x)}{  y}=\intern{T\big(S(  x)\big)}{  y}=\intern{S(  x)}{\adj T(  y)}=\intern{  x}{\adj S\big(\adj T(  y)\big)}.
+	\end{equation}
+	Dimostriamo poi la quarta:
+	\begin{equation}
+		\intern{\adj T(  x)}{  y}=\conj{\intern{  y}{\adj T(  x)}}=\conj{\intern{T(  y)}{  x}}=\intern{  x}{T(  y)},
+	\end{equation}
+	cioè l'aggiunto di $\adj T$ è $T$ stesso.
+\end{proof}
+
+Riprendiamo ora il concetto di sottospazio invariante introdotto nella sezione \ref{sec:t-invariante}.
+\begin{teorema} \label{t:invariante-ortogonale}
+	Sia $V$ uno spazio vettoriale di dimensione finita dotato del prodotto interno $\intern{}{}$, e $T\in\End(V)$.
+	Un sottospazio $W\leq V$ è $T$-invariante se e solo se $W^\perp$ è $\adj T$-invariante.
+\end{teorema}
+\begin{proof}
+	Per ogni $  w\in W$ e $  x\in W^\perp$ si ha
+	\begin{equation}
+		\intern{\adj T(  x)}{  w}=\conj{\intern{  w}{\adj T(  x)}}=\conj{\intern{T(  w)}{  x}}=0,
+	\end{equation}
+	dato che $T(  w)\in W$, poich\'e $W$ è $T$-invariante, e $  x\in W^\perp$.
+	Allora ogni $  x\in W^\perp$ è tale che $\adj T(  x)$ appartiene ancora a $W^\perp$, cioè $W^\perp$ è $\adj T$-invariante.
+
+	Sia ora $W^\perp$ $\adj T$-invariante, allora $(W^\perp)^\perp$ deve essere $\adj{(\adj T)}$-invariante, cioè $W$ è $T$-invariante.
+\end{proof}
+Prendiamo ancora un sottospazio $W\leq V$ che sia invariante rispetto a $T\in\End(V)$: possiamo restringere $T$ al sottospazi ottenendo $T|_W$, che porta elementi di $W$ ancora in elementi di $W$, dunque $T|_W\in\End(W)$.
+Allo stesso modo, per il teorema appena enunciato, $\adj T|_{W^\perp}\in\End(W^\perp)$.
+Si faccia attenzione però che scrivere $\adj{(T|_W)}=\adj T|_{W^\perp}$ non ha alcun senso: l'uguaglianza non può essere vera, poich\'e si ha che $W\cap W^\perp=\{0_W\}$, quindi si uguaglierebbero due applicazioni definite su spazi che non hanno elementi in comune (a parte lo zero)!
+\footnote{Quest'ultimo fatto si nota subito dal fatto che preso $  z\in W\cap W^\perp$, esso non può che essere lo zero poich\'e deve risultare $\intern{  z}{  z}=0$, cioè $\norm{  z}=0$.}
+
+\section{Operatori normali}
+\begin{definizione} \label{d:operatore-normale}
+	Sia $V$ uno spazio vettoriale con il prodotto interno $\intern{}{}$.
+	Un endomorfismo $T\in\End(V)$ si dice \emph{normale} se commuta con il suo aggiunto, ossia se
+	\begin{equation*}
+		T\circ\adj T=\adj T\circ T.
+	\end{equation*}
+\end{definizione}
+La definizione vale sia per gli spazi di dimensione finita che infinita: nei primi l'aggiunto esiste sempre, come abbiamo dimostrato in precedenza, mentre negli altri l'esistenza non è certa, quindi bisogna prima verificare anche questo fatto.
+Data una base ortonormale, se $A$ è la matrice associata a $T$ e $\adj A$ a $\adj T$, si ha che
+\begin{equation*}
+	A\adj A=\adj AA
+\end{equation*}
+quindi anche la matrice associata commuta con la sua trasposta coniugata: le matrici aventi questa proprietà vengono coerentemente chiamate \emph{matrici normali}.
+% Inserire alcuni esempi di classi di matrici che sono normali.
+
+si può anche definire l'endomorfismo normale a partire dalla sua matrice associata: un endomorfismo è normale se la matrice ad esso associata in una base ortonormale è una matrice normale.
+Questa definizione è corretta, in quanto se la matrice è normale rispetto ad una particolare base ortonormale allora lo è anche rispetto a qualsiasi altra base ortonormale.
+\begin{proprieta}
+	Se $V$ è uno spazio vettoriale normato e $T\in\End(V)$ è normale, allora $\forall  x\in V$ si ha $\norm{T(  x)}=\norm{\adj T(  x)}$.
+\end{proprieta}
+\begin{proof}
+Passando al prodotto interno, il quadrato della norma di $T(  x)$ è
+\begin{multline*}
+	\norm{T(  x)}^2=\intern{T(  x)}{T(  x)}=\intern{  x}{\adj T\big(T(  x)\big)}=\intern{  x}{T\big(\adj T(  x)\big)}=\\
+	=\conj{\intern{T\big(\adj T(  x)\big)}{  x}}=\conj{\intern{\adj T(  x)}{\adj T(  x)}}=\conj{\norm{\adj T(  x)}^2}=\norm{\adj T(  x)}^2
+\end{multline*}
+poich\'e la norma è un numero reale, dunque lo è anche il suo quadrato che coincide con il coniugato. 
+\end{proof}
+\begin{teorema} \label{t:autovalori-operatore-normale}
+	Sia $V$ uno spazio vettoriale dotato del prodotto interno $\intern{}{}$ e di dimensione finita, e $T\in\End(V)$ normale.
+	Un vettore $  v\in V$ è un autovettore di $T$ relativo all'autovalore $\lambda$ se e solo se è anche autovettore di $\adj T$ relativo all'autovalore $\conj{\lambda}$.
+	Inoltre, gli autospazi relativi ai due autovalori $\lambda$ (per $T$) e $\conj\lambda$ (per $\adj T$) coincidono.
+\end{teorema}
+\begin{proof}
+	Poich\'e $  v$ è un autovettore relativo all'autovalore $\lambda$, si deve avere $(T-\lambda I)  v=0_V$, quindi $\norm{(T-\lambda I)  v}=0$.
+	Inoltre il suo aggiunto è $\adj{(T-\lambda I)}=\adj T-\adj{\lambda I}=\adj T-\conj\lambda I$. Allora
+	\begin{equation}
+		(T-\lambda I)\circ\adj{(T-\lambda I)}=(T-\lambda I)\circ(\adj T-\conj\lambda I)=T\adj T-\lambda\adj T-\conj\lambda T+\abs{\lambda}^2 I	
+	\end{equation}
+	mentre scambiando l'ordine si ha
+	\begin{equation}
+		\adj{(T-\lambda I)}\circ(T-\lambda I)=\adj TT-\conj\lambda T-\lambda\adj T+\abs{\lambda}^2 I,
+	\end{equation}
+	che è lo stesso risultato poich\'e $\adj TT=T\adj T$ dato che $T$ è normale: quindi anche $T-\lambda I$ è normale.
+	Per la proprietà precedente, allora, risulta
+	\begin{equation}
+		0=\norm{(T-\lambda I)  v}=\norm{\adj{(T-\lambda I)}  v}=\norm{(\adj T-\conj\lambda I)  v},
+	\end{equation}
+	cioè $  v$ è anche autovettore di $\adj T$ relativo all'autovalore $\conj\lambda$.
+	L'implicazione inversa è dimostrata ovviamente allo stesso modo.
+\end{proof}
+
+\begin{proprieta} \label{pr:autospazi-ortogonali}
+	Sia $V$ uno spazio vettoriale di dimensione finita dotato del prodotto interno $\intern{}{}$.
+	Se $T$ è un endomorfismo normale di $V$ e $\lambda,\mu$ sono due suoi autovalori distinti, allora gli autospazi ad essi associati sono ortogonali.
+\end{proprieta}
+\begin{proof}
+	Siano $V_\lambda$ e $V_\mu$ gli autospazi relativi ai due autovalori $\lambda$ e $\mu$, distinti, e siano $v\in V_\lambda$ e $w\in V_\mu$.
+	Si ha che\footnote{Il fatto che $T$ sia normale entra in gioco quando si determina $T^*(w)$: a priori, non possiamo sapere n\'e se $w$ sia un autovettore di $T^*$, n\'e tanto meno quale sia il suo autovalore, che potrebbe essere proprio $\conj{\lambda}$ rendendo vana la dimostrazione. La normalità di $T$ ci assicura che se $T(w)=\mu w$ allora $T^*(w)=\conj{\mu}w$ in virtù del teorema \ref{t:autovalori-operatore-normale}.}
+	\begin{equation}
+		\lambda\intern{v}{w}=\intern{\lambda v}{w}=\intern{T(v)}{w}=\intern{v}{\adj T(w)}=\intern{v}{\conj{\mu}w}=\mu\intern{v}{w},
+	\end{equation}
+	ma $\lambda\ne\mu$ dunque tramite le leggi di cancellazione risulta $\intern{v}{w}=0$.
+	Poich\'e questo accade per ogni $v\in V_\lambda$ e $w\in V_\mu$, allora $V_\lambda\perp V_\mu$.
+\end{proof}
+
+La proprietà principale delle matrici normali è che sono \emph{sempre diagonalizzabili}, dunque in uno spazio vettoriale complesso si può sempre trovare una base ortonormale che è costituita da autovettori di un endomorfismo normale.
+Questo risultato prende il nome di \emph{teorema spettrale}.
+\begin{teorema}[Teorema spettrale] \label{t:spettrale-complesso}
+	Sia $V$ uno spazio vettoriale su $\C$ di dimensione finita, dotato del prodotto interno $\intern{}{}$.
+	Ogni endomorfismo normale di $V$ è diagonalizzabile, e ammette una base ortonormale di autovettori.
+\end{teorema}
+\begin{proof}
+	Sia $T\in\End(V)$ normale: dimostriamo la tesi per induzione sulla dimensione di $V$.
+
+	Se $\dim V=1$, è ovvia.
+	Sia ora $n\defeq\dim V$, e assumiamo che la tesi valga per $n-1$.
+	Poich\'e $\chi_T\in\C[x]$ e $\deg\chi_T=n\ge 1$, esso ammette sempre una radice per il teorema fondamentale dell'algebra: sia $\lambda$ tale radice, e $v$ un autovettore ad essa associato.
+	Possiamo supporre $v$ di norma unitaria (è un autovettore, dunque non è nullo e si può normalizzare).
+	Chiamiamo $W\defeq\gen{\{v\}}^\perp$: per ogni $w\in W$ risulta
+	\begin{equation}
+		\intern{T(w)}{v}=\intern{w}{T^*(v)}=\intern{w}{\conj{\lambda}v}=\lambda\intern{w}{v}=0
+	\end{equation}
+	in virtù del teorema \ref{t:autovalori-operatore-normale} e poich\'e $w\perp v$; dunque $T(w)\in W$ cioè $W$ è $T$-invariante.
+	Possiamo allora restringere $T$ definendo $T|_W\colon W\to W$.
+	Esso è ovviamente normale anche in $W$, dato che se $T\big(T^*(x)\big)=T^*\big(T(x)\big)$ per ogni $x\in V$ vale sicuramente anche per $x\in W$.
+	Poich\'e $\dim W=n-1$, per l'ipotesi di induzione $T|_W$ è diagonalizzabile: allora esiste una base ortonormale $\mathcal B$, per $W$, di autovettori di $T|_W$, che sono anche autovettori di $T$.
+	Ma $v\perp b$ per ogni $b\in\mathcal B$, dunque l'insieme $\mathcal B\cup\{v\}$ è ancora ortonormale, ed è quindi la base cercata di $V$ (ha $n$ vettori ed è linearmente indipendente per il corollario \ref{c:ortonormale-linearmente-indipendente}).
+\end{proof}
+Il teorema non vale nel caso reale, dato che abbiamo fatto uso della chiusura algebrica di $\C$.
+Bisogno quindi assicurarsi che il polinomio caratteristico ammetta radici reali, e questo ha bisogno di ipotesi più forti della sola normalità dell'operatore.
+
+\section{Operatori autoaggiunti} \label{sec:operatori-autoaggiunti}
+\begin{definizione} \label{d:operatore-autoaggiunto}
+	Sia $V$ uno spazio vettoriale dotato di un prodotto interno.
+	Un endomorfismo si dice \emph{autoaggiunto} se coincide con il suo aggiunto.
+\end{definizione}
+Affinch\'e un operatore possa essere autoaggiunto, deve prima esistere il suo aggiunto; come già visto, in spazi di dimensione finita questo è garantito.
+Un operatore autoaggiunto è ovviamente anche normale, poich\'e commuta con s\'e stesso.
+La matrice associata, in una base ortonormale, ad un operatore autoaggiunto è una matrice hermitiana, che coincide con la sua trasposta coniugata.
+\begin{teorema}	\label{t:autovalori-operatore-autoaggiunto}
+	Sia $V$ uno spazio vettoriale con il prodotto interno $\intern{}{}$.
+	Se $T\in\End(V)$ è autoaggiunto, tutti i suoi autovalori sono reali.
+\end{teorema}
+\begin{proof}
+	Se $V$ è uno spazio sul campo dei numeri reali, la tesi è ovviamente già dimostrata, quindi prendiamo $V$ sul campo complesso.
+	Sia $\lambda$ un autovalore di $T$ e $  x$ un autovettore associato: allora
+	\begin{equation}
+		\lambda\intern{  x}{  x}=\intern{\lambda  x}{  x}=\intern{T(  x)}{  x}=\intern{  x}{\adj T(  x)}=\intern{  x}{T(  x)}=\intern{  x}{\lambda  x}=\conj\lambda\intern{  x}{  x}.
+	\end{equation}
+	Poich\'e $  x$ è un autovettore non può essere nullo perciò $\intern{  x}{  x}\neq 0$, quindi deve essere $\lambda=\conj\lambda$ cioè $\lambda\in\R$.
+\end{proof}
+
+\begin{teorema}
+	Sia $V$ uno spazio vettoriale di dimensione finita, dotato di prodotto interno.
+	Se $T\in\End(V)$ autoaggiunto, un sottospazio $W\leq V$ è $T$-invariante se e solo se lo è anche $W^\perp$.
+\end{teorema}
+\begin{proof}
+	Segue immediatamente dal teorema \ref{t:invariante-ortogonale}, in cui poniamo $T=\adj T$.
+\end{proof}
+
+\begin{teorema}
+	Sia $V$ uno spazio vettoriale dotato di un prodotto interno.
+	Se $T\in\End(V)$ è autoaggiunto, allora ammette sempre almeno un autovalore.
+\end{teorema}
+\begin{proof}
+	Se $V$ è sul campo complesso, poich\'e $T$ è normale, per il teorema spettrale \ref{t:spettrale} è addirittura sempre diagonalizzabile, quindi la tesi è immediata.
+	Diverso è il caso in cui $V$ è sul campo reale.
+	Prendiamo una base $\mathcal B=\{b_i\}_{i=1}^n$ ortonormale, e sia $A$ la matrice associata a $T$ in tale base: $A$ è simmetrica essendo $T$ autoaggiunto.
+	Sia $S\in\End(\C^n)$ tale che $[S(x)]_\mathcal{B}=A[x]_\mathcal{B}$: $A$ risulta anche hermitiana se vista in $\mat(n,\C)$, dunque $S$ è autoaggiunto.
+	Ovviamente i polinomi caratteristici $\chi_T$ e $\chi_S$ coincidono.
+	Ma $\chi_S\in\C[x]$ quindi ammette almeno una radice complessa, che chiamiamo $\lambda$: essa per il teorema \ref{t:autovalori-operatore-autoaggiunto} è reale, ed è un autovalore di $S$.
+	La matrice $A-\lambda I$ allora è ancora reale, ed è singolare: il sistema $(A-\lambda I)x=0$ ammette allora una soluzione non nulla $x\in\R^n$.
+	Dette $x_i$ le coordinate di $x$, il vettore $\sum_{i=1}^nx_ib_i$ è dunque un autovettore di $T$ con autovalore $\lambda$.
+\end{proof}
+Grazie a questo risultato possiamo ottenere un risultato analogo al teorema spettrale su uno spazio vettoriale reale.
+Infatti una volta trovato il primo autovalore che chiamiamo $\lambda_1$, restringendo $T$ al sottospazio ortogonale all'autospazio $V_{\lambda_1}$ otteniamo ancora un endomorfismo (nel sottospazio) autoaggiunto, e possiamo ripetere il procedimento.
+Questo vale chiaramente anche su spazi vettoriali complessi, quindi diamo per dimostrato il seguente teorema.
+\begin{teorema} \label{t:spettrale-reale}
+	Sia $V$ uno spazio vettoriale reale dotato di prodotto interno.
+	Se $T\in\End(V)$ è autoaggiunto, allora è diagonalizzabile.
+\end{teorema}
+
+\section{Isometrie} \label{sec:isometrie}
+\begin{definizione} \label{d:isometria}
+	Siano $V$ e $Z$ due spazi vettoriali sul medesimo campo, dotati rispettivamente dei prodotti interni $\intern{}{}_V$ e $\intern{}{}_Z$.
+	Un'applicazione lineare $T\in\lin(V,Z)$ è un'\emph{isometria} se per ogni $  x,  y\in V$ si ha
+	\begin{equation*}
+		\intern{T(  x)}{T(  y)}_Z=\intern{  x}{  y}_V.
+	\end{equation*}
+\end{definizione}
+La condizione data nella definizione può essere sostituita da
+\begin{equation}
+	\norm{T(x)}_Z=\norm{x}_V\quad\forall x\in V.
+\end{equation}
+La precedente implica in modo ovvio quest'ultima, e le due sono equivalenti grazie alle formule di polarizzazione.
+
+Un'isometria dunque è un'applicazione che preserva il prodotto interno: negli spazi euclidei le isometrie in particolare preservano le distanze e gli angoli (che si possono derivare dalla norma e dal prodotto scalare).
+Si può vedere subito che un'isometria è necessariamente iniettiva, dato che se $T(  x)=0_Z$ allora $0=\norm{T(x)}_Z=\norm{x}_V$ e quindi $x=0_V$ e $\Ker T=\{0_V\}$; allo stesso tempo può benissimo non essere suriettiva.
+Le isometrie suriettive quindi sono anche automaticamente isomorfismi tra i due spazi\footnote{Chiameremo per brevità \emph{isomorfismi isometrici} le isometrie che sono suriettive, cioè isomorfismi.}, e in quanto tali ``portano'' delle basi di $V$ in basi di $Z$.
+La peculiarietà delle isometrie è che oltre a questo preservano l'ortonormalità di queste basi, come vediamo nel seguente teorema.
+\begin{teorema} \label{t:isometrie-basi-ortonormali}
+	Siano $V$ e $Z$ due spazi vettoriali dotati dei rispettivi prodotti interni $\intern{}{}_V$ e $\intern{}{}_Z$, di dimensione finita e sul medesimo campo.
+	Dato $T\in\lin(V,Z)$, esso è un isomorfismo isometrico se e solo se l'immagine di una base ortonormale di $V$ attraverso $T$ è una base ortonormale di $Z$.
+\end{teorema}
+\begin{proof}
+	Cominciamo dall'ipotesi che $T$ sia un isomorfismo isometrico, e prendiamo una base ortonormale $\{e_i\}_{i=1}^n$ di $V$.
+	Sappiamo che la sua immagine $\{T(e_i)\}_{i=1}^n$ è una base di $Z$, essendo $T$ un isomorfismo.
+	Inoltre, essendo un'isometria,
+	\begin{equation}
+		\intern{T(e_i)}{T(e_j)}_Z=\intern{e_i}{e_j}_V=\delta_{ij}
+	\end{equation}
+	dunque è anche una base ortonormale.
+
+	Siano ora $\{e_i\}_{i=1}^n$ e $\{T(e_i)\}_{i=1}^n$ basi ortonormali.
+	Vediamo subito che $T$ è un isomorfismo poich\'e ``porta basi in basi''.
+	Inoltre, posti $x=\sum_{i=1}^nx_ie_i$ e $y=\sum_{i=1}^ny_ie_i$, risulta
+	\begin{multline}
+		\intern{T(x)}{T(y)}_Z=\intern{\sum_{i=1}^nx_iT(e_i)}{\sum_{j=1}^ny_jT(e_j)}_{\!\! Z}=\sum_{i=1}^nx_i\sum_{j=1}^nx_i\conj{y_j}\intern{T(e_i)}{T(e_j)}_Z=\\
+		=\sum_{i=1}^nx_i\sum_{j=1}^n\conj{y_j}\delta_{ij}=\sum_{i=1}^nx_i\conj{y_i}=\intern{x}{y}_V
+	\end{multline}
+	dunque è un'isometria.
+\end{proof}
+
+\begin{corollario} \label{t:spazi-isometrici}
+	Siano $V$ e $Z$ due spazi vettoriali dotati rispettivamente del prodotto interno $\intern{}{}_V$ e $\intern{}{}_Z$, di dimensione finita e sul medesimo campo.
+	Essi sono isometrici, ossia esiste un'isometria $T\colon V\to Z$, se e solo se hanno dimensione uguale.
+\end{corollario}
+\begin{proof}
+	Poich\'e le isometrie, come già visto, sono sempre iniettive, un'isometria suriettiva è un isomorfismo, dunque $V\cong Z$, di conseguenza hanno la stessa dimensione.
+	
+	Viceversa consideriamo due spazi che hanno uguale dimensione.
+	Prendiamo due basi ortonormali $\{e_i\}_{i=1}^n$ e $\{g_k\}_{k=1}^n$ rispettivamente di $V$ e di $Z$, e definiamo $T\in\lin(V,Z)$ tale che $T(e_k)=g_k$.
+	Sia $x=\sum_{i=1}^nx_ie_i$: allora $T(x)=\sum_{k=1}^nx_kg_k$ e risulta
+	\begin{equation*}
+		\norm{T(x)}_Z^2=\intern{T(x)}{T(x)}_Z=\sum_{k=1}^nx_k\sum_{j=1}^n\conj{x_j}\intern{g_k}{g_j}_Z=\sum_{k=1}^nx_k\sum_{j=1}^n\conj{x_j}\intern{e_k}{e_j}_V=\intern{x}{x}_V=\norm{x}_V^2
+	\end{equation*}
+	in quanto $\intern{g_k}{g_j}_Z=\delta_{kj}=\intern{e_k}{e_j}_V$.
+	Allora $T$ è l'isomorfismo isometrico richiesto.
+\end{proof}
+
+\begin{teorema} \label{t:isometrie-operatori-unitari}
+	Sia $V$ uno spazio vettoriale con il prodotto interno $\intern{}{}$ e $T\in\End(V)$.
+	Se esiste l'aggiunto di $T$, allora esso è un'isometria se e solo se $\adj T\circ T= I_V$.
+\end{teorema}
+\begin{proof}
+	Sia $T$ un'isometria: per ogni $  x,  y\in V$ abbiamo allora $\intern{  x}{  y}=\intern{T(  x)}{T(  y)}=\intern{  x}{\adj T\big(T(  y)\big)}$.
+	Sottraendo il primo e il terzo membro otteniamo $\intern{  x}{  y}-\intern{  x}{\adj T\big(T(  y)\big)}=\intern{  x}{  y-\adj T\big(T(  y)\big)}=0$.
+	Poiche la relazione vale per ogni $  x$, scegliamo $  x=  y-\adj T\big(T(  y)\big)$ ottenendo $\intern{  y-\adj T\big(T(  y)\big)}{  y-\adj T\big(T(  y)\big)}=\norm{  y-\adj T\big(T(  y)\big)}^2=0$, che è vera se e solo se $  y=\adj T\big(T(  y)\big)$, cioè $\adj T\circ T= I_V$.
+
+	Dimostriamo ora l'inverso, partendo da $\adj T\circ T= I_V$.
+	Preso un $  x\in V$ qualsiasi, $\intern{T(  x)}{T(  x)}=\intern{  x}{\adj T\big(T(  x)\big)}=\intern{  x}{  x}$, quindi è un'isometria.
+\end{proof}
+Per le isometrie dunque l'aggiunto è anche l'inverso dell'operatore.
+\begin{teorema} \label{t:autovalori-operatori-unitari}
+	Sia $V$ uno spazio vettoriale complesso di dimensione finita, dotato di un prodotto interno, e $T\in\End(V)$ un'isometria.
+	Se $\lambda$ è un suo autovalore, allora $\lambda=e^{i\theta}$ per qualche $\theta\in[0,2\pi)$.
+\end{teorema}
+\begin{proof}
+	Sia $  v\in V$ un autovettore di $T$.
+	Poich\'e $T$ è un'isometria, $\adj T\circ T=\id_V$ per il teorema \ref{t:isometrie-operatori-unitari}, quindi
+	\begin{equation}
+		  v=I_V  v=\adj T\big(T(  v)\big)=\adj T(\lambda  v)=\lambda\adj T(  v)=\lambda\conj\lambda  v=\abs{\lambda}^2  v
+	\end{equation}
+	e dunque $\abs{\lambda}=1$, cioè $\lambda$ sta sulla circonferenza unitaria di $\C$, e si esprime come $e^{i\theta}$ per un qualche $\theta\in\R\quot2\pi\Z$.
+\end{proof}
+Per spazi vettoriali complessi, le isometrie sono dette operatori \emph{unitari}, dato che tutti i loro autovalori sono sulla circonferenza unitaria.
+Nel campo reale le isometrie sono più semplicemente gli operatori il cui trasposto è l'inverso, e si dicono \emph{ortogonali}.
+L'esempio più noto di operatori ortogonali sono le rotazioni: in $\R^2$, una rotazione $\mathfrak R$ di un angolo $\theta$ è espressa sulla base canonica da
+\begin{equation}
+	\mathfrak R(\vec e_1)=\cos\theta\vec e_1+\sin\theta\vec e_2\qeq \mathfrak R(\vec e_2)=-\sin\theta\vec e_1+\cos\theta\vec e_2,
+	\label{eq:rotazione-base}
+\end{equation}
+quindi la sua matrice associata è $R=\begin{bsmallmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{bsmallmatrix}$.
+Si vede subito che $\det R=1$ indipendentemente dall'angolo, inoltre la sua inversa è
+\begin{equation}
+	R^{-1}=
+	\begin{bmatrix}
+		\cos\theta	&\sin\theta\\
+		-\sin\theta	&\cos\theta
+	\end{bmatrix}
+	\label{eq:rotazione-inversa-matrice}
+\end{equation}
+che è una rotazione di $-\theta$, ed evidentemente anche la trasposta di $R$.
+
