@@ -56,28 +56,45 @@ Ecco alcuni esempi di prodotti interni:
 % Ho qualche dubbio su questa definizione: altrove gli spazi euclidei sono gli R^n vari con il prodotto scalare standard. Nel dubbio, non mi riferirò mai a spazi euclidei d'ora in poi, ma specificherò sempre lo spazio e il prodotto interno ogni volta.
 
 Avevamo detto in precedenza che, fissata una delle due variabili, una forma bilineare può essere vista come funzionale lineare.
-Con un piccolo aggiustamento, dovuto al fatto che il prodotto interno \emph{non} è lineare nella seconda variabile, possiamo comunque affermare che fissata questa seconda variabile il prodotto interno è a tutti gli effetti un elemento dello spazio duale e risulta un funzionale lineare, quindi può essere rappresentato da una matrice ed esiste il suo inverso (che è detto \emph{antilineare}).% Da ampliare.
+Dato che il prodotto interno in generale \emph{non} è bilineare, dobbiamo avere qualche accorgimento: fissiamo cioè solo la seconda (in ordine) delle due variabili, ossia consideriamo $\intern{}{a}$ come funzionale, che è quindi lineare.
+Questo è alla base del teorema, di fondamentale importanza, che segue il lemma.
+\begin{lemma} \label{l:base-reciproca}
+	Data una base $\{e_i\}_{i=1}^n$ di uno spazio vettoriale $V$ di dimensione finita, i funzionali lineari $\intern{}{e_i}$ per $i\in\{1,\dots,n\}$ costituiscono una base dello spazio duale $V^*$.
+\end{lemma}
+\begin{proof}
+	Se $\mu_1,\dots,\mu_n$ sono tali che
+	\begin{equation}
+		0=\sum_{i=1}^n\mu_i\intern{}{e_i}=\sum_{i=1}^n\intern{}{\conj{\mu_i}e_i}
+	\end{equation}
+	allora per ogni $v\in V$ risulta
+	\begin{equation}
+		\intern{v}{\sum_{i=1}^n\conj{\mu_i}e_i}=0
+	\end{equation}
+	e per le proprietà del prodotto interno segue, prendendo $v=\sum_{i=1}^n\conj{\mu_i}e_i$, che $\sum_{i=1}^n\conj{\mu_i}e_i=0$.
+	Ma $\{e_i\}_{i=1}^n$ è una base di $V$, dunque $\conj{\mu_1}=\cdots=\conj{\mu_n}=0$ ossia $\mu_1=\cdots=\mu_i=0$.
+	Di conseguenza i $\intern{}{e_i}$ sono $n$ ($=\dim V^*$) elementi linearmente indipendenti di $V^*$, cioè ne sono una base.
+\end{proof}
 \begin{teorema}[di rappresentazione, di Riesz] \label{t:riesz}
 	Sia $V$ uno spazio euclideo di dimensione finita con un prodotto interno $\intern{}{}$ non degenere, e $\phi\in V^*$.
-	Allora esiste uno ed un solo elemento $  r\in V$ tale per cui $\phi=\intern{\cdot}{  r}$.
+	Allora esiste uno ed un solo elemento $r\in V$ tale per cui $\phi=\intern{}{r}$, ossia $\phi(v)=\intern{v}{r}$ per ogni $v\in V$.
 \end{teorema}
 \begin{proof}
-	Dimostriamo dapprima l'esistenza di tale vettore: scelta una base canonica $\{  e_i\}_{i=1}^n$, individuiamo la base $\{\intern{}{  e_i}\}_{i=1}^n$ che è la base dello spazio duale $V^*$, che chiameremo per brevità $\{d_i\}_{i=1}^n$, ed è tale per cui $d_i(  e_j)=\intern{  e_j}{  e_i}=\delta_{ij}$.
-	Possiamo definire $\phi$ quindi come combinazione lineare degli elementi di questa base: per opportuni $\lambda_k\in K$ si ha
+	Dimostriamo dapprima l'esistenza di tale vettore: scelta una base canonica $\{e_i\}_{i=1}^n$, individuiamo la base $\{\intern{}{e_i}\}_{i=1}^n$ di $V^*$
+	Preso $\phi\in V^*$ esistono dunque dei coefficienti $\lambda_i$ tali che
+	\begin{equation}
+		\phi=\sum_{i=1}^n\lambda_i\intern{}{e_i}
+	\end{equation}
+	ma allora per ogni $v\in V$ possiamo scrivere
 	\begin{equation*}
-		\phi=\sum_{k=1}^n\lambda_kd_k\qqq \phi(  x)=\sum_{k=1}^n\lambda_kd_k(  x).
+		\phi(v)=\sum_{i=1}^n\lambda_i\intern{v}{e_i}=\sum_{i=1}^n\intern{v}{\conj{\lambda_i}e_i}
 	\end{equation*}
-	Possiamo dunque portare dentro al prodotto interno i coefficienti della combinazione, cioè
-	\begin{equation*}
-		\phi(  x)=\sum_{k=1}^n\lambda_k\intern{  x}{  e_k}=\intern{  x}{\sum_{k=1}^n\conj{\lambda_k}  e_k}
-	\end{equation*}
-	e allora il vettore $\sum_{k=1}^n\conj{\lambda_k}  e_k$ è proprio il vettore $  r\in V$ cercato.
+	e il vettore $\sum_{k=1}^n\conj{\lambda_k}e_k$ è proprio il vettore $r\in V$ cercato.
 	
-	Passiamo a dimostrare l'unicità: se esistesse $  r'\in V$ tale che $\phi=\intern{}{  r'}$, allora si dovrebbe avere che $\intern{}{  r}=\intern{}{  r'}$, o anche
+	Passiamo a dimostrare l'unicità: se esistesse $r'\in V$ tale che $\phi=\intern{}{r'}$, allora si dovrebbe avere che $\intern{}{r}=\intern{}{r'}$, o anche
 	\begin{equation*}
-		\intern{  x}{  r}=\intern{  x}{  r'}\ \forall  x\in V.
+		\intern{x}{r}=\intern{x}{r'}\ \forall x\in V.
 	\end{equation*}
-	Ma allora risulterebbe $\intern{  x}{  r-  r'}=0$: poiché vale per qualsiasi $  x\in V$, vale anche per $  r-  r'$ stesso (che appartiene certamente a $V$), quindi $\intern{  r-  r'}{  r-  r'}=0$ che vale solo se $  r-  r'=0_V$, cioè $  r=  r'$, quindi tale vettore è unico.
+	Ma allora risulterebbe $\intern{x}{r-r'}=0$: poiché vale per qualsiasi $x\in V$, vale anche per $r-r'$ stesso (che appartiene certamente a $V$), quindi $\intern{r-r'}{r-r'}=0$ che vale solo se $r-r'=0_V$, cioè $r=r'$, quindi tale vettore è unico.
 \end{proof}
 Si noti che $  r$ nella seconda variabile del prodotto interno rende $\phi$ lineare, senza aver bisogno di introdurre i numeri coniugati, poiché nella prima variabile il prodotto interno è lineare. 
 
