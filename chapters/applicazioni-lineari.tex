@@ -10,19 +10,28 @@
 \end{definizione}
 Le applicazioni lineari sono dunque degli omomorfismi tra spazi vettoriali, in quanto ne preservano la struttura data dalle operazioni interne.
 Per linearità, vale sempre la relazione $T(0_V)=0_Z$, poiché $T(0_V)=T(0_V+0_V)=T(0_V)+T(0_V)$, da cui $T(0_V)=0_Z$ sottraendo $T(0_V)$ a entrambi i membri: quest aè una condizione facile da usare per verificare la linearità di una data funzione.
-L'insieme delle applicazioni lineari da $V$ a $Z$ è indicato con $\lin(V,Z)$.
-Un'applicazione lineare da uno spazio in s\'e stesso è detta \emph{endomorfismo} (lineare), e indichiamo l'insieme degli endomorfismi di uno spazio $V$ con $\End(V)$.
+L'insieme delle applicazioni lineari da $V$ a $Z$ (entrambi basati sullo stesso campo) è indicato con $\lin(V,Z)$.
+In esso possiamo definire l'addizione e la moltiplicazione per uno scalare come
+\begin{equation*}
+	(T+S)(v)\defeq T(v)+S(v),\hspace{2cm}(\lambda T)(v)\defeq \lambda \big(T(v)\big)
+\end{equation*}
+per $T,S\in\lin(V,Z)$, $v\in V$ e $\lambda\in K$.
+Dotato di queste operazioni, $\lin(V,Z)$ è uno spazio vettoriale sul campo $K$.
+L'elemento neutro dell'addizione è l'applicazione (evidentemente lineare) che manda ogni elemento di $V$ in $0_Z$, anche detta \emph{applicazione nulla}.
 
 \paragraph{Esempi}
 \begin{itemize}
-	\item L'applicazione identità di $V$, indicata con $\id_V$, per la quale $\id_V(v)=v$ per ogni $v\in V$, è ovviamente lineare.
-	\item L'applicazione nulla, che associa ad ogni elemento lo zero dello spazio di arrivo: $0(v)=0_Z$ per ogni $v\in V$, anch'essa lineare in modo ovvio.
+	\item L'applicazione identità di $V$, indicata spesso con $I_V$, per la quale $I_V(v)=v$ per ogni $v\in V$, è ovviamente lineare.
 	\item Sia $W$ un sottospazio di $V$: chiamiamo \emph{proiezione canonica} in $W$ la funzione $\pi\colon V\to V\quot W$ che ad ogni $v\in V$ associa la classe di equivalenza $[v]_W=W+v$.
 		Tale funzione è additiva in quanto per $a,b\in V$, $\pi(a+b)=W+(a+b)=(W+a)+(W+b)=\pi(a)+\pi(b)$.
 		È anche omogenea perch\'e $\pi(\lambda a)=W+\lambda a=\lambda(W+a)=\lambda\pi(a)$.
 		La funzione $\pi$ è quindi un'applicazione lineare.
 	\item La funzione $f\colon\R^2\to\R^2$ data da $f([x,y]^T)=[x+y,y+1]^T$ non è un'applicazione lineare, poich\'e $f([0,0]^T)=[0,1]^T\ne[0,0]^T$.
 \end{itemize}
+
+Un'applicazione lineare da uno spazio in s\'e stesso è detta \emph{endomorfismo} (lineare), e indichiamo l'insieme degli endomorfismi di uno spazio $V$ con $\End(V)$.
+In questo insieme possiamo definire un'ulteriore operazione, la composizione tra endomorfismi: con essa $\End(V)$ assume l'ulteriore struttura di \emph{algebra}, sempre sul campo $K$.
+L'elemento neutro di $\End(V)$ è l'identità $I_V$, come nell'esempio precedente, che associa ogni elemento di $V$ a s\'e stesso, ed è tale che $I_V\circ T=T\circ I_V=T$ per ogni $T\in\End(V)$.
 
 L'iniettività e la suriettività delle applicazioni lineari sono definite allo stesso modo di una qualsiasi funzione.
 In particolare, un'applicazione lineare che è sia iniettiva che suriettiva è detta \emph{isomorfismo lineare} (o solo isomorfismo).
