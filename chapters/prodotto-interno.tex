@@ -696,18 +696,19 @@ La peculiarietà delle isometrie è che oltre a questo preservano l'ortonormalit
 \end{proof}
 Per le isometrie dunque l'aggiunto è anche l'inverso dell'operatore.
 \begin{teorema} \label{t:autovalori-operatori-unitari}
-	Sia $V$ uno spazio vettoriale complesso di dimensione finita, dotato di un prodotto interno, e $T\in\End(V)$ unitario\footnote{Un'operatore si definisce unitario se è un'isometria nel campo complesso.}.
+	Sia $V$ uno spazio vettoriale complesso di dimensione finita, dotato di un prodotto interno, e $T\in\End(V)$ un'isometria.
 	Se $\lambda$ è un suo autovalore, allora $\lambda=e^{i\theta}$ per qualche $\theta\in[0,2\pi)$.
 \end{teorema}
 \begin{proof}
 	Sia $  v\in V$ un autovettore di $T$.
-	Poich\'e $T$ è unitario, $\adj T\circ T=\id_V$ per il teorema \ref{t:isometrie-operatori-unitari}, quindi
+	Poich\'e $T$ è un'isometria, $\adj T\circ T=\id_V$ per il teorema \ref{t:isometrie-operatori-unitari}, quindi
 	\begin{equation}
-		  v=\id_V  v=\adj T\big(T(  v)\big)=\adj T(\lambda  v)=\lambda\adj T(  v)=\lambda\conj\lambda  v=\abs{\lambda}^2  v
+		  v=I_V  v=\adj T\big(T(  v)\big)=\adj T(\lambda  v)=\lambda\adj T(  v)=\lambda\conj\lambda  v=\abs{\lambda}^2  v
 	\end{equation}
 	e dunque $\abs{\lambda}=1$, cioè $\lambda$ sta sulla circonferenza unitaria di $\C$, e si esprime come $e^{i\theta}$ per un qualche $\theta\in\R\quot2\pi\Z$.
 \end{proof}
-Nel campo reale gli operatori unitari sono più semplicemente quelli per cui il loro trasposto è l'inverso, e si dicono \emph{ortogonali}.
+Per spazi vettoriali complessi, le isometrie sono dette operatori \emph{unitari}, dato che tutti i loro autovalori sono sulla circonferenza unitaria.
+Nel campo reale le isometrie sono più semplicemente gli operatori il cui trasposto è l'inverso, e si dicono \emph{ortogonali}.
 L'esempio più noto di operatori ortogonali sono le rotazioni: in $\R^2$, una rotazione $\mathfrak R$ di un angolo $\theta$ è espressa sulla base canonica da
 \begin{equation}
 	\mathfrak R(\vec e_1)=\cos\theta\vec e_1+\sin\theta\vec e_2\qeq \mathfrak R(\vec e_2)=-\sin\theta\vec e_1+\cos\theta\vec e_2,
