@@ -210,27 +210,35 @@ Le prime due proprietà sono automaticamente soddisfatte dalle proprietà della 
 			 &=\sqrt{\abs{\lambda}^2\intern{  x}{  x}}=\abs{\lambda}\sqrt{\intern{  x}{  x}}=\abs{\lambda}\norm{  x}.
 	\end{split}
 \end{equation*}
-La quarta proprietà discende dalla disuguaglianza di Cauchy-Schwarz, $\abs{\intern{  x}{  y}}\leq\norm{  x}\norm{  y}$.
-Chiamiamo $\alpha\defeq\intern{  y}{  y}$ e $\beta\defeq-\intern{  x}{  y}$.
-Il prodotto interno di $\alpha  x+\beta  y$ con sé stesso è sempre positivo, dunque scomponendolo otteniamo
-\begin{equation*}
-	\begin{split}
-		\intern{\alpha  x+\beta  y}{\alpha  x+\beta  y}=\\
-		=&\intern{\alpha  x}{\alpha  x}+\intern{\beta  y}{\alpha  x}+\intern{\alpha  x}{\beta  y}+\intern{\beta  y}{\beta  y}=\\
-		=&\alpha\conj{\alpha}\intern{  x}{  x}+\beta\conj{\alpha}\intern{  y}{  x}+\alpha\conj{\beta}\intern{  x}{  y}+\beta\conj{\beta}\intern{  y}{  y}\geq 0.
-	\end{split}
-\end{equation*}
-Poiché $\alpha=\intern{  y}{  y}=\norm{  y}^2$, quindi è un numero reale, sostituendo i valori di $\alpha$ e $\beta$ abbiamo
-\begin{equation*}
-	\norm{  y}^4\norm{  x}^2-2\norm{  y}^2\intern{  x}{  y}\conj{\intern{  x}{  y}}+\norm{  y}^2\intern{  x}{  y}\conj{\intern{  x}{  y}}\geq 0.
-\end{equation*}
-Poiché $\conj{\intern{  x}{  y}}\intern{  x}{  y}=\abs{\intern{  x}{  y}}^2$ abbiamo che
-\begin{equation*}
-	\norm{  y}^2\abs{\intern{  x}{  y}}^2\leq\norm{  x}^2\norm{  y}^4,
-\end{equation*}
-Se $\norm{  y}=0$ allora $  y=0_V$ e la disuguaglianza è ovvia, altrimenti la disuguaglianza di Cauchy si ottiene dividendo per $\norm{  y}^2$ e prendendo le radici quadrate dei due membri.
-
-Passiamo ora a verificare la quarta proprietà della norma dal prodotto interno usando questo risultato.
+La quarta proprietà discende dalla disuguaglianza di Cauchy-Schwarz, che ora dimostriamo.
+\begin{proprieta} \label{pr:cauchy-schwarz}
+	Dato uno spazio vettoriale $V$, su un campo $K=\R,\C$, dotato del prodotto interno $\intern{}{}$, per ogni $x,y\in V$ si ha
+	\begin{equation}
+		\abs{\intern{x}{y}}\leq\norm{x}\norm{y}.
+		\label{eq:cauchy-schwarz}
+	\end{equation}
+\end{proprieta}
+\begin{proof}
+	Chiamiamo $\alpha\defeq\intern{y}{y}$ e $\beta\defeq-\intern{x}{y}$.
+	Il prodotto interno di $\alpha x+\beta y$ con sé stesso è sempre positivo, dunque scomponendolo otteniamo
+	\begin{equation}
+		\begin{split}
+			\intern{\alpha x+\beta y}{\alpha x+\beta y}
+			&=\intern{\alpha x}{\alpha x}+\intern{\beta y}{\alpha x}+\intern{\alpha x}{\beta y}+\intern{\beta y}{\beta y}=\\
+			&=\alpha\conj{\alpha}\intern{x}{x}+\beta\conj{\alpha}\intern{y}{x}+\alpha\conj{\beta}\intern{x}{y}+\beta\conj{\beta}\intern{y}{y}\geq 0.
+		\end{split}
+	\end{equation}
+	Risulta ora $\alpha=\intern{y}{y}=\norm{y}^2\in\R$, e sostituendo i valori di $\alpha$ e $\beta$ abbiamo
+	\begin{equation}
+		\norm{y}^4\norm{x}^2-2\norm{y}^2\intern{x}{y}\conj{\intern{x}{y}}+\norm{y}^2\intern{x}{y}\conj{\intern{x}{y}}\geq 0.
+	\end{equation}
+	Poiché $\conj{\intern{x}{y}}\intern{x}{y}=\abs{\intern{x}{y}}^2$ abbiamo inoltre
+	\begin{equation}
+		\norm{y}^2\abs{\intern{x}{y}}^2\leq\norm{x}^2\norm{y}^4.
+	\end{equation}
+	Se $\norm{y}=0$ allora $y=0_V$ e la \eqref{eq:cauchy-schwarz} è ovvia, altrimenti si ottiene dividendo per $\norm{y}^2$ e prendendo le radici quadrate dei due membri.
+\end{proof}
+Verifichiamo quindi la quarta proprietà della norma dal prodotto interno usando questo risultato.
 Abbiamo che $\norm{  x+  y}^2=\intern{  x+  y}{  x+  y}=\intern{  x}{  x}+\intern{  x}{  y}+\intern{  y}{  x}+\intern{  y}{  y}$, ma $\intern{  x}{  y}+\intern{  y}{  x}=\intern{  x}{  y}+\conj{\intern{  x}{  y}}\leq 2\abs{\intern{  x}{  y}}$, quindi dalla disuguaglianza di Cauchy-Schwarz\footnote{Ricordiamo che per $z\in\C$ si ha $z+\conj{z}\leq2\abs{z}$. Infatti sia $z=\rho\cos\theta+i\rho\sin\theta$ in forma trigonometrica: allora $z+\conj{z}=\rho\cos\theta+i\sin\theta+\rho\cos\theta-i\sin\theta=2\rho\cos\theta\leq 2\rho=2\abs{z}$. }
 \begin{equation*}
 	\norm{  x+  y}^2\leq \norm{  x}^2+2\abs{\intern{  x}{  y}}+\norm{  y}^2
