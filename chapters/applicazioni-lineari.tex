@@ -231,6 +231,97 @@ Se $T\in\lin(V,Z)$, distinguiamo alcuni casi.
 	Allora per il teorema \ref{t:dimensione-quoziente} si ha che $\dim(W+Z)-\dim Z=\dim W-\dim(W\cap Z)$, da cui la tesi.
 \end{proof}
 
+\section{Matrice associata}
+\label{sec:matrice-associata}
+Abbiamo visto nel capitolo precedente che per uno spazio vettoriale $V$ su un campo $K$ e di dimensione $n$, una volta scelta una base, possiamo associare ad ogni $v\in V$ un vettore in $K^n$, che contiene le sue coordinate rispetto alla base.
+Studiando le applicazioni lineari su $V$ è utile quindi, in modo analogo, associare ad ogni applicazione un opportuno oggetto matematico che operi sui vettori delle coordinate.
+In questo modo possiamo l'applicazione di una mappa lineare su un vettore diventa un calcolo concreto.
+Prendiamo un'applicazione lineare $T\colon V\to Z$, con $V$ e $Z$ sul campo $K$, e le basi $\mathcal B=\{e_1,\dots,e_n\}$ per $V$ e $\mathcal C=\{f_1,\dots,f_m\}$ per $Z$.
+Abbiamo visto che l'azione di un'applicazione lineare è univocamente determinata dalla sua azione su una base dello spazio di partenza: questo implica che $T$ è completamente descritta dalle immagini $T(e_i)$ per $i=1,\dots,n$.
+Come elementi di $Z$, queste immagini dei vettori della base di $V$ si scrivono in termini della base $\mathcal C$ come combinazioni lineari\footnote{
+	L'ordine degli indici nell'equazione si può capire con la notazione simbolica del prodotto tra il vettore colonna $A_{ij}$ e il ``vettore riga'' degli $f_i$.
+}
+\begin{equation}
+	T(e_i)=\sum_{k=1}^mA_{ki}f_k=
+	\begin{pmatrix}
+		f_1&\cdots&f_m
+	\end{pmatrix}
+	\begin{pmatrix}
+		A_{1i}\\
+		\vdots\\
+		A_{mi}
+	\end{pmatrix}
+\end{equation}
+in cui i coefficienti $A_{1i},\dots,A_{mi}$ formano il vettore delle coordinate di $T(v)$ nella base $\mathcal C$.
+Per $i$ che scorre da 1 a $n$, affiancando le colonne troviamo che
+\begin{equation}
+	\begin{pmatrix}
+		T(e_1)&\cdots&T(e_n)
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		f_1&\cdots&f_m
+	\end{pmatrix}
+	A
+\end{equation}
+dove abbiamo definito la matrice
+\begin{equation}
+	A\defeq
+	\begin{pmatrix}
+		A_{11}&A_{12}&\cdots&A_{1n}\\
+		A_{21}&A_{22}&\cdots&A_{2n}\\
+		\vdots&\vdots&\ddots&\vdots\\
+		A_{m1}&A_{m2}&\cdots&A_{nm}
+	\end{pmatrix}.
+	\label{eq:matrice-associata}
+\end{equation}
+che è detta \emph{matrice associata} all'applicazione $T$, nelle basi $\mathcal B$ per $V$ e $\mathcal C$ per $Z$.
+Per un generico vettore $v=\sum_{j=1}^nv_je_j\in V$ si ha allora
+\begin{equation}
+	T(v)=\sum_{j=1}^nv_jT(e_j)=\sum_{j=1}^n\sum_{k=1}^mv_jA_{kj}f_k
+\end{equation}
+ma scambiando le somme possiamo vedere questa equazione come
+\begin{equation}
+	T(v)=\sum_{k=1}^mf_k\sum_{j=1}^nA_{kj}v_j=
+	\begin{pmatrix}
+		f_1&\cdots&f_m
+	\end{pmatrix}
+	A
+	\begin{pmatrix}
+		v_1\\
+		\vdots\\
+		v_n
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		f_1&\cdots&f_m
+	\end{pmatrix}
+	\begin{pmatrix}
+		T(v)_1\\
+		\vdots\\
+		T(v)_m
+	\end{pmatrix}
+\end{equation}
+da cui ricaviamo
+\begin{equation}
+	\begin{pmatrix}
+		T(v)_1\\
+		\vdots\\
+		T(v)_m
+	\end{pmatrix}
+	=A
+	\begin{pmatrix}
+		v_1\\
+		\vdots\\
+		v_n
+	\end{pmatrix}.
+\end{equation}
+L'azione della mappa $T$ su $v\in V$ si traduce quindi nella moltiplicazione della matrice $A$ cos\`i definita per il vettore delle coordinate $[v]_{\mathcal B}$, o in breve
+\begin{equation}
+	[T(v)]_{\mathcal C}=A[v]_{\mathcal B}.
+\end{equation}
+Ad ogni applicazione $T$ da uno spazio di dimensione $n$ a uno spazio di dimensione $m$, sul campo $K$, possiamo allora associare una matrice in $\mat(m,n,K)$.
+
 \section{Cambiamento di base}
 \label{sec:cambiamento-base}
 Prendiamo due basi $\mathcal B=\{e_1,\dots,e_n\}$ e $\tilde{\mathcal B}=\{\tilde e_1,\dots\tilde e_n\}$ in uno spazio vettoriale $V$ di dimensione $n$, finita.
