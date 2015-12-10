@@ -107,6 +107,22 @@ Infatti:
 \end{proof}
 Combinando le due affermazioni, risulta che l'immagine di una base tramite un isomorfismo è una base dello spazio di arrivo.
 
+\paragraph{Unicità di un'applicazione lineare}
+Dato che ogni spazio vettoriale è descritto completamente da una sua base, che ne codifica tutte le proprietà utili, ci aspettiamo un risultato simile anche per le applicazioni lineari.
+Nel seguente teorema vediamo infatti che ogni applicazione lineare è univocamente determinata dalla sua azione su una base.
+\begin{teorema} \label{t:unicita-applicazione-lineare}
+	Siano $T,\tilde T\colon V\to Z$ due applicazioni lineari, e $\{e_1,\dots,e_n\}$ una base di $V$.
+	Se $T(e_i)=\tilde T(e_i)$ per ogni $i=1,\dots,n$, allora $T$ e $\tilde T$ coincidono su tutto $V$.
+\end{teorema}
+\begin{proof}
+	Per linearità si ha, $\forall v\in V$,
+	\begin{equation}
+		T(v)=T\bigg(\!\sum_{j=1}^nv_je_j\bigg)=\sum_{j=1}^nv_jT(e_j)=\sum_{j=1}^nv_j\tilde T(e_j)=\tilde T(v)
+	\end{equation}
+	quindi le due applicazioni coincidono.
+\end{proof}
+Notare che questo risultato non dipende in alcun modo dalla base dello spazio di arrivo, o dalle specifiche immagini degli elementi $e_i$ della base dello spazio di partenza.
+
 \section{Teoremi degli isomorfismi}
 \begin{teorema}
 	Sia $T\in\lin(V,Z)$, e fissiamo $z\in \Imm T$.
