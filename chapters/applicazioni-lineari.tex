@@ -231,3 +231,201 @@ Se $T\in\lin(V,Z)$, distinguiamo alcuni casi.
 	Allora per il teorema \ref{t:dimensione-quoziente} si ha che $\dim(W+Z)-\dim Z=\dim W-\dim(W\cap Z)$, da cui la tesi.
 \end{proof}
 
+\section{Cambiamento di base}
+\label{sec:cambiamento-base}
+Prendiamo due basi $\mathcal B=\{e_1,\dots,e_n\}$ e $\tilde{\mathcal B}=\{\tilde e_1,\dots\tilde e_n\}$ in uno spazio vettoriale $V$ di dimensione $n$, finita.
+Vogliamo studiare in questa sezione come cambiano i vettori delle coordinate e le matrici associate passando da una base all'altra.
+Gli elementi della base $\tilde{\mathcal B}$, essendo elementi di $V$, si scrivono a loro volta come combinazione lineare nella base $\mathcal B$: per ogni $\tilde e_i$ esistono dei coefficienti $L_{ik}$ tali che
+\begin{equation}
+	\tilde e_i=\sum_{k=1}^nL_{ik}e_k=
+	\begin{pmatrix}
+		e_1&\cdots&e_n
+	\end{pmatrix}
+	\begin{pmatrix}
+		L_{i1}\\
+		\vdots\\
+		L_{in}
+	\end{pmatrix}.
+\end{equation}
+Affiancando tutti gli elementi della base $\tilde{\mathcal B}$ scriviamo allora che
+\begin{equation}
+	\begin{pmatrix}
+		\tilde e_1&\cdots&\tilde e_n
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		e_1&\cdots&e_n
+	\end{pmatrix}
+	L
+	\label{eq:trasformazione-base}
+\end{equation}
+dove $L$ è la matrice
+\begin{equation}
+	\begin{pmatrix}
+		L_{11}&\cdots&L_{n1}\\
+		\vdots&\ddots&\vdots\\
+		L_{1n}&\cdots&L_{nn}
+	\end{pmatrix}
+\end{equation}
+la cui $j$-esima colonna contiene le coordinate nella base $\mathcal B$ del vettore $\tilde e_j$ della nuova base.
+Tale matrice è associata, chiaramente, a un isomorfismo, poich\'e tutte le sue colonne sono linearmente indipendenti (sono una base per definizione) dunque essendo un endomorfismo iniettivo è automaticamente anche suriettivo; $L$ è dunque sempre invertibile.
+
+Prendiamo ora un vettore $v\in V$, che scriviamo come combinazione lineare $\sum_{k=1}^nv_ke_k$ nella base $\mathcal B$ o anche, simbolicamente, con
+\begin{equation}
+	\begin{pmatrix}
+		e_1&\cdots&e_n
+	\end{pmatrix}
+	\begin{pmatrix}
+		v_1\\
+		\vdots\\
+		v_n
+	\end{pmatrix}.
+	\label{eq:vettore-coordinate-base-originale}
+\end{equation}
+Nell'altra base $\tilde{\mathcal B}$, esisteranno dei coefficienti $\tilde v_k$ tali che
+\begin{equation}
+	v=\sum_{k=1}^n\tilde v_k\tilde e_k=
+	\begin{pmatrix}
+		\tilde e_1&\cdots&\tilde e_n
+	\end{pmatrix}
+	\begin{pmatrix}
+		\tilde v_1\\
+		\vdots\\
+		\tilde v_n
+	\end{pmatrix},
+\end{equation}
+perciò usando la \eqref{eq:trasformazione-base} abbiamo
+\begin{equation}
+	v=
+	\begin{pmatrix}
+		\tilde e_1&\cdots&\tilde e_n
+	\end{pmatrix}
+	\begin{pmatrix}
+		\tilde v_1\\
+		\vdots\\
+		\tilde v_n
+	\end{pmatrix}=
+	\begin{pmatrix}
+		e_1&\cdots&e_n
+	\end{pmatrix}
+	L
+	\begin{pmatrix}
+		\tilde v_1\\
+		\vdots\\
+		\tilde v_n
+	\end{pmatrix}
+\end{equation}
+da cui ricaviamo, uguagliandola alla \eqref{eq:vettore-coordinate-base-originale},
+\begin{equation}
+	\begin{pmatrix}
+		v_1\\
+		\vdots\\
+		v_n
+	\end{pmatrix}
+	=L
+	\begin{pmatrix}
+		\tilde v_1\\
+		\vdots\\
+		\tilde v_n
+	\end{pmatrix}
+	\qqq
+	\begin{pmatrix}
+		\tilde v_1\\
+		\vdots\\
+		\tilde v_n
+	\end{pmatrix}
+	=L^{-1}
+	\begin{pmatrix}
+		v_1\\
+		\vdots\\
+		v_n
+	\end{pmatrix}
+	\label{eq:cambiamento-base-vettori-coordinate}
+\end{equation}
+dunque se $L$ è la matrice che porta la base $\mathcal B$ nella base $\tilde{\mathcal B}$ (secondo la \eqref{eq:trasformazione-base}) allora i vettori delle coordinate si trasformano con l'inversa della matrice, ossia $[v]_{\tilde{\mathcal B}}=L^{-1}[v]_{\mathcal B}$.
+Si dice in questo caso che i vettori sono \emph{contravarianti}, poich\'e cambiano in modo ``contrario'' a come cambia la base.
+
+Sia ora $T\colon V\to Z$ un'applicazione lineare, con $V$ di dimensione $n$ e $Z$ di dimensione $m$, definiti sul medesimo campo $K$.
+Siano $\mathcal B,\tilde{\mathcal B}$ due basi di $V$ e $\mathcal C,\tilde{\mathcal C}$ due basi di $Z$.
+Sia $A\in\mat(m,n,K)$ la matrice associata a $T$ nelle due basi $\mathcal B$ e $\mathcal C$, ossia tale che per $v\in V$
+\begin{equation}
+	[T(v)]_{\mathcal C}=A[v]_{\mathcal B}.
+	\label{eq:matrice-associata-base-originale}
+\end{equation}
+Se $\tilde A$ è associata a $T$ nelle altre due basi, si ha equivalentemente
+\begin{equation}
+	[T(v)]_{\tilde{\mathcal C}}=\tilde A[v]_{\tilde{\mathcal B}}.
+	\label{eq:matrice-associata-base-trasformata}
+\end{equation}
+Se ora $L$ è la matrice che porta la base $\mathcal B$ nella $\tilde{\mathcal B}$ e $M$ la matrice che porta $\mathcal C$ in $\tilde{\mathcal C}$ (come nella \eqref{eq:trasformazione-base}) allora sappiamo dalla \eqref{eq:cambiamento-base-vettori-coordinate} che
+\begin{equation}
+	L[v]_{\tilde{\mathcal B}}=[v]_{\mathcal B}
+	\hspace{1cm}\text{e}\hspace{1cm}
+	M[T(v)]_{\tilde{\mathcal C}}=[T(v)]_{\mathcal C}
+\end{equation}
+dunque inserendole nella \eqref{eq:matrice-associata-base-originale} troviamo
+\begin{equation}
+	M[T(v)]_{\tilde{\mathcal C}}=AL[v]_{\tilde{\mathcal B}}
+	\qqq
+	[T(v)]_{\tilde{\mathcal C}}=M^{-1}AL[v]_{\tilde{\mathcal B}}
+\end{equation}
+e per confronto con la \eqref{eq:matrice-associata-base-trasformata} nelle nuove basi otteniamo
+\begin{equation}
+	\tilde A=M^{-1}AL
+	\label{eq:trasformazione-matrice-associata}
+\end{equation}
+che dà la matrice associata a $T$ nelle basi $\tilde{\mathcal B}$ in partenza e $\tilde{\mathcal C}$ in arrivo a partire dalla matrice associata nelle basi originarie $\mathcal B$ e $\mathcal C$.
+In particolare, se $T\in\End(V)$, e scegliamo la stessa base sia in partenza che in arrivo, abbiamo che $\tilde A=L^{-1}AL$ è la matrice associata a $T$ nella nuova base.
+Le matrici associate a un endomorfismo in basi differenti sono quindi tutte matrici simili.
+
+Come esempio, prendiamo in $\R^2$ la base canonica $\mathcal B$ e la base
+\begin{equation}
+	\tilde{\mathcal B}=\left\{
+		\begin{bmatrix}
+			0\\
+			-2
+		\end{bmatrix},
+		\begin{bmatrix}
+			1\\
+			2
+		\end{bmatrix}
+	\right\}
+\end{equation}
+e l'applicazione lineare $T\colon\R^2\to\R^2$ a cui è associata nella base canonica la matrice
+\begin{equation}
+	A=
+	\begin{pmatrix}
+		5&0\\
+		1&4
+	\end{pmatrix}.
+\end{equation}
+Per costruire la matrice del cambiamento di base, $L$, dobbiamo prendere le coordinate dei vettori di $\tilde{\mathcal B}$ rispetto alla base $\mathcal B$: poich\'e quest'ultima è la base canonica le coordinate coincidono con le componenti dei vettori stessi, perciò
+\begin{equation}
+	L=
+	\begin{pmatrix}
+		0&1\\
+		-2&2
+	\end{pmatrix}
+\end{equation}
+di conseguenza la matrice associata a $T$ nella base $\tilde{\mathcal B}$ (in arrivo e in partenza) è
+\begin{equation}
+	\tilde A=L^{-1}AL=
+	\begin{pmatrix}
+		1&-\frac12\\
+		1&0
+	\end{pmatrix}
+	\begin{pmatrix}
+		5&0\\
+		1&4
+	\end{pmatrix}
+	\begin{pmatrix}
+		0&1\\
+		-2&2
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+		4&\frac12\\
+		0&5
+	\end{pmatrix}.
+\end{equation}
+
