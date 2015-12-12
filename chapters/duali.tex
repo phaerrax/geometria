@@ -1,0 +1,28 @@
+\chapter{Spazi duali}
+Tra le applicazioni lineari su uno spazio vettoriale, sono particolarmente interessanti le \emph{forme} lineari, o \emph{funzionali} lineari, ossia le applicazioni da $V$ al campo $K$ su cui è definito.
+Lo spazio (anch'esso vettoriale) dei funzionali lineari è detto \emph{spazio duale} di $V$, e si indica tradizionalmente con $V^*$.
+Per quanto visto nei capitoli precedenti $V^*$ è isomorfo a $\mat(1,\dim V,K)$, in quanto questi funzionali sono associati, scelta una base di $V$, a delle matrici con una sola riga: vediamo subito allora che $\dim V^*=\dim V$.
+
+Ecco alcuni esempi importanti di funzionali lineari.
+\begin{itemize}
+	\item In $\R^n$, possiamo definire un iperpiano come il luogo degli zeri di una funzione
+		\begin{equation*}
+			f(x_1,\dots,x_n)=a_1x_1+\cdots+a_nx_n-b
+		\end{equation*}
+		per dei coefficienti $a_i\in\R$ non tutti nulli e $b\in\R$.
+		In generale, per uno spazio vettoriale $V$ qualunque, non disponiamo di una base canonica, quindi non possiamo trovare immediatamente i coefficienti $x_1,\dots,x_n$ dell'equazione $f(x_1,\dots,x_n)=0$.
+		I funzionali lineari forniscono un modo per caratterizzare gli iperpiani senza bisogno di coordinate (cioè di una base), ossia in modo \emph{canonico}.
+		Possiamo interpretare l'equazione come l'applicazione di un funzionale $\alpha$ del duale di $\R^n$ sul vettore $v=[x_1\,\cdots\, x_n]^T$, ossia come $\alpha(v)=b$.
+		Per un generico spazio $V$ possiamo definire un iperpiano come l'insieme $\{v\in V\colon \alpha(v)=b\}$ per un dato funzionale $\alpha\in V^*$.
+	\item Nello spazio delle funzioni continue reali in $[0,1]$, una mappa da esso a $\R$ può essere ad esempio 
+		\begin{equation*}
+			f\mapsto\int_0^1f(t)\,\dd t
+		\end{equation*}
+		che è evidentemente lineare.
+		Possiamo definire un funzionale lineare anche a partire dalle funzioni stesse di $\cont{}\big([0,1]\big)$: ad una funzione $g$ di tale spazio associamo il funzionale
+		\begin{equation*}
+			T_g\colon f\mapsto\int_0^1f(t)g(t)\,\dd t.
+		\end{equation*}
+		Anche il funzionale definito precedentemente è di questo tipo, con $g=1$.
+\end{itemize}
+
