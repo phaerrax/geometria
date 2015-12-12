@@ -479,6 +479,46 @@ La matrice associata all'applicazione identità di $V$ è, in qualsiasi base, in
 ossia $I_{ij}=\delta_{ij}$, che è l'elemento neutro di $\mat(n,K)$.
 In altre parole, ciò mostra l'isomorfismo \emph{tra algebre} $\mat(n,K)\cong\End(V)$.
 
+\section{Inversione}
+Guardiamo ora al problema di determinare quando un'applicazione è invertibile.
+Prendiamo due spazi vettoriali $V$ e $Z$ sul campo $K$ e un'applicazione lineare $T\colon V\to Z$.
+Come una qualsiasi funzione, $T$ è invertibile se e solo se è iniettiva, quindi in questo caso se $\Ker T=\{0\}$.
+Se anche $\Ker T\ne\{0\}$ possiamo invertire $T$ restringendo il suo dominio a un sottospazio di $V$ che non comprenda $\Ker T$.
+
+Prendiamo invece lo spazio degli endomorfismi di $V$, a ciascuno dei quali possiamo associare una matrice quadrata $n\times n$ ($n=\dim V$).
+In questo caso sappiamo quando tale matrice è invertibile, ossia se esiste una matrice (sempre $n\times n$) $B$ tale che $AB=BA=I$.
+Nel seguente teorema vediamo come questa condizione si collega all'invertibilità della corrispondente applicazione lineare: ricordiamo che, essendo un endomorfismo, se è iniettivo è anche suriettivo, dunque è un isomorfismo.
+\begin{teorema} \label{t:invertibilita-matrice-associata}
+	Sia $T\in\End(V)$ e $A_T$ la sua matrice associata, nella stessa base in partenza e in arrivo.
+	La matrice $A_T$ è invertibile se e solo se $T$ è un isomorfismo.
+\end{teorema}
+\begin{proof}
+	Sia $T$ un isomorfismo, cioè invertibile: esiste quindi $T^{-1}\in\End(V)$; prendiamo le rispettive matrici associate $A_T,A_{T^{-1}}\in\mat(n,K)$, dove $K$ è il campo dello spazio vettoriale $V$ e $n$ la sua dimensione.
+	Poich\'e $T^{-1}\circ T=T\circ T^{-1}=\id_V$, l'applicazione identità di $V$, per il teorema \ref{t:matrice-applicazione-composta} si ha
+	\begin{equation}
+		I=A_TA_{T^{-1}}=A_{T^{-1}}A_T
+	\end{equation}
+	cioè, per definizione, $A_T$ è invertibile, e inoltre $A_{T^{-1}}=A_T^{-1}$.
+
+	Viceversa, sia ora $A_T$ invertibile: alla sua inversa $A_T^{-1}$ possiamo associare un'applicazione lineare $L$ tale che
+	\begin{equation}
+		L(e_i)=\sum_{k=1}^n(A_T^{-1})_{ki}e_k
+	\end{equation}
+	dove $\{e_1,\dots,e_n\}$ è la base di $V$.
+	Allora l'applicazione $L\circ T$ è tale che
+	\begin{equation}
+		(L\circ T)(e_i)=\sum_{k=1}^n(A_T)_{ki}L(e_k)=\sum_{k=1}^n\sum_{j=1}^n(A_T)_{ki}(A_T^{-1})_{jk}e_j=\sum_{j=1}^n\delta_{ji}e_j=e_i
+	\end{equation}
+	dato che
+	\begin{equation}
+		\sum_{k=1}^n(A_T^{-1})_{jk}(A_T)_{ki}=\delta_{ji}
+	\end{equation}
+	essendo le due matrici l'una l'inversa dell'altra, cioè $(A_T^{-1}A_T)_{ji}=I_{ji}=\delta_{ji}$.
+	Abbiamo trovato quindi che $L\circ T=\id_V$, e analogamente si mostra che $T\circ L=\id_V$.
+	Ciò prova che l'inverso di $T$ esiste (è $L$), cioè che $T$ è un isomorfismo.
+\end{proof}
+Un endomorfismo invertibile è detto \emph{automorfismo}, e l'insieme degli automorfismi di uno spazio $V$ si indica con $\Aut(V)$.
+Non entreremo ora nei dettagli su come costruire l'applicazione inversa: per farlo ci serve la teoria dei determinanti, che vedremo in seguito.
 \section{Cambiamento di base}
 \label{sec:cambiamento-base}
 Prendiamo due basi $\mathcal B=\{e_1,\dots,e_n\}$ e $\tilde{\mathcal B}=\{\tilde e_1,\dots\tilde e_n\}$ in uno spazio vettoriale $V$ di dimensione $n$, finita.
