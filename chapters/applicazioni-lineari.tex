@@ -338,6 +338,106 @@ L'azione della mappa $T$ su $v\in V$ si traduce quindi nella moltiplicazione del
 \end{equation}
 Ad ogni applicazione $T$ da uno spazio di dimensione $n$ a uno spazio di dimensione $m$, sul campo $K$, possiamo allora associare una matrice in $\mat(m,n,K)$.
 
+Vediamo questo fatto in maniera rigorosa nel seguente teorema.
+Anzich\'e considerare lo spazio delle applicazioni lineari tra due generici spazi $V$ e $Z$ su un campo $K$, partiremo direttamente dalle applicazioni lineari tra $K^n$ e $K^m$ (dove $n=\dim V$ e $m=\dim Z$): l'isomorfismo $\lin(K^n,K^m)\cong\lin(V,Z)$ dovrebbe risultare ovvio.
+\begin{teorema} \label{t:matrice-associata}
+	La mappa $T\colon\mat(m,n,K)\to\lin(K^n,K^m)$ definita da $T\colon A\to T_A$ dove $T_A$ è l'applicazione lineare
+	\begin{equation}
+		T_A\colon
+		\begin{bmatrix}
+			v_1\\
+			\vdots\\
+			v_n
+		\end{bmatrix}
+		\in K^n\to
+		\begin{bmatrix}
+			\sum_{i=1}^nA_{1i}v_i\\
+			\vdots\\
+			\sum_{i=1}^nA_{mi}v_i
+		\end{bmatrix}
+		\in K^m
+		\label{eq:azione-applicazione-lineare-associata}
+	\end{equation}
+	è un'isomorfismo tra i due spazi vettoriali.
+\end{teorema}
+\begin{proof}
+	Mostriamo innanzitutto che la mappa è lineare: date $A,B\in\mat(m,n,K)$ si ha, per il vettore $v=[v_1\,\cdots\,v_n]^T$ come nella \eqref{eq:azione-applicazione-lineare-associata},
+	\begin{multline}
+		T_{A+B}(v)=
+		\begin{bmatrix}
+			\sum_{i=1}^n(A+B)_{1i}v_i\\
+			\vdots\\
+			\sum_{i=1}^n(A+B)_{mi}v_i
+		\end{bmatrix}
+		=
+		\begin{bmatrix}
+			\sum_{i=1}^nA_{1i}v_i+\sum_{i=1}^nB_{1i}v_i\\
+			\vdots\\
+			\sum_{i=1}^nA_{mi}v_i+\sum_{i=1}^nB_{mi}v_i\\
+		\end{bmatrix}
+		=\\=
+		\begin{bmatrix}
+			\sum_{i=1}^nA_{1i}v_i\\
+			\vdots\\
+			\sum_{i=1}^nA_{mi}v_i
+		\end{bmatrix}
+		+
+		\begin{bmatrix}
+			\sum_{i=1}^nB_{1i}v_i\\
+			\vdots\\
+			\sum_{i=1}^nB_{mi}v_i
+		\end{bmatrix}
+		=T_A(v)+T_B(v)
+		\label{eq:additivita-matrice-associata}
+	\end{multline}
+	perciò è additiva, e analogamente è omogenea poich\'e
+	\begin{equation}
+		T_{\lambda A}(v)=
+		\begin{bmatrix}
+			\sum_{i=1}^n(\lambda A)_{1i}v_i\\
+			\vdots\\
+			\sum_{i=1}^n(\lambda A)_{mi}v_i
+		\end{bmatrix}
+		=
+		\begin{bmatrix}
+			\lambda\sum_{i=1}^nA_{1i}v_i\\
+			\vdots\\
+			\lambda\sum_{i=1}^nA_{mi}v_i
+		\end{bmatrix}
+		=\lambda
+		\begin{bmatrix}
+			\sum_{i=1}^nA_{1i}v_i\\
+			\vdots\\
+			\sum_{i=1}^nA_{mi}v_i
+		\end{bmatrix}
+		=\lambda T_A(v).
+		\label{eq:omogeneita-matrice-associata}
+	\end{equation}
+	Di conseguenza $T$ è lineare.
+
+	Il nucleo di $T$ è composto dalle matrici $A\in\mat(m,n,K)$ tali che $T_A$ è l'applicazione identicamente nulla, cioè $T_A(v)=0$ $\forall v\in V$.
+	Presi gli elementi $\{e_1,\dots e_n\}$ della base canonica di $K^n$ si ha allora, dato che la $j$-esima componente di $e_i$ è $(e_i)_j=\delta_{ij}$, che
+	\begin{equation}
+		T_A(e_k)=
+		\begin{bmatrix}
+			A_{1k}\\
+			\vdots\\
+			A_{mk}
+		\end{bmatrix}
+	\end{equation}
+	per il $k$-esimo elemento: il vettore coincide con la $k$-esima colonna della matrice $A$.
+	Se l'applicazione $T_A$ è identicamente nulla, $T_A(e_k)=0$ $\forall k\in\{1,\dots,n\}$ ma ciò significa che $A$ ha tutti gli elementi nulli, cioè $A=0$.
+	Dunque $T$ è iniettiva.
+
+	Presa ora un'applicazione lineare $L\in\lin(K^n,K^m)$, la sua azione sulla base canonica $\{e_1,\dots,e_n\}$ di $K^n$ definisce $n$ vettori di $K^m$.
+	Affiancando le colonne di questi vettori costruiamo la matrice $A_L\defeq[L(e_1)\,\cdots L(e_n)]\in\mat(m,n,K)$.
+	A tale matrice, attraverso la mappa $T$, associamo dunque l'applicazione lineare $T_L$ come nella \eqref{eq:azione-applicazione-lineare-associata}, ed è evidente che per ogni $k\in\{1,\dots,n\}$ si ha $L(e_k)=A_Le_k=T_L(e_k)$, per come è stata costruita $A_L$.
+	Siccome $L$ e $T_L$ coincidono su una base di $K^n$, per il teorema \ref{t:unicita-applicazione-lineare} le due applicazioni coincidono su tutto $K^n$.
+	Per ogni applicazione $L\in\lin(K^n,K^m)$ possiamo cos\`i individuare una matrice $A_L\in\mat(m,n,K)$ tale che $T\colon A_L\to L$, e ciò mostra che $T$ è suriettiva.
+
+	La mappa $T$ è quindi un isomorfismo tra $\mat(m,n,K)$ e $\lin(K^n,K^m)$.
+\end{proof}
+
 \section{Cambiamento di base}
 \label{sec:cambiamento-base}
 Prendiamo due basi $\mathcal B=\{e_1,\dots,e_n\}$ e $\tilde{\mathcal B}=\{\tilde e_1,\dots\tilde e_n\}$ in uno spazio vettoriale $V$ di dimensione $n$, finita.
