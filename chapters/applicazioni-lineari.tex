@@ -438,6 +438,47 @@ Anzich\'e considerare lo spazio delle applicazioni lineari tra due generici spaz
 	La mappa $T$ è quindi un isomorfismo tra $\mat(m,n,K)$ e $\lin(K^n,K^m)$.
 \end{proof}
 
+\section{Composizione}
+Prendiamo tre spazi vettoriali $V,W,Z$ sullo stesso campo $K$: prese due applicazioni lineari $T\colon V\to W$ e $S\colon W\to Z$, possiamo comporli (come qualunque funzione) per ottenere un'applicazione $S\circ T\colon V\to Z$, che è ancora evidentemente lineare: per $a,b\in K$ e $v_1,v_2\in V$ si ha
+\begin{equation}
+	(S\circ T)(av_1+bv_2)=S\big(aT(v_1)+bT(v_2)\big)=S\big(aT(v_1)\big)+S\big(bT(v_2)\big)=a(S\circ T)(v_1)+b(S\circ T)(v_2).
+	\label{eq:linearita-applicazione-composta}
+\end{equation}
+Anche all'applicazione composta possiamo associare una matrice di $\mat(\dim Z,\dim V,K)$ come già visto.
+Vediamo però come tale matrice si mette in relazione con le singole matrici di $S$ e $T$.
+\begin{teorema} \label{t:matrice-applicazione-composta}
+	Siano $V$, $W$ e $Z$ spazi vettoriali sul campo $K$, in cui scegliamo le basi, rispettivamente, $\{e_1,\dots,e_n\}$, $\{f_1,\dots,f_m\}$, $\{g_1,\dots,g_p\}$.
+	Se $T\colon V\to W$ e $S\colon W\to Z$ sono applicazioni lineari tra gli spazi e $A_T\in\mat(m,n,K)$ e $A_S\in\mat(p,m,K)$ le matrici associate, nelle basi date, rispettivamente alle due applicazioni, allora la matrice associata a $S\circ T$ è il prodotto $A_SA_T\in\mat(p,n,K)$, sempre nelle basi scelte.
+\end{teorema}
+\begin{proof}
+	Applicando la composizione di $S$ e $T$ all'$i$-esimo elemento della base di $V$ otteniamo una combinazione lineare
+	\begin{equation}
+		(S\circ T)(e_i)=\sum_{k=1}^p(A_{S\circ T})_{ki}g_k
+	\end{equation}
+	ma allo stesso tempo
+	\begin{multline}
+		S\big(T(e_i)\big)=S\bigg(\sum_{j=1}^m(A_T)_{ji}f_j\bigg)=\sum_{j=1}^m(A_T)_{ji}S(f_j)=\sum_{j=1}^m(A_T)_{ji}\sum_{k=1}^p(A_S)_{kj}g_k=\sum_{k=1}^p\sum_{j=1}^m(A_S)_{kj}(A_T)_{ji}g_k.
+	\end{multline}
+	Per l'unicità della matrice associata si ha cos\`i
+	\begin{equation}
+		(A_{S\circ T})_{ki}=\sum_{j=1}^m(A_S)_{kj}(A_T)_{ji}
+	\end{equation}
+	che è il prodotto riga per colonna, in ordine, $A_SA_T$.
+\end{proof}
+Abbiamo visto che lo spazio $\End(V)$ delle applicazioni lineari da $V$ (sul campo $K$, con $\dim V=n$) a s\'e stesso è un'algebra: quest'ultimo teorema mostra in aggiunta che la mappa che associa a una matrice, in questo caso quadrata, $\mat(n,K)$ un'applicazione $T\in\End(V)$ (come nella \eqref{eq:azione-applicazione-lineare-associata}) preserva anche l'operazione di composizione, vale a dire che la composizione di due applicazioni corrisponde al prodotto delle matrici associate.
+La matrice associata all'applicazione identità di $V$ è, in qualsiasi base, inoltre la matrice $n\times n$ diagonale
+\begin{equation}
+	I=
+	\begin{bmatrix}
+		1&0&\cdots&0\\
+		0&1&\cdots&0\\
+		\vdots&\vdots&\ddots&\vdots\\
+		0&0&\cdots&1
+	\end{bmatrix}
+\end{equation}
+ossia $I_{ij}=\delta_{ij}$, che è l'elemento neutro di $\mat(n,K)$.
+In altre parole, ciò mostra l'isomorfismo \emph{tra algebre} $\mat(n,K)\cong\End(V)$.
+
 \section{Cambiamento di base}
 \label{sec:cambiamento-base}
 Prendiamo due basi $\mathcal B=\{e_1,\dots,e_n\}$ e $\tilde{\mathcal B}=\{\tilde e_1,\dots\tilde e_n\}$ in uno spazio vettoriale $V$ di dimensione $n$, finita.
