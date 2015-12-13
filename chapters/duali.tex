@@ -26,3 +26,47 @@ Ecco alcuni esempi importanti di funzionali lineari.
 		Anche il funzionale definito precedentemente è di questo tipo, con $g=1$.
 \end{itemize}
 
+\section{Base duale}
+\label{sec:base-duale}
+Vediamo ora quelli che probabilmente sono i funzionali lineari più importanti di $V^*$.
+Scegliamo una base $\mathcal B=\{b_1,\dots,b_n\}$ per lo spazio vettoriale $V$ sul campo $K$.
+Sappiamo che un'applicazione lineare è univocamente determinata dalla sua azione su una base, dunque lo stesso vale per i funzionali lineari.
+Definiamo $\beta_i\colon V\to K$ come
+\begin{equation}
+	\beta_i(b_j)=\delta_{ij}
+	\label{eq:funzionale-coordinate}
+\end{equation}
+per $i,j=1,\dots,n$.
+In altre parole, il funzionale $\beta_i$ ``estrae'' la $i$-esima coordinata di un vettore: se $v=\sum_{j=1}^nv_jb_j$ allora $\beta_i(v)=v_i$.
+
+Consideriamo ora l'insieme $\mathcal B^*=\{\beta_1,\dots,\beta_n\}$: preso un qualsiasi $\alpha\in V^*$, possiamo scriverlo come combinazione lineare dei $\beta_i$ osservando che se $\alpha=\sum_{k=1}^n\alpha_k\beta_k$ allora
+\begin{equation}
+	\alpha(b_j)=\sum_{k=1}^n\alpha_k\beta_k(b_j)=\sum_{k=1}^n\alpha_k\delta_{kj}=\alpha_j
+\end{equation}
+e ciò identifica i coefficienti di $\alpha$ rispetto a $\mathcal B^*$.
+Preso allora $v=\sum_{i=1}^nv_ib_i$, si ha
+\begin{equation}
+	\alpha(v)=\sum_{i=1}^nv_i\alpha(b_i)=\sum_{i=1}^nv_i\alpha_i
+\end{equation}
+e allo stesso tempo
+\begin{equation}
+	\sum_{i=1}^n\alpha_i\beta_i(v)=\sum_{i=1}^n\alpha_i\beta_i\bigg(\sum_{j=1}^nv_jb_j\bigg)=\sum_{i=1}^n\alpha_i\sum_{j=1}^nv_j\delta_{ij}=\sum_{i=1}^n\alpha_iv_i
+\end{equation}
+che coincide con la precedente.
+Questo verifica che qualsiasi funzionale lineare può essere espresso come combinazione lineare dei $\beta_i$.
+Inoltre, se $\sum_{i=1}^n\mu_i\beta_i=0$, cioè è il funzionale nullo, allora sulla base $\mathcal B$ risulta
+\begin{equation}
+	0=\sum_{i=1}^n\mu_i\beta_i(b_j)=\sum_{i=1}^n\mu_i\delta_{ij}=\mu_j
+\end{equation}
+per $j=1,\dots,n$ quindi $\mathcal B^*$ è anche linearmente indipendente: ciò prova che è una base di $V^*$.\footnote{
+	Sapendo già che la dimensione di $V^*$ è $n$, l'indipendenza lineare di $\mathcal B^*$ sarebbe stata sufficiente a mostrare che è una base di $V^*$, ciononostante questa dimostrazione è utile per capire come individuare i coefficienti di un funzionale rispetto alla base $\mathcal B^*$.
+}
+\begin{definizione} \label{d:base-duale}
+	Data una base $\mathcal B=\{b_1,\dots,b_n\}$ di uno spazio vettoriale $V$, la base $\{\beta_1,\dots,\beta_n\}$ di $V^*$ tale che per ogni $i,j=1,\dots,n$
+	\begin{equation}
+		\beta_i(b_j)=\delta_{ij}
+	\end{equation}
+	è detta \emph{base duale} di $\mathcal B$.
+\end{definizione}
+Come già visto, in questa base la $i$-esima componente di un funzionale lineare $\alpha$ è data da $\alpha(b_i)$.
+Va detto che non ha senso parlare di una ``base duale di $V^*$'', dato che non è unica: ad ogni scelta di una base di $V$ corrisponde una base duale per $V^*$, a essa associata.
