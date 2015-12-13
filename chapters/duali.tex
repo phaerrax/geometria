@@ -70,3 +70,111 @@ per $j=1,\dots,n$ quindi $\mathcal B^*$ è anche linearmente indipendente: ciò 
 \end{definizione}
 Come già visto, in questa base la $i$-esima componente di un funzionale lineare $\alpha$ è data da $\alpha(b_i)$.
 Va detto che non ha senso parlare di una ``base duale di $V^*$'', dato che non è unica: ad ogni scelta di una base di $V$ corrisponde una base duale per $V^*$, a essa associata.
+
+\section{Mappa duale}
+Sia $T\colon V\to Z$ un'applicazione lineare tra gli spazi vettoriali $V$ e $Z$.
+Definiamo la \emph{mappa duale} $T^*\colon Z^*\to V^*$ come
+\begin{equation}
+	T^*(f)=f\circ T.
+	\label{eq:mappa-duale}
+\end{equation}
+Il risultato $T^*(f)$ è un funzionale lineare in $V^*$, detto anche \emph{pullback} di $f$ attraverso $T$.
+Verifichiamo che è lineare: per $f,g\in Z^*$ e $\lambda,\mu\in K$ si ha per $v\in V$
+\begin{equation}
+	T^*(\lambda f+\mu g)(v)=(\lambda f+\mu g)\big(T(v)\big)=\lambda f\big(T(v)\big)+\mu g\big(T(v)\big)=\lambda T^*(f)(v)+\mu T^*(g)(v)
+\end{equation}
+che mostra la linearità di $T^*$.
+\begin{teorema} \label{t:matrice-associata-trasposta}
+	Siano $\mathcal B=\{e_1,\dots,e_n\}$ una base di $V$, $\mathcal C=\{g_1,\dots,g_m\}$ una base di $Z$, e $\mathcal B^*=\{\eta_1,\dots,\eta_n\}$ e $\mathcal C^*=\{\gamma_1,\dots,\gamma_m\}$ le rispettive basi duali di $V^*$ e $Z^*$.
+	Se $A$ è la matrice associata a un'applicazione lineare $T\in\lin(V,Z)$ nelle basi $\mathcal B$ e $\mathcal C$, allora la matrice associata alla sua duale $T^*\in\lin(Z^*,V^*)$ nelle basi duali è la trasposta di $A$.
+\end{teorema}
+\begin{proof}
+	La dimostrazione consiste semplicemente nel costruire le due matrici associate a $T$ e $T^*$.
+	Se $A$ è la matrice associata a $T$ allora
+	\begin{equation}
+		T(e_i)=\sum_{j=1}^mA_{ji}g_j
+	\end{equation}
+	per $i=1,\dots,n$.
+	Se $B$ è la matrice associata a $T^*$, allo stesso modo,
+	\begin{equation}
+		T^*(\gamma_i)=\sum_{j=1}^nB_{ji}\eta_j
+	\end{equation}
+	per $i=1,\dots,m$.
+	Applicando $T^*(\gamma_i)$ agli elementi di $\mathcal B$ risulta cos\`i
+	\begin{equation}
+		T^*(\gamma_i)(e_k)=\sum_{j=1}^nB_{ji}\eta_j(e_k)=\sum_{j=1}^nB_{ji}\delta_{jk}=B_{ki}
+	\end{equation}
+	e d'altra parte per come è definita la mappa duale $T^*$ si ha
+	\begin{equation}
+		T^*(\gamma_i)(e_k)=\gamma_i\big(T(e_k)\big)=\gamma_i\bigg(\sum_{j=1}^mA_{jk}g_j\bigg)=\sum_{j=1}^mA_{jk}\gamma_i(g_j)=\sum_{j=1}^mA_{jk}\delta_{ij}=A_{ik}
+	\end{equation}
+	da cui $B_{ki}=A_{ik}$, ossia $B=A^T$.
+\end{proof}
+
+\begin{teorema} \label{t:iniettivita-suriettivita-mappa-duale}
+	Siano $V$ e $Z$ due spazi vettoriali e $L\in\lin(V,Z)$.
+	\begin{enumerate}
+		\item Se $L$ è iniettiva, allora $L^*$ è suriettiva.
+		\item Se $L$ è suriettiva, allora $L^*$ è iniettiva.
+	\end{enumerate}
+\end{teorema}
+\begin{proof}
+	\begin{enumerate}
+		\item Sia $L$ iniettiva: esiste allora la sua inversa, opportunamente ristretta nell'immagine di $L$, $L(V)$; in altre parole, esiste $L^{-1}\colon L(V)\to V$.
+			Possiamo definire quindi la mappa duale $(L^{-1})^*\colon V^*\to L(V)^*$.
+			Per ogni $v\in V^*$, consideriamo $w\in Z^*$ dato da
+			\begin{equation}
+				w=(L^{-1})^*(v)=v\circ L^{-1}.
+			\end{equation}
+			Allora risulta $L^*(w)=v\circ L^{-1}\circ L=v$, che prova che $L^*$ è suriettiva in quanto esiste sempre una controimmagine (che qui è $w$).
+		\item Sia $L$ suriettiva, e consideriamo $\alpha\in\Ker L^*$: risulta allora $0=L^*(\alpha)(v)=\alpha\big(L(v)\big)$ per ogni $v\in V$.
+			Ma $L(V)$ coincide con $Z$, perciò $\alpha(z)=0$ per ogni $z\in Z$, ossia $\alpha=0$, e ciò prova che $\Ker L^*=0$ ossia $L^*$ è iniettiva.\qedhere
+	\end{enumerate}
+\end{proof}
+
+\begin{teorema} \label{t:rango-mappa-duale}
+	Data l'applicazione lineare $T\colon V\to Z$ tra gli spazi vettoriali $V$ e $Z$, e la sua duale $T^*\colon Z^*\to V^*$, sia $\tilde{T^*}$ la sua restrizione a $T(V)^*$, ossia $\tilde{T^*}\colon T(V)^*\to V^*$.\footnote{
+		Risulta che $T(V)\le Z$ e $T(V)^*\le Z^*$.
+	}
+	Allora
+	\begin{equation}
+		\tilde{T^*}\big(T(V)^*\big)=T^*(Z^*),
+	\end{equation}
+	per ogni $T\in\lin(V,Z)$.
+\end{teorema}
+\begin{proof}
+	Sia $\{e_1,\dots,e_n\}$ una base di $V$ e $\{g_1,\dots,g_m\}$ una base di $T(V)$, che possiamo completare a una base di $Z$ come $\{g_1,\dots,g_m\}\cup\{f_1,\dots,f_{m'}\}$ (perciò $m+m'=\dim Z$).
+	Sia dunque $\alpha\in Z^*$: definiamo $\tilde{\alpha}\in T(V)^*$ come $\tilde{\alpha}(g_k)=\alpha(g_k)$ per $k=1,\dots,m$, in modo che $\alpha=\tilde{\alpha}$ in $T(V)^*$.
+	Allora $T^*(\alpha)\in Z^*$ e risulta
+	\begin{multline}
+		T^*(\alpha)(e_i)=\alpha\big(T(e_i)\big)=\alpha\bigg(\sum_{k=1}^m\lambda_kg_k\bigg)=\sum_{k=1}^m\lambda_k\alpha(g_k)=\\=
+		\sum_{k=1}^m\lambda_k\tilde{\alpha}(g_k)=\tilde{\alpha}\big(T(e_i)\big)=T^*(\tilde{\alpha})(e_i)=\tilde{T^*}(\tilde{\alpha})(e_i)
+	\end{multline}
+	e poich\'e $\tilde{T^*}(\tilde{\alpha})\in\tilde{T^*}\big(T(V)^*\big)$ si ha $T^*(Z^*)\subseteq \tilde{T^*}\big(T(V)\big)$.
+
+	Sia ora $\gamma\in T(V)^*$: estendiamolo ad un funzionale di $Z^*$ tramite gli elementi $f_i$ della base di $Z$, ossia definiamo $\tilde{\gamma}\in Z^*$ come $\tilde{\gamma}(g_k)=\gamma(g_k)$ per $k=1,\dots,m$ e $\tilde{\gamma}(f_k)=0$ per $k=1,\dots,m'$.
+	Allora, dato che $T(e_i)\in T(V)$, si ha $\gamma\big(T(e_i)\big)=\tilde{\gamma}\big(T(e_i)\big)$ per ogni $i=1,\dots,n$, perciò
+	\begin{equation}
+		\tilde{T^*}(\gamma)(e_i)=\gamma\big(T(e_i)\big)=\tilde{\gamma}\big(T(e_i)\big)=T^*(\tilde{\gamma})(e_i)\in T^*(Z^*)
+	\end{equation}
+	da cui segue $\tilde{T^*}\big(T(V)^*\big)\subseteq T^*(Z^*)$, ma allora i due insiemi coincidono.
+\end{proof}
+\begin{definizione} \label{d:rango-applicazione-lineare}
+	Si dice \emph{rango} di un'applicazione lineare la dimensione della sua immagine.
+\end{definizione}
+Il rango di un'applicazione $T$ è indicato solitamente con $\rk T$, dall'inglese \textit{rank}.
+In qualsiasi base, esso coincide con il rango della matrice associata (perciò usiamo lo stesso nome): esso si può dunque calcolare come il numero di colonne linearmente indipendenti di tale matrice.
+\begin{corollario} \label{c:rango-righe-colonne}
+	Dati due spazi vettoriali $V$ e $Z$ sul medesimo campo, per ogni $T\in\lin(V,Z)$ si ha $\rk T=\rk T^*$.
+\end{corollario}
+\begin{proof}
+	Poich\'e $T\colon V\to T(V)$ è (ovviamente) suriettiva, l'applicazione $\tilde{T^*}\colon T(V)^*\to V^*$ è iniettiva per il teorema \ref{t:iniettivita-suriettivita-mappa-duale}.
+	Per il teorema precedente (\ref{t:rango-mappa-duale}) e il corollario del primo teorema dell'isomorfismo segue allora la catena di uguaglianze
+	\begin{equation}
+		\dim T^*(Z^*)=\dim\tilde{T^*}\big(T(V)^*\big)=\dim T(V)^*-\dim(\Ker\tilde{T^*})=\dim T(V)^*=\dim T(V)
+	\end{equation}
+	dato che $\Ker\tilde{T^*}=\{0\}$, essendo $\tilde{T^*}$ iniettiva.
+	In altre parole, la dimensione dell'immagine di $T^*$ concide con la dimensione dell'immagine di $T$, ossia $\rk T^*=\rk T$.
+\end{proof}
+Per l'uguaglianza tra il rango dell'applicazione e il rango della matrice associata, questo corollario mostra che il rango calcolato ``per colonne'' è uguale al rango calcolato ``per righe'': in altre parole, il numero di colonne linearmente indipendenti di una matrice coincide con il numero di righe linearmente indipendenti.
+
