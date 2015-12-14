@@ -178,3 +178,36 @@ In qualsiasi base, esso coincide con il rango della matrice associata (perciò u
 \end{proof}
 Per l'uguaglianza tra il rango dell'applicazione e il rango della matrice associata, questo corollario mostra che il rango calcolato ``per colonne'' è uguale al rango calcolato ``per righe'': in altre parole, il numero di colonne linearmente indipendenti di una matrice coincide con il numero di righe linearmente indipendenti.
 
+\section{Spazio biduale}
+Dato uno spazio vettoriale $V$ su un campo $K$, abbiamo visto le proprietà più importanti del suo spazio duale $V^*$.
+Ora, anche $V^*$ è uno spazio vettoriale su $K$, quindi esistono dei funzionali lineari $f\colon V^*\to K$, il cui insieme forma lo spazio duale dello spazio duale di $V$: in breve, lo spazio \emph{biduale} (o \emph{doppio duale}) di $V$, indicato con $V^{**}$.
+Non c'è nulla di nuovo in questa definizione: è semplicemente la stessa idea applicata nuovamente su $V^*$.
+Guardiamo infatti al primo esempio fatto in questo capitolo, con gli iperpiani in $V$: il ruolo dei coefficienti $(a_1,\dots,a_n)$ e $(x_1,\dots,x_n)^T$ nell'equazione
+\begin{equation*}
+	a_1x_1+\cdots+a_nx_n=b
+\end{equation*}
+è completamente simmetrico, e possiamo vedere sia il vettore $(a_1\,\cdots\,a_n)$ come funzionale su $(x_1\,\cdots\,x_n)$ sia il secondo come funzionale sul primo.
+
+Nel caso di uno spazio $V$ di dimensione finita, $V$ e $V^*$ sono isomorfi ma l'isomorfismo non è canonico, in quanto richiede la scelta di una base di $V$.
+Anche $V^*$ e $V^{**}$, ovviamente, sono isomorfi, quindi per transitività si ha $V^{**}\cong V$, da cui $\dim V^{**}=\dim V$.
+In questo caso, però, l'isomorfismo tra $V$ e il suo biduale è canonico, tramite la mappa che mostriamo nel seguente teorema.
+\begin{teorema} \label{t:valutazione-biduale}
+	Sia $V$ uno spazio vettoriale di dimensione finita.
+	La mappa $E\colon V\to V^{**}$ definita da
+	\begin{equation}
+		E(v)\colon f\mapsto f(v),
+		\label{eq:mappa-valutazione}
+	\end{equation}
+	per $f\in V^*$, è un isomorfismo.
+\end{teorema}
+\begin{proof}
+	Innanzitutto, $E$ è lineare poich\'e per $f\in V^*$ e $a,b\in K$ risulta
+	\begin{equation}
+		E(av+bw)(f)=f(av+bw)=af(v)+bf(w)=aE(v)(f)+bE(v)(f).
+	\end{equation}
+	Siccome $\dim V^{**}=\dim V$, è sufficiente verificare che $E$ è iniettiva.
+	Se $E(v)=0$, ossia è un funzionale nullo su $V^*$, allora $0=E(v)(f)=f(v)$ per ogni $f\in V^*$, ma l'unico $v\in V$ con tale proprietà è lo zero, perciò $\Ker E=\{0\}$ e ciò prova che è un isomorfismo.
+\end{proof}
+La mappa $E$ è chiamata talvolta ``mappa di valutazione'', dato che manda $v\in V$ nell'elemento di $V^{**}$ che corrisponde al ``valutare il funzionale in $v$''.
+Non avendo specificato alcuna base di $V$, l'isomorfismo dato da $E$ è canonico.
+
