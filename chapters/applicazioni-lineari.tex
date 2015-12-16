@@ -268,7 +268,7 @@ Come elementi di $Z$, queste immagini dei vettori della base di $V$ si scrivono 
 		A_{mi}
 	\end{pmatrix}
 \end{equation}
-in cui i coefficienti $A_{1i},\dots,A_{mi}$ formano il vettore delle coordinate di $T(v)$ nella base $\mathcal C$.
+in cui i coefficienti $A_{1i},\dots,A_{mi}$ formano il vettore delle coordinate di $T(e_i)$ nella base $\mathcal C$.
 Per $i$ che scorre da 1 a $n$, affiancando le colonne troviamo che
 \begin{equation}
 	\begin{pmatrix}
@@ -292,6 +292,35 @@ dove abbiamo definito la matrice
 	\label{eq:matrice-associata}
 \end{equation}
 che è detta \emph{matrice associata} all'applicazione $T$, nelle basi $\mathcal B$ per $V$ e $\mathcal C$ per $Z$.
+Riassumiamo questo procedimento nella seguente definizione.
+\begin{definizione} \label{d:matrice-associata}
+	Sia $T\colon V\to Z$ lineare, con $V$ e $Z$ sul medesimo campo $K$, e si prendano le basi $\mathcal B=\{e_1,\dots,e_n\}$ e $\mathcal C=\{f_1,\dots,f_m\}$ per $V$ e $Z$ rispettivamente.
+	Se per $i=1,\dots,n$ si ha
+	\begin{equation}
+		T(e_i)=\sum_{k=1}^mA_{ki}f_k
+	\end{equation}
+	allora la matrice
+	\begin{equation}
+		A=
+		\begin{pmatrix}
+			A_{11}&\cdots&A_{1n}\\
+			\vdots&\ddots&\vdots\\
+			A_{m1}&\cdots&A_{nm}
+		\end{pmatrix}
+		\in\mat(m,n,K)
+	\end{equation}
+	è detta \emph{matrice associata} a $T$, nelle basi scelte.
+\end{definizione}
+In breve, per costruire la matrice associata bisogna individuare i $nm$ coefficienti $A_{ki}$ tali che, per $i=1,\dots,n$, si ha $T(e_i)=\sum_{k=1}^mA_{ki}f_k$ (mantenendo il corretto ordine degli indici), ossia il sistema
+\begin{equation}
+	\begin{cases}
+		T(e_1)=A_{11}f_1+A_{21}f_2+\cdots+A_{m1}f_m\\
+		\vdots\\
+		T(e_n)=A_{1n}f_1+A_{2n}f_2+\cdots+A_{mn}
+	\end{cases},
+\end{equation}
+prendere la matrice del sistema di equazioni (la cui $i$-esima riga è formata dai coefficienti $A_{ki}$ nella $i$-esima riga del sistema), e prenderne la trasposta.
+
 Per un generico vettore $v=\sum_{j=1}^nv_je_j\in V$ si ha allora
 \begin{equation}
 	T(v)=\sum_{j=1}^nv_jT(e_j)=\sum_{j=1}^n\sum_{k=1}^mv_jA_{kj}f_k
