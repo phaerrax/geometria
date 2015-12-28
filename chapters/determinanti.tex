@@ -1,0 +1,389 @@
+\chapter{Determinanti}
+\section{Permutazioni} \label{sec:permutazioni}
+Prima di affrontare i determinanti, abbiamo bisogno di studiare le proprietà di base delle permutazioni tra numeri naturali.
+\begin{definizione} \label{d:permutazione}
+	Sia $J_n$ l'insieme dei naturali consecutivi fino a $n$, ossia l'insieme $\{1,2,\dots,n\}\subset\N$.
+	Una \emph{permutazione} è una mappa iniettiva $\sigma\colon J_n\to J_n$.
+\end{definizione}
+Una permutazione si può rappresentare ad esempio nella forma
+\begin{equation*}
+\sigma=\begin{pmatrix}1&2&3&4&5&\cdots&n\\50&849&23&1&9234&\cdots&k\end{pmatrix},
+\end{equation*}
+in cui $k\in J_n$.
+La scrittura $S_n$ indica l'insieme delle permutazioni $\sigma$ da $J_n$ in sé stesso.
+Poiché gli insiemi $J_n$ hanno cardinalità finita, una permutazione è automaticamente anche suriettiva.
+Si indica con $\sigma^{-1}$ l'inversa di $\sigma$.
+La composizione di due permutazioni $\zeta$ e $\sigma$ si indica in notazione moltiplicativa come $\zeta\sigma$.
+L'insieme $(S_n,\cdot)$, delle permutazioni dei primi $n$ numeri naturali rispetto alla composizione, forma un gruppo non abeliano, detto \emph{gruppo simmetrico}.
+Il suo elemento neutro è la permutazione che lascia invariati tutti gli elementi di $J_n$.
+\begin{definizione} \label{d:scambio}
+	Si chiama \emph{scambio}, o \emph{trasposizione}, un'operazione $J_n\to J_n$ che consiste nello scambio di due elementi, lasciando invariati tutti gli altri.
+\end{definizione}
+L'importanza delle trasposizioni sta nella seguente proprietà.
+\begin{proprieta} \label{pr:permutazione-prodotto-scambi}
+	Ogni permutazione si può sempre esprimere come prodotto di scambi:
+	\begin{equation*}
+		\sigma=\tau_1\tau_2\cdots\tau_s.
+	\end{equation*}
+\end{proprieta}
+\begin{proprieta} \label{pr:segno}
+	Esiste ed è unica un'applicazione $\epsilon\colon S_n\to\{-1,1\}$ tale che
+	\begin{itemize}
+		\item se $\tau$ è uno scambio, $\epsilon(\tau)=-1$;
+		\item se $\sigma_1,\sigma_2\in S_n$, allora $\epsilon(\sigma_1\sigma_2)=\epsilon(\sigma_1)\epsilon(\sigma_2)$.
+	\end{itemize}
+\end{proprieta}
+Una tale applicazione è detta \emph{segno}.
+Presa una permutazione $\sigma\in S_n$, essa si dice pari se il suo segno è 1, dispari se è $-1$.
+Se $s$ è il numero di scambi effettuati, il segno della permutazione che risulta dalla loro composizione è $\epsilon(\sigma)=(-1)^s$.
+
+\section{Applicazioni multilineari}
+\begin{definizione} \label{d:applicazione-multilineare}
+	Siano $V_1,V_2,\dots,V_n,W$ spazi vettoriali sul campo $K$.
+	L'applicazione $h\colon V_1\times V_2\times\dots\times V_n\to W$ si dice \emph{multilineare} se $\forall v_1\in V_1,v_2\in V_2,\dots,v_n\in V_n$ e $v_i',v_i''\in V_i$ e $\mu,\lambda\in K$ si ha che
+	\begin{multline*}
+		h(v_1,\dots,v_{i-1},\mu v_i'+\lambda v_i'',v_{i+1},\dots,v_n)=\mu h(v_1,\dots,v_{i-1},v_i',v_{i+1},\dots,v_n)+\\+\lambda h(v_1,\dots,v_{i-1},v_i'',v_{i+1},\dots,v_n).
+	\end{multline*}
+\end{definizione}
+\begin{definizione} \label{d:applicazione-multilineare-alternante}
+	L'applicazione $h\colon V_1\times\dots\times V_n\to W$ si dice \emph{alternante} se ogniqualvolta esistono due indici $i,j\in\{1,\dots,n\}$ per i quali $v_i=v_j$, si ha $h(v_1,\dots,v_i,v_j,\dots,v_n)=0$.
+\end{definizione}
+\begin{teorema}[di unicità] \label{t:unicita-applicazione-multilinare-alternante}
+	Sia $A=(a_{ij})_{i,j=1}^n$ una matrice di $\mat(n,K)$, dove $K$ è un campo.
+	Esiste ed è unica un'applicazione multilineare alternante $h\colon\mat(n,K)\to K$ (che può essere anche visto come spazio vettoriale su sé stesso) tale per cui $h(I_n)=1$ e, con $\lambda\in K$, 
+	\begin{equation*}
+		h(A)=\lambda\sum_{\sigma\in S_n}\epsilon(\sigma)a_{\sigma(1)1}\dots a_{\sigma(n)n}.
+	\end{equation*}
+\end{teorema}
+Un'applicazione multilineare alternante particolarmente interessante è il \emph{determinante}, che è una funzione che associa ad ogni matrice quadrata uno scalare che ne sintetizza alcune proprietà algebriche.
+Il determinante di una matrice $M$ di indica con $\det M$, oppure racchiudendo i suoi coefficienti tra due righe verticali.
+
+\paragraph{Assiomi di definizione del determinante}
+Sia $\mat(n,K)$ l'insieme delle matrici quadrate di ordine $n$ e a coefficienti in un campo $K$.
+Cerchiamo una funzione $\det\colon\mat(n,K)\to K$ aventi le seguenti proprietà\footnote{Nei seguenti punti si indicheranno con $A_i$ i vettori colonna di $K^n$: affiancando $n$ di questi vettori si ottiene una matrice di $\mat(n,K)$.}:
+\begin{enumerate}[label=(\roman*)]
+	\item $\det I=1$, dove $I$ è la matrice identità di $\mat(n,K)$;
+	\item se $A$ ha due righe o colonne uguali, $\det A=0$,
+		\begin{equation*}
+		\det(A_1\cdots A_n)=0\text{ se }\exists i,j=1,\dots,n\colon A_i=A_j;
+		\end{equation*}
+	\item se $B$ è ottenuta moltiplicando una riga o una colonna di $A$ per uno scalare $k\in K$, allora $\det B=k\det A$,
+		\begin{equation*}
+		\det(A_1\cdots\lambda A_i\cdots A_n)=\lambda\det(A_1\cdots A_i\cdots A_n);
+		\end{equation*}
+	\item se $B$ è ottenuta scambiando due righe o due colonne di $A$, allora $\det B=-\det A$,
+		\begin{equation*}
+		\det(A_1\cdots A_i\cdots A_j\cdots A_n)=-\det(A_1\cdots A_j\cdots A_i\cdots A_n),\text{ con }i\neq j;
+		\end{equation*}
+	\item $\det(A_1\cdots A_i+C\cdots A_n)=\det(A_1\cdots A_i\cdots A_n)+\det(A_1\cdots C\cdots A_n);$ 
+\end{enumerate}
+Una funzione che soddisfa queste proprietà esiste, ed è unica, ed è appunto il determinante.
+
+\section{Riduzione a scala}
+\begin{definizione}
+	Una matrice si dice \emph{ridotta a scala} se il primo termine non nullo di ciascuna riga si trova ``più a destra'' di quello della riga precedente.
+	Il primo termine non nullo di una riga è detto \emph{pivot}.
+\end{definizione}
+La definizione vale per qualsiasi tipo di matrice; ora ci concentriamo su quelle quadrate, per le quali è definito il determinante.
+Per tali matrici, essere ridotta a scala significa essere triangolare superiore: tutti gli elementi sotto la diagonale sono nulli.
+\begin{proprieta}[Metodo di Gauss]
+	Sia $K$ un campo con caratteristica\footnote{
+		La caratteristica di $K$ è il più piccolo numero naturale $n$ tale che $nx=0$ per ogni elemento $x$ di $K$: $\cha K=\{n\in\N\colon nx=0_K,\ \forall x\in K\}$. Se tale numero non esiste, la caratteristica è per definizione 0.
+	}
+	diversa da 2.
+	Sia $\det\colon\mat(n,K)\to K$ una funzione soddisfacente le proprietà precedentemente elencate.
+	Allora:
+	\begin{enumerate}
+		\item Se $A$ ha una riga o una colonna nulla, $\det A=0$.
+		\item Per $\lambda,\mu\in K$, se $A_i'=\lambda A_i+\mu A_j$, dove $\{A_k\}_{k=1}^n$ indicano le righe della matrice, allora
+		\begin{equation*}
+			\begin{vmatrix}
+				A_1\\A_i'\\A_j\\A_n
+			\end{vmatrix}
+			=\lambda
+			\begin{vmatrix}
+				A_1\\A_i\\A_j\\A_n
+			\end{vmatrix}.
+		\end{equation*}
+		\item Se $\rk A<n$, dove $n$ è l'ordine della matrice, allora $\det A=0$; se invece $\rk A=n$, $\det A=(-1)^sp_1p_2\cdots p_n$, dove $s$ è il numero di scambi di righe o colonne effettuati e $p_1,\dots,p_n$ sono i pivot della matrice ridotta a scala.
+	\end{enumerate}
+\end{proprieta}
+\begin{proof}
+	\begin{enumerate}
+	\item La riga o colonna nulla si può vedere come $0\cdot A_i$ dove $A_i$ è una riga o colonna qualunque, quindi per la (iii) si ha che il determinante è nullo.
+	\item Per la (v) si ha
+		\begin{equation*}
+			\begin{vmatrix}
+				A_1\\\vdots\\\lambda A_i+\mu A_j\\ A_j\\\vdots\\A_n
+			\end{vmatrix}
+			=
+			\begin{vmatrix}
+				A_1\\\vdots\\\lambda A_i\\ A_j\\\vdots\\A_n
+			\end{vmatrix}
+			+
+			\begin{vmatrix}
+				A_1\\\vdots\\\mu A_j\\ A_j\\\vdots\\A_n
+			\end{vmatrix}
+			=\lambda
+			\begin{vmatrix}
+				A_1\\\vdots\\A_i\\ A_j\\\vdots\\A_n
+			\end{vmatrix}
+			+\mu
+			\begin{vmatrix}
+				A_1\\\vdots\\A_j\\ A_j\\\vdots\\A_n
+			\end{vmatrix},
+		\end{equation*}
+		ma la seconda matrice ha due righe uguali quindi il suo determinante è nullo per il punto precedente.
+	\item Per ridurre a scala una matrice, si cambia il segno del determinante tante volte ($s$) quante volte si sono scambiate due righe, mentre il determinante non varia sostituendo ad una riga $A_i$ una combinazione lineare del tipo $1_KA_i+\mu A_j$, con $i\neq j$.
+		Se il rango della matrice non è massimo, cioè non è esattamente $n$, si ha automaticamente come risultato una riga nulla, quindi il determinante è nullo.
+		Altrimenti, sia
+		\begin{equation*}
+			B=
+			\begin{pmatrix}
+				b_{11}	&b_{12}	&\dots	&b_{1n}\\
+				0		&b_{22}	&\dots 	&b_{2n}\\
+				\vdots 	&\vdots 	&\ddots 	&\vdots\\
+				0		&0		&\dots 	&b_{nn}
+			\end{pmatrix}.
+		\end{equation*}
+		Si può scrivere la prima riga come la somma dei vettori riga $B_1=B_1'+B_1''$, dove $B_1'=(b_{11},0,\dots,0)$ e $B_1''=(0,b_{12},\dots,b_{1n})$.
+		Allora risulta
+		\begin{equation*}
+			\det B=
+			\begin{vmatrix}
+				B_1'\\\vdots\\B_n
+			\end{vmatrix}
+			+
+			\begin{vmatrix}
+				B_1''\\\vdots\\B_n
+			\end{vmatrix},
+		\end{equation*}
+		ma il secondo termine ha la prima colonna nulla, ossia il suo rango non è massimo, perciò ha determinante nullo.
+		Iterando il processo sulle righe seguenti, si ottiene che il determinante di $B$ è uguale al determinante della matrice diagonale
+		\begin{equation*}
+			\begin{pmatrix}
+				b_{11}	&0		&\dots	&0\\
+				0		&b_{22}	&\dots	&0\\
+				\vdots 	&\vdots	&\ddots	&\vdots\\
+				0		&0		&\dots	&b_{nn}
+			\end{pmatrix},
+		\end{equation*}
+		che è a sua volta equivalente a $b_{11}b_{22}\cdots b_{nn}$, si ha quindi $\det B=b_{11}b_{22}\cdots b_{nn}$.
+	\end{enumerate}
+\end{proof}
+
+Andiamo ora a vedere le condizioni che permettono a una matrice di essere ridotta a scala:
+\begin{proprieta} \label{pr:pivot-riduzione-scala}
+	Una matrice generica $A$ può essere ridotta a scala se soddisfa le seguenti proprietà:
+	\begin{itemize}
+		\item Se $A_{ij}$ è la riga e la colonna in cui la matrice $A$ ammette un pivot, allora la $i$-esima riga, se ammette un pivot, lo ammette su una colonna di indice almeno $j+1$.
+		\item Se la riga $j$-esima di $A$ non ammette pivot, allora non li ammette nemmeno la riga $j+1$-esima.
+	\end{itemize}
+\end{proprieta}
+\begin{definizione}
+	Sia $A$ una matrice, si definisce \emph{rango} di $A$ il numero di pivot della sua riduzione a scala.
+	Esso si indica con $\rk A$.
+\end{definizione}
+Diamo ora senza dimostrazione due teoremi importanti per i sistemi lineari.
+\begin{teorema}[di Cramer] \label{t:cramer}
+	Sia $A\in\mat(n,K)$: se $\rk A=n$ allora per ogni $b\in K^n$ il sistema lineare composto da $A$, detta matrice dei coefficienti, e da $b$, vettore dei termini noti, ammette una ed una sola soluzione.
+\end{teorema}
+Per dimostrarlo è sufficiente considerare la matrice $A\mid b$ e ridurla a scala.
+\begin{teorema}[di Rouch\'e-Capelli] \label{t:rouche-capelli}
+	Sia $A\in\mat(n,K)$ e sia $b\in K^n$, se $A$ è la matrice dei coefficienti e $b$ il vettore dei termini noti.
+	Allora:
+	\begin{enumerate}
+		\item Il sistema ammette soluzioni se e solo se $\rk A=\rk(A\mid b)$.
+		\item Se il sistema ammette soluzioni, allora l'insieme delle soluzioni dipende dal numero delle incognite e dal rango (cioè $n$ e $\rk A$).
+	\end{enumerate}
+\end{teorema}
+
+\section{Calcolo del determinante}
+Il determinante coincide in pratica con la somma di tutti i possibili prodotti tra elementi di righe e colonne diverse della matrice: questa definizione è ovviamente inutilizzabile in generale, ma per le matrici di ordini piccoli si traduce in formule veloci per il suo calcolo.
+Il determinante di una matrice nulla è ovviamente 0.
+Per le matrici di ordine 1, che sono gli scalari del campo $K$, il determinante coincide con la loro unica componente: $\det(k_{11})=k_{11}$.
+Per le matrici di ordine 2 vale
+\begin{equation*}
+	\det
+	\begin{pmatrix}
+		a&b\\c&d
+	\end{pmatrix}
+	=ad-bc.
+\end{equation*}
+Per le matrici di ordine 3 si può utilizzare la \emph{regola di Sarrus}: il determinante può essere espresso come la somma dei prodotti degli elementi sulle tre ``diagonali'' a cui si sottrae la somma dei prodotti di quelli sulle ``antidiagonali'':
+\begin{equation*}
+	\det
+	\begin{pmatrix}
+		a_{11}&a_{12}&a_{13}\\
+		a_{21}&a_{22}&a_{23}\\
+		a_{31}&a_{32}&a_{33}
+	\end{pmatrix}
+	=a_{11}a_{22}a_{33}+a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32}-a_{11}a_{23}a_{32}-a_{12}a_{21}a_{33}-a_{13}a_{22}a_{31}.
+\end{equation*}
+Tale regola \emph{non} si può estendere a matrici di ordini superiori.
+
+\begin{teorema}[Formula di Leibnitz] \label{t:determinante-leibnitz}
+	Sia $A=(a_{ij})\in\mat(n,K)$, con $\cha K\neq 2$.
+	Il suo determinante è dato da
+	\begin{equation}\label{eq:determinante-leibnitz}
+		\det A=\sum_{\sigma\in S_n}\epsilon(\sigma)\prod_{i=1}^na_{i\sigma(i)}.
+	\end{equation}
+\end{teorema}
+\begin{proof}
+	Sia $\{e_j\}_{j=1}^n$ la base canonica di $K^n$.
+	Si può scrivere $A$ come
+	\begin{equation*}
+		A=
+		\begin{pmatrix}
+			A_1\\A_2\\\vdots\\A_n
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			a_{11}e_1+\dots+a_{1n}e_n\\
+			a_{21}e_1+\dots+a_{2n}e_n\\
+			\vdots\\
+			a_{n1}e_1+\dots+a_{nn}e_n
+		\end{pmatrix}.
+	\end{equation*}
+	Il suo determinante è la somma di elementi del tipo
+	\begin{equation*}
+		\det
+		\begin{pmatrix}
+			a_{1\sigma(1)}e_{\sigma(1)}\\
+			\vdots\\
+			a_{n\sigma(n)}e_n
+		\end{pmatrix},
+	\end{equation*}
+	per linearità, scomponendo il determinante per ogni riga.
+	Quindi
+	\begin{equation*}
+		\det
+		\begin{pmatrix}
+			a_{1\sigma(1)}e_{\sigma(1)}\\
+			\vdots\\
+			a_{n\sigma(n)}e_{n\sigma(n)}
+		\end{pmatrix}
+		=a_{1\sigma(1)}\cdots a_{n\sigma(n)}\det
+		\begin{pmatrix}
+			e_{\sigma(1)}\\
+			\vdots\\e_{n\sigma(n)}
+		\end{pmatrix}.
+	\end{equation*}
+	Sempre per la linearità, tutti questi determinanti si possono sommare, ottenendo
+	\begin{equation*}
+		\begin{split}
+			\det A&=\sum_{\sigma\in S_n}a_{1\sigma(1)}\cdots a_{n\sigma(n)}\det\begin{pmatrix}e_{\sigma(1)}\\\vdots\\e_{\sigma(n)}\end{pmatrix}=\\
+			&=\sum_{\sigma\in S_n}a_{1\sigma(1)}\cdots a_{n\sigma(n)}\epsilon(\sigma)\det\begin{pmatrix}e_1\\\vdots\\e_n\end{pmatrix}=\\
+			&=\sum_{\sigma\in S_n}\epsilon(\sigma)a_{1\sigma(1)}\cdots a_{n\sigma(n)}.\qedhere
+		\end{split}
+	\end{equation*}
+\end{proof}
+
+Anche il metodo di Leibnitz, però, non fa molta luce su come si dovrebbe calcolare il determinante.
+Il metodo più usato è la \emph{scomposizione di Laplace} per righe o per colonne.
+\begin{definizione} \label{d:minori-complementi}
+	Siano $A\in\mat(n,K)$ e $i,k\in\{1,\dots,n\}$.
+	Con $A_{ik}$ si indica la sottomatrice ottenuta eliminando da $A$ la riga $i$-esima e la colonna $k$-esima.
+	Si definiscono:
+	\begin{itemize}
+		\item \emph{minore complementare} dell'elemento $a_{ik}$ di $A$ la quantità $M_{ik}=\det A_{ik}$;
+		\item \emph{complemento algebrico}, o \emph{cofattore}, di $a_{ik}$ lo scalare $C_{ik}=(-1)^{i+k}M_{ik}$.
+	\end{itemize}
+\end{definizione}
+\begin{teorema}[di Laplace] \label{t:sviluppo-laplace}
+	Sia $A=(a_{ij})\in\mat(n,K)$.
+	Per ogni $k\in\{1,\dots,n\}$ si ha
+	\begin{equation} \label{eq:det-laplace1}
+		\det A=\sum_{i=1}^nC_{ik}a_{ik},
+	\end{equation}
+	e per ogni $h,k\in\{1,\dots,n\}$ distinti inoltre si ha che
+	\begin{equation} \label{eq:det-laplace2}
+		\sum_{i=1}^nC_{ih}a_{ik}=0_K.
+	\end{equation}
+\end{teorema}
+\begin{proof}
+	Fissato $k$, dalla \eqref{eq:determinante-leibnitz} risulta
+	\begin{equation*}
+		\det A=\sum_{\sigma\in S_n}\epsilon(\sigma)a_{\sigma(1)1}\dots a_{\sigma(n)n}=a_{1k}\alpha_{1k}+\dots+a_{nk}\alpha_{nk},
+	\end{equation*}
+	dove si è definito
+	\begin{equation*}
+		\alpha_{ik}=\sum_{\substack{\sigma\in S_n\\\sigma(k)=i}}\epsilon(\sigma)a_{\sigma(1)1}\dots a_{\sigma(k-1)k-1}a_{\sigma(k+1)k+1}\dots a_{\sigma(n)n},
+	\end{equation*}
+	poiché tutti gli elementi con indice $ik$ sono quelli per cui $\sigma(k)=i$, e l'elemento di indice $\sigma(k)k$, cioè in questo caso $a_{ik}$, è raccolto fuori dalla somma perché appare in tutti i prodotti.
+	Poiché questo $\alpha_{ik}$ è per definizione proprio il determinante di $A$ saltando la riga $i$ e la colonna $k$, si ha $\alpha_{ik}=C_{ik}$, da cui la tesi.
+
+	La permutazione $\sigma\in S_{n-1}$ può essere vista anche come una permutazione di $S_n$ in cui un elemento rimane fisso. Sia quindi
+	\begin{equation*}
+		A'=(A_1\cdots A_{k-1}A_kA_{k+1}\cdots A_{h-1}A_hA_{h+1}\cdots A_n),
+	\end{equation*}
+	dove $h>k$ e $A_i$ sono dei vettori colonna, la matrice $A$ in cui si è posto $A_h=A_k$. Risulta quindi
+	\begin{equation*}
+		0=\det A'=\sum_{i=1}^na_{ih}'C_{ih}'=\sum_{i=1}^na_{ik}C_{ih},
+	\end{equation*}
+	dato che $a_{ih}'=a_{ik}$ per come è stata definita $A'$ e $C_{ih}'=C_{ih}$ perché eliminando da $A$ o da $A'$ la colonna $h$ si ottiene la stessa sottomatrice, in quanto differivano tra loro proprio per quella colonna soltanto.
+\end{proof}
+Questo sviluppo può essere effettuato indifferentemente lungo una colonna o una riga.
+Il metodo migliore per applicarlo è scegliere la colonna o riga con il maggior numero di zeri, in modo da ridurre il numero di somme di determinanti minori nello sviluppo.
+
+Vediamo ora come si comporta il determinante con la trasposizione e l'inversione delle matrici.
+\begin{teorema} \label{t:determinante-trasposta}
+	Per ogni $A\in\mat(n,K)$ risulta $\det(A^T)=\det A$.
+\end{teorema}
+	\begin{proof}
+	Sia $A=(a_{ij})$, e $A^T=(b_{ij})$, in modo che $b_{ij}=a_{ji}$.
+	Dalla \eqref{eq:determinante-leibnitz} si ha
+	\begin{equation}
+		\begin{split}
+			\det A^T &=\sum_{\sigma\in S_n}\epsilon(\sigma)b_{\sigma(1)1}\cdots b_{\sigma(n)n}=\\
+			&=\sum_{\sigma\in S_n}\epsilon(\sigma)a_{1\sigma(1)}\cdots a_{n\sigma(n)}=\\
+			&=\sum_{\sigma\in S_n}\epsilon(\sigma)a_{\sigma^{-1}(\sigma(1))\sigma(1)}\cdots a_{\sigma^{-1}(\sigma(n))\sigma(n)}.
+		\end{split}
+	\end{equation}
+	Ora, fissiamo l'ordine dei secondi coefficienti $\sigma(1),\dots,\sigma(n)$ e passiamo alla somma su $\sigma^{-1}$: questo è possibile perch\'e ogni permutazione ammette un'unica inversa.
+	Otteniamo, riordinando i fattori $a_{\sigma^{-1}(\sigma(i))\sigma(i)}$ in modo che i coefficienti delle colonne (i $\sigma(i)$ che abbiamo appena fissato) risultino in ordine da 1 a $n$,
+	\begin{equation}
+		\begin{split}
+			\det(A^T)&=\sum_{\sigma^{-1}\in S_n}\epsilon(\sigma^{-1})a_{\sigma^{-1}(1)1}\cdots a_{\sigma^{-1}(n)n}=\\
+			&=\sum_{\sigma\in S_n}\epsilon(\sigma)a_{\sigma(1)1}\cdots a_{\sigma(n)n}=\det A.
+		\end{split}
+	\end{equation}
+	Il segno $\epsilon$ è uguale per entrambe, dato che contengono lo stesso numero di scambi, solo il ``percorso'' è al contrario.
+\end{proof}
+Con il determinante possiamo caratterizzare le matrici invertibili con il seguente teorema.
+\begin{teorema}[di Binet] \label{t:binet}
+	Per ogni $A,B\in\mat(n,K)$, si ha $\det(AB)=\det A\det B$.
+\end{teorema}
+\begin{proof}
+	Siano $f,g\colon\mat(n,K)\to K$ definite come $f(B)=\det(AB)$ e $g(B)=\det A\det B$.
+	Si dimostra che le due applicazioni coincidono: per fare ciò si mostra che sono entrambe multilineari alternanti, da cui per il teorema \ref{t:unicita-applicazione-multilineare-alternante} devono coincidere.
+	Sulla matrice identità, le due applicazioni agiscono come $f(I)=\det(AI)=\det A$ e $g(I)=\det I\det A=\det A$.
+	L'applicazione $f$ è multilineare, perché
+	\begin{align*}
+		&f(B_1\cdots\lambda B_i'+\mu B_i''\cdots B_n)=\\
+		&=\det[A(B_1\cdots\lambda B_i'+\mu B_i''\cdots B_n)]=\\
+		&=\det(AB_1\cdots\lambda AB_i'+\mu AB_i''\cdots AB_n)=\\
+		&=\lambda\det(AB_1\cdots AB_i'\cdots AB_n)+\mu\det(AB_1\cdots AB_i''\cdots AB_n)=\\
+		&=\lambda\det[A(B_1\cdots B_i'\cdots B_n)]+\mu\det[A(B_1\cdots B_i''\cdots B_n)]=\\
+		&=\lambda f(B_1\cdots B_i'\cdots B_n)+\mu f(B_1\cdots B_i''\cdots B_n),
+	\end{align*}
+	ed è anche alternante perché scrivendo sempre $B$ per colonne, si supponga $B_i=B_j$ per qualche $i,j\in\{1,\dots,n\}$ distinti.
+	Si ha che $f(B)=\det(AB)=\det(AB_1\cdots AB_n)=0$ per l'alternanza del determinante, dato che $AB_i=AB_j$.
+	Si può dimostrare che anche $g$ ammette le stesse proprietà, quindi anche $g$ è multilineare e alternante.
+	Allora $f$ e $g$ devono coincidere, dunque $f(B)=g(B)$ cioè $\det(AB)=\det A\det B$.
+\end{proof}
+Da questo teorema si ricava, per la matrice inversa $A^{-1}$, che $\det(AA^{-1})=\det I$, quindi $\det A\det A^{-1}=1_K$: questa uguaglianza non ha modo di esistere se $\det A$ è nullo, altrimenti si avrebbe l'assurda uguaglianza $0=1$, che in un campo come $K$ non ha senso.
+Allora per essere invertibile, una matrice deve necessariamente avere il determinante non nullo.
+Inoltre $\det A^{-1}=(\det A)^{-1}$.
+Per individuare la matrice inversa di $A$, la si può o costruire prendendo la trasposta della matrice dei cofattori, divisa per $\det A$,
+\begin{equation*}
+	A^{-1}=\frac1{\det A}C^T,
+\end{equation*}
+oppure si affianca alla matrice identità formando $(A\mid I)$ e con il metodo dell'eliminazione di Gauss si procede arrivando alla forma $(I\mid M)$; la matrice $M$ è proprio l'inversa di $A$ cercata.
+L'insieme delle matrici invertibili, o alternativamente con determinante non nullo, a coefficienti in $K$ si indica con $GL(n,K)$.
+\begin{itemize}
+	\item Se $A,B\in GL(n,K)$, allora per il teorema di Binet $\det(AB)=\det A\det B\ne 0$ essendo $K$ un campo, dunque $AB\in GL(n,K)$.
+	\item La matrice identità $I$ è un elemento neutro rispetto alla composizione, dato che $AI=IA=A$ per ogni $A\in GL(n,K)$.
+	\item Infine, data $A\in GL(n,K)$ esiste sempre la sua inversa $A^{-1}$, sempre in tale insieme, e $AA^{-1}=A^{-1}A=I$.
+\end{itemize}
+Ciò prova che $GL(n,K)$, dotato dell'usuale prodotto righe per colonne tra matrici, è un gruppo: esso è chiamato \emph{gruppo generale lineare} di $K$.
