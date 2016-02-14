@@ -1,9 +1,8 @@
 \documentclass[a4paper]{book}
-
 \usepackage{mathematics}
 \hypersetup{
 	pdftitle={Geometria 1},
-	pdfauthor={Ferracin Davide},
+	pdfauthor={Davide Ferracin},
 	pdflang={it},
 	pdfsubject={Appunti del corso di Geometria 1},
 	pdfcreator={Davide Ferracin},
@@ -13,7 +12,6 @@
 	pdfmetalang={it}
 }
 
-%titolo e pagina iniziale
 \title{
 	{\sffamily\fontsize{35}{42}\selectfont Geometria 1}
 }
@@ -23,10 +21,16 @@
 }
 \date{}
 
+\pagestyle{headings}
+
 \begin{document}
+\frontmatter
+
+% Frontespizio
 \maketitle
 
-\null % Serve scrivere qualcosa prima di \vfill altrimenti non funziona
+% Colophon (informazioni sulla licenza)
+\null % Bisogna scrivere qualcosa prima di \vfill, altrimenti non funziona
 \vfill % Riempie lo spazio verticale della pagina
 \hspace*{-1.5em}\includegraphics[scale=.7]{by-sa-icon.pdf}
 \begin{flushleft}
@@ -34,6 +38,8 @@
 	2015, Davide Ferracin (\href{mailto:davide.ferracin@studenti.unimi.it}{\ttfamily davide.ferracin@studenti.unimi.it})\\[1cm]
 	Versione aggiornata al \today.
 \end{flushleft}
+
+\mainmatter
 
 \include{chapters/anelli}
 \include{chapters/spazi-vettoriali}
@@ -43,6 +49,9 @@
 \include{chapters/diagonalizzazione}
 \include{chapters/prodotto-interno}
 
+\backmatter
+
+% Indice
 \cleardoublepage
 \pdfbookmark[-1]{Indice}{contents}
 \tableofcontents
