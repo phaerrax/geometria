@@ -24,13 +24,23 @@ Se volete compilarlo sul vostro computer, in modo da ottenere la versione più a
 I file dei singoli capitoli non possono essere compilati separatamente.
 Si consiglia l'uso di `latexmk` per automatizzare i processi di compilazione.
 
+Alla prima compilazione, bisogna generare i file della bibliografia di `biblatex`, perciò serve compilare più volte.
 Trovandosi nella cartella principale, eseguire
 
 ```bash
 pdflatex geometria
+biber geometria
+pdflatex -shell-escape geometria
+pdflatex -shell-escape geometria
 ```
 
-un numero sufficiente di volte perché i riferimenti interni siano corretti.
+Le volte successive, se il file `geometria.bib` non è stato modificato e non sono state aggiunte citazioni (in tal caso, ripetere i passaggi precedenti), è sufficiente un unico passaggio:
+
+```bash
+pdflatex -shell-escape geometria
+```
+
+ripetuto eventualmente una seconda volta per sistemare riferimenti interni.
 
 ##### Requisiti
 Per poter compilare il documento è necessario ovviamente avere installato tutti i pacchetti di LaTeX elencati nel file di stile e le applicazioni di base per compilare.
@@ -48,7 +58,9 @@ texlive-lang-italian
 texlive-latex-base
 texlive-latex-extra
 texlive-latex-recommended
+texlive-pictures
 texlive-plain-extra
 texlive-science
+biber
 ```
 

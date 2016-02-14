@@ -23,6 +23,8 @@
 
 \pagestyle{headings}
 
+\addbibresource{geometria.bib}
+
 \begin{document}
 \frontmatter
 
@@ -50,6 +52,13 @@
 \include{chapters/prodotto-interno}
 
 \backmatter
+
+% Bibliografia
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{part}{\bibname}
+\nocite{*}
+\printbibliography
 
 % Indice
 \cleardoublepage
