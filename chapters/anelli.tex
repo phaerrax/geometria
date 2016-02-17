@@ -812,12 +812,17 @@ A questo punto, possiamo dividere tutti i fattori irriducibili per delle costant
 	Se si esegue lo stesso ragionamento su $a=p_1\dots p_t$, nel teorema precedente, si ottiene $a=k_1k_2\dots k_sa_1\dots a_s$ con i vari $a_i$ monici e irriducibili $\forall i\in\{1,\dots,n\}$, si ha che $k_1k_2\dots k_s\in K$, perciò deve essere il coefficiente direttivo del polinomio corrispondente.
 \end{proof}   
 
-\section{Domini a ideali principali}
+\section[Domini a ideali principali]{Domini a ideali principali\footnote{
+	Questa sezione è diversa da come è stata affrontata a lezione: cambia il modo in cui si arriva al teorema \ref{t:ideale-massimale-sse-irriducibile}.
+	In questa versione è aggiunto il teorema \ref{t:pid-ideale-massimale-sse-primo}, non visto a lezione, e grazie ad esso la dimostrazione del \ref{t:ideale-massimale-sse-irriducibile} diventa facilissima.
+	Questo e altro è tratto da \cite{PID}.
+	I due teoremi citati sono dunque differenti, mentre il resto dei teoremi e corollari è rimasto sostanzialmente invariato.
+}}
 \begin{definizione} \label{d:dominio-ideali-principali}
 	Un dominio d'integrità $A$ è detto \emph{a ideali principali} se è tutti i suoi ideali propri sono principali, ossia se per ogni ideale $I\subset A$ esiste $a\in A$ per cui $I=(a)$.
 \end{definizione}
 Dimostriamo subito l'inverso del corollario \ref{c:ideale-massimale-primo} che avevamo anticipato.
-\begin{teorema} \label{t:ideale-massimale-primo}
+\begin{teorema} \label{t:pid-ideale-massimale-sse-primo}
 	In un dominio a ideali principali, un ideale è primo se e solo se è massimale.
 \end{teorema}
 \begin{proof}
@@ -833,7 +838,7 @@ Dimostriamo subito l'inverso del corollario \ref{c:ideale-massimale-primo} che a
 	Ciò prova che $I$ è massimale.
 \end{proof}
 Mostriamo ora che possiamo sfruttare molte utili proprietà, come la completa equivalenza tra ``primo'' e ``irriducibile'', nello studio degli anelli di polinomi in una incognita, in virtù del seguente teorema.
-\begin{teorema}
+\begin{teorema} \label{t:pid-anello-polinomi-su-campo}
 	Dato un campo $K$, l'anello $K[x]$ è un dominio a ideali principali.
 \end{teorema}
 \begin{proof}
@@ -903,7 +908,7 @@ Mostriamo ora che possiamo sfruttare molte utili proprietà, come la completa eq
 	\end{align*}
 	Nel primo caso si ritrovano tutte le possibili combinazioni degli $a_0\in K$, che sono $m$, nel secondo caso le possibili combinazioni sono $m^2$. Si può arrivare dunque a dimostrare la tesi.
 \end{proof}
-\begin{teorema}
+\begin{teorema} \label{t:ideale-massimale-sse-irriducibile}
 	Sia $g\in K[x]$ con $\deg g>0$.
 	L'ideale $(g)$ è massimale se e solo se $g$ è irriducibile.
 \end{teorema}
@@ -912,7 +917,7 @@ Mostriamo ora che possiamo sfruttare molte utili proprietà, come la completa eq
 	\begin{equation*}
 		(g)\text{ è massimale }\iff (g)\text{ è primo }\iff g\text{ è primo }\iff g\text{ è irriducibile}
 	\end{equation*}
-	per i teoremi, in ordine, \ref{t:ideale-massimale-primo}, \ref{l:ideale-polinomio-primo} e \ref{t:polinomio-irriducibile-primo}.
+	per i teoremi, in ordine, \ref{t:pid-ideale-massimale-sse-primo}, \ref{l:ideale-polinomio-primo} e \ref{t:polinomio-irriducibile-primo}.
 \end{proof}
 \begin{corollario}
 	Dato $g\in K[x]$ con $\deg g>0$, $K[x]\quot(g)$ è un campo se e solo se $g$ è irriducibile.
@@ -1019,7 +1024,9 @@ In particolare, una radice di molteplicità algebrica 1 è detta \emph{semplice}
 	Sia $f\in K[x]$ con $\deg f\ge 0$.
 	Date le radici distinte $\alpha_1,\dots,\alpha_k$ di $f$ con molteplicità algebrica rispettivamente $r_1,\dots,r_k$, si ha che $\sum_{i=1}^n r_i\le\deg f$.
 \end{teorema}
-\begin{proof}
+\begin{proof}\footnote{
+		Questa dimostrazione differisce, anche se non troppo, da quella svolta a lezione.
+	}
 	Secondo il teorema \ref{t:fattorizzazione-unica}, scriviamo $f$ come
 	\begin{equation}
 		f = p_1p_2\dots p_k,

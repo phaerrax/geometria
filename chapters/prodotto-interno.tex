@@ -549,11 +549,13 @@ poich\'e la norma è un numero reale, dunque lo è anche il suo quadrato che coi
 
 La proprietà principale delle matrici normali è che sono \emph{sempre diagonalizzabili}, dunque in uno spazio vettoriale complesso si può sempre trovare una base ortonormale che è costituita da autovettori di un endomorfismo normale.
 Questo risultato prende il nome di \emph{teorema spettrale}.
-\begin{teorema}[Teorema spettrale] \label{t:spettrale-complesso}
-	Sia $V$ uno spazio vettoriale su $\C$ di dimensione finita, dotato del prodotto interno $\intern{}{}$.
+\begin{teorema}[Teorema spettrale] \label{t:spettrale-complesso}	Sia $V$ uno spazio vettoriale su $\C$ di dimensione finita, dotato del prodotto interno $\intern{}{}$.
 	Ogni endomorfismo normale di $V$ è diagonalizzabile, e ammette una base ortonormale di autovettori.
 \end{teorema}
-\begin{proof}
+\begin{proof}\footnote{
+		La dimostrazione è tratta da \cite{spettrale}, e differisce da quella vista a lezione.
+		Ha il pregio di dimostrare, senza ulteriore sforzo, anche l'esistenza di una base ortonormale.
+	}
 	Sia $T\in\End(V)$ normale: dimostriamo la tesi per induzione sulla dimensione di $V$.
 
 	Se $\dim V=1$, è ovvia.
