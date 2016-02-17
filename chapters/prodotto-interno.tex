@@ -460,7 +460,7 @@ Notiamo che per $A\in\mat(n,\C)$ risulta $(\conj{A})^T=\conj{(A^T)}$ dunque non 
 	cioè l'aggiunto di $\adj T$ è $T$ stesso.
 \end{proof}
 
-Riprendiamo ora il concetto di sottospazio invariante introdotto nella sezione \ref{sec:t-invariante}.
+Riprendiamo ora il concetto di sottospazio invariante introdotto nella sezione \ref{sec:sottospazi-invarianti}.
 \begin{teorema} \label{t:invariante-ortogonale}
 	Sia $V$ uno spazio vettoriale di dimensione finita dotato del prodotto interno $\intern{}{}$, e $T\in\End(V)$.
 	Un sottospazio $W\leq V$ è $T$-invariante se e solo se $W^\perp$ è $\adj T$-invariante.
@@ -609,7 +609,7 @@ La matrice associata, in una base ortonormale, ad un operatore autoaggiunto è u
 	Se $T\in\End(V)$ è autoaggiunto, allora ammette sempre almeno un autovalore.
 \end{teorema}
 \begin{proof}
-	Se $V$ è sul campo complesso, poich\'e $T$ è normale, per il teorema spettrale \ref{t:spettrale} è addirittura sempre diagonalizzabile, quindi la tesi è immediata.
+	Se $V$ è sul campo complesso, poich\'e $T$ è normale, per il teorema spettrale \ref{t:spettrale-complesso} è addirittura sempre diagonalizzabile, quindi la tesi è immediata.
 	Diverso è il caso in cui $V$ è sul campo reale.
 	Prendiamo una base $\mathcal B=\{b_i\}_{i=1}^n$ ortonormale, e sia $A$ la matrice associata a $T$ in tale base: $A$ è simmetrica essendo $T$ autoaggiunto.
 	Sia $S\in\End(\C^n)$ tale che $[S(x)]_\mathcal{B}=A[x]_\mathcal{B}$: $A$ risulta anche hermitiana se vista in $\mat(n,\C)$, dunque $S$ è autoaggiunto.

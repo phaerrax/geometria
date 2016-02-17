@@ -45,7 +45,7 @@ Possiamo quindi definire il \emph{determinante di un endomorfismo}, sapendo che 
 
 	Se $T-\lambda I$ non è iniettivo, non può essere di conseguenza invertibile, quindi il suo determinante deve essere nullo.
 	Viceversa, se il determinante è nullo allora non è invertibile, vale a dire $T-\lambda I$ non è iniettivo oppure non è suriettivo.
-	In spazi di dimensione finita, però, se un endomorfismo è iniettivo è automaticamente suriettivo (in virtù del primo teorema dell'isomorfismo \ref{t:primo-isomorfismo}), dunque le due affermazioni sono equivalenti: $T$ non è n\'e iniettivo n\'e suriettivo.
+	In spazi di dimensione finita, però, se un endomorfismo è iniettivo è automaticamente suriettivo (in virtù del primo teorema dell'isomorfismo \ref{t:isomorfismo-1}), dunque le due affermazioni sono equivalenti: $T$ non è n\'e iniettivo n\'e suriettivo.
 \end{proof}
 
 \begin{definizione} \label{d:polinomio-caratteristico}
@@ -134,7 +134,7 @@ La somma di due autovettori di $T$ associati a due autovalori distinti però \em
 	Se $\lambda$ è un autovalore, esiste un autospazio ad esso associato non vuoto, che ha quindi una dimensione non nulla; inoltre esiste una radice di $\chi_T(x)$, ed essa ha quindi una molteplicità non nulla.
 	Allora $\alpha_\lambda,\gamma_\lambda\geq 1$.
 
-	L'autospazio è un sottospazio vettoriale di $V$, quindi $\gamma_\lambda=\dim V_\lambda\leq\dim V$; il grado di $\chi_T(x)$ (che equivale alla dimensione di $V$) non può essere superato dalla somma delle molteplicità delle radici per il teorema \ref{dimensione-moltiplicità-algebrica}.
+	L'autospazio è un sottospazio vettoriale di $V$, quindi $\gamma_\lambda=\dim V_\lambda\leq\dim V$; il grado di $\chi_T(x)$ (che equivale alla dimensione di $V$) non può essere superato dalla somma delle molteplicità delle radici per il teorema \ref{t:somma-molteplicita-algebriche}.
 	Risulta allora $\alpha_\lambda\le\dim V$.
 
 	Possiamo ora individuare una base dell'autospazio $V_\lambda$ composta da $\gamma_\lambda$ elementi, che sono autovettori associati all'autovalore $\lambda$.
@@ -219,10 +219,9 @@ Per l'unicità della fattorizzazione cioè i fattori irriducibili delle due ``ve
 	\end{equation}
 
 	In ogni autospazio $V_i$ troviamo $\gamma_i$ vettori linearmente indipendenti (tutti autovettori di $T$), che formano una base del sottospazio.
-	Riunendo le basi di tutti gli autospazi, otteniamo un insieme $\mathcal I$ linearmente indipendente in $V$, in base al teorema \ref{unioni-linearmente-indipendente} % da sistemare
-	in quanto gli autospazi sono linearmente indipendenti per il teorema \ref{t:autovettori-linearmente-indipendenti}.
+	Riunendo le basi di tutti gli autospazi, otteniamo un insieme $\mathcal I$ linearmente indipendente in $V$, in base al teorema \ref{t:sottospazi-linearmente-indipendenti-unione} in quanto gli autospazi sono linearmente indipendenti per il teorema \ref{t:autovettori-linearmente-indipendenti}.
 	Per il punto precedente, $\sum_{i=1}^k\gamma_i=\dim V$ quindi il numero di vettori in $\mathcal I$ è proprio $\dim V$.
-	Per il teorema \ref{t:basi-dimensioni} segue dunque che $\mathcal I$ è una base di $V$, e ciò prova che $T$ è diagonalizzabile.
+	Per il teorema \ref{t:base-dimensione} segue dunque che $\mathcal I$ è una base di $V$, e ciò prova che $T$ è diagonalizzabile.
 \end{proof}
 Segue immediatamente il seguente corollario.
 \begin{corollario}
