@@ -153,21 +153,12 @@ Notare che questo risultato non dipende in alcun modo dalla base dello spazio di
 	\end{equation}
 \end{teorema}
 Un altro modo di enunciare il teorema è affermare che $\tilde{T}$ rende commutativo il grafico seguente.
-\begin{figure}[h!]
-	\centering
-	\begin{tikzpicture}
-		\node (V) at (-1,1.5) {$V$};
-		\node (Z) at (1,1.5) {$Z$};
-		\node (K) at (0,0) {$V\quot\Ker T$};
-		\draw [->] (V) to node[above]{$T$} (Z);
-		\draw [->] (V) to node[left]{$\pi$} (K);
-		\draw [->] (K) to node[right]{$\tilde{T}$} (Z);
-	\end{tikzpicture}
-\end{figure}
+
+\centerline{\xymatrix{V \ar[r]^T \ar[d]_\pi & Z \\ V\quot\Ker T \ar[ur]_{\tilde T}}}
+
 \begin{proof}
 	L'applicazione $\tilde{T}$ è naturalmente definita come $\tilde{T}(\Ker T+x)=T(x)$.
-
-	Verifichiamo innanzitutto che l'applicazione $\tilde{T}$ sia \emph{ben definita}, ossia che $\tilde{T}(X)$ non dipenda dal rappresentante scelto per la classe	$X$.
+	Verifichiamo innanzitutto che essa sia \emph{ben definita}, ossia che $\tilde{T}(X)$ non dipenda dal rappresentante scelto per la classe $X$.
 	Sia $\Ker T+x\in V\quot\Ker T$, e prendiamo un altro rappresentante $y\in V$, tale che $\Ker T+x=\Ker T+y$: le immagini delle due classi dovranno coincidere.
 	Dato che $x\sim y$, risulta $x-y\in\Ker T$, ma allora $\tilde{T}(\Ker T+x)-\tilde{T}(\Ker T+y)=T(x)-T(y)=T(x-y)=0_Z$ cioè $\tilde{T}(\Ker T+x)=\tilde{T}(\Ker T+y)$.
 	Analogamente, se per un $w\in V$ si avesse $\Ker T+x\ne\Ker T+w$, allora anche $\tilde{T}(\Ker T+x)\ne\tilde{T}(\Ker T+w)$: è sufficiente notare che se, per assurdo, le immagini coincidessero, allora dovrebbero coincidere anche le preimmagini, poich\'e risulterebbe $x-w\in\Ker T$.
