@@ -37,26 +37,61 @@ Una tale applicazione è detta \emph{segno}.
 Presa una permutazione $\sigma\in S_n$, essa si dice pari se il suo segno è 1, dispari se è $-1$.
 Se $s$ è il numero di scambi effettuati, il segno della permutazione che risulta dalla loro composizione è $\epsilon(\sigma)=(-1)^s$.
 
-\section{Applicazioni multilineari}
-\begin{definizione} \label{d:applicazione-multilineare}
-	Siano $V_1,V_2,\dots,V_n,W$ spazi vettoriali sul campo $K$.
-	L'applicazione $h\colon V_1\times V_2\times\dots\times V_n\to W$ si dice \emph{multilineare} se $\forall v_1\in V_1,v_2\in V_2,\dots,v_n\in V_n$ e $v_i',v_i''\in V_i$ e $\mu,\lambda\in K$ si ha che
-	\begin{multline*}
-		h(v_1,\dots,v_{i-1},\mu v_i'+\lambda v_i'',v_{i+1},\dots,v_n)=\mu h(v_1,\dots,v_{i-1},v_i',v_{i+1},\dots,v_n)+\\+\lambda h(v_1,\dots,v_{i-1},v_i'',v_{i+1},\dots,v_n).
-	\end{multline*}
-\end{definizione}
+\section{Applicazioni multilineari alternanti}
 \begin{definizione} \label{d:applicazione-multilineare-alternante}
-	L'applicazione $h\colon V_1\times\dots\times V_n\to W$ si dice \emph{alternante} se ogniqualvolta esistono due indici $i,j\in\{1,\dots,n\}$ per i quali $v_i=v_j$, si ha $h(v_1,\dots,v_i,v_j,\dots,v_n)=0$.
+	Siano $V_1,V_2,\dots,V_n,W$ spazi vettoriali sul campo $K$.
+	L'applicazione $T\colon V_1\times V_2\times\dots\times V_n\to W$ si dice \emph{multilineare} se $\forall v_1\in V_1,v_2\in V_2,\dots,v_n\in V_n$ e $v_i',v_i''\in V_i$ e $\mu,\lambda\in K$ si ha che
+	\begin{multline*}
+		T(v_1,\dots,v_{i-1},\mu v_i'+\lambda v_i'',v_{i+1},\dots,v_n)=\mu T(v_1,\dots,v_{i-1},v_i',v_{i+1},\dots,v_n)+\\+\lambda T(v_1,\dots,v_{i-1},v_i'',v_{i+1},\dots,v_n).
+	\end{multline*}
+	In pratica essa è lineare in ciascuna delle variabili.
+	Si dice inoltre \emph{alternante} se ogniqualvolta esistono due indici $i,j\in\{1,\dots,n\}$ per i quali $v_i=v_j$, allora $T(v_1,\dots,v_i,\dots,v_j,\dots,v_n)=0$.
 \end{definizione}
-\begin{teorema}[di unicità] \label{t:unicita-applicazione-multilineare-alternante}
-	Sia $A=(a_{ij})_{i,j=1}^n$ una matrice di $\mat(n,K)$, dove $K$ è un campo.
-	Esiste ed è unica un'applicazione multilineare alternante $h\colon\mat(n,K)\to K$ (che può essere anche visto come spazio vettoriale su sé stesso) tale per cui $h(I_n)=1$ e, con $\lambda\in K$, 
-	\begin{equation*}
-		h(A)=\lambda\sum_{\sigma\in S_n}\epsilon(\sigma)a_{\sigma(1)1}\dots a_{\sigma(n)n}.
-	\end{equation*}
+Dall'alternanza dell'applicazione ricaviamo subito un'importante proprietà, nel caso in cui lo spazio di partenza sia il prodotto di tante copie di un unico spazio vettoriale.
+A tal proposito, come è uso comune, indichiamo
+\begin{equation}
+	V^n\defeq\underbracket[.5pt]{V\times V\times\cdots\times V}_{n\text{volte}}.
+\end{equation}
+\begin{teorema} \label{t:alternante-implica-antisimmetrica}
+	Sia $T\colon V^n\to W$ un'applicazione multilineare.
+	Se è alternante allora è antisimmetrica.
 \end{teorema}
-Un'applicazione multilineare alternante particolarmente interessante è il \emph{determinante}, che è una funzione che associa ad ogni matrice quadrata uno scalare che ne sintetizza alcune proprietà algebriche.
-Il determinante di una matrice $M$ di indica con $\det M$, oppure racchiudendo i suoi coefficienti tra due righe verticali.
+\begin{proof}
+	Scegliamo due variabili distinte uguali a $x+y$, con $x,y\in V$.
+	Risulta dalla multilinearità che
+	\begin{multline}
+		T(x_1,\dots,x+y,\dots,x+y,\dots,x_n)=T(x_1,\dots,x,\dots,x,\dots,x_n)+T(x_1,\dots,x,\dots,y,\dots,x_n)+\\+T(x_1,\dots,y,\dots,x,\dots,x_n)+T(x_1,\dots,y,\dots,y,\dots,x_n),
+	\end{multline}
+	mentre l'alternanza implica che il primo membro e il primo e ultimo termine del secondo membro sono nulli.
+	Di conseguenza
+	\begin{equation}
+		T(x_1,\dots,x,\dots,y,\dots,x_n)+T(x_1,\dots,y,\dots,x,\dots,x_n)=0
+	\end{equation}
+	cioè $T$ è antisimmetrica.
+\end{proof}
+In generale, in seguito ad uno scambio $\tau\colon\{1,\dots,n\}\to\{1,\dots,n\}$ risulta
+\begin{equation}
+	T(x_{\tau(1)},\dots,x_{\tau(n)})=-T(x_1,\dots,x_n).
+\end{equation}
+L'implicazione inversa non è sempre vera in generale: esistono infatti dei campi in cui vale $x=-x$ anche se $x\ne 0$, come $\Z_2$ in cui $1+1=0$.
+Essi sono i campi con caratteristica $2$, e in tal caso evidentemente l'antisimmetria non implica l'alternanza.
+Al di là di questi casi patologici, se la caratteristica del campo è diversa da 2 allora un'applicazione antisimmetrica è anche alternante e viceversa.
+\begin{proprieta} \label{pr:alternante-variabili-linearmente-dipendenti}
+	Se $\{x_1,\dots,x_k\}\subset V$ è un insieme linearmente dipendente in uno spazio vettoriale $V$ su un campo $K$, allora per ogni applicazione $T\colon V^k\to K$ alternante si ha $T(x_1,\dots,x_k)=0$.
+\end{proprieta}
+\begin{proof}
+	Esprimiamo uno dei vettori come combinazione lineare dei restanti, e sfruttiamo la multilinearità di $T$: a meno di riordinamenti, supponiamo che $x_1$ si possa scrivere come combinazione lineare
+	\begin{equation}
+		x_1=\alpha_2x_2+\cdots+\alpha_kx_k
+	\end{equation}
+	per certi $\alpha_i\in K$.
+	Otteniamo cos\`i
+	\begin{equation}
+		T(x_1,\dots,x_k)=T\bigg(\sum_{i=2}^k\alpha_ix_i,x_2,\dots,x_k\bigg)=\sum_{i=2}^k\alpha_iT(x_i,x_2,\cdots,x_k)
+	\end{equation}
+	ma in ciascun $T(x_i,x_2,\dots,x_k)$ c'e sempre (poich\'e $i=2,\dots,k$) una coppia di variabili uguali, perciò ognuno di questi è nullo, vale a dire $T(x_1,\dots,x_k)=0$.
+\end{proof}
+L'affermazione contraria, ossia che se l'insieme è linearmente indipendente allora $T(x_1,\dots,x_k)\ne~0$, vale solo se $k=\dim V$, cioè quando l'insieme è una base di $V$.
 
 \paragraph{Assiomi di definizione del determinante}
 Sia $\mat(n,K)$ l'insieme delle matrici quadrate di ordine $n$ e a coefficienti in un campo $K$.
