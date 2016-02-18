@@ -200,26 +200,14 @@ Per $\lambda=1$ nella \eqref{eq:forma-multilineare-alternante-matrici} otteniamo
 	\label{eq:determinante-leibniz}
 \end{equation}
 
-\paragraph{Assiomi di definizione del determinante}
-Sia $\mat(n,K)$ l'insieme delle matrici quadrate di ordine $n$ e a coefficienti in un campo $K$.
-Cerchiamo una funzione $\det\colon\mat(n,K)\to K$ aventi le seguenti proprietà\footnote{Nei seguenti punti si indicheranno con $A_i$ i vettori colonna di $K^n$: affiancando $n$ di questi vettori si ottiene una matrice di $\mat(n,K)$.}:
-\begin{enumerate}[label=(\roman*)]
-	\item $\det I=1$, dove $I$ è la matrice identità di $\mat(n,K)$;
-	\item se $A$ ha due righe o colonne uguali, $\det A=0$,
-		\begin{equation*}
-		\det(A_1\cdots A_n)=0\text{ se }\exists i,j=1,\dots,n\colon A_i=A_j;
-		\end{equation*}
-	\item se $B$ è ottenuta moltiplicando una riga o una colonna di $A$ per uno scalare $k\in K$, allora $\det B=k\det A$,
-		\begin{equation*}
-		\det(A_1\cdots\lambda A_i\cdots A_n)=\lambda\det(A_1\cdots A_i\cdots A_n);
-		\end{equation*}
-	\item se $B$ è ottenuta scambiando due righe o due colonne di $A$, allora $\det B=-\det A$,
-		\begin{equation*}
-		\det(A_1\cdots A_i\cdots A_j\cdots A_n)=-\det(A_1\cdots A_j\cdots A_i\cdots A_n),\text{ con }i\neq j;
-		\end{equation*}
-	\item $\det(A_1\cdots A_i+C\cdots A_n)=\det(A_1\cdots A_i\cdots A_n)+\det(A_1\cdots C\cdots A_n);$ 
+Riassumiamo quindi le proprietà del determinante di una matrice quadrata:
+\begin{enumerate}
+	\item $\det I_n=1$, dove $I_n$ è la matrice identità di $\mat(n,K)$;
+	\item se $A$ ha due colonne uguali, $\det A=0$;
+	\item se $B$ è ottenuta moltiplicando una (e \emph{una sola}) riga o colonna di $A$ per uno scalare $k\in K$, allora $\det B=k\det A$;
+	\item se $B$ è ottenuta scambiando due colonne di $A$, allora $\det B=-\det A$;
+	\item è lineare nelle colonne della matrice, ossia $\det(A_1\cdots A_i'+A_i''\cdots A_n)=\det(A_1\cdots A_i'\cdots A_n)+\det(A_1\cdots A_i''\cdots A_n)$.
 \end{enumerate}
-Una funzione che soddisfa queste proprietà esiste, ed è unica, ed è appunto il determinante.
 
 \section{Riduzione a scala}
 \begin{definizione}
@@ -252,8 +240,8 @@ Per tali matrici, essere ridotta a scala significa essere triangolare superiore:
 \end{proprieta}
 \begin{proof}
 	\begin{enumerate}
-	\item La riga o colonna nulla si può vedere come $0\cdot A_i$ dove $A_i$ è una riga o colonna qualunque, quindi per la (iii) si ha che il determinante è nullo.
-	\item Per la (v) si ha
+		\item Se una riga o colonna è nulla, nel prodotto $\prod_{j=1}^na_{\sigma(j)j}$ si ha sempre, qualsiasi sia $\sigma\in S_n$, un fattore nullo, perciò $\det(A)=0$.
+	\item Per la multilinearità si ha
 		\begin{equation*}
 			\begin{vmatrix}
 				A_1\\\vdots\\\lambda A_i+\mu A_j\\ A_j\\\vdots\\A_n
@@ -275,9 +263,9 @@ Per tali matrici, essere ridotta a scala significa essere triangolare superiore:
 				A_1\\\vdots\\A_j\\ A_j\\\vdots\\A_n
 			\end{vmatrix},
 		\end{equation*}
-		ma la seconda matrice ha due righe uguali quindi il suo determinante è nullo per il punto precedente.
+		ma la seconda matrice ha due righe uguali quindi il suo determinante è nullo.
 	\item Per ridurre a scala una matrice, si cambia il segno del determinante tante volte ($s$) quante volte si sono scambiate due righe, mentre il determinante non varia sostituendo ad una riga $A_i$ una combinazione lineare del tipo $1_KA_i+\mu A_j$, con $i\neq j$.
-		Se il rango della matrice non è massimo, cioè non è esattamente $n$, si ha automaticamente come risultato una riga nulla, quindi il determinante è nullo.
+		Se il rango della matrice non è massimo, cioè non è esattamente $n$, le colonne sono linearmente dipendenti, perciò dalla proprietà \ref{pr:alternante-variabili-linearmente-dipendenti} segue che $\det(A)=0$.
 		Altrimenti, sia
 		\begin{equation*}
 			B=
@@ -341,9 +329,9 @@ Per dimostrarlo è sufficiente considerare la matrice $A\mid b$ e ridurla a scal
 \end{teorema}
 
 \section{Calcolo del determinante}
-Il determinante coincide in pratica con la somma di tutti i possibili prodotti tra elementi di righe e colonne diverse della matrice: questa definizione è ovviamente inutilizzabile in generale, ma per le matrici di ordini piccoli si traduce in formule veloci per il suo calcolo.
+Il determinante coincide, in pratica, con la somma di tutti i possibili prodotti tra elementi di righe e colonne diverse della matrice: questa definizione è ovviamente inutilizzabile in generale, ma per le matrici di ordini piccoli si traduce in formule veloci per il suo calcolo.
 Il determinante di una matrice nulla è ovviamente 0.
-Per le matrici di ordine 1, che sono gli scalari del campo $K$, il determinante coincide con la loro unica componente: $\det(k_{11})=k_{11}$.
+Per le matrici di ordine 1, che si identificano con gli scalari del campo $K$, il determinante coincide con la loro unica componente: $\det(k_{11})=k_{11}$.
 Per le matrici di ordine 2 vale
 \begin{equation*}
 	\det
@@ -362,66 +350,8 @@ Per le matrici di ordine 3 si può utilizzare la \emph{regola di Sarrus}: il det
 	\end{pmatrix}
 	=a_{11}a_{22}a_{33}+a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32}-a_{11}a_{23}a_{32}-a_{12}a_{21}a_{33}-a_{13}a_{22}a_{31}.
 \end{equation*}
-Tale regola \emph{non} si può estendere a matrici di ordini superiori.
+Tale regola però \emph{non} si può estendere a matrici di ordini superiori.
 
-\begin{teorema}[Formula di Leibnitz] \label{t:determinante-leibnitz}
-	Sia $A=(a_{ij})\in\mat(n,K)$, con $\cha K\neq 2$.
-	Il suo determinante è dato da
-	\begin{equation}\label{eq:determinante-leibnitz}
-		\det A=\sum_{\sigma\in S_n}\epsilon(\sigma)\prod_{i=1}^na_{i\sigma(i)}.
-	\end{equation}
-\end{teorema}
-\begin{proof}
-	Sia $\{e_j\}_{j=1}^n$ la base canonica di $K^n$.
-	Si può scrivere $A$ come
-	\begin{equation*}
-		A=
-		\begin{pmatrix}
-			A_1\\A_2\\\vdots\\A_n
-		\end{pmatrix}
-		=
-		\begin{pmatrix}
-			a_{11}e_1+\dots+a_{1n}e_n\\
-			a_{21}e_1+\dots+a_{2n}e_n\\
-			\vdots\\
-			a_{n1}e_1+\dots+a_{nn}e_n
-		\end{pmatrix}.
-	\end{equation*}
-	Il suo determinante è la somma di elementi del tipo
-	\begin{equation*}
-		\det
-		\begin{pmatrix}
-			a_{1\sigma(1)}e_{\sigma(1)}\\
-			\vdots\\
-			a_{n\sigma(n)}e_n
-		\end{pmatrix},
-	\end{equation*}
-	per linearità, scomponendo il determinante per ogni riga.
-	Quindi
-	\begin{equation*}
-		\det
-		\begin{pmatrix}
-			a_{1\sigma(1)}e_{\sigma(1)}\\
-			\vdots\\
-			a_{n\sigma(n)}e_{n\sigma(n)}
-		\end{pmatrix}
-		=a_{1\sigma(1)}\cdots a_{n\sigma(n)}\det
-		\begin{pmatrix}
-			e_{\sigma(1)}\\
-			\vdots\\e_{n\sigma(n)}
-		\end{pmatrix}.
-	\end{equation*}
-	Sempre per la linearità, tutti questi determinanti si possono sommare, ottenendo
-	\begin{equation*}
-		\begin{split}
-			\det A&=\sum_{\sigma\in S_n}a_{1\sigma(1)}\cdots a_{n\sigma(n)}\det\begin{pmatrix}e_{\sigma(1)}\\\vdots\\e_{\sigma(n)}\end{pmatrix}=\\
-			&=\sum_{\sigma\in S_n}a_{1\sigma(1)}\cdots a_{n\sigma(n)}\epsilon(\sigma)\det\begin{pmatrix}e_1\\\vdots\\e_n\end{pmatrix}=\\
-			&=\sum_{\sigma\in S_n}\epsilon(\sigma)a_{1\sigma(1)}\cdots a_{n\sigma(n)}.\qedhere
-		\end{split}
-	\end{equation*}
-\end{proof}
-
-Anche il metodo di Leibnitz, però, non fa molta luce su come si dovrebbe calcolare il determinante.
 Il metodo più usato è la \emph{scomposizione di Laplace} per righe o per colonne.
 \begin{definizione} \label{d:minori-complementi}
 	Siano $A\in\mat(n,K)$ e $i,k\in\{1,\dots,n\}$.
@@ -444,7 +374,7 @@ Il metodo più usato è la \emph{scomposizione di Laplace} per righe o per colon
 	\end{equation}
 \end{teorema}
 \begin{proof}
-	Fissato $k$, dalla \eqref{eq:determinante-leibnitz} risulta
+	Fissato $k$, dalla \eqref{eq:determinante-leibniz} risulta
 	\begin{equation*}
 		\det A=\sum_{\sigma\in S_n}\epsilon(\sigma)a_{\sigma(1)1}\dots a_{\sigma(n)n}=a_{1k}\alpha_{1k}+\dots+a_{nk}\alpha_{nk},
 	\end{equation*}
@@ -474,7 +404,7 @@ Vediamo ora come si comporta il determinante con la trasposizione e l'inversione
 \end{teorema}
 	\begin{proof}
 	Sia $A=(a_{ij})$, e $A^T=(b_{ij})$, in modo che $b_{ij}=a_{ji}$.
-	Dalla \eqref{eq:determinante-leibnitz} si ha
+	Dalla \eqref{eq:determinante-leibniz} si ha
 	\begin{equation}
 		\begin{split}
 			\det A^T &=\sum_{\sigma\in S_n}\epsilon(\sigma)b_{\sigma(1)1}\cdots b_{\sigma(n)n}=\\
@@ -498,7 +428,7 @@ Con il determinante possiamo caratterizzare le matrici invertibili con il seguen
 \end{teorema}
 \begin{proof}
 	Siano $f,g\colon\mat(n,K)\to K$ definite come $f(B)=\det(AB)$ e $g(B)=\det A\det B$.
-	Si dimostra che le due applicazioni coincidono: per fare ciò si mostra che sono entrambe multilineari alternanti, da cui per il teorema \ref{t:unicita-applicazione-multilineare-alternante} devono coincidere.
+	Si dimostra che le due forme coincidono: per fare ciò si mostra che sono entrambe multilineari alternanti, e l'unicità segue dal teorema \ref{t:unicita-applicazione-multilineare-alternante}.
 	Sulla matrice identità, le due applicazioni agiscono come $f(I)=\det(AI)=\det A$ e $g(I)=\det I\det A=\det A$.
 	L'applicazione $f$ è multilineare, perché
 	\begin{align*}
