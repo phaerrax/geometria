@@ -19,23 +19,24 @@ Il suo elemento neutro è la permutazione che lascia invariati tutti gli element
 \begin{definizione} \label{d:scambio}
 	Si chiama \emph{scambio}, o \emph{trasposizione}, un'operazione $J_n\to J_n$ che consiste nello scambio di due elementi, lasciando invariati tutti gli altri.
 \end{definizione}
-L'importanza delle trasposizioni sta nella seguente proprietà.
+Uno scambio tra due elementi $a,b\in J_n$ si indica in breve con la notazione $(ab)$.
 \begin{proprieta} \label{pr:permutazione-prodotto-scambi}
 	Ogni permutazione si può sempre esprimere come prodotto di scambi:
 	\begin{equation*}
 		\sigma=\tau_1\tau_2\cdots\tau_s.
 	\end{equation*}
 \end{proprieta}
-\begin{proprieta} \label{pr:segno}
-	Esiste ed è unica un'applicazione $\epsilon\colon S_n\to\{-1,1\}$ tale che
-	\begin{itemize}
-		\item se $\tau$ è uno scambio, $\epsilon(\tau)=-1$;
-		\item se $\sigma_1,\sigma_2\in S_n$, allora $\epsilon(\sigma_1\sigma_2)=\epsilon(\sigma_1)\epsilon(\sigma_2)$.
-	\end{itemize}
-\end{proprieta}
-Una tale applicazione è detta \emph{segno}.
-Presa una permutazione $\sigma\in S_n$, essa si dice pari se il suo segno è 1, dispari se è $-1$.
-Se $s$ è il numero di scambi effettuati, il segno della permutazione che risulta dalla loro composizione è $\epsilon(\sigma)=(-1)^s$.
+Una permutazione è detta \emph{pari} se è composta da un numero pari di scambi, altrimenti è detta \emph{dispari}.
+La funzione detta \emph{segno} (o anche \emph{parità}) indica se la permutazione è pari o dispari, assegnando 1 alle prime e $-1$ alle ultime; essa è \emph{ben definita} nel senso che non dipende dall'ordine in cui gli scambi di cui è composta la permutazione sono effettuati.
+Se $s$ è il numero di scambi effettuati, il segno della permutazione che risulta dalla loro composizione è $\sgn(\sigma)=(-1)^s$.
+Possiamo facilmente dedurre alcune proprietà:
+\begin{itemize}
+	\item detto $\id$ l'elemento neutro $S_n$, esso è la permutazione che non effettua scambi, perciò $\sgn(\id)=1$;
+	\item per ogni $\sigma,\sigma'\in S_n$ si ha $\sgn(\sigma\sigma')=\sgn(\sigma)\sgn(\sigma')$;
+	\item $\sgn(\sigma\sigma^{-1})=\sgn(\id)=1$, ma allora $1=\sgn(\sigma)\sgn(\sigma^{-1})$ cioè $\sgn(\sigma^{-1})=\sgn(\sigma)$.
+\end{itemize}
+La mappa $\sgn\colon S_n\to\{-1,1\}$ è perciò un omomorfismo, chiaramente suriettivo, tra il gruppo simmetrico e l'insieme $\{-1,1\}$ con l'operazione di moltiplicazione.
+Il suo nucleo, composto dalle permutazioni pari (il cui segno è 1), forma un sottogruppo di $S_n$: esso è detto \emph{gruppo alterno} di ordine $n$, indicato solitamente con $A_n$.
 
 \section{Applicazioni multilineari alternanti}
 \begin{definizione} \label{d:applicazione-multilineare-alternante}
@@ -376,11 +377,11 @@ Il metodo più usato è la \emph{scomposizione di Laplace} per righe o per colon
 \begin{proof}
 	Fissato $k$, dalla \eqref{eq:determinante-leibniz} risulta
 	\begin{equation*}
-		\det A=\sum_{\sigma\in S_n}\epsilon(\sigma)a_{\sigma(1)1}\dots a_{\sigma(n)n}=a_{1k}\alpha_{1k}+\dots+a_{nk}\alpha_{nk},
+		\det A=\sum_{\sigma\in S_n}\sgn(\sigma)a_{\sigma(1)1}\dots a_{\sigma(n)n}=a_{1k}\alpha_{1k}+\dots+a_{nk}\alpha_{nk},
 	\end{equation*}
 	dove si è definito
 	\begin{equation*}
-		\alpha_{ik}=\sum_{\substack{\sigma\in S_n\\\sigma(k)=i}}\epsilon(\sigma)a_{\sigma(1)1}\dots a_{\sigma(k-1)k-1}a_{\sigma(k+1)k+1}\dots a_{\sigma(n)n},
+		\alpha_{ik}=\sum_{\substack{\sigma\in S_n\\\sigma(k)=i}}\sgn(\sigma)a_{\sigma(1)1}\dots a_{\sigma(k-1)k-1}a_{\sigma(k+1)k+1}\dots a_{\sigma(n)n},
 	\end{equation*}
 	poiché tutti gli elementi con indice $ik$ sono quelli per cui $\sigma(k)=i$, e l'elemento di indice $\sigma(k)k$, cioè in questo caso $a_{ik}$, è raccolto fuori dalla somma perché appare in tutti i prodotti.
 	Poiché questo $\alpha_{ik}$ è per definizione proprio il determinante di $A$ saltando la riga $i$ e la colonna $k$, si ha $\alpha_{ik}=C_{ik}$, da cui la tesi.
@@ -407,20 +408,20 @@ Vediamo ora come si comporta il determinante con la trasposizione e l'inversione
 	Dalla \eqref{eq:determinante-leibniz} si ha
 	\begin{equation}
 		\begin{split}
-			\det A^T &=\sum_{\sigma\in S_n}\epsilon(\sigma)b_{\sigma(1)1}\cdots b_{\sigma(n)n}=\\
-			&=\sum_{\sigma\in S_n}\epsilon(\sigma)a_{1\sigma(1)}\cdots a_{n\sigma(n)}=\\
-			&=\sum_{\sigma\in S_n}\epsilon(\sigma)a_{\sigma^{-1}(\sigma(1))\sigma(1)}\cdots a_{\sigma^{-1}(\sigma(n))\sigma(n)}.
+			\det A^T &=\sum_{\sigma\in S_n}\sgn(\sigma)b_{\sigma(1)1}\cdots b_{\sigma(n)n}=\\
+			&=\sum_{\sigma\in S_n}\sgn(\sigma)a_{1\sigma(1)}\cdots a_{n\sigma(n)}=\\
+			&=\sum_{\sigma\in S_n}\sgn(\sigma)a_{\sigma^{-1}(\sigma(1))\sigma(1)}\cdots a_{\sigma^{-1}(\sigma(n))\sigma(n)}.
 		\end{split}
 	\end{equation}
 	Ora, fissiamo l'ordine dei secondi coefficienti $\sigma(1),\dots,\sigma(n)$ e passiamo alla somma su $\sigma^{-1}$: questo è possibile perch\'e ogni permutazione ammette un'unica inversa.
 	Otteniamo, riordinando i fattori $a_{\sigma^{-1}(\sigma(i))\sigma(i)}$ in modo che i coefficienti delle colonne (i $\sigma(i)$ che abbiamo appena fissato) risultino in ordine da 1 a $n$,
 	\begin{equation}
 		\begin{split}
-			\det(A^T)&=\sum_{\sigma^{-1}\in S_n}\epsilon(\sigma^{-1})a_{\sigma^{-1}(1)1}\cdots a_{\sigma^{-1}(n)n}=\\
-			&=\sum_{\sigma\in S_n}\epsilon(\sigma)a_{\sigma(1)1}\cdots a_{\sigma(n)n}=\det A.
+			\det(A^T)&=\sum_{\sigma^{-1}\in S_n}\sgn(\sigma^{-1})a_{\sigma^{-1}(1)1}\cdots a_{\sigma^{-1}(n)n}=\\
+			&=\sum_{\sigma\in S_n}\sgn(\sigma)a_{\sigma(1)1}\cdots a_{\sigma(n)n}=\det A.
 		\end{split}
 	\end{equation}
-	Il segno $\epsilon$ è uguale per entrambe, dato che contengono lo stesso numero di scambi, solo il ``percorso'' è al contrario.
+	Il segno $\sgn$ è uguale per entrambe, dato che contengono lo stesso numero di scambi, solo il ``percorso'' è al contrario.
 \end{proof}
 Con il determinante possiamo caratterizzare le matrici invertibili con il seguente teorema.
 \begin{teorema}[di Binet] \label{t:binet}
