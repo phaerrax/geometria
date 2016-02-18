@@ -93,6 +93,113 @@ Al di là di questi casi patologici, se la caratteristica del campo è diversa d
 \end{proof}
 L'affermazione contraria, ossia che se l'insieme è linearmente indipendente allora $T(x_1,\dots,x_k)\ne~0$, vale solo se $k=\dim V$, cioè quando l'insieme è una base di $V$.
 
+\begin{lemma}
+	Sia $V$ uno spazio vettoriale di dimensione $n$ e con base $\mathcal B=\{e_1,\dots,e_n\}$, e $W$ un altro (arbitrario) spazio vettoriale, entrambi sul campo $K$.
+	Dato un insieme di $n$ vettori $\{v_1,\dots,v_n\}$, ogni applicazione multilineare alternante $T\colon V^n\to W$ si può scrivere come
+	\begin{equation}
+		T(v_1,\dots,v_n)=\sum_{\sigma\in S_n}\sgn(\sigma)\prod_{j=1}^nv_{\sigma(j)j}T(e_1,\dots,e_n)
+	\end{equation}
+	dove $v_{ab}$ è la $a$-esima componente del vettore $v_b$, ossia $v_b=\sum_{i=1}^nv_{ib}e_i$.
+\end{lemma}
+\begin{proof}
+	Scomponiamo i vettori come combinazioni lineari degli elementi di $\mathcal B$, nella forma $v_k=\sum_{k=1}^nv_{ik}e_i$ per $i=1,\dots,n$.
+	Allora, sfruttando la multilinearità, otteniamo
+	\begin{multline}
+		T(v_1,\dots,v_n)=
+		T\bigg(\sum_{i=1}^nv_{i1}e_i,\dots,\sum_{i=1}^nv_{in}e_i\bigg)=\\=
+		\sum_{i=1}^n\sum_{j=1}^n\cdots\sum_{k=1}^nv_{i1}v_{j2}\cdots v_{kn}T(e_i,e_j,\dots,e_k)=
+		\sum_{f\in F_n}T(e_{f(1)},\dots,e_{f(n)})\prod_{j=1}^nv_{f(j)j},
+	\end{multline}
+	indicando con $F_n$ l'insieme di tutte le funzioni da $\{1,\dots,n\}$ in s\'e stesso.
+	Se $f\in F_n$ non è iniettiva, allora esistono $i,k\le n$ tali per cui $f(i)=f(k)$, con $i\ne k$; dato che $T$ è alternante l'addendo corrispondente a tale $f$ è nullo.
+	Rimangono dunque nella somma solo le $f$ iniettive, che sono evidentemente anche suriettive.
+	Tali funzioni sono proprio le permutazioni di $\{1,\dots,n\}$: di conseguenza
+	\begin{equation}
+		T(v_1,\dots,v_n)=\sum_{\sigma\in S_n}T(e_{\sigma(1)},\dots,e_{\sigma(n)})\prod_{j=1}^nv_{\sigma(j)j}.
+	\end{equation}
+	Ora, ogni permutazione di $S_n$ può essere espressa come il prodotto di un certo numero $m$ di scambi: ogni volta che applichiamo uno di questi scambi alle variabili $e_1,\dots,e_n$ il segno di $T$ cambia, perch\'e è alternante.
+	In totale, dunque, $T(e_{\sigma(1)},\dots,e_{\sigma(n)})=(-1)^mT(e_1,\dots,e_n)=\sgn(\sigma)T(e_1,\dots,e_n)$ da cui ricaviamo infine
+	\begin{equation}
+		T(v_1,\dots,v_n)=\sum_{\sigma\in S_n}\sgn(\sigma)T(e_1,\dots,e_n)\prod_{j=1}^nv_{\sigma(j)j}.\qedhere
+	\end{equation}
+\end{proof}
+
+Ci concentriamo ora sulle \emph{forme} multilineari alternanti, ossia applicazioni da $V^n$ al campo $K$.
+Una loro caratteristica fondamentale è che sono univocamente determinate da un solo elemento di $K$, come vediamo nel seguente teorema.
+\begin{teorema} \label{t:unicita-applicazione-multilineare-alternante}
+	Sia $V$ uno spazio vettoriale sul campo $K$ con $\dim V=n$, e $\mathcal B=\{e_1,\dots,e_n\}$ una sua base.
+	Per ogni $\lambda\in K$, esiste un'unica forma multilineare alternante $h\colon V^n\to K$ tale che $h(e_1,\dots,e_n)=\lambda$.
+\end{teorema}
+\begin{proof}
+	Ci basta mostrare che
+	\begin{equation}
+		h\bigg(\sum_{j_1=1}^nv_{j_11}e_{j_1},\dots,\sum_{j_n=1}^nv_{j_nn}e_{j_n}\bigg)=\lambda\sum_{\sigma\in S_n}\sgn(\sigma)\prod_{k=1}^nv_{\sigma(k)k}
+		\label{eq:unicita-applicazione-multilineare-alternante}
+	\end{equation}
+	è la forma cercata.
+	L'unicità segue allora direttamente dal lemma precedente.
+
+	Dimostriamo che è multilineare: presi i vettori $v_1,\dots,av_k'+bv_k'',\dots,v_n$ si ha
+	\begin{equation}
+		\begin{split}
+			&h(v_1,\dots,av_k'+bv_k'',\dots,v_n)=\\
+			=\,&\lambda\!\sum_{\sigma\in S_n}\sgn(\sigma)v_{\sigma(1)1}\cdots(av_{\sigma(k)k}'+bv_{\sigma(k)k}'')\cdots v_{\sigma(n)n}=\\
+			=\,&\lambda a\!\sum_{\sigma\in S_n}\sgn(\sigma)v_{\sigma(1)1}\cdots v_{\sigma(k)k}'\cdots v_{\sigma(n)n}+
+			\lambda b\!\sum_{\sigma\in S_n}\sgn(\sigma)v_{\sigma(1)1}\cdots v_{\sigma(k)k}''\cdots v_{\sigma(n)n}=\\
+			=\,&ah(v_1,\dots,v_k',\dots,v_n)+bh(v_1,\dots,v_k'',\dots,v_n).
+		\end{split}
+	\end{equation}
+	Per dimostrare che è alternante, notiamo che, fissato uno scambio $\tau\in S_n$, per ogni permutazione dispari $\sigma\in S_n$ esiste una permutazione pari $\pi\in A_n$ tale che $\pi\tau=\sigma$.
+	Possiamo dunque suddividere il gruppo simmetrico nei due insiemi, disgiunti, $A_n$ e $\tau A_n=\{\sigma\in S_n\colon\sigma=\pi\tau,\ \pi\in A_n\}$.
+	Supponiamo ora che $v_k=v_l$ per $k\ne l$.
+	Detto $\tau=(kl)$, scriviamo le permutazioni dispari come $\pi\tau$, con $\pi$ pari, ottenendo
+	\begin{multline}
+		\lambda\!\sum_{\sigma\in S_n}\sgn(\sigma)\prod_{j=1}^nv_{\sigma(j)j}=
+		\lambda\!\sum_{\pi\in A_n}\sgn(\pi)v_{\pi(1)1}\cdots v_{\pi(n)n}+\lambda\sum_{\pi\in A_n}\sgn(\pi\tau)v_{(\pi\tau)(1)1}\cdots v_{(\pi\tau)(n)n}=\\=
+		\lambda\!\sum_{\pi\in A_n}v_{\pi(1)1}\cdots v_{\pi(k)k}\cdots v_{\pi(l)l}\cdots v_{\pi(n)n}-
+		\lambda\!\sum_{\pi\in A_n}v_{\pi(1)1}\cdots v_{\pi(l)k}\cdots v_{\pi(k)l}\cdots v_{\pi(n)n}
+	\end{multline}
+	poich\'e $(\pi\tau)(k)=\pi\big(\tau(k)\big)=\pi(l)$ e viceversa $(\pi\tau)(l)=\pi(k)$.
+	Abbiamo però che $v_l=v_k$, dunque $v_{\pi(l)k}=v_{\pi(l)l}$ e $v_{\pi(k)k}=v_{\pi(k)l}$, e per questo motivo i due termini coincidono, dando 0 come risultato.
+	La forma cos\`i definita è allora anche alternante.
+	Infine, applicandola agli elementi (ordinati) della base $\mathcal B$, si ottiene
+	\begin{equation}
+		h(e_1,\dots,e_n)=\lambda\!\sum_{\sigma\in S_n}\sgn(\sigma)\delta_{\sigma(1)1}\delta_{\sigma(2)2}\cdots\delta_{\sigma(n)n}
+	\end{equation}
+	e l'unico addendo non nullo è quello in cui $\sigma(i)=i$ $\forall i\in\{1,\dots,n\}$, ossia $\sigma$ è l'elemento neutro di $S_n$.
+	Allora $h(e_1,\dots,e_n)=\lambda\delta_{11}\delta_{22}\cdots\delta_{nn}=\lambda$.
+\end{proof}
+Le forme multilineari alternanti sono dunque univocamente determinate dal valore $\lambda$ che esse assumono sulla $n$-upla ordinata dei vettori della base di $V$.
+In altre parole, questo teorema afferma che lo spazio delle forme multilineari alternanti $V^n\to K$ e $K$ sono, come spazi vettoriali, isomorfi tramite la mappa di valutazione
+\begin{equation}
+	h\mapsto h(e_1,\dots,e_n).
+\end{equation}
+Inoltre possiamo guardare a $V^n$ (con $n=\dim V$) come allo spazio vettoriale i cui elementi sono $n$ vettori di $n$ elementi: in questa luce è facile associarlo allo spazio $\mat(n,K)$, in cui le matrici quadrate sono formate affiancando in ordine i vettori di ciascun $V$.
+Alla $n$-upla ordinata $(e_1,\dots,e_n)$ di $V^n$, se $\{e_1,\dots,e_n\}$ è la base canonica di $K^n$, corrisponde in questo modo la matrice $[e_1\ \cdots\ e_n]$ che è la matrice identità di ordine $n$.
+Possiamo allora considerare le forme multilineari alternanti sia su $V^n$ che su $\mat(n,K)$.
+Presa una matrice $A=(a_{ij})$ scriviamo cos\`i
+\begin{equation}
+	h(A)=\lambda\!\sum_{\sigma\in S_n}\sgn(\sigma)\prod_{j=1}^na_{\sigma(j)j}.
+	\label{eq:forma-multilineare-alternante-matrici}
+\end{equation}
+\begin{definizione} \label{d:determinante}
+	Definiamo \emph{determinante} di una matrice quadrata $A\in\mat(n,K)$ la forma multilineare alternante $h\colon\mat(n,K)\to K$ tale per cui $h(I_n)=1$, dove $I_n$ è la matrice identità di ordine $n$.
+\end{definizione}
+Il determinante di una matrice si indica solitamente con
+\begin{equation}
+	\det(A)\quad\text{oppure}\quad
+	\begin{vmatrix}
+		a_{11}&\cdots&a_{1n}\\
+		\vdots&\ddots&\vdots\\
+		a_{n1}&\cdots&a_{nn}
+	\end{vmatrix}.
+\end{equation}
+Per $\lambda=1$ nella \eqref{eq:forma-multilineare-alternante-matrici} otteniamo dunque l'equazione nota come \emph{formula di Leibniz}
+\begin{equation}
+	\det(A)=\sum_{\sigma\in S_n}\sgn(\sigma)\prod_{j=1}^na_{\sigma(j)j}.
+	\label{eq:determinante-leibniz}
+\end{equation}
+
 \paragraph{Assiomi di definizione del determinante}
 Sia $\mat(n,K)$ l'insieme delle matrici quadrate di ordine $n$ e a coefficienti in un campo $K$.
 Cerchiamo una funzione $\det\colon\mat(n,K)\to K$ aventi le seguenti proprietà\footnote{Nei seguenti punti si indicheranno con $A_i$ i vettori colonna di $K^n$: affiancando $n$ di questi vettori si ottiene una matrice di $\mat(n,K)$.}:
